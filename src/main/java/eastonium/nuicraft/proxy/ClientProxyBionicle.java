@@ -1,3 +1,7 @@
+// DEPRECATED: This proxy system is no longer used in modern Minecraft
+// See: src/main/java/eastonium/nuicraft/client/ClientSetup.java
+// TODO: Delete this file after confirming all functionality is migrated
+
 package eastonium.nuicraft.proxy;
 
 import eastonium.nuicraft.ClientTickHandler;

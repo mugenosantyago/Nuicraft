@@ -1,3 +1,7 @@
+// DEPRECATED: This proxy system is no longer used in modern Minecraft
+// Registration moved to DeferredRegister system in core/ package
+// TODO: Delete this file after confirming all functionality is migrated
+
 package eastonium.nuicraft.proxy;
 
 import eastonium.nuicraft.GuiHandler;

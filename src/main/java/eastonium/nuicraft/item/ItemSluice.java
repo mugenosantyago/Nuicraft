@@ -1,15 +1,19 @@
 package eastonium.nuicraft.item;
 
-import eastonium.nuicraft.NuiCraft;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
-public class ItemSluice extends Item {	
-	
-	public ItemSluice(){
-		maxStackSize = 1;
-		setCreativeTab(NuiCraft.nuicraftTab);
-		setUnlocalizedName(NuiCraft.MODID + ".sluice");
-		setRegistryName("sluice");
-	}
+/**
+ * Sluice tool used to extract protodermis from protodermis ore deposits
+ * Used in interaction with BlockProtodermisDeposit
+ */
+public class ItemSluice extends Item {
+    public ItemSluice(Properties properties) {
+        super(properties);
+    }
+    
+    public static Properties createProperties() {
+        return new Properties()
+                .stacksTo(1);
+    }
 }
 

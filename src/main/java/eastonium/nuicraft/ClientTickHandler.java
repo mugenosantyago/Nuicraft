@@ -1,78 +1,73 @@
 package eastonium.nuicraft;
 
-import org.lwjgl.input.Keyboard;
-
+import com.mojang.blaze3d.platform.InputConstants;
+import eastonium.nuicraft.core.NuiCraftItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-public class ClientTickHandler
-{
-	//public static boolean maskActivated = false;
+@OnlyIn(Dist.CLIENT)
+public class ClientTickHandler {
+    @SubscribeEvent
+    public void onClientPlayerTick(PlayerTickEvent.Pre event) {
+        if (!(event.getEntity() instanceof LocalPlayer player)) return;
+        
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.player == null || minecraft.player != player) return;
+        
+        ItemStack helmet = player.getInventory().getArmor(3);
+        if (!helmet.isEmpty()) {
+            Vec3 motion = player.getDeltaMovement();
+            
+            // Gold Mata Mask (combined powers)
+            if (helmet.is(NuiCraftItems.MASK_MATA_GOLD.get())) {
+                if (minecraft.screen == null && minecraft.options.keyJump.isDown()) {
+                    if (motion.y < 0.15D) {
+                        player.setDeltaMovement(motion.x, motion.y + 0.05D, motion.z);
+                    }
+                } else {
+                    if (motion.y < 0.0D) {
+                        player.setDeltaMovement(motion.x, motion.y / 1.2D, motion.z);
+                    }
+                }
+                player.setDeltaMovement(0, motion.y, 0);
+                
+            } 
+            // Mata Miru (Levitation)
+            else if (helmet.is(NuiCraftItems.MASK_MATA_MIRU.get())) {
+                if (minecraft.screen == null && minecraft.options.keyJump.isDown()) {
+                    if (motion.y < 0.15D) {
+                        player.setDeltaMovement(motion.x, motion.y + 0.05D, motion.z);
+                    }
+                } else {
+                    if (motion.y < 0.0D) {
+                        player.setDeltaMovement(motion.x, motion.y / 1.2D, motion.z);
+                    }
+                }
+                player.setDeltaMovement(0, motion.y, 0);
+                
+            } 
+            // Nuva Miru (Enhanced Levitation)
+            else if (helmet.is(NuiCraftItems.MASK_NUVA_MIRU.get())) {
+                if (minecraft.screen == null && minecraft.options.keyJump.isDown()) {
+                    if (motion.y < 0.30D) {
+                        player.setDeltaMovement(0, motion.y + 0.05D, 0);
+                    }
+                } else if (minecraft.screen == null && !minecraft.options.keyShift.isDown()) {
+                    if (motion.y < 0.0D) {
+                        player.setDeltaMovement(0, motion.y / 1.2D, 0);
+                    }
+                }
+            }
+        }
+    }
 
-	@SubscribeEvent
-	public void tickStart(TickEvent.ClientTickEvent event) {
-		EntityPlayer player = Minecraft.getMinecraft().player;
-
-		if (player == null) return;
-		ItemStack mask = player.inventory.armorItemInSlot(3);
-		if (!mask.isEmpty()) {
-			Minecraft minecraft = Minecraft.getMinecraft();
-			//World world = minecraft.theWorld;
-			//if(maskActivated){
-				if (mask.getItem() == NuiCraftItems.mask_mata_gold) {
-					//KAKAMA
-					/*if(!minecraft.entityRenderer.isShaderActive()){
-						ShaderHelper.chooseShader("phosphor");
-					}*/
-					//MIRU
-					if ((minecraft.currentScreen == null) && (Keyboard.isKeyDown(minecraft.gameSettings.keyBindJump.getKeyCode()))) {
-						if (player.motionY < 0.15D) player.motionY += 0.05D;
-					} else// if ((minecraft.currentScreen == null) && !(Keyboard.isKeyDown(minecraft.gameSettings.keyBindSneak.getKeyCode())))
-					{
-						if (player.motionY < 0.0D) player.motionY /= 1.2D;
-					}
-					player.motionX = 0;
-					player.motionZ = 0;
-					
-				} else if (mask.getItem() == NuiCraftItems.mask_mata_kakama || mask.getItem() == NuiCraftItems.mask_nuva_kakama) {
-					/*if(!minecraft.entityRenderer.isShaderActive()){
-						ShaderHelper.chooseShader("phosphor");
-					}*/
-					/*if(player.getFoodStats().getFoodLevel() < player.getFoodStats().getPrevFoodLevel()){
-						player.getFoodStats().setFoodLevel(player.getFoodStats().getPrevFoodLevel());
-					}*/
-				} else if (mask.getItem() == NuiCraftItems.mask_mata_miru) {
-					if ((minecraft.currentScreen == null) && (Keyboard.isKeyDown(minecraft.gameSettings.keyBindJump.getKeyCode()))) {
-						if (player.motionY < 0.15D) player.motionY += 0.05D;
-					} else// if ((minecraft.currentScreen == null) && !(Keyboard.isKeyDown(minecraft.gameSettings.keyBindSneak.getKeyCode())))
-					{
-						if (player.motionY < 0.0D) player.motionY /= 1.2D;
-					}
-					player.motionX = 0;
-					player.motionZ = 0;
-				} else if (mask.getItem() == NuiCraftItems.mask_nuva_miru) {
-					if ((minecraft.currentScreen == null) && (Keyboard.isKeyDown(minecraft.gameSettings.keyBindJump.getKeyCode()))) {
-						if (player.motionY < 0.30D) player.motionY += 0.05D;
-						player.motionX = 0;
-						player.motionZ = 0;
-					} else if ((minecraft.currentScreen == null) && !(Keyboard.isKeyDown(minecraft.gameSettings.keyBindSneak.getKeyCode()))) {
-						if (player.motionY < 0.0D) player.motionY /= 1.2D;
-						player.motionX = 0;
-						player.motionZ = 0;
-					}
-				} else if (mask.getItem() == NuiCraftItems.mask_vahi){
-					/*if(!minecraft.entityRenderer.isShaderActive()){
-						ShaderHelper.chooseShader("desaturate");
-					}*/
-				}
-			//}//else Minecraft.getMinecraft().entityRenderer.stopUseShader();;
-		}
-	}
-
-	/*private void handleHelmet(Item item)
+    /*private void handleHelmet(Item item)
 	{
 		Minecraft minecraft = Minecraft.getMinecraft();
 		EntityPlayer player = minecraft.thePlayer;

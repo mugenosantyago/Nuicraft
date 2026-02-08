@@ -64,9 +64,13 @@ public class NuiCraftItems {
             () -> new HoeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
                     .attributes(HoeItem.createAttributes(NuiCraftTiers.PROTODERMIS, -2.0F, -1.0F))));
 
-    // Special items - TODO: Port ItemHeatstoneLighter and ItemSluice
-    public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.registerSimpleItem("heatstone_lighter");
-    public static final DeferredItem<Item> SLUICE = ITEMS.registerSimpleItem("sluice");
+    // Special items
+    public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.register("heatstone_lighter",
+            () -> new eastonium.nuicraft.item.ItemHeatstoneLighter(
+                    eastonium.nuicraft.item.ItemHeatstoneLighter.createProperties()));
+    public static final DeferredItem<Item> SLUICE = ITEMS.register("sluice",
+            () -> new eastonium.nuicraft.item.ItemSluice(
+                    eastonium.nuicraft.item.ItemSluice.createProperties()));
 
     // Mata Masks - TODO: Port ItemGoldMataMask and ItemColoredMask
     public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerSimpleItem("mask_mata_gold");
