@@ -1,0 +1,68 @@
+{
+  "itemGroup.nuicraft_tab": "NuiCraft",
+  "itemGroup.nuicraft_mask_tab": "NuiCraft Masks",
+
+  "block.nuicraft.fluid_protodermis": "Liquid Protodermis",
+  "block.nuicraft.fluid_protodermis_pure": "Pure Liquid Protodermis",
+  "block.nuicraft.fluid_protodermis_molten": "Molten Protodermis",
+  "block.nuicraft.fluid_protodermis_pure_molten": "Pure Molten Protodermis",
+
+  "fluid_type.nuicraft.protodermis": "Liquid Protodermis",
+  "fluid_type.nuicraft.protodermis_pure": "Pure Liquid Protodermis",
+  "fluid_type.nuicraft.protodermis_molten": "Molten Protodermis",
+  "fluid_type.nuicraft.protodermis_pure_molten": "Pure Molten Protodermis",
+
+  "block.nuicraft.mask_forge": "Mask Forge",
+  "block.nuicraft.purifier": "Purifier",
+
+  "entity.nuicraft.kanoka_disc": "Kanoka Disc",
+  "entity.nuicraft.mahi": "Mahi",
+  "entity.nuicraft.fikou": "Fikou",
+  "entity.nuicraft.hoi": "Hoi",
+  "entity.nuicraft.kofo_jaga": "Kofo-Jaga",
+  "entity.nuicraft.nui_jaga": "Nui-Jaga",
+
+  "block.nuicraft.koro_block": "Koro Block",
+  "block.nuicraft.nuva_cube": "Nuva Cube",
+  "block.nuicraft.matanui_stone": "Mata Nui Stone",
+  "block.nuicraft.makuta_stone": "Makuta Stone",
+  "block.nuicraft.lightstone": "Lightstone",
+  "block.nuicraft.lightstone_ore": "Lightstone Ore",
+  "block.nuicraft.heatstone_ore": "Heatstone Ore",
+  "block.nuicraft.protodermis_ore": "Protodermis Ore",
+  "block.nuicraft.bamboo": "Bamboo",
+  "block.nuicraft.block_protodermis": "Protodermis Block",
+  "block.nuicraft.block_protosteel": "Protosteel Block",
+
+  "item.nuicraft.generic_item": "Generic Item",
+  "item.nuicraft.heatstone_lighter": "Heatstone Lighter",
+  "item.nuicraft.sluice": "Sluice",
+
+  "item.nuicraft.kanoka_bamboo": "Bamboo Disc",
+  "item.nuicraft.kanoka_disc": "Kanoka Disc",
+
+  "item.nuicraft.disc_launcher": "Disc Launcher",
+  "item.nuicraft.protodermis_sword": "Protodermis Sword",
+  "item.nuicraft.protodermis_pick": "Protodermis Pickaxe",
+  "item.nuicraft.protodermis_axe": "Protodermis Hatchet",
+  "item.nuicraft.protodermis_shovel": "Protodermis Shovel",
+  "item.nuicraft.protodermis_scythe": "Protodermis Scythe",
+
+  "item.nuicraft.mask_mata_gold": "Golden Kanohi Mata",
+  "item.nuicraft.mask_mata_kakama": "Kanohi Kakama - Mask of Speed",
+  "item.nuicraft.mask_mata_pakari": "Kanohi Pakari - Mask of Strength",
+  "item.nuicraft.mask_mata_kaukau": "Kanohi Kaukau - Mask of Water Breathing",
+  "item.nuicraft.mask_mata_miru": "Kanohi Miru - Mask of Levitation",
+  "item.nuicraft.mask_mata_hau": "Kanohi Hau - Mask of Shielding (WIP)",
+  "item.nuicraft.mask_mata_akaku": "Kanohi Akaku - Mask of X-Ray Vision (WIP)",
+
+  "item.nuicraft.mask_nuva_kakama": "Kanohi Nuva Kakama - Mask of Speed",
+  "item.nuicraft.mask_nuva_pakari": "Kanohi Nuva Pakari - Mask of Strength",
+  "item.nuicraft.mask_nuva_kaukau": "Kanohi Nuva Kaukau - Mask of Water Breathing",
+  "item.nuicraft.mask_nuva_miru": "Kanohi Nuva Miru - Mask of Levitation",
+  "item.nuicraft.mask_nuva_hau": "Kanohi Nuva Hau - Mask of Shielding (WIP)",
+  "item.nuicraft.mask_nuva_akaku": "Kanohi Nuva Akaku - Mask of X-Ray Vision (WIP)",
+
+  "item.nuicraft.mask_ignika": "Kanohi Ignika - Legendary Mask of Life",
+  "item.nuicraft.mask_vahi": "Kanohi Vahi - Legendary Mask of Time"
+}

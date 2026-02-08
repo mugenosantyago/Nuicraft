@@ -1,47 +1,38 @@
 package eastonium.nuicraft.block;
 
-import eastonium.nuicraft.NuiCraft;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public class BlockBionicleStone extends BlockHorizontal
-{
-	public BlockBionicleStone(String name){
-		super(Material.ROCK);
-		setSoundType(SoundType.STONE);
-        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setCreativeTab(NuiCraft.nuicraftTab);
-		setHarvestLevel("pickaxe", 0);
-		setUnlocalizedName(NuiCraft.MODID + "." + name);
-		setRegistryName(name);
-	}
-	
-	@Override
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
-        return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+public class BlockBionicleStone extends HorizontalDirectionalBlock {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
+    public BlockBionicleStone(BlockBehaviour.Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta){
-        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
-    }
-	
-	@Override
-	public int getMetaFromState(IBlockState state){
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
+    
+    public static BlockBehaviour.Properties createProperties() {
+        return BlockBehaviour.Properties.of()
+                .strength(1.5F, 10.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE);
     }
 
-	@Override
-    protected BlockStateContainer createBlockState(){
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 }

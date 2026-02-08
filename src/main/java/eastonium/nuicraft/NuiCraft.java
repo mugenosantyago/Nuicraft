@@ -1,83 +1,78 @@
 package eastonium.nuicraft;
 
-import org.apache.logging.log4j.Logger;
+import com.mojang.logging.LogUtils;
+import eastonium.nuicraft.core.NuiCraftRegistration;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.slf4j.Logger;
 
-import eastonium.nuicraft.item.ItemGenericMeta.EnumGenericItem;
-import eastonium.nuicraft.kanohi.ItemColoredMask;
-import eastonium.nuicraft.machine.maskForge.recipe.MaskForgeRecipeManager;
-import eastonium.nuicraft.proxy.CommonProxyBionicle;
-import eastonium.nuicraft.util.NuiCraftItemMeshDef;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-@Mod(modid = NuiCraft.MODID, name = "NuiCraft", version = "1.12.1-0.8.1.3")
+@Mod(NuiCraft.MODID)
 public class NuiCraft {
-	public static final String MODID = "nuicraft";
-	
-	@Instance(NuiCraft.MODID)
-	public static NuiCraft modInstance = new NuiCraft();
-	
-	public static Logger logger;
-	
-	public static ItemMeshDefinition itemMeshDef = new NuiCraftItemMeshDef();
-	
-	public static CreativeTabs nuicraftTab;
-	public static CreativeTabs nuicraftMaskTab;
-
-	public static ToolMaterial PROTODERMIS = EnumHelper.addToolMaterial("Protodermis", 2, 500, 5.0F, 2.0F, 7);
-	public static ToolMaterial PROTOSTEEL = EnumHelper.addToolMaterial("Protosteel", 7, 4620, 11.0F, 5.0F, 15);
-//Fluids
-	public static Fluid protodermis;
-
-	@SidedProxy(clientSide = "eastonium.nuicraft.proxy.ClientProxyBionicle", serverSide = "eastonium.nuicraft.proxy.CommonProxyBionicle")
-	public static CommonProxyBionicle proxy;
-	
-	public NuiCraft(){
-		FluidRegistry.enableUniversalBucket();
-	}
-	
-	public static ItemStack getRedHau() {
-		ItemColoredMask i = (ItemColoredMask)NuiCraftItems.mask_mata_hau;
-		ItemStack iS = new ItemStack(i);
-		i.setColor(iS, 16711680);
-		return iS;
-	}
-
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event){
-		logger = event.getModLog();
-		
-		nuicraftTab = new CreativeTabs("nuicraftTab"){public ItemStack getTabIconItem(){return new ItemStack(NuiCraftBlocks.nuva_cube);}};
-		nuicraftMaskTab = new CreativeTabs("nuicraftMaskTab"){public ItemStack getTabIconItem(){ return getRedHau(); }};
-
-		proxy.preInit();
-		MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
-		GameRegistry.registerWorldGenerator(new NuiCraftWorldGenerator(), 2);
-	}
-	
-	@EventHandler
-	public void init(FMLInitializationEvent event){
-		PROTODERMIS = PROTODERMIS.setRepairItem(EnumGenericItem.PROTO_INGOT.getStack(1));
-		PROTOSTEEL = PROTOSTEEL.setRepairItem(EnumGenericItem.PROTOSTEEL_INGOT.getStack(1));
-		proxy.init();
-	}
-	
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event){
-		proxy.postInit();
-	}
+    public static final String MODID = "nuicraft";
+    public static final Logger LOGGER = LogUtils.getLogger();
+    
+    // Creative tabs
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+    
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NUICRAFT_TAB = CREATIVE_MODE_TABS.register("nuicraft_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.nuicraft_tab"))
+            .icon(() -> new ItemStack(NuiCraftBlocks.NUVA_CUBE.get()))
+            .displayItems((parameters, output) -> {
+                // Add all items from the mod to the creative tab
+                NuiCraftItems.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
+            })
+            .build());
+    
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NUICRAFT_MASK_TAB = CREATIVE_MODE_TABS.register("nuicraft_mask_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.nuicraft_mask_tab"))
+            .icon(() -> new ItemStack(NuiCraftItems.MASK_MATA_HAU.get()))
+            .displayItems((parameters, output) -> {
+                // Add mask items
+                output.accept(NuiCraftItems.MASK_MATA_GOLD.get());
+                output.accept(NuiCraftItems.MASK_MATA_KAKAMA.get());
+                output.accept(NuiCraftItems.MASK_MATA_PAKARI.get());
+                output.accept(NuiCraftItems.MASK_MATA_KAUKAU.get());
+                output.accept(NuiCraftItems.MASK_MATA_MIRU.get());
+                output.accept(NuiCraftItems.MASK_MATA_HAU.get());
+                output.accept(NuiCraftItems.MASK_MATA_AKAKU.get());
+                output.accept(NuiCraftItems.MASK_NUVA_KAKAMA.get());
+                output.accept(NuiCraftItems.MASK_NUVA_PAKARI.get());
+                output.accept(NuiCraftItems.MASK_NUVA_KAUKAU.get());
+                output.accept(NuiCraftItems.MASK_NUVA_MIRU.get());
+                output.accept(NuiCraftItems.MASK_NUVA_HAU.get());
+                output.accept(NuiCraftItems.MASK_NUVA_AKAKU.get());
+                output.accept(NuiCraftItems.MASK_IGNIKA.get());
+                output.accept(NuiCraftItems.MASK_VAHI.get());
+            })
+            .build());
+    
+    public NuiCraft(IEventBus modEventBus) {
+        LOGGER.info("Initializing NuiCraft - The essence of the Bionicle Universe in Minecraft!");
+        
+        // Register deferred registers
+        NuiCraftRegistration.register(modEventBus);
+        CREATIVE_MODE_TABS.register(modEventBus);
+        
+        // Register event handlers
+        NeoForge.EVENT_BUS.register(this);
+        
+        // Register common setup
+        modEventBus.addListener(this::commonSetup);
+    }
+    
+    private void commonSetup(net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent event) {
+        LOGGER.info("NuiCraft common setup");
+        
+        event.enqueueWork(() -> {
+            // Register any additional setup that needs to happen during common setup
+            // This runs on the main thread during mod loading
+        });
+    }
 }

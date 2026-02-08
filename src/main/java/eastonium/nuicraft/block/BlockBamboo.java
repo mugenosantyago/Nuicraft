@@ -1,96 +1,89 @@
 package eastonium.nuicraft.block;
 
-import java.util.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.IPlantable;
 
-import eastonium.nuicraft.NuiCraft;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockReed;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+public class BlockBamboo extends Block implements IPlantable {
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
+    protected static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
 
-public class BlockBamboo extends BlockReed implements IPlantable
-{
-	public BlockBamboo(){
-		super();
-		setSoundType(SoundType.WOOD);
-        setDefaultState(blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
-		//float var3 = 0.375F;
-		//this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 1.0F, 0.5F + var3);
-		setTickRandomly(true);
-		setHarvestLevel("axe", 0);
-		setCreativeTab(NuiCraft.nuicraftTab);
-		setUnlocalizedName(NuiCraft.MODID + ".bamboo");
-		setRegistryName("bamboo");
-	}
-	
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.REEDS || checkForDrop(worldIn, pos, state)) {
-            if (worldIn.isAirBlock(pos.up())) {
-                int i;
-                for (i = 1; worldIn.getBlockState(pos.down(i)).getBlock() == this; ++i) { ; }
-                if (i < 6) {
-                    int j = ((Integer)state.getValue(AGE)).intValue();
-
-                    if (j == 10) {
-                        worldIn.setBlockState(pos.up(), getDefaultState());
-                        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(0)), 4);
-                    } else {
-                        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(j + 1)), 4);
-                    }
-                }
-            }
-        }
-        if (rand.nextInt(8) == 0){
-            /*int i = 5;
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, -1, -2), pos.add(2, 1, 2))){
-                if (worldIn.getBlockState(blockpos).getBlock() == this){
-                    --i;
-                    if (i <= 0) return;
-                }
-            }*/
-            BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, -rand.nextInt(2), rand.nextInt(3) - 1);
-            for (int k = 0; k < 2; ++k) {
-                if (worldIn.isAirBlock(blockpos1) && this.canBlockStay(worldIn, blockpos1)) {
-                    pos = blockpos1;
-                }
-                blockpos1 = pos.add(rand.nextInt(3) - 1, -rand.nextInt(2), rand.nextInt(3) - 1);
-            }
-            if (worldIn.isAirBlock(blockpos1) && canBlockStay(worldIn, blockpos1)) {
-                worldIn.setBlockState(blockpos1, getDefaultState(), 2);
-            }
-        }
-    }
-
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        Block block = worldIn.getBlockState(pos.down()).getBlock();
-        if (block != this && block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.SAND) {
-            return false;
-        } else return true;
+    public BlockBamboo(BlockBehaviour.Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
     
+    public static BlockBehaviour.Properties createProperties() {
+        return BlockBehaviour.Properties.of()
+                .strength(1.0F, 9001.0F)
+                .sound(SoundType.WOOD)
+                .randomTicks()
+                .noOcclusion();
+    }
+
     @Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-    	return Item.getItemFromBlock(this);
-	}   
-    
-    @SideOnly(Side.CLIENT)
-	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(Item.getItemFromBlock(this));
-	}
-	
-	@SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass) {
-		return 16777215;
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (level.isEmptyBlock(pos.above())) {
+            int height;
+            for (height = 1; level.getBlockState(pos.below(height)).is(this); ++height) {}
+            
+            if (height < 6) {
+                int age = state.getValue(AGE);
+                if (age == 15) {
+                    level.setBlockAndUpdate(pos.above(), this.defaultBlockState());
+                    level.setBlock(pos, state.setValue(AGE, 0), 4);
+                } else {
+                    level.setBlock(pos, state.setValue(AGE, age + 1), 4);
+                }
+            }
+        }
+        
+        // Spread logic
+        if (random.nextInt(8) == 0) {
+            BlockPos spreadPos = pos.offset(random.nextInt(3) - 1, -random.nextInt(2), random.nextInt(3) - 1);
+            if (level.isEmptyBlock(spreadPos) && canSurvive(this.defaultBlockState(), level, spreadPos)) {
+                level.setBlockAndUpdate(spreadPos, this.defaultBlockState());
+            }
+        }
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockState below = level.getBlockState(pos.below());
+        return below.is(this) || 
+               below.is(BlockTags.DIRT) || 
+               below.is(Blocks.GRASS_BLOCK) || 
+               below.is(Blocks.SAND);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+    }
+
+    @Override
+    public BlockState getPlant(BlockGetter level, BlockPos pos) {
+        return this.defaultBlockState();
     }
 }
