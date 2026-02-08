@@ -62,6 +62,13 @@ public class NuiCraft {
         
         // Register event handlers
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(new ServerTickHandler());
+        NeoForge.EVENT_BUS.register(new NuiCraftEventHooks());
+        
+        // Client-side event handlers (only register on client)
+        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+            NeoForge.EVENT_BUS.register(new ClientTickHandler());
+        }
         
         // Register common setup
         modEventBus.addListener(this::commonSetup);

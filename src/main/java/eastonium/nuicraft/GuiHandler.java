@@ -1,39 +1,26 @@
+// DEPRECATED: Old GUI handler system (1.12)
+// Modern Minecraft uses MenuType registration and IMenuProvider
+// See modern pattern in machine blocks (BlockMaskForge, BlockPurifier)
+// TODO: Delete this file after migrating all GUIs to MenuType system
+//
+// Migration needed:
+// 1. Register MenuTypes in NuiCraftRegistration
+// 2. Implement IMenuProvider on blocks
+// 3. Create AbstractContainerMenu classes
+// 4. Create Screen classes for client
+
 package eastonium.nuicraft;
 
-import java.util.HashMap;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-
-public class GuiHandler implements IGuiHandler
-{
-	private HashMap<Integer, IGuiHandler> registeredHandlers = new HashMap<Integer, IGuiHandler>();
-	private static GuiHandler guiHandler = new GuiHandler();	
-	
-	public static GuiHandler getInstance() {return guiHandler;}
-	
-	public void registerGuiHandler(IGuiHandler handler, int guiID){
-		registeredHandlers.put(guiID, handler);
-	}
-	
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		IGuiHandler handler = registeredHandlers.get(ID);
-		if (handler != null) {
-			return handler.getServerGuiElement(ID, player, world, x, y, z);
-		} else {
-			return null;
-		}
-	}	
-	
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		IGuiHandler handler = registeredHandlers.get(ID);
-		if (handler != null) {
-			return handler.getClientGuiElement(ID, player, world, x, y, z);
-		} else {
-			return null;
-		}
-	}
+/**
+ * Stub class for compilation
+ * 
+ * GUI system completely changed in modern Minecraft:
+ * - Old: IGuiHandler with integer IDs
+ * - New: MenuType registration + IMenuProvider
+ * 
+ * See MIGRATION_STATUS.md for implementation details
+ */
+public class GuiHandler {
+    // Old GUI handler system deprecated
+    // Modern GUI opening uses player.openMenu(menuProvider)
 }

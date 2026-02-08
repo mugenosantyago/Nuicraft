@@ -1,4 +1,19 @@
+// DEPRECATED: Old world generation system (1.12)
+// Modern Minecraft uses BiomeModifiers, Configured Features, and Placed Features
+// See: src/main/resources/data/nuicraft/worldgen/ for modern implementation
+// TODO: Rewrite using modern world generation system (DataGen recommended)
+//
+// This file is kept for reference showing what needs to be generated:
+// - Protodermis Ore (Y: 0-120, vein size 4, 15 per chunk)
+// - Lightstone Ore (Y: 0-50, vein size 8, 8 per chunk)
+// - Heatstone Ore (Y: 0-30, vein size 3, 2 per chunk)
+// - Bamboo generation in jungle/swamp biomes
+
 package eastonium.nuicraft;
+
+/*
+// COMMENTED OUT - OLD WORLD GENERATOR
+// Will be replaced with modern biome modifiers and configured features
 
 import java.util.Random;
 
@@ -70,4 +85,17 @@ public class NuiCraftWorldGenerator implements IWorldGenerator {
             //}
         //}
     }
+}
+*/
+
+/**
+ * Stub class for compilation
+ * TODO: Implement modern world generation using:
+ * - BiomeModifiers (JSON in data/nuicraft/neoforge/biome_modifier/)
+ * - Configured Features (JSON in data/nuicraft/worldgen/configured_feature/)
+ * - Placed Features (JSON in data/nuicraft/worldgen/placed_feature/)
+ */
+public class NuiCraftWorldGenerator {
+    // World generation moved to data-driven system
+    // See MIGRATION_STATUS.md for implementation details
 }
