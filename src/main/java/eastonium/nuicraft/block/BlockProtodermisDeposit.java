@@ -1,121 +1,92 @@
 package eastonium.nuicraft.block;
 
-import java.util.Random;
-
-import eastonium.nuicraft.NuiCraft;
-import eastonium.nuicraft.NuiCraftBlocks;
-import eastonium.nuicraft.NuiCraftItems;
-import eastonium.nuicraft.item.ItemGenericMeta;
-import eastonium.nuicraft.item.ItemGenericMeta.EnumGenericItem;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import eastonium.nuicraft.core.NuiCraftItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class BlockProtodermisDeposit extends BlockOre {
+    public static final IntegerProperty DROPS = IntegerProperty.create("drops", 0, 4);
 
-	public static final PropertyInteger DROPS = PropertyInteger.create("drops", 0, 4);
+    public BlockProtodermisDeposit(BlockBehaviour.Properties properties) {
+        super(properties, UniformInt.of(3, 7));
+        this.registerDefaultState(this.stateDefinition.any().setValue(DROPS, 0));
+    }
 
-	public BlockProtodermisDeposit(){
-		super("protodermis_ore", 1);
-		setDefaultState(blockState.getBaseState().withProperty(DROPS, 0));
-	}
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, 
+                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
+        // Check if player is using sluice item
+        if (stack.is(NuiCraftItems.SLUICE.get())) {
+            if (level.isClientSide) {
+                // Spawn particles on client side
+                Vec3 hitVec = hitResult.getLocation();
+                for (int i = 0; i < 5; ++i) {
+                    level.addParticle(
+                        new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(NuiCraftItems.GENERIC_ITEM.get())),
+                        hitVec.x, hitVec.y, hitVec.z,
+                        (level.random.nextFloat() - 0.5D) * 0.2D,
+                        level.random.nextFloat() * 0.2D,
+                        (level.random.nextFloat() - 0.5D) * 0.2D
+                    );
+                }
+            } else {
+                // Server-side logic
+                int drops = state.getValue(DROPS);
+                
+                // Drop item at hit location
+                Vec3 hitVec = hitResult.getLocation();
+                ItemStack dropStack = new ItemStack(NuiCraftItems.GENERIC_ITEM.get(), 1); // TODO: Get proto blob item
+                ItemEntity itemEntity = new ItemEntity(level, hitVec.x, hitVec.y, hitVec.z, dropStack);
+                itemEntity.setDeltaMovement(
+                    level.random.nextGaussian() * 0.06D,
+                    level.random.nextGaussian() * 0.06D + 0.2D,
+                    level.random.nextGaussian() * 0.06D
+                );
+                level.addFreshEntity(itemEntity);
+                
+                // Update block state or convert to stone
+                if (drops <= 0) {
+                    level.setBlockAndUpdate(pos, Blocks.STONE.defaultBlockState());
+                } else {
+                    level.setBlock(pos, state.setValue(DROPS, drops - 1), 3);
+                }
+            }
+            return ItemInteractionResult.SUCCESS;
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune){
-		return NuiCraftItems.generic_item;
-	}
-	@Override
-	public int damageDropped(IBlockState state){
-		return EnumGenericItem.PROTO_BLOB.getMetadata();
-	}
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        if (!oldState.is(this) && state.getValue(DROPS) == 0) {
+            level.setBlock(pos, state.setValue(DROPS, 1 + level.random.nextInt(3)), 3);
+        }
+    }
 
-	@Override
-	public int quantityDroppedWithBonus(int fortune, Random random){
-		return quantityDropped(random) + random.nextInt(fortune + 1);
-	}
-
-	@Override
-	public int quantityDropped(Random random){
-		return 2;
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
-		ItemStack heldItem = playerIn.getHeldItem(hand);
-		if(heldItem != null && heldItem.getItem() == NuiCraftItems.sluice){
-			if(worldIn.isRemote){
-				for (int i = 0; i < 5; ++i){
-					worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK, hitX + pos.getX(), hitY + pos.getY(), hitZ + pos.getZ(), 
-							((double)worldIn.rand.nextFloat() - 0.5D) * 0.2D, 
-	    					((double)worldIn.rand.nextFloat()) * 0.2D, 
-	    					((double)worldIn.rand.nextFloat() - 0.5D) * 0.2D,
-							new int[] {Item.getIdFromItem(NuiCraftItems.generic_item)});
-							//TODO: How to make metadata sensitive???? new int[] {Item.getIdFromItem(NuiCraftItems.raw_protodermis)});
-
-				}
-			}else{
-				int drops = state.getValue(DROPS);
-				//TODO make fortune work in 33% chance increments do drop another
-				double f = 1.5;
-				double posX = (hitX < 1.0F && hitX > 0F) ? hitX : ((hitX - 0.5) * f) + 0.5;
-				double posY = (hitY < 1.0F && hitY > 0F) ? hitY : ((hitY - 0.5) * f) + 0.5;
-				double posZ = (hitZ < 1.0F && hitZ > 0F) ? hitZ : ((hitZ - 0.5) * f) + 0.5;
-				EntityItem entityitem = new EntityItem(worldIn, posX + pos.getX(), posY + pos.getY(), posZ + pos.getZ(), EnumGenericItem.PROTO_BLOB.getStack(1));
-				float f3 = 0.06F;
-				entityitem.motionX = worldIn.rand.nextGaussian() * (double)f3;
-				entityitem.motionY = worldIn.rand.nextGaussian() * (double)f3 + 0.20000000298023224D;
-				entityitem.motionZ = worldIn.rand.nextGaussian() * (double)f3;
-				worldIn.spawnEntity(entityitem);
-
-				if(drops <= 0){
-					worldIn.setBlockState(pos, Blocks.STONE.getDefaultState());
-				}else{
-					worldIn.setBlockState(pos, state.withProperty(DROPS, drops - 1));
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state){
-		if(state.getValue(DROPS) == 0){
-			worldIn.setBlockState(pos, getDefaultState().withProperty(DROPS, 1 + worldIn.rand.nextInt(3)));
-		}
-	}
-
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
-		if(worldIn.isRemote) return getDefaultState();
-		if(placer instanceof EntityPlayer && ((EntityPlayer)placer).capabilities.isCreativeMode){
-			return getDefaultState().withProperty(DROPS, 1 + worldIn.rand.nextInt(3));
-		}
-		return getDefaultState().withProperty(DROPS, 1);
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta){
-		return getDefaultState().withProperty(DROPS, meta);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state){
-		return state.getValue(DROPS);
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState(){
-		return new BlockStateContainer(this, new IProperty[] {DROPS});
-	}
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(DROPS);
+    }
 }

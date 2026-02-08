@@ -1,0 +1,33 @@
+// TODO: BlockKoro originally had 16 variants using metadata
+// In modern Minecraft, this should be split into 16 separate blocks
+// OR use a single block with different properties/tags
+//
+// Original variants:
+// - PROTO, PROTO_SMOOTH, PROTO_LIGHT
+// - SANDY_PROTO, SANDY_PROTO_SMOOTH
+// - DARK_PROTO, DARK_PROTO_SMOOTH, DARK_PROTO_BRICK, DARK_PROTO_LIGHT
+// - FROZEN_PROTO, FROZEN_PROTO_BRICK
+// - SEAWEED_ROUGH, SEAWEED_LUMPY, SEAWEED_SMOOTH
+// - INFECTED_BRICK, INFECTED_BRICK_LARGE
+//
+// For now, using a single base block.
+// Recommended: Create separate blocks for each variant in NuiCraftBlocks registration
+
+package eastonium.nuicraft.block;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+
+public class BlockKoro extends Block {
+    public BlockKoro(BlockBehaviour.Properties properties) {
+        super(properties);
+    }
+    
+    public static BlockBehaviour.Properties createProperties() {
+        return BlockBehaviour.Properties.of()
+                .strength(1.5F, 5.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE);
+    }
+}

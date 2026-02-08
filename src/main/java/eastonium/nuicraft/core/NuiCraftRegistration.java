@@ -14,7 +14,6 @@ import eastonium.nuicraft.NuiCraft;
 public class NuiCraftRegistration {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, NuiCraft.MODID);
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, NuiCraft.MODID);
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, NuiCraft.MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, NuiCraft.MODID);
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, NuiCraft.MODID);
 
@@ -22,11 +21,11 @@ public class NuiCraftRegistration {
         // Register blocks and items from their respective classes
         NuiCraftBlocks.BLOCKS.register(modEventBus);
         NuiCraftItems.ITEMS.register(modEventBus);
+        NuiCraftEntityTypes.ENTITY_TYPES.register(modEventBus);
         
         // Register other registries
         FLUIDS.register(modEventBus);
         FLUID_TYPES.register(modEventBus);
-        ENTITY_TYPES.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
     }

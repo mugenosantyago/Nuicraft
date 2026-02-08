@@ -32,9 +32,9 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<Block> PURIFIER = BLOCKS.register("purifier",
             () -> new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
 
-    // Decorative blocks - TODO: Need to port BlockKoro
-    public static final DeferredBlock<Block> KORO_BLOCK = BLOCKS.register("koro_block",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.STONE)));
+    // Decorative blocks - NOTE: Originally had 16 variants, simplified for now
+    public static final DeferredBlock<BlockKoro> KORO_BLOCK = BLOCKS.register("koro_block",
+            () -> new BlockKoro(BlockKoro.createProperties()));
 
     // Special blocks
     public static final DeferredBlock<BlockNuvaCube> NUVA_CUBE = BLOCKS.register("nuva_cube",
@@ -50,29 +50,20 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<BlockLightstone> LIGHTSTONE = BLOCKS.register("lightstone",
             () -> new BlockLightstone(BlockLightstone.createProperties()));
 
-    // Ores - TODO: Port BlockOre and BlockProtodermisDeposit
-    public static final DeferredBlock<Block> LIGHTSTONE_ORE = BLOCKS.register("lightstone_ore",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(3.0F, 5.0F)
-                    .lightLevel((state) -> 10)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)));
+    // Ores - Note: Drops handled by loot tables
+    public static final DeferredBlock<BlockOre> LIGHTSTONE_ORE = BLOCKS.register("lightstone_ore",
+            () -> new BlockOre(BlockOre.createProperties()
+                    .lightLevel((state) -> 10)));
     
-    public static final DeferredBlock<Block> HEATSTONE_ORE = BLOCKS.register("heatstone_ore",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(3.0F, 5.0F)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)));
+    public static final DeferredBlock<BlockOre> HEATSTONE_ORE = BLOCKS.register("heatstone_ore",
+            () -> new BlockOre(BlockOre.createProperties()));
     
-    public static final DeferredBlock<Block> PROTODERMIS_ORE = BLOCKS.register("protodermis_ore",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(3.0F, 5.0F)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)));
+    public static final DeferredBlock<BlockProtodermisDeposit> PROTODERMIS_ORE = BLOCKS.register("protodermis_ore",
+            () -> new BlockProtodermisDeposit(BlockOre.createProperties()));
 
-    // Plants - TODO: Port BlockBamboo
-    public static final DeferredBlock<Block> BAMBOO = BLOCKS.register("bamboo",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1.0F, 9001.0F).sound(SoundType.WOOD)));
+    // Plants
+    public static final DeferredBlock<BlockBamboo> BAMBOO = BLOCKS.register("bamboo",
+            () -> new BlockBamboo(BlockBamboo.createProperties()));
 
     // Metal blocks
     public static final DeferredBlock<BlockMetal> BLOCK_PROTODERMIS = BLOCKS.register("block_protodermis",

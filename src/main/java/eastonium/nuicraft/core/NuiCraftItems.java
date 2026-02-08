@@ -1,6 +1,7 @@
 package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
+import eastonium.nuicraft.item.NuiCraftTiers;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -44,24 +45,24 @@ public class NuiCraftItems {
     
     // Protodermis tools
     public static final DeferredItem<SwordItem> PROTODERMIS_SWORD = ITEMS.register("protodermis_sword",
-            () -> new SwordItem(Tiers.IRON, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
+            () -> new SwordItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(NuiCraftTiers.PROTODERMIS, 3, -2.4F))));
     
     public static final DeferredItem<PickaxeItem> PROTODERMIS_PICK = ITEMS.register("protodermis_pick",
-            () -> new PickaxeItem(Tiers.IRON, new Item.Properties()
-                    .attributes(PickaxeItem.createAttributes(Tiers.IRON, 1.0F, -2.8F))));
+            () -> new PickaxeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(NuiCraftTiers.PROTODERMIS, 1.0F, -2.8F))));
     
     public static final DeferredItem<AxeItem> PROTODERMIS_AXE = ITEMS.register("protodermis_axe",
-            () -> new AxeItem(Tiers.IRON, new Item.Properties()
-                    .attributes(AxeItem.createAttributes(Tiers.IRON, 6.0F, -3.1F))));
+            () -> new AxeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F))));
     
     public static final DeferredItem<ShovelItem> PROTODERMIS_SHOVEL = ITEMS.register("protodermis_shovel",
-            () -> new ShovelItem(Tiers.IRON, new Item.Properties()
-                    .attributes(ShovelItem.createAttributes(Tiers.IRON, 1.5F, -3.0F))));
+            () -> new ShovelItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F))));
     
     public static final DeferredItem<HoeItem> PROTODERMIS_SCYTHE = ITEMS.register("protodermis_scythe",
-            () -> new HoeItem(Tiers.IRON, new Item.Properties()
-                    .attributes(HoeItem.createAttributes(Tiers.IRON, -2.0F, -1.0F))));
+            () -> new HoeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(NuiCraftTiers.PROTODERMIS, -2.0F, -1.0F))));
 
     // Special items - TODO: Port ItemHeatstoneLighter and ItemSluice
     public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.registerSimpleItem("heatstone_lighter");

@@ -1,72 +1,41 @@
 package eastonium.nuicraft.block;
 
-import java.util.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
-import eastonium.nuicraft.NuiCraft;
-import eastonium.nuicraft.NuiCraftBlocks;
-import eastonium.nuicraft.NuiCraftItems;
-import eastonium.nuicraft.item.ItemGenericMeta;
-import eastonium.nuicraft.item.ItemGenericMeta.EnumGenericItem;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-public class BlockOre extends Block {	
-	public BlockOre(String name, int harvestLevel) {
-		super(Material.ROCK);
-		setSoundType(SoundType.STONE);
-		setCreativeTab(NuiCraft.nuicraftTab);
-		setHarvestLevel("pickaxe", harvestLevel);
-		setUnlocalizedName(NuiCraft.MODID + "." + name);
-        setRegistryName(name);
-	}
-	
-	@Override
-	protected boolean canSilkHarvest() {
-        return true;
+// NOTE: Drop behavior now handled by loot tables (src/main/resources/data/nuicraft/loot_tables/blocks/)
+// This class just defines the block properties
+public class BlockOre extends Block {
+    private final UniformInt xpRange;
+    
+    public BlockOre(BlockBehaviour.Properties properties, UniformInt xpRange) {
+        super(properties);
+        this.xpRange = xpRange;
     }
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		if(state.getBlock() == NuiCraftBlocks.lightstone_ore) return Item.getItemFromBlock(NuiCraftBlocks.lightstone);
-		if(state.getBlock() == NuiCraftBlocks.heatstone_ore) return NuiCraftItems.generic_item;// return NuiCraftItems.raw_heatstone;
-		//if(state.getBlock() == NuiCraftBlocks.protodermis_ore) return NuiCraftItems.generic_item;// return NuiCraftItems.raw_protodermis;
-		return null;
-	}
-	
-	@Override
-	public int damageDropped(IBlockState state){
-		if (state.getBlock() == NuiCraftBlocks.heatstone_ore) return EnumGenericItem.HEATSTONE.getMetadata();
-		//if (state.getBlock() == NuiCraftBlocks.protodermis_ore) return ItemGenericMeta.getMetaFromName("raw_protodermis");
-		return 0;
+    
+    public BlockOre(BlockBehaviour.Properties properties) {
+        this(properties, UniformInt.of(3, 7)); // Default XP range
     }
-	
-	@Override
-	public int quantityDroppedWithBonus(int fortune, Random random) {
-        return quantityDropped(random) + random.nextInt(fortune + 1);
+    
+    public static BlockBehaviour.Properties createProperties() {
+        return BlockBehaviour.Properties.of()
+                .strength(3.0F, 5.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE);
     }
-	
-	@Override
-	public int quantityDropped(Random random) {
-        if (this == NuiCraftBlocks.heatstone_ore) {
-        	return 1 + random.nextInt(2);
-        } else return 3 + random.nextInt(3);
-    }
-	
-	@Override
-	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-    }
-	
-	@Override
-	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-        if (getItemDropped(world.getBlockState(pos), RANDOM, fortune) != Item.getItemFromBlock(this)) {
-        	return 3 + RANDOM.nextInt(5);
+    
+    @Override
+    protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
+        super.spawnAfterBreak(state, level, pos, stack, dropExperience);
+        if (dropExperience && this.xpRange != null) {
+            this.popExperience(level, pos, this.xpRange.sample(level.random));
         }
-        return 0;
     }
 }
