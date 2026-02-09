@@ -36,6 +36,6 @@ public class EntityHoi extends Animal {
 
     @Override
     public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.AgeableMob otherParent) {
-        return eastonium.nuicraft.core.NuiCraftEntityTypes.HOI.get().create(level);
+        return new EntityHoi(eastonium.nuicraft.core.NuiCraftEntityTypes.HOI.get(), level);
     }
 }

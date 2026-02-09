@@ -39,6 +39,6 @@ public class EntityKofoJaga extends Animal {
 
     @Override
     public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.AgeableMob otherParent) {
-        return eastonium.nuicraft.core.NuiCraftEntityTypes.KOFO_JAGA.get().create(level);
+        return new EntityKofoJaga(eastonium.nuicraft.core.NuiCraftEntityTypes.KOFO_JAGA.get(), level);
     }
 }
