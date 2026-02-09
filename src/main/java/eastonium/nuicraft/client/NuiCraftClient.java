@@ -3,12 +3,9 @@ package eastonium.nuicraft.client;
 import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-@OnlyIn(Dist.CLIENT)
 public class NuiCraftClient {
 
     public static void registerModBusEvents(IEventBus modEventBus) {

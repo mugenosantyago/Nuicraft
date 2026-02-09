@@ -2,6 +2,7 @@ package eastonium.nuicraft;
 
 import com.mojang.logging.LogUtils;
 import eastonium.nuicraft.core.NuiCraftBlocks;
+import eastonium.nuicraft.core.NuiCraftEntityAttributes;
 import eastonium.nuicraft.core.NuiCraftItems;
 import eastonium.nuicraft.core.NuiCraftRegistration;
 import net.minecraft.core.registries.Registries;
@@ -64,6 +65,7 @@ public class NuiCraft {
         
         // Register mod event listeners
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(NuiCraftEntityAttributes::registerEntityAttributes);
         
         // Register event handlers
         NeoForge.EVENT_BUS.register(new ServerTickHandler());

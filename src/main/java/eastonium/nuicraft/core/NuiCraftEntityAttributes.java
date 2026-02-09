@@ -1,12 +1,9 @@
 package eastonium.nuicraft.core;
 
-import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.entity.*;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
-@EventBusSubscriber(modid = NuiCraft.MODID)
 public class NuiCraftEntityAttributes {
     
     @SubscribeEvent
