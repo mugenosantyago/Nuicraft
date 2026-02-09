@@ -23,10 +23,10 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             NuiCraft.MODID, "textures/entity/equipment/humanoid/nuicraft_mask.png");
 
-    /** Push mask in front of face: -Z in model space (forward). Units are 1/16 block. */
-    private static final float MASK_FORWARD_OFFSET = -12f;
-    /** Lower mask from "on top" to face level. Positive = move down in world. */
-    private static final float MASK_DOWN_OFFSET = 10f;
+    /** Push mask in front of face: -Z in model space. Units are 1/16 block. Keep small so it stays at head. */
+    private static final float MASK_FORWARD_OFFSET = -5f;
+    /** Slight nudge down from top-of-head to face level. Large values push the quad down to waist (wrong). */
+    private static final float MASK_DOWN_OFFSET = 2f;
 
     public MaskArmorRenderer() {
         super(
@@ -46,8 +46,8 @@ public class MaskArmorRenderer extends AzArmorRenderer {
         if (head == null) {
             return context;
         }
-        // Bone position is used as translate(posX/16, posY/16, posZ/16) with X negated.
-        // To move mask down: decrease posY (e.g. -24 -> -34). To move forward (-Z): decrease posZ.
+        // Only adjust position so the quad stays at head/face. Do not change pivot (keeps cube in correct place).
+        // Large down offset would move the quad to waist/legs and appear as "flat thing in front of pants".
         head.updatePosition(
                 head.getPosX(),
                 head.getPosY() - MASK_DOWN_OFFSET,
