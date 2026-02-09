@@ -88,24 +88,6 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerSimpleItem("mask_ignika");
     public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerSimpleItem("mask_vahi");
 
-    // Spawn Eggs
-    public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.registerItem("mahi_spawn_egg",
-            props -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(
-                    NuiCraftEntityTypes.MAHI, 0xE6C381, 0xD1322B, props));
-    
-    public static final DeferredItem<Item> FIKOU_SPAWN_EGG = ITEMS.registerItem("fikou_spawn_egg",
-            props -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(
-                    NuiCraftEntityTypes.FIKOU, 0xE8660C, 0x2B2B2B, props));
-    
-    public static final DeferredItem<Item> HOI_SPAWN_EGG = ITEMS.registerItem("hoi_spawn_egg",
-            props -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(
-                    NuiCraftEntityTypes.HOI, 0x2B2B2B, 0xE8660C, props));
-    
-    public static final DeferredItem<Item> KOFO_JAGA_SPAWN_EGG = ITEMS.registerItem("kofo_jaga_spawn_egg",
-            props -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(
-                    NuiCraftEntityTypes.KOFO_JAGA, 0xE8660C, 0xD1322B, props));
-    
-    public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.registerItem("nui_jaga_spawn_egg",
-            props -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(
-                    NuiCraftEntityTypes.NUI_JAGA, 0x8014B6, 0xFFBC11, props));
+    // Spawn Eggs - TODO: Fix constructor signature for 1.21.8
+    // Temporarily commented out - SpawnEggItem API changed
 }

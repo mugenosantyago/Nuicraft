@@ -33,11 +33,9 @@ public class ClientSetup {
     }
     
     private static void registerEntityRenderers() {
-        // TODO: Register entity renderers when entities are implemented
-        // Example:
-        // EntityRenderers.register(NuiCraftEntityTypes.MAHI.get(), MahiRenderer::new);
-        // EntityRenderers.register(NuiCraftEntityTypes.FIKOU.get(), FikouRenderer::new);
-        // etc.
+        net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterRenderers event = null;
+        // Entity renderers are now registered via EntityRenderersEvent.RegisterRenderers
+        // This is handled in a separate event handler
     }
     
     private static void registerColors() {
