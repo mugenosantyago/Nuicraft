@@ -20,8 +20,9 @@ public class MaskArmorRenderer extends AzArmorRenderer {
 
     private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             NuiCraft.MODID, "geo/armor/mask.geo.json");
+    /** Use item texture path so the texture is found (same image also at entity/equipment/humanoid). */
     private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
-            NuiCraft.MODID, "textures/entity/equipment/humanoid/nuicraft_mask");
+            NuiCraft.MODID, "textures/item/nuicraft_mask");
 
     /** Nudge mask forward in front of face (negative Z in model space). Units are 1/16 block. */
     private static final float MASK_FORWARD_OFFSET = -3f;
