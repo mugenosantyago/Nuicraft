@@ -40,7 +40,7 @@ public class NuiCraftClient {
         MaskModel maskModel = new MaskModel(event.getContext().bakeLayer(NuiCraftModelLayers.MASK));
         
         // Add mask layer to all player skin types
-        for (net.minecraft.client.player.PlayerSkin.Model skin : event.getSkins()) {
+        for (net.minecraft.client.resources.PlayerSkin.Model skin : event.getSkins()) {
             PlayerRenderer playerRenderer = event.getSkin(skin);
             if (playerRenderer != null) {
                 playerRenderer.addLayer(new MaskRenderLayer(playerRenderer, maskModel));

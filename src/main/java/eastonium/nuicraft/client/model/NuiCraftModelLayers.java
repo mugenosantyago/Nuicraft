@@ -17,7 +17,4 @@ public class NuiCraftModelLayers {
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "kofo_jaga"), "main");
     public static final ModelLayerLocation NUI_JAGA = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "nui_jaga"), "main");
-    
-    public static final ModelLayerLocation MASK = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask"), "main");
 }
