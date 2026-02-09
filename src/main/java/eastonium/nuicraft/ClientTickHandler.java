@@ -1,17 +1,13 @@
 package eastonium.nuicraft;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import eastonium.nuicraft.core.NuiCraftItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-@OnlyIn(Dist.CLIENT)
 public class ClientTickHandler {
     @SubscribeEvent
     public void onClientPlayerTick(PlayerTickEvent.Pre event) {
