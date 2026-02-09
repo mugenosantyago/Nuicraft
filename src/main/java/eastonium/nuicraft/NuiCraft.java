@@ -1,6 +1,8 @@
 package eastonium.nuicraft;
 
 import com.mojang.logging.LogUtils;
+import eastonium.nuicraft.core.NuiCraftBlocks;
+import eastonium.nuicraft.core.NuiCraftItems;
 import eastonium.nuicraft.core.NuiCraftRegistration;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
