@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "nuicraft:block/mask_forge_main"
+    "all": "nuicraft:block/lightstone_ore"
   }
 }
