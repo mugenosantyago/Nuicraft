@@ -15,7 +15,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
  * - Particle registration
  * - Key bindings
  */
-@EventBusSubscriber(modid = NuiCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = NuiCraft.MODID, value = Dist.CLIENT)
 public class ClientSetup {
     
     @SubscribeEvent
