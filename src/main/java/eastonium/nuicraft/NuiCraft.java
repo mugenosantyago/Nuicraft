@@ -75,12 +75,6 @@ public class NuiCraft {
             NeoForge.EVENT_BUS.register(new ClientTickHandler());
             eastonium.nuicraft.client.NuiCraftClient.registerModBusEvents(modEventBus);
         }
-        
-        // Register common setup
-        modEventBus.addListener(this::commonSetup);
-        
-        // Register common setup
-        modEventBus.addListener(this::commonSetup);
     }
     
     private void commonSetup(net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent event) {
