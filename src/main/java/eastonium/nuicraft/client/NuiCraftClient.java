@@ -1,13 +1,25 @@
 package eastonium.nuicraft.client;
 
+import com.mojang.blaze3d.platform.NativeImage;
 import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.core.NuiCraftItems;
+import eastonium.nuicraft.NuiCraft;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.server.packs.resources.PreparableReloadListener.PreparationBarrier;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public class NuiCraftClient {
 
@@ -15,6 +27,58 @@ public class NuiCraftClient {
         modEventBus.addListener(NuiCraftClient::registerLayerDefinitions);
         modEventBus.addListener(NuiCraftClient::registerRenderers);
         modEventBus.addListener(NuiCraftClient::onClientSetup);
+        modEventBus.addListener(NuiCraftClient::onAddReloadListeners);
+    }
+
+    /** Manually load all mask textures so they are available for 3D armor rendering. */
+    private static void onAddReloadListeners(AddClientReloadListenersEvent event) {
+        event.addListener(
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_armor_textures"),
+                new PreparableReloadListener() {
+                    @Override
+                    public CompletableFuture<Void> reload(
+                            PreparationBarrier stage,
+                            ResourceManager resourceManager,
+                            Executor backgroundExecutor,
+                            Executor gameExecutor
+                    ) {
+                        CompletableFuture<java.util.List<java.util.Map.Entry<ResourceLocation, NativeImage>>> loadAll =
+                                CompletableFuture.supplyAsync(() -> {
+                                    var list = new java.util.ArrayList<java.util.Map.Entry<ResourceLocation, NativeImage>>();
+                                    for (ResourceLocation tex : MaskArmorRenderer.getMaskTextureLocations()) {
+                                        try {
+                                            var res = resourceManager.getResource(tex).orElse(null);
+                                            if (res == null) {
+                                                res = resourceManager.getResource(ResourceLocation.fromNamespaceAndPath(
+                                                        tex.getNamespace(), tex.getPath() + ".png")).orElse(null);
+                                            }
+                                            if (res != null) {
+                                                try (var in = res.open()) {
+                                                    list.add(java.util.Map.entry(tex, NativeImage.read(in)));
+                                                }
+                                            }
+                                        } catch (Exception ignored) {
+                                        }
+                                    }
+                                    return list;
+                                }, backgroundExecutor);
+
+                        return loadAll
+                                .thenCompose(stage::wait)
+                                .thenAcceptAsync(list -> {
+                                    var tm = Minecraft.getInstance().getTextureManager();
+                                    for (var e : list) {
+                                        try {
+                                            tm.release(e.getKey());
+                                            tm.register(e.getKey(), new DynamicTexture(e.getKey()::toString, e.getValue()));
+                                        } catch (Exception ex) {
+                                            e.getValue().close();
+                                        }
+                                    }
+                                }, gameExecutor);
+                    }
+                }
+        );
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

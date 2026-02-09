@@ -3,6 +3,7 @@ package eastonium.nuicraft.client.renderer;
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.core.NuiCraftItems;
 import mod.azure.azurelib.common.model.AzBone;
+import net.minecraft.client.Minecraft;
 import mod.azure.azurelib.common.render.AzRendererPipelineContext;
 import mod.azure.azurelib.common.render.armor.AzArmorRenderer;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
@@ -15,6 +16,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -60,6 +63,11 @@ public class MaskArmorRenderer extends AzArmorRenderer {
                 ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/masks/normal/mata_kaukau"));
     }
 
+    /** All mask texture locations (for preloading). */
+    public static Collection<ResourceLocation> getMaskTextureLocations() {
+        return Collections.unmodifiableCollection(MASK_TEXTURES.values());
+    }
+
     /** Nudge mask forward in front of face (negative Z in model space). Units are 1/16 block. */
     private static final float MASK_FORWARD_OFFSET = -3f;
     /** No vertical offset - geo cube is already at face level (Y 21-28). */
@@ -78,6 +86,35 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     @Nullable
     private static ResourceLocation maskTextureForBone(AzBone bone) {
         return null;
+    }
+
+    /** Force-load mask texture into TextureManager so it is available when drawn. */
+    private static void ensureTextureLoaded(@Nullable Entity entity, ItemStack stack) {
+        try {
+            Minecraft.getInstance().getTextureManager().getTexture(getTextureForStack(entity, stack));
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Override
+    public void prepForRender(
+            @Nullable Entity entity,
+            ItemStack stack,
+            @Nullable EquipmentSlot slot,
+            @Nullable HumanoidModel<?> baseModel
+    ) {
+        ensureTextureLoaded(entity, stack);
+        super.prepForRender(entity, stack, slot, baseModel);
+    }
+
+    @Override
+    public void prepForRenderWithoutEntity(
+            ItemStack stack,
+            @Nullable EquipmentSlot slot,
+            @Nullable HumanoidModel<?> baseModel
+    ) {
+        ensureTextureLoaded(null, stack);
+        super.prepForRenderWithoutEntity(stack, slot, baseModel);
     }
 
     private static AzRendererPipelineContext<UUID, ItemStack> pushMaskInFrontOfFace(
