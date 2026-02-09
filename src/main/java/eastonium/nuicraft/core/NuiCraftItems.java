@@ -43,26 +43,21 @@ public class NuiCraftItems {
     // Weapons - TODO: Port ItemDiscLauncher and tool classes
     public static final DeferredItem<Item> DISC_LAUNCHER = ITEMS.registerSimpleItem("disc_launcher");
     
-    // Protodermis tools
-    public static final DeferredItem<SwordItem> PROTODERMIS_SWORD = ITEMS.register("protodermis_sword",
-            () -> new SwordItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(NuiCraftTiers.PROTODERMIS, 3, -2.4F))));
+    // Protodermis tools - using 1.21.8 tool delegate system
+    public static final DeferredItem<Item> PROTODERMIS_SWORD = ITEMS.registerItem("protodermis_sword",
+            props -> new Item(props.sword(NuiCraftTiers.PROTODERMIS, 3, -2.4F)));
     
-    public static final DeferredItem<PickaxeItem> PROTODERMIS_PICK = ITEMS.register("protodermis_pick",
-            () -> new PickaxeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
-                    .attributes(PickaxeItem.createAttributes(NuiCraftTiers.PROTODERMIS, 1.0F, -2.8F))));
+    public static final DeferredItem<Item> PROTODERMIS_PICK = ITEMS.registerItem("protodermis_pick",
+            props -> new Item(props.pickaxe(NuiCraftTiers.PROTODERMIS, 1, -2.8F)));
     
-    public static final DeferredItem<AxeItem> PROTODERMIS_AXE = ITEMS.register("protodermis_axe",
-            () -> new AxeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
-                    .attributes(AxeItem.createAttributes(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F))));
+    public static final DeferredItem<AxeItem> PROTODERMIS_AXE = ITEMS.registerItem("protodermis_axe",
+            props -> new AxeItem(props.axe(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F)));
     
-    public static final DeferredItem<ShovelItem> PROTODERMIS_SHOVEL = ITEMS.register("protodermis_shovel",
-            () -> new ShovelItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
-                    .attributes(ShovelItem.createAttributes(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F))));
+    public static final DeferredItem<ShovelItem> PROTODERMIS_SHOVEL = ITEMS.registerItem("protodermis_shovel",
+            props -> new ShovelItem(props.shovel(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F)));
     
-    public static final DeferredItem<HoeItem> PROTODERMIS_SCYTHE = ITEMS.register("protodermis_scythe",
-            () -> new HoeItem(NuiCraftTiers.PROTODERMIS, new Item.Properties()
-                    .attributes(HoeItem.createAttributes(NuiCraftTiers.PROTODERMIS, -2.0F, -1.0F))));
+    public static final DeferredItem<HoeItem> PROTODERMIS_SCYTHE = ITEMS.registerItem("protodermis_scythe",
+            props -> new HoeItem(props.hoe(NuiCraftTiers.PROTODERMIS, -2, -1.0F)));
 
     // Special items
     public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.register("heatstone_lighter",

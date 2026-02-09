@@ -23,7 +23,7 @@ public class ServerTickHandler {
         for (ServerLevel level : event.getServer().getAllLevels()) {
             for (ServerPlayer player : level.players()) {
                 if (player.tickCount % 20 == 0) {
-                    ItemStack helmet = player.getInventory().getArmor(3);
+                    ItemStack helmet = player.getInventory().getItem(39); // Helmet slot (36+3)
                     if (!helmet.isEmpty()) {
                         if (removeFallDistance(helmet)) {
                             player.resetFallDistance();

@@ -20,7 +20,7 @@ public class ClientTickHandler {
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.player == null || minecraft.player != player) return;
         
-        ItemStack helmet = player.getInventory().getArmor(3);
+        ItemStack helmet = player.getInventory().getItem(39); // Helmet slot (36+3)
         if (!helmet.isEmpty()) {
             Vec3 motion = player.getDeltaMovement();
             
