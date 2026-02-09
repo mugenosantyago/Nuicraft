@@ -1,13 +1,11 @@
 package eastonium.nuicraft.client;
 
-import eastonium.nuicraft.client.model.MahiModel;
-import eastonium.nuicraft.client.model.NuiCraftModelLayers;
-import eastonium.nuicraft.client.renderer.MahiRenderer;
+import eastonium.nuicraft.client.model.*;
+import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 @OnlyIn(Dist.CLIENT)
@@ -20,9 +18,17 @@ public class NuiCraftClient {
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(NuiCraftModelLayers.MAHI, MahiModel::createBodyLayer);
+        event.registerLayerDefinition(NuiCraftModelLayers.FIKOU, FikouModel::createBodyLayer);
+        event.registerLayerDefinition(NuiCraftModelLayers.HOI, HoiModel::createBodyLayer);
+        event.registerLayerDefinition(NuiCraftModelLayers.KOFO_JAGA, KofoJagaModel::createBodyLayer);
+        event.registerLayerDefinition(NuiCraftModelLayers.NUI_JAGA, NuiJagaModel::createBodyLayer);
     }
 
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(NuiCraftEntityTypes.MAHI.get(), MahiRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.FIKOU.get(), FikouRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.HOI.get(), HoiRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.KOFO_JAGA.get(), KofoJagaRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
     }
 }
