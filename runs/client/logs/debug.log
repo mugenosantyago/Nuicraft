@@ -487,3 +487,4 @@ WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
 [08Feb2026 18:52:18.572] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
 [08Feb2026 18:52:19.171] [FileWatcher-1-thread-1/DEBUG] [net.neoforged.fml.config.ConfigWatcher/CONFIG]: Config file neoforge-common.toml changed, re-loading
 [08Feb2026 18:52:19.172] [FileWatcher-1-thread-1/DEBUG] [net.neoforged.neoforge.common.NeoForgeMod/FORGEMOD]: NeoForge config just got changed on the file system!
+[08Feb2026 18:52:59.320] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!

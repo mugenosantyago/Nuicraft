@@ -397,3 +397,4 @@ WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
 [08Feb2026 18:52:18.571] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
 [08Feb2026 18:52:18.572] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
 [08Feb2026 18:52:18.572] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
+[08Feb2026 18:52:59.320] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
