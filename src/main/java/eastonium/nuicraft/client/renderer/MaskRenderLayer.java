@@ -38,10 +38,13 @@ public class MaskRenderLayer<S extends HumanoidRenderState, M extends HumanoidMo
         // Check if wearing any NuiCraft mask
         if (!isMask(headItem)) return;
 
-        // Copy head rotation from parent model
+        // Move to head position and copy its rotation (mask follows head look direction)
         this.getParentModel().head.translateAndRotate(poseStack);
+        // In HumanoidModel head-local space: face is -Z (player looks toward -Z when facing camera).
+        // Push mask out in front of face.
+        poseStack.translate(0, 0, -1.5);
         
-        // Render the custom mask model
+        // Render the 2D mask flat in front of face
         VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(MASK_TEXTURE));
         this.maskModel.root().render(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
     }

@@ -24,3 +24,10 @@ type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.nuicraft]]
+modId = "azurelib"
+type = "required"
+versionRange = "[3.0,)"
+ordering = "BEFORE"
+side = "CLIENT"

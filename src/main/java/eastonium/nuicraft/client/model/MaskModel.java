@@ -19,8 +19,8 @@ public class MaskModel extends EntityModel<LivingEntityRenderState> {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
 
-        // Single flat quad in front of face - thin plane at z = -4.5 (forward from head)
-        // Covers face area roughly -4..4 X, -8..0 Y
+        // Flat quad in front of face. Face is -Z in head-local space (addBox uses same coords as head box).
+        // Head box is (-4,-8,-4) to (4,0,4); face is at Z=-4. Put plane just in front at Z=-4.5.
         root.addOrReplaceChild("mask", CubeListBuilder.create()
                 .texOffs(0, 0)
                 .addBox(-4.0F, -8.0F, -4.5F, 8.0F, 8.0F, 0.05F),
