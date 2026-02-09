@@ -23,10 +23,10 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             NuiCraft.MODID, "textures/entity/equipment/humanoid/nuicraft_mask.png");
 
-    /** Push mask in front of face: -Z in model space. Units are 1/16 block. Keep small so it stays at head. */
-    private static final float MASK_FORWARD_OFFSET = -5f;
-    /** Slight nudge down from top-of-head to face level. Large values push the quad down to waist (wrong). */
-    private static final float MASK_DOWN_OFFSET = 2f;
+    /** Nudge mask forward in front of face (negative Z in model space). Units are 1/16 block. */
+    private static final float MASK_FORWARD_OFFSET = -3f;
+    /** No vertical offset - geo cube is already at face level (Y 21-28). */
+    private static final float MASK_DOWN_OFFSET = 0f;
 
     public MaskArmorRenderer() {
         super(
