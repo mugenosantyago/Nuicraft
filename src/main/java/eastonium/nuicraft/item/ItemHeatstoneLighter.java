@@ -49,7 +49,6 @@ public class ItemHeatstoneLighter extends FlintAndSteelItem {
         return InteractionResult.FAIL;
     }
 
-    @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         // Auto-repair in the Nether
         if (entity instanceof LivingEntity living && 

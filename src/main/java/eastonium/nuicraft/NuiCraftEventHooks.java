@@ -40,11 +40,7 @@ public class NuiCraftEventHooks {
 
         var filledBucket = FluidUtil.tryPickUpFluid(singleBucket, event.getEntity(), level, pos, target.getDirection());
         if (filledBucket.isSuccess()) {
-            event.setResult(Event.Result.ALLOW);
             event.setFilledBucket(filledBucket.getResult());
-        } else {
-            // Cancel to prevent vanilla bucket behavior
-            event.setCanceled(true);
         }
     }
 }

@@ -31,38 +31,38 @@ public class ServerTickHandler {
                         
                         // MATA MASKS
                         if (helmet.is(NuiCraftItems.MASK_MATA_GOLD.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 30, 1, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.HASTE, 30, 0, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 1, false, false));
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 1, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_MATA_PAKARI.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 30, 0, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 0, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.HASTE, 30, 0, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_MATA_KAUKAU.get())) {
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_MATA_HAU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 1, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_MATA_KAKAMA.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 1, false, false));
                         }
                         // NUVA MASKS
                         else if (helmet.is(NuiCraftItems.MASK_NUVA_PAKARI.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 30, 1, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.HASTE, 30, 1, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_NUVA_KAUKAU.get())) {
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_NUVA_HAU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 30, 3, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 3, false, false));
                             
                         } else if (helmet.is(NuiCraftItems.MASK_NUVA_KAKAMA.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 30, 3, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 3, false, false));
                         }
                         // LEGENDARY MASKS
                         else if (helmet.is(NuiCraftItems.MASK_IGNIKA.get())) {
@@ -74,14 +74,14 @@ public class ServerTickHandler {
                                 }
                             }
                         } else if (helmet.is(NuiCraftItems.MASK_VAHI.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 1, false, false));
+                            player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 30, 1, false, false));
                             if (player.tickCount % 2 == 0) {
                                 level.setDayTime(level.getDayTime() - 1); // Slow down time
                             }
                             List<Entity> nearbyEntities = level.getEntities(player, player.getBoundingBox().inflate(10.0D));
                             for (Entity entity : nearbyEntities) {
                                 if (entity instanceof Mob mob) {
-                                    mob.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 3, false, false));
+                                    mob.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 30, 3, false, false));
                                 }
                             }
                         }

@@ -10,7 +10,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -35,8 +35,8 @@ public class BlockProtodermisDeposit extends BlockOre {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, 
-                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, 
+                                         Player player, InteractionHand hand, BlockHitResult hitResult) {
         // Check if player is using sluice item
         if (stack.is(NuiCraftItems.SLUICE.get())) {
             if (level.isClientSide) {
@@ -73,9 +73,9 @@ public class BlockProtodermisDeposit extends BlockOre {
                     level.setBlock(pos, state.setValue(DROPS, drops - 1), 3);
                 }
             }
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
     @Override
