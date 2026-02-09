@@ -1,358 +1,489 @@
-[08Feb2026 18:50:17.815] [main/DEBUG] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
-[08Feb2026 18:50:17.815] [main/DEBUG] [mixin/]: Selecting config neoforge.mixins.json
-[08Feb2026 18:50:17.817] [main/DEBUG] [mixin/]: Selecting config mixinextras.init.mixins.json
-[08Feb2026 18:50:17.845] [main/DEBUG] [MixinExtras|Service/]: com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0) is taking over from null
-[08Feb2026 18:50:17.860] [main/DEBUG] [mixin/]: Registering new injector for @Inject with org.spongepowered.asm.mixin.injection.struct.CallbackInjectionInfo
-[08Feb2026 18:50:17.861] [main/DEBUG] [mixin/]: Registering new injector for @ModifyArg with org.spongepowered.asm.mixin.injection.struct.ModifyArgInjectionInfo
-[08Feb2026 18:50:17.861] [main/DEBUG] [mixin/]: Registering new injector for @ModifyArgs with org.spongepowered.asm.mixin.injection.struct.ModifyArgsInjectionInfo
-[08Feb2026 18:50:17.861] [main/DEBUG] [mixin/]: Registering new injector for @Redirect with org.spongepowered.asm.mixin.injection.struct.RedirectInjectionInfo
-[08Feb2026 18:50:17.862] [main/DEBUG] [mixin/]: Registering new injector for @ModifyVariable with org.spongepowered.asm.mixin.injection.struct.ModifyVariableInjectionInfo
-[08Feb2026 18:50:17.862] [main/DEBUG] [mixin/]: Registering new injector for @ModifyConstant with org.spongepowered.asm.mixin.injection.struct.ModifyConstantInjectionInfo
-[08Feb2026 18:50:17.869] [main/DEBUG] [mixin/]: Preparing neoforge.mixins.json (2)
-[08Feb2026 18:50:17.886] [main/DEBUG] [mixin/]: Preparing mixinextras.init.mixins.json (0)
-[08Feb2026 18:50:17.938] [main/DEBUG] [io.netty.util.internal.logging.InternalLoggerFactory/]: Using SLF4J as the default logging framework
-[08Feb2026 18:50:17.939] [main/DEBUG] [io.netty.util.ResourceLeakDetector/]: -Dio.netty.leakDetection.level: simple
-[08Feb2026 18:50:17.939] [main/DEBUG] [io.netty.util.ResourceLeakDetector/]: -Dio.netty.leakDetection.targetRecords: 4
-[08Feb2026 18:50:18.259] [main/DEBUG] [oshi.util.FileUtil/]: No oshi.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@12db3386
-[08Feb2026 18:50:18.405] [main/DEBUG] [oshi.util.FileUtil/]: No oshi.architecture.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@12db3386
-[08Feb2026 18:50:18.482] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 272 Datafixer optimizations took 235 milliseconds
-[08Feb2026 18:50:18.702] [pool-6-thread-1/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
-[08Feb2026 18:50:18.704] [pool-6-thread-1/DEBUG] [mixin/]: Registering new injector for @SugarWrapper with com.llamalad7.mixinextras.sugar.impl.SugarWrapperInjectionInfo
-[08Feb2026 18:50:18.704] [pool-6-thread-1/DEBUG] [mixin/]: Registering new injector for @FactoryRedirectWrapper with com.llamalad7.mixinextras.wrapper.factory.FactoryRedirectWrapperInjectionInfo
-[08Feb2026 18:50:18.704] [pool-6-thread-1/DEBUG] [mixin/]: Registering new injector for @ExpressionInjectorWrapper with com.llamalad7.mixinextras.expression.impl.wrapper.ExpressionInjectorWrapperInjectionInfo
-[08Feb2026 18:50:18.709] [pool-6-thread-1/DEBUG] [mixin/]: Mixing MappedRegistryAccessor from neoforge.mixins.json into net.minecraft.core.MappedRegistry
-[08Feb2026 18:50:18.710] [pool-6-thread-1/DEBUG] [mixin/]: neoforge.mixins.json:MappedRegistryAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
-[08Feb2026 18:50:19.218] [pool-6-thread-1/DEBUG] [mixin/]: Mixing BlockEntityTypeAccessor from neoforge.mixins.json into net.minecraft.world.level.block.entity.BlockEntityType
-[08Feb2026 18:50:19.218] [pool-6-thread-1/DEBUG] [mixin/]: neoforge.mixins.json:BlockEntityTypeAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
-[08Feb2026 18:50:20.057] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: -Dio.netty.noUnsafe: false
-[08Feb2026 18:50:20.057] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: Java version: 21
-[08Feb2026 18:50:20.057] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: sun.misc.Unsafe.theUnsafe: available
-[08Feb2026 18:50:20.058] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: sun.misc.Unsafe base methods: all available
-[08Feb2026 18:50:20.058] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: sun.misc.Unsafe.storeFence: available
-[08Feb2026 18:50:20.058] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.Buffer.address: available
-[08Feb2026 18:50:20.058] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.Bits.unaligned: available, true
-[08Feb2026 18:50:20.059] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
-[08Feb2026 18:50:20.059] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: sun.misc.Unsafe: available
-[08Feb2026 18:50:20.059] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.tmpdir: /var/folders/sl/yl9hkrh518362zmvnt1x6k740000gn/T (java.io.tmpdir)
-[08Feb2026 18:50:20.060] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.bitMode: 64 (sun.arch.data.model)
-[08Feb2026 18:50:20.060] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: Platform: MacOS
-[08Feb2026 18:50:20.061] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.maxDirectMemory: -1 bytes
-[08Feb2026 18:50:20.061] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.uninitializedArrayAllocationThreshold: -1
-[08Feb2026 18:50:20.062] [pool-6-thread-1/DEBUG] [io.netty.util.internal.CleanerJava9/]: java.nio.ByteBuffer.cleaner(): available
-[08Feb2026 18:50:20.062] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.noPreferDirect: false
-[08Feb2026 18:50:21.191] [pool-6-thread-1/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Creating vanilla freeze snapshot
-[08Feb2026 18:50:21.207] [pool-6-thread-1/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Vanilla freeze snapshot created
-[08Feb2026 18:50:21.547] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[08Feb2026 18:50:21.548] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
-[08Feb2026 18:50:21.549] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[08Feb2026 18:50:21.550] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[08Feb2026 18:50:21.550] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[08Feb2026 18:50:21.551] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [waypoint, modify, waypoint, color, reset] and [waypoint, modify, waypoint, color, color] with inputs: [reset]
-[08Feb2026 18:50:21.569] [main/DEBUG] [net.neoforged.fml.ModWorkManager/LOADING]: Using 12 threads for parallel mod-loading
-[08Feb2026 18:50:21.574] [main/DEBUG] [net.neoforged.fml.javafmlmod.FMLModContainer/LOADING]: Creating FMLModContainer instance for [eastonium.nuicraft.NuiCraft]
-[08Feb2026 18:50:21.575] [main/DEBUG] [net.neoforged.fml.javafmlmod.FMLModContainer/LOADING]: Creating FMLModContainer instance for [net.neoforged.neoforge.common.OnlyInWarningsHandler, net.neoforged.neoforge.common.NeoForgeMod, net.neoforged.neoforge.client.ClientNeoForgeMod]
-[08Feb2026 18:50:21.581] [modloading-worker-0/INFO] [eastonium.nuicraft.NuiCraft/]: Initializing NuiCraft - The essence of the Bionicle Universe in Minecraft!
-[08Feb2026 18:50:21.589] [modloading-worker-0/DEBUG] [net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion/CORE]: Found NeoForge version 21.8.52
-[08Feb2026 18:50:21.590] [modloading-worker-0/DEBUG] [net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion/CORE]: Found FML version 9.0.18
-[08Feb2026 18:50:21.590] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.8.52, for MC 1.21.8
-[08Feb2026 18:50:21.598] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for nuicraft
-[08Feb2026 18:50:21.599] [modloading-worker-0/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Config file neoforge-server.toml for neoforge tracking
-[08Feb2026 18:50:21.600] [modloading-worker-0/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Config file neoforge-common.toml for neoforge tracking
-[08Feb2026 18:50:21.634] [modloading-worker-0/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Config file neoforge-client.toml for neoforge tracking
-[08Feb2026 18:50:21.647] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for neoforge
-[08Feb2026 18:50:21.647] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.filters.GenericPacketSplitter for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.659] [modloading-worker-0/DEBUG] [io.netty.buffer.AbstractByteBuf/]: -Dio.netty.buffer.checkAccessible: true
-[08Feb2026 18:50:21.659] [modloading-worker-0/DEBUG] [io.netty.buffer.AbstractByteBuf/]: -Dio.netty.buffer.checkBounds: true
-[08Feb2026 18:50:21.659] [modloading-worker-0/DEBUG] [io.netty.util.ResourceLeakDetectorFactory/]: Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@29c79e68
-[08Feb2026 18:50:21.666] [modloading-worker-0/DEBUG] [io.netty.util.internal.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
-[08Feb2026 18:50:21.666] [modloading-worker-0/DEBUG] [io.netty.util.internal.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.numHeapArenas: 24
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.numDirectArenas: 24
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.pageSize: 8192
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.maxOrder: 9
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.chunkSize: 4194304
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.smallCacheSize: 256
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.normalCacheSize: 64
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedBufferCapacity: 32768
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimInterval: 8192
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimIntervalMillis: 0
-[08Feb2026 18:50:21.667] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.useCacheForAllThreads: false
-[08Feb2026 18:50:21.668] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
-[08Feb2026 18:50:21.668] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.disableCacheFinalizersForFastThreadLocalThreads: false
-[08Feb2026 18:50:21.671] [modloading-worker-0/DEBUG] [io.netty.buffer.ByteBufUtil/]: -Dio.netty.allocator.type: pooled
-[08Feb2026 18:50:21.671] [modloading-worker-0/DEBUG] [io.netty.buffer.ByteBufUtil/]: -Dio.netty.threadLocalDirectBufferSize: 0
-[08Feb2026 18:50:21.672] [modloading-worker-0/DEBUG] [io.netty.buffer.ByteBufUtil/]: -Dio.netty.maxThreadLocalCharBufferSize: 16384
-[08Feb2026 18:50:21.676] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.network.filters.GenericPacketSplitter.register(net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent) to the event bus of mod neoforge
-[08Feb2026 18:50:21.677] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.NetworkInitialization for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.677] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.network.NetworkInitialization.register(net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent) to the event bus of mod neoforge
-[08Feb2026 18:50:21.677] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.ConfigurationInitialization for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.680] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.network.ConfigurationInitialization.configureModdedClient(net.neoforged.neoforge.network.event.RegisterConfigurationTasksEvent) to the event bus of mod neoforge
-[08Feb2026 18:50:21.680] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.model.data.ModelDataManager for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.681] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.model.data.ModelDataManager.onChunkUnload(net.neoforged.neoforge.event.level.ChunkEvent$Unload) to the game event bus
-[08Feb2026 18:50:21.683] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.MonsterRoomHooks for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.683] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.common.MonsterRoomHooks.onDataMapsUpdated(net.neoforged.neoforge.registries.datamaps.DataMapsUpdatedEvent) to the game event bus
-[08Feb2026 18:50:21.683] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.network.ClientPayloadHandler for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.693] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.client.network.ClientPayloadHandler.register(net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent) to the event bus of mod neoforge
-[08Feb2026 18:50:21.693] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.ParticleBoundsDebugRenderer for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.696] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.ParticleBoundsDebugRenderer.onRenderLevelStage(net.neoforged.neoforge.client.event.RenderLevelStageEvent$AfterParticles) to the game event bus
-[08Feb2026 18:50:21.696] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.ParticleBoundsDebugRenderer.onRegisterClientCommands(net.neoforged.neoforge.client.event.RegisterClientCommandsEvent) to the game event bus
-[08Feb2026 18:50:21.696] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.NeoForgeRenderPipelines for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.708] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method static void net.neoforged.neoforge.client.NeoForgeRenderPipelines.registerPipelines(net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent) to the event bus of mod neoforge
-[08Feb2026 18:50:21.709] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.BlockEntityRenderBoundsDebugRenderer for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.709] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.BlockEntityRenderBoundsDebugRenderer.onRenderLevelStage(net.neoforged.neoforge.client.event.RenderLevelStageEvent$AfterBlockEntities) to the game event bus
-[08Feb2026 18:50:21.709] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.BlockEntityRenderBoundsDebugRenderer.onRegisterClientCommands(net.neoforged.neoforge.client.event.RegisterClientCommandsEvent) to the game event bus
-[08Feb2026 18:50:21.710] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentSync for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.712] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.attachment.AttachmentSync.onChunkSent(net.neoforged.neoforge.event.level.ChunkWatchEvent$Sent) to the game event bus
-[08Feb2026 18:50:21.712] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentInternals for @SubscribeEvent-annotated methods
-[08Feb2026 18:50:21.713] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.attachment.AttachmentInternals.onPlayerClone(net.neoforged.neoforge.event.entity.player.PlayerEvent$Clone) to the game event bus
-[08Feb2026 18:50:21.713] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.attachment.AttachmentInternals.onLivingConvert(net.neoforged.neoforge.event.entity.living.LivingConversionEvent$Post) to the game event bus
-[08Feb2026 18:50:21.718] [modloading-sync-worker/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Unfreezing registries
-[08Feb2026 18:50:21.725] [modloading-sync-worker/ERROR] [net.neoforged.fml.javafmlmod.FMLModContainer/]: Exception caught during firing event: Item id not set
-	Index: 1
-	Listeners:
-		0: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@29aaa6b
-		1: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@13766278
-		2: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@57413f38
-		3: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@2ff190dd
-		4: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@55a849ba
-		5: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@4ea883e9
-		6: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@22176998
-		7: net.neoforged.neoforge.registries.DeferredRegister$$Lambda/0x0000009801e39980@21506eef
-java.lang.NullPointerException: Item id not set
-	at java.base/java.util.Objects.requireNonNull(Objects.java:259)
-	at TRANSFORMER/minecraft@1.21.8/net.minecraft.world.item.Item$Properties.effectiveDescriptionId(Item.java:570)
-	at TRANSFORMER/minecraft@1.21.8/net.minecraft.world.item.Item.<init>(Item.java:124)
-	at TRANSFORMER/minecraft@1.21.8/net.minecraft.world.item.FlintAndSteelItem.<init>(FlintAndSteelItem.java:23)
-	at TRANSFORMER/nuicraft@1.21.8-0.9.0.0/eastonium.nuicraft.item.ItemHeatstoneLighter.<init>(ItemHeatstoneLighter.java:21)
-	at TRANSFORMER/nuicraft@1.21.8-0.9.0.0/eastonium.nuicraft.core.NuiCraftItems.lambda$static$5(NuiCraftItems.java:65)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister$Items.lambda$register$0(DeferredRegister.java:515)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375)
-	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27)
-	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360)
-	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342)
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177)
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:377)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174)
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:375)
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:366)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:89)
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
+[08Feb2026 18:52:12.649] [main/DEBUG] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
+[08Feb2026 18:52:12.650] [main/DEBUG] [mixin/]: Selecting config neoforge.mixins.json
+[08Feb2026 18:52:12.652] [main/DEBUG] [mixin/]: Selecting config mixinextras.init.mixins.json
+[08Feb2026 18:52:12.680] [main/DEBUG] [MixinExtras|Service/]: com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0) is taking over from null
+[08Feb2026 18:52:12.692] [main/DEBUG] [mixin/]: Registering new injector for @Inject with org.spongepowered.asm.mixin.injection.struct.CallbackInjectionInfo
+[08Feb2026 18:52:12.692] [main/DEBUG] [mixin/]: Registering new injector for @ModifyArg with org.spongepowered.asm.mixin.injection.struct.ModifyArgInjectionInfo
+[08Feb2026 18:52:12.692] [main/DEBUG] [mixin/]: Registering new injector for @ModifyArgs with org.spongepowered.asm.mixin.injection.struct.ModifyArgsInjectionInfo
+[08Feb2026 18:52:12.693] [main/DEBUG] [mixin/]: Registering new injector for @Redirect with org.spongepowered.asm.mixin.injection.struct.RedirectInjectionInfo
+[08Feb2026 18:52:12.693] [main/DEBUG] [mixin/]: Registering new injector for @ModifyVariable with org.spongepowered.asm.mixin.injection.struct.ModifyVariableInjectionInfo
+[08Feb2026 18:52:12.694] [main/DEBUG] [mixin/]: Registering new injector for @ModifyConstant with org.spongepowered.asm.mixin.injection.struct.ModifyConstantInjectionInfo
+[08Feb2026 18:52:12.700] [main/DEBUG] [mixin/]: Preparing neoforge.mixins.json (2)
+[08Feb2026 18:52:12.721] [main/DEBUG] [mixin/]: Preparing mixinextras.init.mixins.json (0)
+[08Feb2026 18:52:12.771] [main/DEBUG] [io.netty.util.internal.logging.InternalLoggerFactory/]: Using SLF4J as the default logging framework
+[08Feb2026 18:52:12.771] [main/DEBUG] [io.netty.util.ResourceLeakDetector/]: -Dio.netty.leakDetection.level: simple
+[08Feb2026 18:52:12.772] [main/DEBUG] [io.netty.util.ResourceLeakDetector/]: -Dio.netty.leakDetection.targetRecords: 4
+[08Feb2026 18:52:13.162] [main/DEBUG] [oshi.util.FileUtil/]: No oshi.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@12db3386
+[08Feb2026 18:52:13.324] [main/DEBUG] [oshi.util.FileUtil/]: No oshi.architecture.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@12db3386
+[08Feb2026 18:52:13.405] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 272 Datafixer optimizations took 257 milliseconds
+[08Feb2026 18:52:13.779] [pool-6-thread-1/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[08Feb2026 18:52:13.780] [pool-6-thread-1/DEBUG] [mixin/]: Registering new injector for @SugarWrapper with com.llamalad7.mixinextras.sugar.impl.SugarWrapperInjectionInfo
+[08Feb2026 18:52:13.780] [pool-6-thread-1/DEBUG] [mixin/]: Registering new injector for @FactoryRedirectWrapper with com.llamalad7.mixinextras.wrapper.factory.FactoryRedirectWrapperInjectionInfo
+[08Feb2026 18:52:13.780] [pool-6-thread-1/DEBUG] [mixin/]: Registering new injector for @ExpressionInjectorWrapper with com.llamalad7.mixinextras.expression.impl.wrapper.ExpressionInjectorWrapperInjectionInfo
+[08Feb2026 18:52:13.787] [pool-6-thread-1/DEBUG] [mixin/]: Mixing MappedRegistryAccessor from neoforge.mixins.json into net.minecraft.core.MappedRegistry
+[08Feb2026 18:52:13.788] [pool-6-thread-1/DEBUG] [mixin/]: neoforge.mixins.json:MappedRegistryAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[08Feb2026 18:52:14.297] [pool-6-thread-1/DEBUG] [mixin/]: Mixing BlockEntityTypeAccessor from neoforge.mixins.json into net.minecraft.world.level.block.entity.BlockEntityType
+[08Feb2026 18:52:14.297] [pool-6-thread-1/DEBUG] [mixin/]: neoforge.mixins.json:BlockEntityTypeAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[08Feb2026 18:52:15.109] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: -Dio.netty.noUnsafe: false
+[08Feb2026 18:52:15.109] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: Java version: 21
+[08Feb2026 18:52:15.110] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: sun.misc.Unsafe.theUnsafe: available
+[08Feb2026 18:52:15.111] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: sun.misc.Unsafe base methods: all available
+[08Feb2026 18:52:15.111] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: sun.misc.Unsafe.storeFence: available
+[08Feb2026 18:52:15.111] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.Buffer.address: available
+[08Feb2026 18:52:15.111] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.Bits.unaligned: available, true
+[08Feb2026 18:52:15.112] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+[08Feb2026 18:52:15.112] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: sun.misc.Unsafe: available
+[08Feb2026 18:52:15.112] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.tmpdir: /var/folders/sl/yl9hkrh518362zmvnt1x6k740000gn/T (java.io.tmpdir)
+[08Feb2026 18:52:15.112] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.bitMode: 64 (sun.arch.data.model)
+[08Feb2026 18:52:15.112] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: Platform: MacOS
+[08Feb2026 18:52:15.113] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.maxDirectMemory: -1 bytes
+[08Feb2026 18:52:15.113] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.uninitializedArrayAllocationThreshold: -1
+[08Feb2026 18:52:15.113] [pool-6-thread-1/DEBUG] [io.netty.util.internal.CleanerJava9/]: java.nio.ByteBuffer.cleaner(): available
+[08Feb2026 18:52:15.114] [pool-6-thread-1/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.noPreferDirect: false
+[08Feb2026 18:52:16.110] [pool-6-thread-1/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Creating vanilla freeze snapshot
+[08Feb2026 18:52:16.125] [pool-6-thread-1/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Vanilla freeze snapshot created
+[08Feb2026 18:52:16.424] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08Feb2026 18:52:16.425] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08Feb2026 18:52:16.426] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08Feb2026 18:52:16.427] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08Feb2026 18:52:16.428] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08Feb2026 18:52:16.429] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [waypoint, modify, waypoint, color, reset] and [waypoint, modify, waypoint, color, color] with inputs: [reset]
+[08Feb2026 18:52:16.447] [main/DEBUG] [net.neoforged.fml.ModWorkManager/LOADING]: Using 12 threads for parallel mod-loading
+[08Feb2026 18:52:16.451] [main/DEBUG] [net.neoforged.fml.javafmlmod.FMLModContainer/LOADING]: Creating FMLModContainer instance for [eastonium.nuicraft.NuiCraft]
+[08Feb2026 18:52:16.453] [main/DEBUG] [net.neoforged.fml.javafmlmod.FMLModContainer/LOADING]: Creating FMLModContainer instance for [net.neoforged.neoforge.common.OnlyInWarningsHandler, net.neoforged.neoforge.common.NeoForgeMod, net.neoforged.neoforge.client.ClientNeoForgeMod]
+[08Feb2026 18:52:16.457] [modloading-worker-0/INFO] [eastonium.nuicraft.NuiCraft/]: Initializing NuiCraft - The essence of the Bionicle Universe in Minecraft!
+[08Feb2026 18:52:16.463] [modloading-worker-0/DEBUG] [net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion/CORE]: Found NeoForge version 21.8.52
+[08Feb2026 18:52:16.464] [modloading-worker-0/DEBUG] [net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion/CORE]: Found FML version 9.0.18
+[08Feb2026 18:52:16.464] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.8.52, for MC 1.21.8
+[08Feb2026 18:52:16.471] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for nuicraft
+[08Feb2026 18:52:16.472] [modloading-worker-0/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Config file neoforge-server.toml for neoforge tracking
+[08Feb2026 18:52:16.473] [modloading-worker-0/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Config file neoforge-common.toml for neoforge tracking
+[08Feb2026 18:52:16.496] [modloading-worker-0/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Config file neoforge-client.toml for neoforge tracking
+[08Feb2026 18:52:16.507] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for neoforge
+[08Feb2026 18:52:16.507] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.filters.GenericPacketSplitter for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.520] [modloading-worker-0/DEBUG] [io.netty.buffer.AbstractByteBuf/]: -Dio.netty.buffer.checkAccessible: true
+[08Feb2026 18:52:16.521] [modloading-worker-0/DEBUG] [io.netty.buffer.AbstractByteBuf/]: -Dio.netty.buffer.checkBounds: true
+[08Feb2026 18:52:16.522] [modloading-worker-0/DEBUG] [io.netty.util.ResourceLeakDetectorFactory/]: Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@17565618
+[08Feb2026 18:52:16.531] [modloading-worker-0/DEBUG] [io.netty.util.internal.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[08Feb2026 18:52:16.532] [modloading-worker-0/DEBUG] [io.netty.util.internal.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.numHeapArenas: 24
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.numDirectArenas: 24
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.pageSize: 8192
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.maxOrder: 9
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.chunkSize: 4194304
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.smallCacheSize: 256
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.normalCacheSize: 64
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimInterval: 8192
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.useCacheForAllThreads: false
+[08Feb2026 18:52:16.533] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+[08Feb2026 18:52:16.534] [modloading-worker-0/DEBUG] [io.netty.buffer.PooledByteBufAllocator/]: -Dio.netty.allocator.disableCacheFinalizersForFastThreadLocalThreads: false
+[08Feb2026 18:52:16.536] [modloading-worker-0/DEBUG] [io.netty.buffer.ByteBufUtil/]: -Dio.netty.allocator.type: pooled
+[08Feb2026 18:52:16.536] [modloading-worker-0/DEBUG] [io.netty.buffer.ByteBufUtil/]: -Dio.netty.threadLocalDirectBufferSize: 0
+[08Feb2026 18:52:16.537] [modloading-worker-0/DEBUG] [io.netty.buffer.ByteBufUtil/]: -Dio.netty.maxThreadLocalCharBufferSize: 16384
+[08Feb2026 18:52:16.541] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.network.filters.GenericPacketSplitter.register(net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent) to the event bus of mod neoforge
+[08Feb2026 18:52:16.541] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.NetworkInitialization for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.542] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.network.NetworkInitialization.register(net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent) to the event bus of mod neoforge
+[08Feb2026 18:52:16.542] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.ConfigurationInitialization for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.543] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.network.ConfigurationInitialization.configureModdedClient(net.neoforged.neoforge.network.event.RegisterConfigurationTasksEvent) to the event bus of mod neoforge
+[08Feb2026 18:52:16.544] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.model.data.ModelDataManager for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.545] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.model.data.ModelDataManager.onChunkUnload(net.neoforged.neoforge.event.level.ChunkEvent$Unload) to the game event bus
+[08Feb2026 18:52:16.545] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.MonsterRoomHooks for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.545] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.common.MonsterRoomHooks.onDataMapsUpdated(net.neoforged.neoforge.registries.datamaps.DataMapsUpdatedEvent) to the game event bus
+[08Feb2026 18:52:16.546] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.network.ClientPayloadHandler for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.552] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method private static void net.neoforged.neoforge.client.network.ClientPayloadHandler.register(net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent) to the event bus of mod neoforge
+[08Feb2026 18:52:16.552] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.ParticleBoundsDebugRenderer for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.554] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.ParticleBoundsDebugRenderer.onRenderLevelStage(net.neoforged.neoforge.client.event.RenderLevelStageEvent$AfterParticles) to the game event bus
+[08Feb2026 18:52:16.554] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.ParticleBoundsDebugRenderer.onRegisterClientCommands(net.neoforged.neoforge.client.event.RegisterClientCommandsEvent) to the game event bus
+[08Feb2026 18:52:16.554] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.NeoForgeRenderPipelines for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.563] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method static void net.neoforged.neoforge.client.NeoForgeRenderPipelines.registerPipelines(net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent) to the event bus of mod neoforge
+[08Feb2026 18:52:16.563] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.client.BlockEntityRenderBoundsDebugRenderer for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.563] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.BlockEntityRenderBoundsDebugRenderer.onRenderLevelStage(net.neoforged.neoforge.client.event.RenderLevelStageEvent$AfterBlockEntities) to the game event bus
+[08Feb2026 18:52:16.564] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.client.BlockEntityRenderBoundsDebugRenderer.onRegisterClientCommands(net.neoforged.neoforge.client.event.RegisterClientCommandsEvent) to the game event bus
+[08Feb2026 18:52:16.564] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentSync for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.565] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.attachment.AttachmentSync.onChunkSent(net.neoforged.neoforge.event.level.ChunkWatchEvent$Sent) to the game event bus
+[08Feb2026 18:52:16.566] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentInternals for @SubscribeEvent-annotated methods
+[08Feb2026 18:52:16.566] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.attachment.AttachmentInternals.onPlayerClone(net.neoforged.neoforge.event.entity.player.PlayerEvent$Clone) to the game event bus
+[08Feb2026 18:52:16.566] [modloading-worker-0/DEBUG] [net.neoforged.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Subscribing method public static void net.neoforged.neoforge.attachment.AttachmentInternals.onLivingConvert(net.neoforged.neoforge.event.entity.living.LivingConversionEvent$Post) to the game event bus
+[08Feb2026 18:52:16.571] [modloading-sync-worker/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Unfreezing registries
+[08Feb2026 18:52:16.627] [modloading-sync-worker/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: Freezing registries
+[08Feb2026 18:52:16.644] [modloading-sync-worker/DEBUG] [net.neoforged.neoforge.registries.GameData/REGISTRIES]: All registries frozen
+[08Feb2026 18:52:16.645] [modloading-sync-worker/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Loading configs type CLIENT
+[08Feb2026 18:52:16.649] [modloading-sync-worker/DEBUG] [net.neoforged.neoforge.common.NeoForgeMod/FORGEMOD]: Loaded NeoForge config file neoforge-client.toml
+[08Feb2026 18:52:16.650] [modloading-sync-worker/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Loaded TOML config file /Users/otoyume/Documents/GitHub/Nuicraft/runs/client/config/neoforge-client.toml
+[08Feb2026 18:52:16.652] [modloading-sync-worker/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Watching TOML config file /Users/otoyume/Documents/GitHub/Nuicraft/runs/client/config/neoforge-client.toml for changes
+[08Feb2026 18:52:16.652] [modloading-sync-worker/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Loading configs type COMMON
+[08Feb2026 18:52:16.653] [modloading-sync-worker/DEBUG] [net.neoforged.neoforge.common.NeoForgeMod/FORGEMOD]: Loaded NeoForge config file neoforge-common.toml
+[08Feb2026 18:52:16.653] [modloading-sync-worker/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Loaded TOML config file /Users/otoyume/Documents/GitHub/Nuicraft/runs/client/config/neoforge-common.toml
+[08Feb2026 18:52:16.653] [modloading-sync-worker/DEBUG] [net.neoforged.fml.config.ConfigTracker/CONFIG]: Watching TOML config file /Users/otoyume/Documents/GitHub/Nuicraft/runs/client/config/neoforge-common.toml for changes
+[08Feb2026 18:52:16.698] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.8.52/neoforge-21.8.52.jar%23212!/assets/.mcassetsroot' uses unexpected schema
+[08Feb2026 18:52:16.698] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.8.52/neoforge-21.8.52.jar%23212!/data/.mcassetsroot' uses unexpected schema
+[08Feb2026 18:52:16.708] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[08Feb2026 18:52:16.712] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[08Feb2026 18:52:16.764] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.3+5
+[08Feb2026 18:52:16.953] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Using optional rendering extensions: 
+[08Feb2026 18:52:17.493] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources, mod/nuicraft, mod/neoforge
+[08Feb2026 18:52:17.500] [resourceLoad/INFO] [eastonium.nuicraft.NuiCraft/]: NuiCraft common setup
+[08Feb2026 18:52:17.502] [resourceLoad/INFO] [eastonium.nuicraft.NuiCraft/]: NuiCraft common setup
+[08Feb2026 18:52:17.502] [resourceLoad/INFO] [eastonium.nuicraft.NuiCraft/]: NuiCraft common setup
+[08Feb2026 18:52:17.513] [Render thread/DEBUG] [net.neoforged.fml.DeferredWorkQueue/LOADING]: Dispatching synchronous work for work queue Common setup: 4 jobs
+[08Feb2026 18:52:17.515] [Render thread/DEBUG] [net.neoforged.fml.DeferredWorkQueue/LOADING]: Synchronous work queue completed in 293.4 μs
+[08Feb2026 18:52:17.528] [resourceLoad/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_pua-16.0.03.hex, loading
+[08Feb2026 18:52:17.533] [resourceLoad/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-16.0.03.hex, loading
+[08Feb2026 18:52:17.634] [resourceLoad/WARN] [net.minecraft.client.renderer.block.model.BlockModelDefinition/]: Exception loading blockstate definition: 'nuicraft:bamboo/mod/nuicraft' for variant: 'inventory': Unknown blockstate property: 'inventory'
+[08Feb2026 18:52:17.634] [resourceLoad/WARN] [net.minecraft.client.renderer.block.model.BlockModelDefinition/]: Exception loading blockstate definition: 'nuicraft:bamboo/mod/nuicraft' for variant: 'normal': Unknown blockstate property: 'normal'
+[08Feb2026 18:52:17.656] [resourceLoad/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_jp_patch-16.0.03.hex, loading
+[08Feb2026 18:52:17.701] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:block_protodermis from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"normal":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.702] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:block_protosteel from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"normal":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.761] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:heatstone_ore from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"normal":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.765] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:koro_block from pack mod/nuicraft
+com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON at line 9 column 5 path $.variants.meta.
+See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.Streams.parse(Streams.java:58) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.JsonParser.parseReader(JsonParser.java:146) ~[gson-2.11.0.jar%23120!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.util.StrictJsonParser.parse(StrictJsonParser.java:20) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:58) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+Caused by: com.google.gson.stream.MalformedJsonException: Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON at line 9 column 5 path $.variants.meta.
+See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1754) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.checkLenient(JsonReader.java:1550) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.doPeek(JsonReader.java:591) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.hasNext(JsonReader.java:498) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.bind.TypeAdapters$28.read(TypeAdapters.java:875) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.bind.TypeAdapters$28.read(TypeAdapters.java:820) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.Streams.parse(Streams.java:46) ~[gson-2.11.0.jar%23120!/:?]
+	... 12 more
+[08Feb2026 18:52:17.767] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:lightstone_ore from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"normal":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.767] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:lightstone from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: Not a json array: {"up":{"transform":{"translation":[0,-0.25,0]}},"east":{"transform":{"translation":[-0.4,0,0],"rotation":[{"z":-30}],"post-rotation":[{"y":90}]}},"south":{"transform":{"translation":[0,0,-0.4],"rotation":[{"x":30}]}},"west":{"transform":{"translation":[0.4,0,0],"rotation":[{"z":30}],"post-rotation":[{"y":90}]}},"north":{"transform":{"translation":[0,0,0.4],"rotation":[{"x":-30}]}}}; Second: No key model in MapLike[{"up":{"transform":{"translation":[0,-0.25,0]}},"east":{"transform":{"translation":[-0.4,0,0],"rotation":[{"z":-30}],"post-rotation":[{"y":90}]}},"south":{"transform":{"translation":[0,0,-0.4],"rotation":[{"x":30}]}},"west":{"transform":{"translation":[0.4,0,0],"rotation":[{"z":30}],"post-rotation":[{"y":90}]}},"north":{"transform":{"translation":[0,0,0.4],"rotation":[{"x":-30}]}}}] missed input: {"facing":{"up":{"transform":{"translation":[0,-0.25,0]}},"east":{"transform":{"translation":[-0.4,0,0],"rotation":[{"z":-30}],"post-rotation":[{"y":90}]}},"south":{"transform":{"translation":[0,0,-0.4],"rotation":[{"x":30}]}},"west":{"transform":{"translation":[0.4,0,0],"rotation":[{"z":30}],"post-rotation":[{"y":90}]}},"north":{"transform":{"translation":[0,0,0.4],"rotation":[{"x":-30}]}}}}
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.768] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:makuta_stone from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: Not a json array: {"y":90}; Second: No key model in MapLike[{"y":90}]; Failed to parse either. First: Not a json array: {"y":270}; Second: No key model in MapLike[{"y":270}]; Failed to parse either. First: Not a json array: {"y":180}; Second: No key model in MapLike[{"y":180}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"facing=north":[{}],"facing=south":{"y":180},"facing=west":{"y":270},"facing=east":{"y":90}}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.770] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:mask_forge from pack mod/nuicraft
+com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON at line 9 column 5 path $.variants.level.
+See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.Streams.parse(Streams.java:58) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.JsonParser.parseReader(JsonParser.java:146) ~[gson-2.11.0.jar%23120!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.util.StrictJsonParser.parse(StrictJsonParser.java:20) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:58) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+Caused by: com.google.gson.stream.MalformedJsonException: Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON at line 9 column 5 path $.variants.level.
+See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1754) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.checkLenient(JsonReader.java:1550) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.doPeek(JsonReader.java:591) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.stream.JsonReader.hasNext(JsonReader.java:498) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.bind.TypeAdapters$28.read(TypeAdapters.java:875) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.bind.TypeAdapters$28.read(TypeAdapters.java:820) ~[gson-2.11.0.jar%23120!/:?]
+	at MC-BOOTSTRAP/com.google.gson@2.11.0/com.google.gson.internal.Streams.parse(Streams.java:46) ~[gson-2.11.0.jar%23120!/:?]
+	... 12 more
+[08Feb2026 18:52:17.770] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:matanui_stone from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: Not a json array: {"y":90}; Second: No key model in MapLike[{"y":90}]; Failed to parse either. First: Not a json array: {"y":270}; Second: No key model in MapLike[{"y":270}]; Failed to parse either. First: Not a json array: {"y":180}; Second: No key model in MapLike[{"y":180}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"facing=north":[{}],"facing=south":{"y":180},"facing=west":{"y":270},"facing=east":{"y":90}}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.774] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:nuva_cube from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"normal":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.787] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:protodermis_ore from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"inventory":[{}],"normal":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:17.792] [resourceLoad/ERROR] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Failed to load blockstate definition nuicraft:purifier from pack mod/nuicraft
+com.google.gson.JsonParseException: Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{"y":270}]; List must have contents; Second: Not a JSON object: [{"y":270}]; Failed to parse either. First: No key model in MapLike[{"y":180}]; List must have contents; Second: Not a JSON object: [{"y":180}]; Failed to parse either. First: No key model in MapLike[{"y":90}]; List must have contents; Second: Not a JSON object: [{"y":90}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}]; Failed to parse either. First: No key model in MapLike[{"transform":{"gui":{"rotation":[{"x":30},{"y":225}],"translation":[0.15,0.15,0],"scale":[0.5,0.5,0.5]},"ground":{"translation":[-0.1,0,0],"scale":[0.25,0.25,0.25]},"fixed":{"translation":[-0.2,0.1,0],"scale":[0.5,0.5,0.5]},"thirdperson_righthand":{"rotation":[{"x":75},{"y":45}],"translation":[0,0,0],"scale":[0.375,0.375,0.375]},"thirdperson_lefthand":{"rotation":[{"x":75},{"y":225}],"translation":[0,0,0],"scale":[0.375,0.375,0.375]},"firstperson_righthand":{"rotation":[{"y":45}],"translation":[0,0,0],"scale":[0.50,0.50,0.50]},"firstperson_lefthand":{"rotation":[{"y":225}],"translation":[0,0,0],"scale":[0.50,0.50,0.50]}}}]; List must have contents; Second: Not a JSON object: [{"transform":{"gui":{"rotation":[{"x":30},{"y":225}],"translation":[0.15,0.15,0],"scale":[0.5,0.5,0.5]},"ground":{"translation":[-0.1,0,0],"scale":[0.25,0.25,0.25]},"fixed":{"translation":[-0.2,0.1,0],"scale":[0.5,0.5,0.5]},"thirdperson_righthand":{"rotation":[{"x":75},{"y":45}],"translation":[0,0,0],"scale":[0.375,0.375,0.375]},"thirdperson_lefthand":{"rotation":[{"x":75},{"y":225}],"translation":[0,0,0],"scale":[0.375,0.375,0.375]},"firstperson_righthand":{"rotation":[{"y":45}],"translation":[0,0,0],"scale":[0.50,0.50,0.50]},"firstperson_lefthand":{"rotation":[{"y":225}],"translation":[0,0,0],"scale":[0.50,0.50,0.50]}}}]; Failed to parse either. First: No key model in MapLike[{}]; List must have contents; Second: Not a JSON object: [{}] missed input: {"normal":[{}],"inventory":[{"transform":{"gui":{"rotation":[{"x":30},{"y":225}],"translation":[0.15,0.15,0],"scale":[0.5,0.5,0.5]},"ground":{"translation":[-0.1,0,0],"scale":[0.25,0.25,0.25]},"fixed":{"translation":[-0.2,0.1,0],"scale":[0.5,0.5,0.5]},"thirdperson_righthand":{"rotation":[{"x":75},{"y":45}],"translation":[0,0,0],"scale":[0.375,0.375,0.375]},"thirdperson_lefthand":{"rotation":[{"x":75},{"y":225}],"translation":[0,0,0],"scale":[0.375,0.375,0.375]},"firstperson_righthand":{"rotation":[{"y":45}],"translation":[0,0,0],"scale":[0.50,0.50,0.50]},"firstperson_lefthand":{"rotation":[{"y":225}],"translation":[0,0,0],"scale":[0.50,0.50,0.50]}}}],"facing=north,part=foot":[{}],"facing=east,part=foot":[{}],"facing=south,part=foot":[{}],"facing=west,part=foot":[{}],"facing=north,part=head":[{"y":90}],"facing=east,part=head":[{"y":180}],"facing=south,part=head":[{"y":270}],"facing=west,part=head":[{}]}; Map must have contents; Neither 'variants' nor 'multipart' found
+	at MC-BOOTSTRAP/datafixerupper@8.0.16/com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-8.0.16.jar%23132!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.client.resources.model.BlockStateModelLoader.lambda$loadBlockStates$1(BlockStateModelLoader.java:61) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[?:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$0(SimpleReloadInstance.java:65) ~[neoforge-21.8.52.jar%23212!/:?]
+	at TRANSFORMER/minecraft@1.21.8/net.minecraft.TracingExecutor.lambda$forName$0(TracingExecutor.java:18) ~[neoforge-21.8.52.jar%23212!/:?]
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423) [?:?]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+[08Feb2026 18:52:18.190] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:fluid_protodermis}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:fluid_protodermis_pure}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:fluid_protodermis_molten}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:fluid_protodermis_pure_molten}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:mask_forge}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:purifier}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:koro_block}'
+[08Feb2026 18:52:18.191] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:nuva_cube}'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:matanui_stone}[facing=north]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:matanui_stone}[facing=south]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:matanui_stone}[facing=west]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:matanui_stone}[facing=east]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:makuta_stone}[facing=north]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:makuta_stone}[facing=south]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:makuta_stone}[facing=west]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:makuta_stone}[facing=east]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:lightstone}'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:lightstone_ore}'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:heatstone_ore}'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:protodermis_ore}[drops=0]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:protodermis_ore}[drops=1]'
+[08Feb2026 18:52:18.192] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:protodermis_ore}[drops=2]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:protodermis_ore}[drops=3]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:protodermis_ore}[drops=4]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=0]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=1]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=2]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=3]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=4]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=5]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=6]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=7]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=8]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=9]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=10]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=11]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=12]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=13]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=14]'
+[08Feb2026 18:52:18.193] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:bamboo}[age=15]'
+[08Feb2026 18:52:18.194] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:block_protodermis}'
+[08Feb2026 18:52:18.194] [resourceLoad/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing model for variant: 'Block{nuicraft:block_protosteel}'
+[08Feb2026 18:52:18.328] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_translucent_moving_block and FS minecraft:core/rendertype_translucent_moving_block. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
 
-[08Feb2026 18:50:21.726] [modloading-sync-worker/ERROR] [net.neoforged.fml.ModContainer/LOADING]: Caught exception during event net.neoforged.neoforge.registries.RegisterEvent@36958027 dispatch for modid nuicraft
-java.lang.NullPointerException: Item id not set
-	at java.base/java.util.Objects.requireNonNull(Objects.java:259) ~[?:?]
-	at TRANSFORMER/minecraft@1.21.8/net.minecraft.world.item.Item$Properties.effectiveDescriptionId(Item.java:570) ~[neoforge-21.8.52.jar%23212!/:?]
-	at TRANSFORMER/minecraft@1.21.8/net.minecraft.world.item.Item.<init>(Item.java:124) ~[neoforge-21.8.52.jar%23212!/:?]
-	at TRANSFORMER/minecraft@1.21.8/net.minecraft.world.item.FlintAndSteelItem.<init>(FlintAndSteelItem.java:23) ~[neoforge-21.8.52.jar%23212!/:?]
-	at TRANSFORMER/nuicraft@1.21.8-0.9.0.0/eastonium.nuicraft.item.ItemHeatstoneLighter.<init>(ItemHeatstoneLighter.java:21) ~[%23214!/:?]
-	at TRANSFORMER/nuicraft@1.21.8-0.9.0.0/eastonium.nuicraft.core.NuiCraftItems.lambda$static$5(NuiCraftItems.java:65) ~[%23214!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister$Items.lambda$register$0(DeferredRegister.java:515) ~[neoforge-21.8.52.jar%23213!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister.lambda$register$1(DeferredRegister.java:234) ~[neoforge-21.8.52.jar%23213!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister.lambda$addEntries$2(DeferredRegister.java:375) ~[neoforge-21.8.52.jar%23213!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.RegisterEvent.register(RegisterEvent.java:48) ~[neoforge-21.8.52.jar%23213!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.DeferredRegister.addEntries(DeferredRegister.java:375) ~[neoforge-21.8.52.jar%23213!/:?]
-	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.ConsumerEventHandler.invoke(ConsumerEventHandler.java:27) ~[bus-8.0.5.jar%23168!/:?]
-	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23168!/:?]
-	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:342) ~[bus-8.0.5.jar%23168!/:?]
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:177) ~[loader-9.0.18.jar%23164!/:9.0]
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:377) ~[loader-9.0.18.jar%23164!/:9.0]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?]
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-9.0.18.jar%23164!/:9.0]
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:375) ~[loader-9.0.18.jar%23164!/:9.0]
-	at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:366) ~[loader-9.0.18.jar%23164!/:9.0]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:89) ~[neoforge-21.8.52.jar%23213!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.8.52.jar%23213!/:?]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
-	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
-[08Feb2026 18:50:21.758] [modloading-sync-worker/ERROR] [net.neoforged.neoforge.registries.GameData/]: Failed to register some entries, see suppressed exceptions for details
-java.lang.RuntimeException: null
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:80) ~[neoforge-21.8.52.jar%23213!/:?]
-	at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.8.52.jar%23213!/:?]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
-	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
-	Suppressed: net.neoforged.fml.ModLoadingException: Loading errors encountered:
-	- NuiCraft (nuicraft) encountered an error while dispatching the net.neoforged.neoforge.registries.RegisterEvent event
-	  java.lang.NullPointerException: Item id not set
-
-		at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModContainer.acceptEvent(ModContainer.java:181) ~[loader-9.0.18.jar%23164!/:9.0]
-		at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.lambda$postEventWithWrapInModOrder$16(ModLoader.java:377) ~[loader-9.0.18.jar%23164!/:9.0]
-		at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?]
-		at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModList.forEachModInOrder(ModList.java:174) ~[loader-9.0.18.jar%23164!/:9.0]
-		at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.postEventWithWrapInModOrder(ModLoader.java:375) ~[loader-9.0.18.jar%23164!/:9.0]
-		at MC-BOOTSTRAP/fml_loader@9.0.18/net.neoforged.fml.ModLoader.postEventWrapContainerInModOrder(ModLoader.java:366) ~[loader-9.0.18.jar%23164!/:9.0]
-		at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.registries.GameData.postRegisterEvents(GameData.java:89) ~[neoforge-21.8.52.jar%23213!/:?]
-		at TRANSFORMER/neoforge@21.8.52/net.neoforged.neoforge.internal.CommonModLoader.lambda$begin$0(CommonModLoader.java:54) ~[neoforge-21.8.52.jar%23213!/:?]
-		at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
-		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
-		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
-		at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
-[08Feb2026 18:50:21.764] [modloading-sync-worker/ERROR] [net.neoforged.neoforge.registries.GameData/]: Rolling back to VANILLA state
-[08Feb2026 18:50:21.786] [modloading-sync-worker/ERROR] [net.minecraft.Util/]: Entity nuicraft:mahi has no attributes
-[08Feb2026 18:50:21.787] [modloading-sync-worker/ERROR] [net.minecraft.Util/]: Entity nuicraft:fikou has no attributes
-[08Feb2026 18:50:21.788] [modloading-sync-worker/ERROR] [net.minecraft.Util/]: Entity nuicraft:hoi has no attributes
-[08Feb2026 18:50:21.788] [modloading-sync-worker/ERROR] [net.minecraft.Util/]: Entity nuicraft:kofo_jaga has no attributes
-[08Feb2026 18:50:21.788] [modloading-sync-worker/ERROR] [net.minecraft.Util/]: Entity nuicraft:nui_jaga has no attributes
-[08Feb2026 18:50:22.023] [main/FATAL] [net.neoforged.fml.ModLoader/LOADING]: Failed to wait for future Registry initialization, 1 errors found
-[08Feb2026 18:50:22.072] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.8.52/neoforge-21.8.52.jar%23212!/assets/.mcassetsroot' uses unexpected schema
-[08Feb2026 18:50:22.073] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.8.52/neoforge-21.8.52.jar%23212!/data/.mcassetsroot' uses unexpected schema
-[08Feb2026 18:50:22.084] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[08Feb2026 18:50:22.089] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[08Feb2026 18:50:22.130] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent to a broken mod state
-[08Feb2026 18:50:22.141] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.3+5
-[08Feb2026 18:50:22.325] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ConfigureGpuDeviceEvent to a broken mod state
-[08Feb2026 18:50:22.331] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Using optional rendering extensions: 
-[08Feb2026 18:50:22.331] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ConfigureMainRenderTargetEvent to a broken mod state
-[08Feb2026 18:50:22.363] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterItemModelsEvent to a broken mod state
-[08Feb2026 18:50:22.363] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent to a broken mod state
-[08Feb2026 18:50:22.366] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$ItemTintSources to a broken mod state
-[08Feb2026 18:50:22.377] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent to a broken mod state
-[08Feb2026 18:50:22.379] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent to a broken mod state
-[08Feb2026 18:50:22.384] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent to a broken mod state
-[08Feb2026 18:50:22.389] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterSpriteSourcesEvent to a broken mod state
-[08Feb2026 18:50:22.524] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.sound.SoundEngineLoadEvent to a broken mod state
-[08Feb2026 18:50:22.540] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$Block to a broken mod state
-[08Feb2026 18:50:22.540] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$RegisterLoaders to a broken mod state
-[08Feb2026 18:50:22.543] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterMaterialAtlasesEvent to a broken mod state
-[08Feb2026 18:50:22.562] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterRenderBuffersEvent to a broken mod state
-[08Feb2026 18:50:22.612] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent to a broken mod state
-[08Feb2026 18:50:22.631] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterPictureInPictureRenderersEvent to a broken mod state
-[08Feb2026 18:50:22.675] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent to a broken mod state
-[08Feb2026 18:50:22.686] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterMenuScreensEvent to a broken mod state
-[08Feb2026 18:50:22.692] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterJsonAnimationTypesEvent to a broken mod state
-[08Feb2026 18:50:22.693] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterBlockStateModels to a broken mod state
-[08Feb2026 18:50:22.693] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.InitializeClientRegistriesEvent to a broken mod state
-[08Feb2026 18:50:22.697] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.AddClientReloadListenersEvent to a broken mod state
-[08Feb2026 18:50:22.699] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$RegisterLayerDefinitions to a broken mod state
-[08Feb2026 18:50:22.699] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$CreateSkullModels to a broken mod state
-[08Feb2026 18:50:22.699] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$RegisterRenderers to a broken mod state
-[08Feb2026 18:50:22.699] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent to a broken mod state
-[08Feb2026 18:50:22.699] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterSpriteDefaultMetadataSectionTypesEvent to a broken mod state
-[08Feb2026 18:50:22.699] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent to a broken mod state
-[08Feb2026 18:50:22.700] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterEntitySpectatorShadersEvent to a broken mod state
-[08Feb2026 18:50:22.700] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterRecipeBookSearchCategoriesEvent to a broken mod state
-[08Feb2026 18:50:22.700] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterGuiLayersEvent to a broken mod state
-[08Feb2026 18:50:22.701] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent to a broken mod state
-[08Feb2026 18:50:22.701] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterNamedRenderTypesEvent to a broken mod state
-[08Feb2026 18:50:22.702] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$ColorResolvers to a broken mod state
-[08Feb2026 18:50:22.702] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent to a broken mod state
-[08Feb2026 18:50:22.705] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterPresetEditorsEvent to a broken mod state
-[08Feb2026 18:50:22.706] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.gui.map.RegisterMapDecorationRenderersEvent to a broken mod state
-[08Feb2026 18:50:22.706] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent to a broken mod state
-[08Feb2026 18:50:22.706] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent to a broken mod state
-[08Feb2026 18:50:22.706] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.pipeline.RegisterPipelineModifiersEvent to a broken mod state
-[08Feb2026 18:50:22.797] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla
-[08Feb2026 18:50:22.830] [resourceLoad/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-16.0.03.hex, loading
-[08Feb2026 18:50:22.830] [resourceLoad/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_pua-16.0.03.hex, loading
-[08Feb2026 18:50:22.845] [resourceLoad/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$RegisterStandalone to a broken mod state
-[08Feb2026 18:50:22.930] [resourceLoad/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_jp_patch-16.0.03.hex, loading
-[08Feb2026 18:50:22.966] [resourceLoad/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.RegisterSpecialBlockModelRendererEvent to a broken mod state
-[08Feb2026 18:50:23.489] [resourceLoad/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$ModifyBakingResult to a broken mod state
-[08Feb2026 18:50:23.546] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
-
-[08Feb2026 18:50:23.548] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
-
-[08Feb2026 18:50:23.551] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
-
-[08Feb2026 18:50:23.564] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_item_entity_translucent_cull and FS minecraft:core/rendertype_item_entity_translucent_cull. Log output: WARNING: Output of vertex shader 'texCoord1' not read by fragment shader
-WARNING: Output of vertex shader 'texCoord2' not read by fragment shader
-
-[08Feb2026 18:50:23.571] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
-
-[08Feb2026 18:50:23.573] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.575] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.581] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.587] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.589] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_translucent_moving_block and FS minecraft:core/rendertype_translucent_moving_block. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.590] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_text_see_through and FS minecraft:core/rendertype_text_see_through. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.592] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.595] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_entity_alpha and FS minecraft:core/rendertype_entity_alpha. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-WARNING: Output of vertex shader 'texCoord1' not read by fragment shader
-WARNING: Output of vertex shader 'texCoord2' not read by fragment shader
-
-[08Feb2026 18:50:23.598] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_crumbling and FS minecraft:core/rendertype_crumbling. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-WARNING: Output of vertex shader 'texCoord2' not read by fragment shader
-
-[08Feb2026 18:50:23.605] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_entity_shadow and FS minecraft:core/rendertype_entity_shadow. Log output: WARNING: Could not find vertex shader attribute 'UV1' to match BindAttributeLocation request.
+[08Feb2026 18:52:18.332] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_entity_shadow and FS minecraft:core/rendertype_entity_shadow. Log output: WARNING: Could not find vertex shader attribute 'UV1' to match BindAttributeLocation request.
 WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
 WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
 
-[08Feb2026 18:50:23.610] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
-
-[08Feb2026 18:50:23.617] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+[08Feb2026 18:52:18.338] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
 WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
 WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
 
-[08Feb2026 18:50:23.618] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_text_intensity_see_through and FS minecraft:core/rendertype_text_intensity_see_through. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+[08Feb2026 18:52:18.344] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
 
-[08Feb2026 18:50:23.620] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+[08Feb2026 18:52:18.348] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.352] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.354] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.356] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_text_background_see_through and FS minecraft:core/rendertype_text_background_see_through. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.363] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
+
+[08Feb2026 18:52:18.365] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_item_entity_translucent_cull and FS minecraft:core/rendertype_item_entity_translucent_cull. Log output: WARNING: Output of vertex shader 'texCoord1' not read by fragment shader
+WARNING: Output of vertex shader 'texCoord2' not read by fragment shader
+
+[08Feb2026 18:52:18.369] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
+
+[08Feb2026 18:52:18.376] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.381] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_beacon_beam and FS minecraft:core/rendertype_beacon_beam. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.383] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
+
+[08Feb2026 18:52:18.386] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.387] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
+
+[08Feb2026 18:52:18.390] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_beacon_beam and FS minecraft:core/rendertype_beacon_beam. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.396] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_text_intensity_see_through and FS minecraft:core/rendertype_text_intensity_see_through. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.398] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_crumbling and FS minecraft:core/rendertype_crumbling. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+WARNING: Output of vertex shader 'texCoord2' not read by fragment shader
+
+[08Feb2026 18:52:18.401] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_text_see_through and FS minecraft:core/rendertype_text_see_through. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.411] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_entity_alpha and FS minecraft:core/rendertype_entity_alpha. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+WARNING: Output of vertex shader 'texCoord1' not read by fragment shader
+WARNING: Output of vertex shader 'texCoord2' not read by fragment shader
+
+[08Feb2026 18:52:18.414] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.421] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.422] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
+
+[08Feb2026 18:52:18.424] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/entity and FS minecraft:core/entity. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
 WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
 WARNING: Output of vertex shader 'overlayColor' not read by fragment shader
 
-[08Feb2026 18:50:23.622] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_beacon_beam and FS minecraft:core/rendertype_beacon_beam. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.625] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.626] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/terrain and FS minecraft:core/terrain. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.629] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_beacon_beam and FS minecraft:core/rendertype_beacon_beam. Log output: WARNING: Could not find vertex shader attribute 'Normal' to match BindAttributeLocation request.
-WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.631] [Render thread/INFO] [com.mojang.blaze3d.opengl.GlProgram/]: Info log when linking program containing VS minecraft:core/rendertype_text_background_see_through and FS minecraft:core/rendertype_text_background_see_through. Log output: WARNING: Could not find vertex shader attribute 'UV2' to match BindAttributeLocation request.
-
-[08Feb2026 18:50:23.656] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device MacBook Pro Speakers
-[08Feb2026 18:50:23.658] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[08Feb2026 18:50:23.658] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.sound.SoundEngineLoadEvent to a broken mod state
-[08Feb2026 18:50:23.717] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
-[08Feb2026 18:50:23.726] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.726] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[08Feb2026 18:50:23.727] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.727] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[08Feb2026 18:50:23.727] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.727] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[08Feb2026 18:50:23.728] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.728] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 2048x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[08Feb2026 18:50:23.731] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.731] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[08Feb2026 18:50:23.731] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.732] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[08Feb2026 18:50:23.732] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.732] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[08Feb2026 18:50:23.732] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.732] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[08Feb2026 18:50:23.732] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.732] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.ModelEvent$BakingCompleted to a broken mod state
-[08Feb2026 18:50:23.733] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
-[08Feb2026 18:50:23.733] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.796] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.EntityRenderersEvent$AddLayers to a broken mod state
-[08Feb2026 18:50:23.805] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[08Feb2026 18:50:23.805] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.806] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[08Feb2026 18:50:23.806] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.806] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
-[08Feb2026 18:50:23.807] [Render thread/ERROR] [net.neoforged.fml.ModLoader/]: Cowardly refusing to send event net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent to a broken mod state
-[08Feb2026 18:50:23.826] [Render thread/DEBUG] [oshi.util.FileUtil/]: No oshi.architecture.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@12db3386
-[08Feb2026 18:50:24.217] [Render thread/ERROR] [net.minecraft.CrashReport/]: Negative index in crash report handler (0/28)
-[08Feb2026 18:50:24.221] [Render thread/FATAL] [net.neoforged.neoforge.common.NeoForgeMod/]: Preparing crash report with UUID c2a13614-9630-45fb-95b8-f9aae1f8285b
-[08Feb2026 18:50:24.221] [Render thread/FATAL] [net.neoforged.neoforge.client.loading.ClientModLoader/]: Crash report saved to ./crash-reports/crash-2026-02-08_18.50.24-fml.txt
-[08Feb2026 18:50:24.222] [Render thread/FATAL] [net.neoforged.neoforge.common.NeoForgeMod/]: Preparing crash report with UUID 4e8f88d7-7c59-4e6d-bbb7-f4cea5362be3
+[08Feb2026 18:52:18.450] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device MacBook Pro Speakers
+[08Feb2026 18:52:18.452] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[08Feb2026 18:52:18.516] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[08Feb2026 18:52:18.527] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[08Feb2026 18:52:18.528] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[08Feb2026 18:52:18.528] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[08Feb2026 18:52:18.529] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 2048x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[08Feb2026 18:52:18.532] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[08Feb2026 18:52:18.533] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[08Feb2026 18:52:18.533] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[08Feb2026 18:52:18.533] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:fluid_protodermis of nuicraft:fluid_protodermis
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:fluid_protodermis_pure of nuicraft:fluid_protodermis_pure
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:fluid_protodermis_molten of nuicraft:fluid_protodermis_molten
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:fluid_protodermis_pure_molten of nuicraft:fluid_protodermis_pure_molten
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_forge of nuicraft:mask_forge
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:purifier of nuicraft:purifier
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:koro_block of nuicraft:koro_block
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:nuva_cube of nuicraft:nuva_cube
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:matanui_stone of nuicraft:matanui_stone
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:makuta_stone of nuicraft:makuta_stone
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:lightstone of nuicraft:lightstone
+[08Feb2026 18:52:18.534] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:lightstone_ore of nuicraft:lightstone_ore
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:heatstone_ore of nuicraft:heatstone_ore
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:protodermis_ore of nuicraft:protodermis_ore
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:bamboo of nuicraft:bamboo
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:block_protodermis of nuicraft:block_protodermis
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:block_protosteel of nuicraft:block_protosteel
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:generic_item of nuicraft:generic_item
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:kanoka_bamboo of nuicraft:kanoka_bamboo
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:kanoka_disc of nuicraft:kanoka_disc
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:disc_launcher of nuicraft:disc_launcher
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:protodermis_sword of nuicraft:protodermis_sword
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:protodermis_pick of nuicraft:protodermis_pick
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:protodermis_axe of nuicraft:protodermis_axe
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:protodermis_shovel of nuicraft:protodermis_shovel
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:protodermis_scythe of nuicraft:protodermis_scythe
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:heatstone_lighter of nuicraft:heatstone_lighter
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:sluice of nuicraft:sluice
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_gold of nuicraft:mask_mata_gold
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_kakama of nuicraft:mask_mata_kakama
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_pakari of nuicraft:mask_mata_pakari
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_kaukau of nuicraft:mask_mata_kaukau
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_miru of nuicraft:mask_mata_miru
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_hau of nuicraft:mask_mata_hau
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_mata_akaku of nuicraft:mask_mata_akaku
+[08Feb2026 18:52:18.535] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_nuva_kakama of nuicraft:mask_nuva_kakama
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_nuva_pakari of nuicraft:mask_nuva_pakari
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_nuva_kaukau of nuicraft:mask_nuva_kaukau
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_nuva_miru of nuicraft:mask_nuva_miru
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_nuva_hau of nuicraft:mask_nuva_hau
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_nuva_akaku of nuicraft:mask_nuva_akaku
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_ignika of nuicraft:mask_ignika
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mask_vahi of nuicraft:mask_vahi
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:mahi_spawn_egg of nuicraft:mahi_spawn_egg
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:fikou_spawn_egg of nuicraft:fikou_spawn_egg
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:hoi_spawn_egg of nuicraft:hoi_spawn_egg
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:kofo_jaga_spawn_egg of nuicraft:kofo_jaga_spawn_egg
+[08Feb2026 18:52:18.536] [Render thread/WARN] [net.minecraft.client.resources.model.ModelManager/]: No model loaded for default item model ID nuicraft:nui_jaga_spawn_egg of nuicraft:nui_jaga_spawn_egg
+[08Feb2026 18:52:18.536] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[08Feb2026 18:52:18.538] [Render thread/INFO] [net.neoforged.neoforge.client.entity.animation.json.AnimationLoader/]: Loaded 0 entity animations
+[08Feb2026 18:52:18.571] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[08Feb2026 18:52:18.572] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[08Feb2026 18:52:18.572] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
+[08Feb2026 18:52:19.171] [FileWatcher-1-thread-1/DEBUG] [net.neoforged.fml.config.ConfigWatcher/CONFIG]: Config file neoforge-common.toml changed, re-loading
+[08Feb2026 18:52:19.172] [FileWatcher-1-thread-1/DEBUG] [net.neoforged.neoforge.common.NeoForgeMod/FORGEMOD]: NeoForge config just got changed on the file system!
