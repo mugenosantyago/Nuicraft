@@ -16,8 +16,8 @@
         "parent": "root",
         "pivot": [0, 24, 0],
         "cubes": [{
-          "origin": [-4, 21, -5],
-          "size": [8, 7, 1],
+          "origin": [-5, 22, -5],
+          "size": [10, 9, 1],
           "uv": {
             "north": {"uv": [0, 0], "uv_size": [16, 16]},
             "south": {"uv": [0, 0], "uv_size": [16, 16]},
