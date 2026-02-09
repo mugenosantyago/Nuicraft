@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * Custom render layer that draws a 3D Bionicle mask on the player's head
+ * Renders a 2D Bionicle mask flat in front of the player's face
  */
 public class MaskRenderLayer<S extends HumanoidRenderState, M extends HumanoidModel<S>> extends RenderLayer<S, M> {
     private static final ResourceLocation MASK_TEXTURE = ResourceLocation.fromNamespaceAndPath(
