@@ -51,13 +51,13 @@ public class NuiCraftItems {
             props -> new Item(props.pickaxe(NuiCraftTiers.PROTODERMIS, 1, -2.8F)));
     
     public static final DeferredItem<AxeItem> PROTODERMIS_AXE = ITEMS.registerItem("protodermis_axe",
-            props -> new AxeItem(props.axe(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F)));
+            props -> new AxeItem(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F, props.axe(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F)));
     
     public static final DeferredItem<ShovelItem> PROTODERMIS_SHOVEL = ITEMS.registerItem("protodermis_shovel",
-            props -> new ShovelItem(props.shovel(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F)));
+            props -> new ShovelItem(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F, props.shovel(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F)));
     
     public static final DeferredItem<HoeItem> PROTODERMIS_SCYTHE = ITEMS.registerItem("protodermis_scythe",
-            props -> new HoeItem(props.hoe(NuiCraftTiers.PROTODERMIS, -2, -1.0F)));
+            props -> new HoeItem(NuiCraftTiers.PROTODERMIS, -2, -1.0F, props.hoe(NuiCraftTiers.PROTODERMIS, -2, -1.0F)));
 
     // Special items
     public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.register("heatstone_lighter",

@@ -6,18 +6,20 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.entity.player.FillBucketEvent;
 import net.neoforged.neoforge.fluids.FluidUtil;
 
 /**
  * Event hooks for NuiCraft custom fluid bucket handling
+ * 
+ * NOTE: FillBucketEvent may have been removed or moved in 1.21.8
+ * TODO: Verify event still exists or find replacement
  */
 public class NuiCraftEventHooks {
     
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    // Temporarily commented out - FillBucketEvent needs verification
+    /*@SubscribeEvent(priority = EventPriority.NORMAL)
     public void onFillBucket(FillBucketEvent event) {
         // Check if it's a bucket
         ItemStack emptyBucket = event.getEmptyBucket();
@@ -42,5 +44,5 @@ public class NuiCraftEventHooks {
         if (filledBucket.isSuccess()) {
             event.setFilledBucket(filledBucket.getResult());
         }
-    }
+    }*/
 }

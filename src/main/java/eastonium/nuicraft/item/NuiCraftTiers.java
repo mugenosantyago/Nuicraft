@@ -3,7 +3,6 @@ package eastonium.nuicraft.item;
 import eastonium.nuicraft.core.NuiCraftItems;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.ToolMaterial;
 
 public class NuiCraftTiers {
