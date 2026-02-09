@@ -1,0 +1,9 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nuicraft:nuicraft_mask"
+      }
+    ]
+  }
+}
