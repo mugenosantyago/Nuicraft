@@ -88,6 +88,24 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerSimpleItem("mask_ignika");
     public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerSimpleItem("mask_vahi");
 
-    // Spawn Eggs - TODO: Fix constructor signature for 1.21.8
-    // Temporarily commented out - SpawnEggItem API changed
+    // Spawn Eggs
+    public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.register("mahi_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.MAHI.get(), 0xE6C381, 0xD1322B, new Item.Properties()));
+    
+    public static final DeferredItem<Item> FIKOU_SPAWN_EGG = ITEMS.register("fikou_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.FIKOU.get(), 0xE8660C, 0x2B2B2B, new Item.Properties()));
+    
+    public static final DeferredItem<Item> HOI_SPAWN_EGG = ITEMS.register("hoi_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.HOI.get(), 0x2B2B2B, 0xE8660C, new Item.Properties()));
+    
+    public static final DeferredItem<Item> KOFO_JAGA_SPAWN_EGG = ITEMS.register("kofo_jaga_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.KOFO_JAGA.get(), 0xE8660C, 0xD1322B, new Item.Properties()));
+    
+    public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.register("nui_jaga_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.NUI_JAGA.get(), 0x8014B6, 0xFFBC11, new Item.Properties()));
 }
