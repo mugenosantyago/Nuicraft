@@ -4,11 +4,20 @@ import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.core.NuiCraftItems;
+import eastonium.nuicraft.NuiCraft;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.server.packs.resources.PreparableReloadListener.PreparationBarrier;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public class NuiCraftClient {
 
@@ -16,6 +25,32 @@ public class NuiCraftClient {
         modEventBus.addListener(NuiCraftClient::registerLayerDefinitions);
         modEventBus.addListener(NuiCraftClient::registerRenderers);
         modEventBus.addListener(NuiCraftClient::onClientSetup);
+        modEventBus.addListener(NuiCraftClient::onAddReloadListeners);
+    }
+
+    /** Preload mask armor texture when resources reload so it is available for 3D armor rendering. */
+    private static void onAddReloadListeners(AddClientReloadListenersEvent event) {
+        event.addListener(
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_armor_texture"),
+                new PreparableReloadListener() {
+                    @Override
+                    public CompletableFuture<Void> reload(
+                            PreparationBarrier stage,
+                            ResourceManager resourceManager,
+                            Executor backgroundExecutor,
+                            Executor gameExecutor
+                    ) {
+                        return CompletableFuture.completedFuture(null)
+                                .thenCompose(stage::wait)
+                                .thenRunAsync(() -> {
+                                    try {
+                                        Minecraft.getInstance().getTextureManager().getTexture(MaskArmorRenderer.TEX);
+                                    } catch (Exception ignored) {
+                                    }
+                                }, gameExecutor);
+                    }
+                }
+        );
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
