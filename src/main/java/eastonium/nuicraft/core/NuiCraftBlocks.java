@@ -12,7 +12,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class NuiCraftBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(NuiCraft.MODID);
 
-    // Fluid blocks - will be registered by fluid system
+    // Fluid blocks - TODO: Implement NeoForge fluid system
     public static final DeferredBlock<Block> FLUID_PROTODERMIS = BLOCKS.register("fluid_protodermis",
             () -> new Block(BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
     
