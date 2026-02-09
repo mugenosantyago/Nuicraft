@@ -52,22 +52,37 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
             props -> new eastonium.nuicraft.item.ItemSluice(props.stacksTo(1)));
 
-    // Masks
-    public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerSimpleItem("mask_mata_gold");
-    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerSimpleItem("mask_mata_kakama");
-    public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerSimpleItem("mask_mata_pakari");
-    public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerSimpleItem("mask_mata_kaukau");
-    public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerSimpleItem("mask_mata_miru");
-    public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerSimpleItem("mask_mata_hau");
-    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerSimpleItem("mask_mata_akaku");
-    public static final DeferredItem<Item> MASK_NUVA_KAKAMA = ITEMS.registerSimpleItem("mask_nuva_kakama");
-    public static final DeferredItem<Item> MASK_NUVA_PAKARI = ITEMS.registerSimpleItem("mask_nuva_pakari");
-    public static final DeferredItem<Item> MASK_NUVA_KAUKAU = ITEMS.registerSimpleItem("mask_nuva_kaukau");
-    public static final DeferredItem<Item> MASK_NUVA_MIRU = ITEMS.registerSimpleItem("mask_nuva_miru");
-    public static final DeferredItem<Item> MASK_NUVA_HAU = ITEMS.registerSimpleItem("mask_nuva_hau");
-    public static final DeferredItem<Item> MASK_NUVA_AKAKU = ITEMS.registerSimpleItem("mask_nuva_akaku");
-    public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerSimpleItem("mask_ignika");
-    public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerSimpleItem("mask_vahi");
+    // Masks - equippable as helmets
+    public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerItem("mask_mata_gold",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_NUVA_KAKAMA = ITEMS.registerItem("mask_nuva_kakama",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_NUVA_PAKARI = ITEMS.registerItem("mask_nuva_pakari",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_NUVA_KAUKAU = ITEMS.registerItem("mask_nuva_kaukau",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_NUVA_MIRU = ITEMS.registerItem("mask_nuva_miru",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_NUVA_HAU = ITEMS.registerItem("mask_nuva_hau",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_NUVA_AKAKU = ITEMS.registerItem("mask_nuva_akaku",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerItem("mask_ignika",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
+    public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerItem("mask_vahi",
+            props -> new Item(props.stacksTo(1).equippable(net.minecraft.world.entity.EquipmentSlot.HEAD)));
 
     // Spawn Eggs
     public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.registerItem("mahi_spawn_egg",
