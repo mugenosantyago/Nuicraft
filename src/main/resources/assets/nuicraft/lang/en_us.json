@@ -15,12 +15,17 @@
   "block.nuicraft.mask_forge": "Mask Forge",
   "block.nuicraft.purifier": "Purifier",
 
-  "entity.nuicraft.kanoka_disc": "Kanoka Disc",
   "entity.nuicraft.mahi": "Mahi",
   "entity.nuicraft.fikou": "Fikou",
   "entity.nuicraft.hoi": "Hoi",
   "entity.nuicraft.kofo_jaga": "Kofo-Jaga",
   "entity.nuicraft.nui_jaga": "Nui-Jaga",
+  
+  "item.nuicraft.mahi_spawn_egg": "Mahi Spawn Egg",
+  "item.nuicraft.fikou_spawn_egg": "Fikou Spawn Egg",
+  "item.nuicraft.hoi_spawn_egg": "Hoi Spawn Egg",
+  "item.nuicraft.kofo_jaga_spawn_egg": "Kofo-Jaga Spawn Egg",
+  "item.nuicraft.nui_jaga_spawn_egg": "Nui-Jaga Spawn Egg",
 
   "block.nuicraft.koro_block": "Koro Block",
   "block.nuicraft.nuva_cube": "Nuva Cube",
