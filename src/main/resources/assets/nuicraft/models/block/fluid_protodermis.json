@@ -1,5 +1,1 @@
-{
-  "textures": {
-    "particle": "nuicraft:block/fluid_protodermis_still"
-  }
-}
+{"parent":"minecraft:block/cube_all","textures":{"all":"nuicraft:block/protodermis_still"}}
