@@ -71,6 +71,7 @@ public class NuiCraft {
         // Client-side event handlers (only register on client)
         if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
             NeoForge.EVENT_BUS.register(new ClientTickHandler());
+            eastonium.nuicraft.client.NuiCraftClient.registerModBusEvents(modEventBus);
         }
         
         // Register common setup
