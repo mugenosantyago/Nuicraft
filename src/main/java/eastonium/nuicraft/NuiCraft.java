@@ -63,7 +63,6 @@ public class NuiCraft {
         CREATIVE_MODE_TABS.register(modEventBus);
         
         // Register event handlers
-        NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new ServerTickHandler());
         NeoForge.EVENT_BUS.register(new NuiCraftEventHooks());
         
