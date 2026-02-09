@@ -8,6 +8,7 @@ import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererPipelineContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,9 +25,9 @@ public class MaskArmorRenderer extends AzArmorRenderer {
 
     private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             NuiCraft.MODID, "geo/armor/mask.geo.json");
-    /** Use item texture path so it loads in inventory/equipment screen (file at textures/item/nuicraft_mask.png). */
+    /** Armor texture; file at textures/entity/equipment/humanoid/nuicraft_mask.png (vanilla-style armor path). */
     private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
-            NuiCraft.MODID, "textures/item/nuicraft_mask");
+            NuiCraft.MODID, "textures/entity/equipment/humanoid/nuicraft_mask");
 
     /** Nudge mask forward in front of face (negative Z in model space). Units are 1/16 block. */
     private static final float MASK_FORWARD_OFFSET = -3f;
@@ -36,9 +37,17 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     public MaskArmorRenderer() {
         super(
                 AzArmorRendererConfig.builder(GEO, TEX)
+                        .setRenderType(RenderType.entityTranslucent(TEX))
                         .setPrerenderEntry(MaskArmorRenderer::pushMaskInFrontOfFace)
+                        .setBoneTextureOverrideProvider(MaskArmorRenderer::maskTextureForBone)
                         .build()
         );
+    }
+
+    /** Use mask texture for head bone so the correct texture is bound when rendering the quad. */
+    @Nullable
+    private static ResourceLocation maskTextureForBone(AzBone bone) {
+        return bone != null && "armorHead".equals(bone.getName()) ? TEX : null;
     }
 
     /** Force-load mask texture into TextureManager so it is available when the armor is drawn. */
@@ -77,6 +86,7 @@ public class MaskArmorRenderer extends AzArmorRenderer {
                 || armorContext.currentSlot() != EquipmentSlot.HEAD) {
             return context;
         }
+        context.setTextureOverride(TEX);
         AzBone head = armorContext.boneContext().head;
         if (head == null) {
             return context;
