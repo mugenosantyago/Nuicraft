@@ -2,7 +2,14 @@ package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.item.NuiCraftTiers;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.equipment.Equippable;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -52,28 +59,42 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
             props -> new eastonium.nuicraft.item.ItemSluice(props.stacksTo(1)));
 
-    // Masks - equippable as helmets, custom 2D layer (MaskRenderLayer)
-    private static Item.Properties maskProps(Item.Properties props) {
-        return props.stacksTo(1).component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
-                net.minecraft.world.item.equipment.Equippable.builder(net.minecraft.world.entity.EquipmentSlot.HEAD)
-                        .build());
+    // Masks - equippable as helmets with stat boosts (armor/toughness), custom 2D layer (MaskRenderLayer)
+    private static Item.Properties maskProps(Item.Properties props, double armor, double toughness) {
+        ItemAttributeModifiers.Builder attrs = ItemAttributeModifiers.builder();
+        attrs.add(Attributes.ARMOR, new AttributeModifier(
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_armor"),
+                armor,
+                AttributeModifier.Operation.ADD_VALUE
+        ), EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+        if (toughness > 0) {
+            attrs.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(
+                    ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_toughness"),
+                    toughness,
+                    AttributeModifier.Operation.ADD_VALUE
+            ), EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+        }
+        return props.stacksTo(1)
+                .attributes(attrs.build())
+                .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                        Equippable.builder(EquipmentSlot.HEAD).build());
     }
 
-    public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerItem("mask_mata_gold", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_NUVA_KAKAMA = ITEMS.registerItem("mask_nuva_kakama", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_NUVA_PAKARI = ITEMS.registerItem("mask_nuva_pakari", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_NUVA_KAUKAU = ITEMS.registerItem("mask_nuva_kaukau", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_NUVA_MIRU = ITEMS.registerItem("mask_nuva_miru", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_NUVA_HAU = ITEMS.registerItem("mask_nuva_hau", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_NUVA_AKAKU = ITEMS.registerItem("mask_nuva_akaku", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerItem("mask_ignika", props -> new Item(maskProps(props)));
-    public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerItem("mask_vahi", props -> new Item(maskProps(props)));
+    public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerItem("mask_mata_gold", props -> new Item(maskProps(props, 2, 0.5)));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama", props -> new Item(maskProps(props, 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari", props -> new Item(maskProps(props, 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau", props -> new Item(maskProps(props, 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru", props -> new Item(maskProps(props, 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau", props -> new Item(maskProps(props, 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku", props -> new Item(maskProps(props, 1, 0)));
+    public static final DeferredItem<Item> MASK_NUVA_KAKAMA = ITEMS.registerItem("mask_nuva_kakama", props -> new Item(maskProps(props, 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_PAKARI = ITEMS.registerItem("mask_nuva_pakari", props -> new Item(maskProps(props, 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_KAUKAU = ITEMS.registerItem("mask_nuva_kaukau", props -> new Item(maskProps(props, 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_MIRU = ITEMS.registerItem("mask_nuva_miru", props -> new Item(maskProps(props, 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_HAU = ITEMS.registerItem("mask_nuva_hau", props -> new Item(maskProps(props, 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_AKAKU = ITEMS.registerItem("mask_nuva_akaku", props -> new Item(maskProps(props, 2, 1)));
+    public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerItem("mask_ignika", props -> new Item(maskProps(props, 3, 2)));
+    public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerItem("mask_vahi", props -> new Item(maskProps(props, 3, 2)));
 
     // Spawn Eggs
     public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.registerItem("mahi_spawn_egg",
