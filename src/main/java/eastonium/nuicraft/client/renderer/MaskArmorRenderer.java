@@ -6,9 +6,13 @@ import mod.azure.azurelib.common.render.AzRendererPipelineContext;
 import mod.azure.azurelib.common.render.armor.AzArmorRenderer;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererPipelineContext;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -35,6 +39,36 @@ public class MaskArmorRenderer extends AzArmorRenderer {
                         .setPrerenderEntry(MaskArmorRenderer::pushMaskInFrontOfFace)
                         .build()
         );
+    }
+
+    /** Force-load mask texture into TextureManager so it is available when the armor is drawn. */
+    private static void ensureTextureLoaded() {
+        try {
+            Minecraft.getInstance().getTextureManager().getTexture(TEX);
+        } catch (Exception ignored) {
+            // Texture may be missing; renderer will show placeholder
+        }
+    }
+
+    @Override
+    public void prepForRender(
+            @Nullable Entity entity,
+            ItemStack stack,
+            @Nullable EquipmentSlot slot,
+            @Nullable HumanoidModel<?> baseModel
+    ) {
+        ensureTextureLoaded();
+        super.prepForRender(entity, stack, slot, baseModel);
+    }
+
+    @Override
+    public void prepForRenderWithoutEntity(
+            ItemStack stack,
+            @Nullable EquipmentSlot slot,
+            @Nullable HumanoidModel<?> baseModel
+    ) {
+        ensureTextureLoaded();
+        super.prepForRenderWithoutEntity(stack, slot, baseModel);
     }
 
     private static AzRendererPipelineContext<UUID, ItemStack> pushMaskInFrontOfFace(
