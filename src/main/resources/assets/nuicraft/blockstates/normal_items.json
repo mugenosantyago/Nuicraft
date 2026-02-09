@@ -8,67 +8,67 @@
         "name": {
 			"ingot_protodermis": {
 				"textures": {
-					"layer0": "nuicraft:items/ingot_protodermis"
+					"layer0": "nuicraft:item/ingot_protodermis"
 				}
 			},
 			"ingot_protosteel": {
 				"textures": {
-					"layer0": "nuicraft:items/ingot_protosteel"
+					"layer0": "nuicraft:item/ingot_protosteel"
 				}
 			},
 			"nugget_protodermis": {
 				"textures": {
-					"layer0": "nuicraft:items/nugget_protodermis"
+					"layer0": "nuicraft:item/nugget_protodermis"
 				}
 			},
 			"nugget_protosteel": {
 				"textures": {
-					"layer0": "nuicraft:items/nugget_protosteel"
+					"layer0": "nuicraft:item/nugget_protosteel"
 				}
 			},
 			"dust_protodermis": {
 				"textures": {
-					"layer0": "nuicraft:items/dust_protodermis"
+					"layer0": "nuicraft:item/dust_protodermis"
 				}
 			},
 			"dust_protosteel": {
 				"textures": {
-					"layer0": "nuicraft:items/dust_protosteel"
+					"layer0": "nuicraft:item/dust_protosteel"
 				}
 			},
 			"protodermis_blob": {
 				"textures": {
-					"layer0": "nuicraft:items/protodermis_blob"
+					"layer0": "nuicraft:item/protodermis_blob"
 				}
 			},
 			"heatstone": {
 				"textures": {
-					"layer0": "nuicraft:items/heatstone"
+					"layer0": "nuicraft:item/heatstone"
 				}
 			},
 			"bamboo_stick": {
 				"textures": {
-					"layer0": "nuicraft:items/bamboo_stick"
+					"layer0": "nuicraft:item/bamboo_stick"
 				}
 			},
 			"kanoka_time": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_time"
+					"layer0": "nuicraft:item/kanoka_time"
 				}
 			},
 			"dye_mask": {
 				"textures": {
-					"layer0": "nuicraft:items/dye_mask"
+					"layer0": "nuicraft:item/dye_mask"
 				}
 			},
 			"kanoka_flying_black": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_flying_black"
+					"layer0": "nuicraft:item/kanoka_flying_black"
 				}
 			},
 			"kanoka_flying_white": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_flying_white"
+					"layer0": "nuicraft:item/kanoka_flying_white"
 				}
 			}
 		}

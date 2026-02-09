@@ -1,13 +1,7 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"model": "cube_all",
-		"textures": {
-			"all": "nuicraft:blocks/block_protosteel"
-		}
-	},
-    "variants": {
-		"inventory": [{}],
-        "normal": [{}]
+  "variants": {
+    "": {
+      "model": "nuicraft:block/block_protosteel"
     }
+  }
 }

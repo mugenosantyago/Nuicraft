@@ -8,32 +8,32 @@
         "name": {
 			"mata_kakama": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/silver/mata_kakama_silver"
+					"layer0": "nuicraft:item/masks/silver/mata_kakama_silver"
 				}
 			},
 			"mata_pakari": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/silver/mata_pakari_silver"
+					"layer0": "nuicraft:item/masks/silver/mata_pakari_silver"
 				}
 			},
 			"mata_kaukau": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/silver/mata_kaukau_silver"
+					"layer0": "nuicraft:item/masks/silver/mata_kaukau_silver"
 				}
 			},
 			"mata_miru": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/silver/mata_miru_silver"
+					"layer0": "nuicraft:item/masks/silver/mata_miru_silver"
 				}
 			},
 			"mata_hau": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/silver/mata_hau_silver"
+					"layer0": "nuicraft:item/masks/silver/mata_hau_silver"
 				}
 			},
 			"mata_akaku": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/silver/mata_akaku_silver"
+					"layer0": "nuicraft:item/masks/silver/mata_akaku_silver"
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "nuicraft:items/disc_launcher"
+        "layer0": "nuicraft:item/disc_launcher"
     },
     "display": {
         "thirdperson": {

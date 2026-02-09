@@ -8,32 +8,32 @@
         "name": {
 			"mata_kakama": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/copper/mata_kakama_copper"
+					"layer0": "nuicraft:item/masks/copper/mata_kakama_copper"
 				}
 			},
 			"mata_pakari": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/copper/mata_pakari_copper"
+					"layer0": "nuicraft:item/masks/copper/mata_pakari_copper"
 				}
 			},
 			"mata_kaukau": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/copper/mata_kaukau_copper"
+					"layer0": "nuicraft:item/masks/copper/mata_kaukau_copper"
 				}
 			},
 			"mata_miru": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/copper/mata_miru_copper"
+					"layer0": "nuicraft:item/masks/copper/mata_miru_copper"
 				}
 			},
 			"mata_hau": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/copper/mata_hau_copper"
+					"layer0": "nuicraft:item/masks/copper/mata_hau_copper"
 				}
 			},
 			"mata_akaku": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/copper/mata_akaku_copper"
+					"layer0": "nuicraft:item/masks/copper/mata_akaku_copper"
 				}
 			}
 		}

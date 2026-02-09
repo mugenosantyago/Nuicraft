@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "nuicraft:items/sluice"
+        "layer0": "nuicraft:item/sluice"
     },
     "display": {
         "thirdperson": {

@@ -8,32 +8,32 @@
         "name": {
 			"mata_kakama": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/bronze/mata_kakama_bronze"
+					"layer0": "nuicraft:item/masks/bronze/mata_kakama_bronze"
 				}
 			},
 			"mata_pakari": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/bronze/mata_pakari_bronze"
+					"layer0": "nuicraft:item/masks/bronze/mata_pakari_bronze"
 				}
 			},
 			"mata_kaukau": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/bronze/mata_kaukau_bronze"
+					"layer0": "nuicraft:item/masks/bronze/mata_kaukau_bronze"
 				}
 			},
 			"mata_miru": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/bronze/mata_miru_bronze"
+					"layer0": "nuicraft:item/masks/bronze/mata_miru_bronze"
 				}
 			},
 			"mata_hau": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/bronze/mata_hau_bronze"
+					"layer0": "nuicraft:item/masks/bronze/mata_hau_bronze"
 				}
 			},
 			"mata_akaku": {
 				"textures": {
-					"layer0": "nuicraft:items/masks/bronze/mata_akaku_bronze"
+					"layer0": "nuicraft:item/masks/bronze/mata_akaku_bronze"
 				}
 			}
 		}

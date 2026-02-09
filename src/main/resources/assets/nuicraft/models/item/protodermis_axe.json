@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "nuicraft:items/protodermis_axe"
+        "layer0": "nuicraft:item/protodermis_axe"
     }
 }

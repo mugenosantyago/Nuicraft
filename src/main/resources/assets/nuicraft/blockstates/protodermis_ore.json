@@ -1,13 +1,7 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"model": "cube_all",
-		"textures": {
-			"all": "nuicraft:blocks/protodermis_ore"
-		}
-	},
-    "variants": {
-		"inventory": [{}],
-        "normal": [{}]
+  "variants": {
+    "": {
+      "model": "nuicraft:block/protodermis_ore"
     }
+  }
 }

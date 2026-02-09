@@ -8,67 +8,67 @@
         "type": {
 			"null": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_null"
+					"layer0": "nuicraft:item/kanoka_null"
 				}
 			},
 			"ta": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_ta"
+					"layer0": "nuicraft:item/kanoka_ta"
 				}
 			},
 			"ga": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_ga"
+					"layer0": "nuicraft:item/kanoka_ga"
 				}
 			},
 			"po": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_po"
+					"layer0": "nuicraft:item/kanoka_po"
 				}
 			},
 			"ko": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_ko"
+					"layer0": "nuicraft:item/kanoka_ko"
 				}
 			},
 			"le": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_le"
+					"layer0": "nuicraft:item/kanoka_le"
 				}
 			},
 			"onu": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_onu"
+					"layer0": "nuicraft:item/kanoka_onu"
 				}
 			},
 			"ta9": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_ta9"
+					"layer0": "nuicraft:item/kanoka_ta9"
 				}
 			},
 			"ga9": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_ga9"
+					"layer0": "nuicraft:item/kanoka_ga9"
 				}
 			},
 			"po9": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_po9"
+					"layer0": "nuicraft:item/kanoka_po9"
 				}
 			},
 			"ko9": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_ko9"
+					"layer0": "nuicraft:item/kanoka_ko9"
 				}
 			},
 			"le9": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_le9"
+					"layer0": "nuicraft:item/kanoka_le9"
 				}
 			},
 			"onu9": {
 				"textures": {
-					"layer0": "nuicraft:items/kanoka_onu"
+					"layer0": "nuicraft:item/kanoka_onu"
 				}
 			}
 		}

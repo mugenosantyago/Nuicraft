@@ -1,10 +1,10 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"MaskForge_Main": "nuicraft:blocks/mask_forge_main",
-		"MaskForge_Bottom": "nuicraft:blocks/mask_forge_bottom",
-		"MaskForge_Inside": "nuicraft:blocks/mask_forge_inside",
-		"particle": "nuicraft:blocks/mask_forge_main"
+		"MaskForge_Main": "nuicraft:block/mask_forge_main",
+		"MaskForge_Bottom": "nuicraft:block/mask_forge_bottom",
+		"MaskForge_Inside": "nuicraft:block/mask_forge_inside",
+		"particle": "nuicraft:block/mask_forge_main"
 	},
 	"elements": [
 		{	"__comment": "Leg",

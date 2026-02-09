@@ -8,12 +8,12 @@
         "spent": {
 			"true": {
 				"textures": {
-					"layer0": "nuicraft:items/heatstone_lighter_spent"
+					"layer0": "nuicraft:item/heatstone_lighter_spent"
 				}
 			},
 			"false": {
 				"textures": {
-					"layer0": "nuicraft:items/heatstone_lighter"
+					"layer0": "nuicraft:item/heatstone_lighter"
 				}
 			}
 		}
