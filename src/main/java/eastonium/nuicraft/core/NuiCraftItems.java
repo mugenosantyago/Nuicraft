@@ -52,15 +52,10 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
             props -> new eastonium.nuicraft.item.ItemSluice(props.stacksTo(1)));
 
-    // Masks - equippable as helmets with 3D armor rendering
-    private static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> MASK_ASSET =
-            net.minecraft.resources.ResourceKey.create(net.minecraft.world.item.equipment.EquipmentAssets.ROOT_ID,
-                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "nuicraft_mask"));
-    
+    // Masks - equippable as helmets, custom 3D rendering via MaskRenderLayer
     private static Item.Properties maskProps(Item.Properties props) {
         return props.stacksTo(1).component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
                 net.minecraft.world.item.equipment.Equippable.builder(net.minecraft.world.entity.EquipmentSlot.HEAD)
-                        .setAsset(MASK_ASSET)
                         .build());
     }
 
