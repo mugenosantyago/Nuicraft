@@ -88,6 +88,24 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerSimpleItem("mask_ignika");
     public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerSimpleItem("mask_vahi");
 
-    // Spawn Eggs - TODO: SpawnEggItem constructor signature changed in 1.21.8
-    // Use /summon command to spawn entities for now
+    // Spawn Eggs - 1.21.8 constructor: (EntityType, Item.Properties)
+    public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.register("mahi_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.MAHI.get(), new Item.Properties()));
+    
+    public static final DeferredItem<Item> FIKOU_SPAWN_EGG = ITEMS.register("fikou_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.FIKOU.get(), new Item.Properties()));
+    
+    public static final DeferredItem<Item> HOI_SPAWN_EGG = ITEMS.register("hoi_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.HOI.get(), new Item.Properties()));
+    
+    public static final DeferredItem<Item> KOFO_JAGA_SPAWN_EGG = ITEMS.register("kofo_jaga_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.KOFO_JAGA.get(), new Item.Properties()));
+    
+    public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.register("nui_jaga_spawn_egg",
+            () -> new net.minecraft.world.item.SpawnEggItem(
+                    NuiCraftEntityTypes.NUI_JAGA.get(), new Item.Properties()));
 }
