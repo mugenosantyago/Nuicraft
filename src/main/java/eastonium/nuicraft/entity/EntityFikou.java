@@ -30,7 +30,12 @@ public class EntityFikou extends Animal {
     }
 
     @Override
+    public boolean isFood(net.minecraft.world.item.ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.AgeableMob otherParent) {
-        return NuiCraftEntityTypes.FIKOU.get().create(level);
+        return new EntityFikou(eastonium.nuicraft.core.NuiCraftEntityTypes.FIKOU.get(), level);
     }
 }

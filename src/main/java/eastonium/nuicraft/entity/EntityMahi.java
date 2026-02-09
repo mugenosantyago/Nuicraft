@@ -33,7 +33,13 @@ public class EntityMahi extends Animal {
     }
 
     @Override
+    public boolean isFood(net.minecraft.world.item.ItemStack stack) {
+        return stack.is(net.minecraft.world.item.Items.WHEAT);
+    }
+
+    @Override
     public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.AgeableMob otherParent) {
-        return NuiCraftEntityTypes.MAHI.get().create(level);
+        EntityMahi baby = new EntityMahi(eastonium.nuicraft.core.NuiCraftEntityTypes.MAHI.get(), level);
+        return baby;
     }
 }

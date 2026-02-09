@@ -80,8 +80,7 @@ public class NuiCraft {
         LOGGER.info("NuiCraft common setup");
         
         event.enqueueWork(() -> {
-            // Register any additional setup that needs to happen during common setup
-            // This runs on the main thread during mod loading
+            // Common setup tasks
         });
     }
 }
