@@ -11,7 +11,6 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -106,6 +105,7 @@ public class NuiCraftItems {
 
     // Masks - equippable as helmets with stat boosts (armor/toughness).
     // Rendered via AzureLib 3D models (geo/armor/*.geo.json) using MaskArmorRenderer.
+    // Uses empty equipment asset to prevent vanilla 2D rendering layer, letting AzureLib render instead.
     private static Item.Properties maskProps(Item.Properties props, double armor, double toughness) {
         ItemAttributeModifiers.Builder attrs = ItemAttributeModifiers.builder();
         attrs.add(Attributes.ARMOR, new AttributeModifier(
@@ -121,18 +121,20 @@ public class NuiCraftItems {
             ), EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
         }
         
-        // Use AzureLib for 3D rendering - set empty equipment asset to prevent vanilla layer
-        net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> emptyAsset = 
-                net.minecraft.resources.ResourceKey.create(
-                        net.minecraft.resources.ResourceKey.createRegistryKey(
-                                ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
-                        ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
-                );
+        // Use empty equipment asset to prevent vanilla 2D rendering layer
+        // AzureLib's MaskArmorRenderer will handle all 3D rendering instead
+        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
+        );
+        
+        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD)
+                .setAsset(emptyAsset)
+                .build();
         
         return props.stacksTo(1)
                 .attributes(attrs.build())
-                .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
-                        Equippable.builder(EquipmentSlot.HEAD).setAsset(emptyAsset).build());
+                .component(net.minecraft.core.component.DataComponents.EQUIPPABLE, equippable);
     }
 
     public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku", props -> new Item(maskProps(withItemId("mask_mata_akaku", props), 3, 0.8)));
