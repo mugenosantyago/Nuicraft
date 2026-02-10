@@ -24,5 +24,13 @@ public class MaskArmorRendererRegistry {
         AzArmorRendererRegistry.register(NuiCraftItems.MASK_MATA_PAKARI.get(), MaskArmorRenderer::mataPakari);
         AzArmorRendererRegistry.register(NuiCraftItems.MASK_MATA_RARU.get(), MaskArmorRenderer::mataRaru);
         AzArmorRendererRegistry.register(NuiCraftItems.MASK_MATA_RURU.get(), MaskArmorRenderer::mataRuru);
+
+        // Register all 6 Toa masks (colored variants) with their individual 3D renderers
+        AzArmorRendererRegistry.register(NuiCraftItems.MASK_TOA_HAU_RED.get(), MaskArmorRenderer::toaHauRed);
+        AzArmorRendererRegistry.register(NuiCraftItems.MASK_TOA_KAUKAU_BLUE.get(), MaskArmorRenderer::toaKaukauBlue);
+        AzArmorRendererRegistry.register(NuiCraftItems.MASK_TOA_KAKAMA_BROWN.get(), MaskArmorRenderer::toaKakamaBrown);
+        AzArmorRendererRegistry.register(NuiCraftItems.MASK_TOA_MIRU_GREEN.get(), MaskArmorRenderer::toaMiruGreen);
+        AzArmorRendererRegistry.register(NuiCraftItems.MASK_TOA_PAKARI_BLACK.get(), MaskArmorRenderer::toaPakariBlack);
+        AzArmorRendererRegistry.register(NuiCraftItems.MASK_TOA_AKAKU_WHITE.get(), MaskArmorRenderer::toaAkakuWhite);
     }
 }

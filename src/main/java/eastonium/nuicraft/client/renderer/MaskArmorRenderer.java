@@ -76,5 +76,30 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     public static MaskArmorRenderer mataRuru() {
         return new MaskArmorRenderer(maskGeo("ruru"), maskTexture("mata_ruru"));
     }
+
+    // Toa masks (colored variants)
+    public static MaskArmorRenderer toaHauRed() {
+        return new MaskArmorRenderer(maskGeo("hau"), maskTexture("toa_hau_red"));
+    }
+
+    public static MaskArmorRenderer toaKaukauBlue() {
+        return new MaskArmorRenderer(maskGeo("kaukau"), maskTexture("toa_kaukau_blue"));
+    }
+
+    public static MaskArmorRenderer toaKakamaBrown() {
+        return new MaskArmorRenderer(maskGeo("kakama"), maskTexture("toa_kakama_brown"));
+    }
+
+    public static MaskArmorRenderer toaMiruGreen() {
+        return new MaskArmorRenderer(maskGeo("miru"), maskTexture("toa_miru_green"));
+    }
+
+    public static MaskArmorRenderer toaPakariBlack() {
+        return new MaskArmorRenderer(maskGeo("pakari"), maskTexture("toa_pakari_black"));
+    }
+
+    public static MaskArmorRenderer toaAkakuWhite() {
+        return new MaskArmorRenderer(maskGeo("akaku"), maskTexture("toa_akaku_white"));
+    }
 }
 

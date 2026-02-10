@@ -148,6 +148,14 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> MASK_MATA_RARU = ITEMS.registerItem("mask_mata_raru", props -> new Item(maskProps(withItemId("mask_mata_raru", props), 3, 0.8)));
     public static final DeferredItem<Item> MASK_MATA_RURU = ITEMS.registerItem("mask_mata_ruru", props -> new Item(maskProps(withItemId("mask_mata_ruru", props), 3, 0.8)));
 
+    // Toa masks (colored variants)
+    public static final DeferredItem<Item> MASK_TOA_HAU_RED = ITEMS.registerItem("mask_toa_hau_red", props -> new Item(maskProps(withItemId("mask_toa_hau_red", props), 4, 1.2)));
+    public static final DeferredItem<Item> MASK_TOA_KAUKAU_BLUE = ITEMS.registerItem("mask_toa_kaukau_blue", props -> new Item(maskProps(withItemId("mask_toa_kaukau_blue", props), 4, 1.3)));
+    public static final DeferredItem<Item> MASK_TOA_KAKAMA_BROWN = ITEMS.registerItem("mask_toa_kakama_brown", props -> new Item(maskProps(withItemId("mask_toa_kakama_brown", props), 4, 1.0)));
+    public static final DeferredItem<Item> MASK_TOA_MIRU_GREEN = ITEMS.registerItem("mask_toa_miru_green", props -> new Item(maskProps(withItemId("mask_toa_miru_green", props), 4, 1.1)));
+    public static final DeferredItem<Item> MASK_TOA_PAKARI_BLACK = ITEMS.registerItem("mask_toa_pakari_black", props -> new Item(maskProps(withItemId("mask_toa_pakari_black", props), 4, 1.5)));
+    public static final DeferredItem<Item> MASK_TOA_AKAKU_WHITE = ITEMS.registerItem("mask_toa_akaku_white", props -> new Item(maskProps(withItemId("mask_toa_akaku_white", props), 4, 1.2)));
+
     // Spawn Eggs
     // Core Bionicle spawn eggs
     public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.registerItem("mahi_spawn_egg",
