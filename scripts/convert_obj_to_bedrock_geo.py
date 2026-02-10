@@ -246,7 +246,7 @@ def generate_geo_json(voxels, material_colors, color_to_uv, tex_size, mask_name,
         cubes.append(cube)
 
     geo = {
-        "format_version": "1.16.0",
+        "format_version": "1.12.0",
         "minecraft:geometry": [
             {
                 "description": {
