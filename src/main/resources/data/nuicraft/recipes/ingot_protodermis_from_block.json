@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nuicraft:block_protodermis"
+    }
+  ],
+  "result": {
+    "item": "nuicraft:ingot_protodermis",
+    "count": 9
+  }
+}

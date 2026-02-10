@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:ink_sac"
+    },
+    {
+      "item": "minecraft:dark_oak_wood"
+    },
+    {
+      "item": "minecraft:shroomlight"
+    }
+  ],
+  "result": {
+    "item": "nuicraft:mask_mata_mahiki"
+  }
+}

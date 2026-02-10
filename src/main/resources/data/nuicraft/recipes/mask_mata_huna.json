@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:purple_dye"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:dark_oak_leaves"
+    }
+  ],
+  "result": {
+    "item": "nuicraft:mask_mata_huna"
+  }
+}
