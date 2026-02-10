@@ -16,7 +16,7 @@ public class NuiCraftClient {
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(MaskArmorRendererRegistry::registerAll);
+        // Mask rendering setup will go here
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

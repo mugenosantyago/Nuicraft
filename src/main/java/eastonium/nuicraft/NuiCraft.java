@@ -33,26 +33,6 @@ public class NuiCraft {
             })
             .build());
     
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NUICRAFT_MASK_TAB = CREATIVE_MODE_TABS.register("nuicraft_mask_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.nuicraft_mask_tab"))
-            .icon(() -> new ItemStack(NuiCraftItems.MASK_MATA_HAU.get()))
-            .displayItems((parameters, output) -> {
-                // Add all Mata masks
-                output.accept(NuiCraftItems.MASK_MATA_AKAKU.get());
-                output.accept(NuiCraftItems.MASK_MATA_HAU.get());
-                output.accept(NuiCraftItems.MASK_MATA_HUNA.get());
-                output.accept(NuiCraftItems.MASK_MATA_KAKAMA.get());
-                output.accept(NuiCraftItems.MASK_MATA_KAUKAU.get());
-                output.accept(NuiCraftItems.MASK_MATA_KOMAU.get());
-                output.accept(NuiCraftItems.MASK_MATA_MAHIKI.get());
-                output.accept(NuiCraftItems.MASK_MATA_MATATU.get());
-                output.accept(NuiCraftItems.MASK_MATA_MIRU.get());
-                output.accept(NuiCraftItems.MASK_MATA_PAKARI.get());
-                output.accept(NuiCraftItems.MASK_MATA_RARU.get());
-                output.accept(NuiCraftItems.MASK_MATA_RURU.get());
-            })
-            .build());
-    
     public NuiCraft(IEventBus modEventBus) {
         LOGGER.info("Initializing NuiCraft - The essence of the Bionicle Universe in Minecraft!");
         
