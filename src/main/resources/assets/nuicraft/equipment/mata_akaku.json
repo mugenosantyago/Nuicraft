@@ -2,7 +2,7 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "nuicraft:entity/equipment/masks/mata_akaku"
+        "texture": "nuicraft:masks/mata_akaku"
       }
     ]
   }

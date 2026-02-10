@@ -2,7 +2,7 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "nuicraft:entity/equipment/masks/nuva_hau"
+        "texture": "nuicraft:masks/nuva_hau"
       }
     ]
   }

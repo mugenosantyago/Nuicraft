@@ -2,7 +2,7 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "nuicraft:entity/equipment/masks/mata_hau_gold"
+        "texture": "nuicraft:masks/mata_hau_gold"
       }
     ]
   }
