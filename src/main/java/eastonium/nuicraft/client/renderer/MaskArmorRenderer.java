@@ -6,8 +6,8 @@ import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * 3D mask armor renderer using individual 3D models for each Mata mask.
- * Each mask has its own geo.json model.
+ * Simple 3D mask armor renderer using AzureLib.
+ * Each mask uses a basic geo model and texture.
  */
 public class MaskArmorRenderer extends AzArmorRenderer {
 
@@ -23,12 +23,11 @@ public class MaskArmorRenderer extends AzArmorRenderer {
         return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/" + name + ".geo.json");
     }
 
-    /** Texture path under nuicraft namespace: textures/entity/equipment/humanoid/masks/{name}.png */
     private static ResourceLocation maskTexture(String name) {
-        return ResourceLocation.fromNamespaceAndPath(
-                NuiCraft.MODID, "textures/entity/equipment/humanoid/masks/" + name + ".png");
+        return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/entity/equipment/humanoid/masks/" + name + ".png");
     }
 
+    // Mata masks
     public static MaskArmorRenderer mataAkaku() {
         return new MaskArmorRenderer(maskGeo("akaku"), maskTexture("mata_akaku"));
     }
@@ -102,4 +101,3 @@ public class MaskArmorRenderer extends AzArmorRenderer {
         return new MaskArmorRenderer(maskGeo("akaku"), maskTexture("toa_akaku_white"));
     }
 }
-
