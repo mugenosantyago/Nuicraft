@@ -103,46 +103,130 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
             props -> new eastonium.nuicraft.item.ItemSluice(withItemId("sluice", props).stacksTo(1)));
 
-    // Masks removed - will restart from scratch
-    
+    // =====================================================================
     // Mata Masks - 12 equippable helmet masks with 3D geo rendering
-    // Use empty equipment asset to suppress vanilla 2D rendering
-    private static Item.Properties maskProps(Item.Properties props) {
-        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
-                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
-        );
+    // Each mask provides armor and a unique Kanohi power.
+    // =====================================================================
+
+    private static final int MASK_DURABILITY = 300;
+
+    private static ResourceLocation maskLoc(String path) {
+        return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, path);
+    }
+
+    private static final ResourceKey<EquipmentAsset> MASK_EMPTY_ASSET = ResourceKey.create(
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
+    );
+
+    /**
+     * Build mask Item.Properties with the given attribute modifiers, durability, and equippable HEAD slot.
+     * All masks are equippable as helmets with 3D AzureLib rendering.
+     */
+    private static Item.Properties maskProps(Item.Properties props, ItemAttributeModifiers attributes) {
         return props.stacksTo(1)
+                .durability(MASK_DURABILITY)
+                .attributes(attributes)
                 .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
-                        net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD)
-                                .setAsset(emptyAsset)
+                        Equippable.builder(EquipmentSlot.HEAD)
+                                .setAsset(MASK_EMPTY_ASSET)
                                 .build());
     }
-    
-    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku",
-            props -> new Item(maskProps(withItemId("mask_mata_akaku", props))));
+
+    /** Build standard mask attributes with armor and optional toughness. */
+    private static ItemAttributeModifiers buildMaskAttributes(double armor, double toughness) {
+        ItemAttributeModifiers.Builder b = ItemAttributeModifiers.builder();
+        b.add(Attributes.ARMOR,
+                new AttributeModifier(maskLoc("mask_armor"), armor, AttributeModifier.Operation.ADD_VALUE),
+                EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+        if (toughness > 0) {
+            b.add(Attributes.ARMOR_TOUGHNESS,
+                    new AttributeModifier(maskLoc("mask_toughness"), toughness, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+        }
+        return b.build();
+    }
+
+    // --- Hau: Mask of Shielding - heavy armor + Resistance I effect ---
     public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau",
-            props -> new Item(maskProps(withItemId("mask_mata_hau", props))));
-    public static final DeferredItem<Item> MASK_MATA_HUNA = ITEMS.registerItem("mask_mata_huna",
-            props -> new Item(maskProps(withItemId("mask_mata_huna", props))));
-    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama",
-            props -> new Item(maskProps(withItemId("mask_mata_kakama", props))));
+            props -> new Item(maskProps(withItemId("mask_mata_hau", props), buildMaskAttributes(4, 2))));
+
+    // --- Kaukau: Mask of Water Breathing - Water Breathing effect ---
     public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau",
-            props -> new Item(maskProps(withItemId("mask_mata_kaukau", props))));
-    public static final DeferredItem<Item> MASK_MATA_KOMAU = ITEMS.registerItem("mask_mata_komau",
-            props -> new Item(maskProps(withItemId("mask_mata_komau", props))));
-    public static final DeferredItem<Item> MASK_MATA_MAHIKI = ITEMS.registerItem("mask_mata_mahiki",
-            props -> new Item(maskProps(withItemId("mask_mata_mahiki", props))));
-    public static final DeferredItem<Item> MASK_MATA_MATATU = ITEMS.registerItem("mask_mata_matatu",
-            props -> new Item(maskProps(withItemId("mask_mata_matatu", props))));
+            props -> new Item(maskProps(withItemId("mask_mata_kaukau", props), buildMaskAttributes(2, 0))));
+
+    // --- Miru: Mask of Levitation - Slow Falling + Jump Boost I effect ---
     public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru",
-            props -> new Item(maskProps(withItemId("mask_mata_miru", props))));
+            props -> new Item(maskProps(withItemId("mask_mata_miru", props), buildMaskAttributes(2, 0))));
+
+    // --- Kakama: Mask of Speed - +40% movement speed ---
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama",
+            props -> {
+                ItemAttributeModifiers.Builder b = ItemAttributeModifiers.builder();
+                b.add(Attributes.ARMOR,
+                        new AttributeModifier(maskLoc("mask_armor"), 2, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                b.add(Attributes.MOVEMENT_SPEED,
+                        new AttributeModifier(maskLoc("mask_speed"), 0.4, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                return new Item(maskProps(withItemId("mask_mata_kakama", props), b.build()));
+            });
+
+    // --- Pakari: Mask of Strength - +3 attack damage ---
     public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari",
-            props -> new Item(maskProps(withItemId("mask_mata_pakari", props))));
+            props -> {
+                ItemAttributeModifiers.Builder b = ItemAttributeModifiers.builder();
+                b.add(Attributes.ARMOR,
+                        new AttributeModifier(maskLoc("mask_armor"), 3, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                b.add(Attributes.ARMOR_TOUGHNESS,
+                        new AttributeModifier(maskLoc("mask_toughness"), 1, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                b.add(Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(maskLoc("mask_strength"), 3.0, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                return new Item(maskProps(withItemId("mask_mata_pakari", props), b.build()));
+            });
+
+    // --- Akaku: Mask of X-Ray Vision - Night Vision effect ---
+    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku",
+            props -> new Item(maskProps(withItemId("mask_mata_akaku", props), buildMaskAttributes(2, 0))));
+
+    // --- Huna: Mask of Concealment - Invisibility effect ---
+    public static final DeferredItem<Item> MASK_MATA_HUNA = ITEMS.registerItem("mask_mata_huna",
+            props -> new Item(maskProps(withItemId("mask_mata_huna", props), buildMaskAttributes(1, 0))));
+
+    // --- Mahiki: Mask of Illusion - Invisibility effect ---
+    public static final DeferredItem<Item> MASK_MATA_MAHIKI = ITEMS.registerItem("mask_mata_mahiki",
+            props -> new Item(maskProps(withItemId("mask_mata_mahiki", props), buildMaskAttributes(1, 0))));
+
+    // --- Matatu: Mask of Telekinesis - knockback resistance + extended reach ---
+    public static final DeferredItem<Item> MASK_MATA_MATATU = ITEMS.registerItem("mask_mata_matatu",
+            props -> {
+                ItemAttributeModifiers.Builder b = ItemAttributeModifiers.builder();
+                b.add(Attributes.ARMOR,
+                        new AttributeModifier(maskLoc("mask_armor"), 2, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                b.add(Attributes.KNOCKBACK_RESISTANCE,
+                        new AttributeModifier(maskLoc("mask_telekinesis_kb"), 0.5, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                b.add(Attributes.ENTITY_INTERACTION_RANGE,
+                        new AttributeModifier(maskLoc("mask_telekinesis_reach"), 3.0, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
+                return new Item(maskProps(withItemId("mask_mata_matatu", props), b.build()));
+            });
+
+    // --- Komau: Mask of Mind Control - weakens nearby enemies (via tick handler) ---
+    public static final DeferredItem<Item> MASK_MATA_KOMAU = ITEMS.registerItem("mask_mata_komau",
+            props -> new Item(maskProps(withItemId("mask_mata_komau", props), buildMaskAttributes(2, 0))));
+
+    // --- Raru: Mask of Translation - Luck I effect ---
     public static final DeferredItem<Item> MASK_MATA_RARU = ITEMS.registerItem("mask_mata_raru",
-            props -> new Item(maskProps(withItemId("mask_mata_raru", props))));
+            props -> new Item(maskProps(withItemId("mask_mata_raru", props), buildMaskAttributes(2, 0))));
+
+    // --- Ruru: Mask of Night Vision - Night Vision effect ---
     public static final DeferredItem<Item> MASK_MATA_RURU = ITEMS.registerItem("mask_mata_ruru",
-            props -> new Item(maskProps(withItemId("mask_mata_ruru", props))));
+            props -> new Item(maskProps(withItemId("mask_mata_ruru", props), buildMaskAttributes(2, 0))));
 
 
     // Spawn Eggs
