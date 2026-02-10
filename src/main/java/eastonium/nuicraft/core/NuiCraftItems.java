@@ -2,12 +2,15 @@ package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.item.NuiCraftTiers;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -74,10 +77,13 @@ public class NuiCraftItems {
                     AttributeModifier.Operation.ADD_VALUE
             ), EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
         }
+        // Empty asset so vanilla populates headEquipment (required for MaskRenderLayer), but renders nothing
+        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(EquipmentAssets.ROOT_ID,
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty"));
         return props.stacksTo(1)
                 .attributes(attrs.build())
                 .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
-                        Equippable.builder(EquipmentSlot.HEAD).build());
+                        Equippable.builder(EquipmentSlot.HEAD).setAsset(emptyAsset).build());
     }
 
     public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerItem("mask_mata_gold", props -> new Item(maskProps(props, 2, 0.5)));
