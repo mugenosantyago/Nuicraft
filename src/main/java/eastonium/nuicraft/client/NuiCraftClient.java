@@ -3,10 +3,6 @@ package eastonium.nuicraft.client;
 import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
-import eastonium.nuicraft.core.NuiCraftItems;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
-import net.minecraft.client.resources.PlayerSkin;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -16,28 +12,14 @@ public class NuiCraftClient {
     public static void registerModBusEvents(IEventBus modEventBus) {
         modEventBus.addListener(NuiCraftClient::registerLayerDefinitions);
         modEventBus.addListener(NuiCraftClient::registerRenderers);
-        modEventBus.addListener(NuiCraftClient::addPlayerLayers);
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(NuiCraftModelLayers.MASK, MaskModel::createMaskLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.MAHI, MahiModel::createBodyLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.FIKOU, FikouModel::createBodyLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.HOI, HoiModel::createBodyLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.KOFO_JAGA, KofoJagaModel::createBodyLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.NUI_JAGA, NuiJagaModel::createBodyLayer);
-    }
-
-    /** Add 2D mask layer to both player renderers (default and slim) – vanilla-style, no AzureLib. */
-    private static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
-        var modelSet = event.getEntityModels();
-        MaskModel maskModel = new MaskModel(modelSet.bakeLayer(NuiCraftModelLayers.MASK));
-
-        for (PlayerSkin.Model skin : event.getSkins()) {
-            if (event.getSkin(skin) instanceof PlayerRenderer playerRenderer) {
-                playerRenderer.addLayer(new MaskRenderLayer<>(playerRenderer, maskModel));
-            }
-        }
     }
 
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

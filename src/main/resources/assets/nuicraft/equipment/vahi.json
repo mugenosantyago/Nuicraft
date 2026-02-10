@@ -1,0 +1,9 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nuicraft:entity/equipment/masks/vahi_0"
+      }
+    ]
+  }
+}

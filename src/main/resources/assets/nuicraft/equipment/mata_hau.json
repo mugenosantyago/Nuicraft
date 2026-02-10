@@ -1,0 +1,9 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nuicraft:entity/equipment/masks/mata_hau"
+      }
+    ]
+  }
+}

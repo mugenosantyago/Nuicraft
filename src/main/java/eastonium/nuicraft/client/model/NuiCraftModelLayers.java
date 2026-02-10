@@ -5,8 +5,6 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 
 public class NuiCraftModelLayers {
-    public static final ModelLayerLocation MASK = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask"), "main");
     public static final ModelLayerLocation MAHI = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mahi"), "main");
     public static final ModelLayerLocation FIKOU = new ModelLayerLocation(
