@@ -104,7 +104,10 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
             props -> new eastonium.nuicraft.item.ItemSluice(withItemId("sluice", props).stacksTo(1)));
 
-    // Masks - equippable as helmets with stat boosts (armor/toughness), vanilla HumanoidArmorLayer
+    // Masks - equippable as helmets with stat boosts (armor/toughness).
+    // Rendered via vanilla equipment layer (flat texture on humanoid head). For 3D separate mask
+    // rendering (e.g. like 1.20.1 with a private library), a custom render layer would need to
+    // draw the model from assets/nuicraft/geo/armor/mask.geo.json on the player head.
     private static ResourceKey<EquipmentAsset> maskAsset(String name) {
         return ResourceKey.create(EquipmentAssets.ROOT_ID,
                 ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, name));

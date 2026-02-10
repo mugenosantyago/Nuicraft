@@ -1,0 +1,26 @@
+{
+	"textureSize": [64, 32],
+	"models": [
+		{
+			"part": "head",
+			"id": "head",
+			"invertAxis": "xy",
+			"translate": [0, 0, 0],
+			"boxes": [
+				{"coordinates": [-4, 0, -6, 8, 4, 8], "textureOffset": [32, 0]},
+				{"coordinates": [-2, 0, -10, 4, 4, 4], "textureOffset": [48, 0]},
+				{"coordinates": [-8, 0, -2, 4, 4, 4], "textureOffset": [0, 16]},
+				{"coordinates": [-7, 0, -6, 3, 4, 4], "textureOffset": [0, 16]},
+				{"coordinates": [-6, 1, -10, 2, 2, 4], "textureOffset": [0, 18]},
+				{"coordinates": [-7, 1, -8, 1, 2, 2], "textureOffset": [0, 20]},
+				{"coordinates": [-8, 1, -4, 1, 2, 2], "textureOffset": [0, 20]},
+				{"coordinates": [4, 0, -2, 4, 4, 4], "textureOffset": [0, 16]},
+				{"coordinates": [4, 0, -6, 3, 4, 4], "textureOffset": [0, 16]},
+				{"coordinates": [4, 1, -10, 2, 2, 4], "textureOffset": [0, 18]},
+				{"coordinates": [6, 1, -8, 1, 2, 2], "textureOffset": [0, 20]},
+				{"coordinates": [7, 1, -4, 1, 2, 2], "textureOffset": [0, 20]},
+				{"coordinates": [-10, 4.1, -10, 20, 0, 20], "textureOffset": [4, 12]}
+			]
+		}
+	]
+}

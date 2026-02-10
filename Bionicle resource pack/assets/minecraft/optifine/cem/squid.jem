@@ -1,0 +1,274 @@
+{
+	"textureSize": [64, 32],
+	"models": [
+		{
+			"part": "body",
+			"id": "body",
+			"invertAxis": "xy",
+			"translate": [0, -25, 0],
+			"boxes": [
+				{"coordinates": [-3, 18, -4, 6, 1, 8], "textureOffset": [0, 23]},
+				{"coordinates": [-1, 13, -1, 2, 5, 2], "textureOffset": [56, 0]},
+				{"coordinates": [-4, 18, -3, 1, 1, 6], "textureOffset": [0, 25]},
+				{"coordinates": [3, 18, -3, 1, 1, 6], "textureOffset": [0, 25]},
+				{"coordinates": [-2, 19, -3, 4, 1, 6], "textureOffset": [0, 25]},
+				{"coordinates": [-3, 20, -6, 6, 1, 6], "textureOffset": [0, 0]},
+				{"coordinates": [-3, 20, 0, 6, 1, 6], "textureOffset": [0, 0]},
+				{"coordinates": [-2, 21, -4, 4, 1, 8], "textureOffset": [0, 0]},
+				{"coordinates": [-3, 21, -3, 1, 1, 6], "textureOffset": [0, 0]},
+				{"coordinates": [2, 21, -3, 1, 1, 6], "textureOffset": [0, 0]},
+				{"coordinates": [3, 21, -2, 1, 1, 4], "textureOffset": [0, 0]},
+				{"coordinates": [-4, 21, -2, 1, 1, 4], "textureOffset": [0, 0]},
+				{"coordinates": [-5, 20, -4, 1, 1, 8], "textureOffset": [0, 0]},
+				{"coordinates": [4, 20, -4, 1, 1, 8], "textureOffset": [0, 0]},
+				{"coordinates": [-6, 20, -3, 1, 1, 6], "textureOffset": [0, 0]},
+				{"coordinates": [5, 20, -3, 1, 1, 6], "textureOffset": [0, 0]},
+				{"coordinates": [-4, 20, -5, 1, 1, 10], "textureOffset": [0, 0]},
+				{"coordinates": [3, 20, -5, 1, 1, 10], "textureOffset": [0, 0]},
+				{"coordinates": [-3, 19, -2, 1, 1, 4], "textureOffset": [0, 27]},
+				{"coordinates": [2, 19, -2, 1, 1, 4], "textureOffset": [0, 27]}
+			]
+		},
+		{
+			"part": "tentacle1",
+			"id": "tentacle1",
+			"invertAxis": "xy",
+			"translate": [-5, -18, 0],
+			"submodels": [
+				{
+					"id": "bone",
+					"invertAxis": "xy",
+					"translate": [5, 18, 0],
+					"rotate": [0, -90, 0],
+					"boxes": [
+						{"coordinates": [-6, -2, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-3, -1, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -3, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-2, -4, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 2, 1], "textureOffset": [60, 29]},
+						{"coordinates": [-2, -6, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -8, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -10, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -12, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -5, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -9, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -11, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-2, -13, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -7, -0.5, 3, 1, 1], "textureOffset": [56, 30]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle2",
+			"id": "tentacle2",
+			"invertAxis": "xy",
+			"translate": [-3.5, -18, 3.5],
+			"submodels": [
+				{
+					"id": "bone2",
+					"invertAxis": "xy",
+					"translate": [3.5, 16, -3.5],
+					"rotate": [0, -90, 0],
+					"boxes": [
+						{"coordinates": [-5.5, -2, -0.5, 5, 1, 1], "textureOffset": [52, 0]},
+						{"coordinates": [-1.5, -1, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -3, -0.5, 4, 1, 1], "textureOffset": [54, 0]},
+						{"coordinates": [-0.5, -4, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 3, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -6, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -8, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -10, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -12, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -5, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -9, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -11, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-0.5, -13, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -7, -0.5, 3, 1, 1], "textureOffset": [56, 0]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle3",
+			"id": "tentacle3",
+			"invertAxis": "xy",
+			"translate": [0, -18, 5],
+			"submodels": [
+				{
+					"id": "bone3",
+					"invertAxis": "xy",
+					"translate": [0, 18, -5],
+					"rotate": [0, -90, 0],
+					"boxes": [
+						{"coordinates": [-6, -2, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-3, -1, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -3, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-2, -4, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 2, 1], "textureOffset": [60, 29]},
+						{"coordinates": [-2, -6, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -8, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -10, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -12, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -5, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -9, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -11, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-2, -13, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -7, -0.5, 3, 1, 1], "textureOffset": [56, 30]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle4",
+			"id": "tentacle4",
+			"invertAxis": "xy",
+			"translate": [3.5, -18, 3.5],
+			"submodels": [
+				{
+					"id": "bone4",
+					"invertAxis": "xy",
+					"translate": [-3.5, 16, -3.5],
+					"rotate": [0, -90, 0],
+					"boxes": [
+						{"coordinates": [-5.5, -2, -0.5, 5, 1, 1], "textureOffset": [52, 0]},
+						{"coordinates": [-1.5, -1, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -3, -0.5, 4, 1, 1], "textureOffset": [54, 0]},
+						{"coordinates": [-0.5, -4, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 3, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -6, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -8, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -10, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -12, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -5, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -9, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -11, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-0.5, -13, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -7, -0.5, 3, 1, 1], "textureOffset": [56, 0]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle5",
+			"id": "tentacle5",
+			"invertAxis": "xy",
+			"translate": [-10, -18, 5],
+			"rotate": [0, -90, 0],
+			"submodels": [
+				{
+					"id": "bone5",
+					"invertAxis": "xy",
+					"translate": [-5, 18, -10],
+					"boxes": [
+						{"coordinates": [-6, -2, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-3, -1, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -3, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-2, -4, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 2, 1], "textureOffset": [60, 29]},
+						{"coordinates": [-2, -6, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -8, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -10, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -12, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -5, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -9, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -11, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-2, -13, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -7, -0.5, 3, 1, 1], "textureOffset": [56, 30]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle6",
+			"id": "tentacle6",
+			"invertAxis": "xy",
+			"translate": [3.5, -18, -3.5],
+			"submodels": [
+				{
+					"id": "bone6",
+					"invertAxis": "xy",
+					"translate": [-3.5, 16, 3.5],
+					"rotate": [0, -90, 0],
+					"boxes": [
+						{"coordinates": [-5.5, -2, -0.5, 5, 1, 1], "textureOffset": [52, 0]},
+						{"coordinates": [-1.5, -1, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -3, -0.5, 4, 1, 1], "textureOffset": [54, 0]},
+						{"coordinates": [-0.5, -4, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 3, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -6, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -8, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -10, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -12, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -5, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -9, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -11, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-0.5, -13, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -7, -0.5, 3, 1, 1], "textureOffset": [56, 0]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle7",
+			"id": "tentacle7",
+			"invertAxis": "xy",
+			"translate": [0, -18, -1.65],
+			"rotate": [0, -180, 0],
+			"submodels": [
+				{
+					"id": "bone7",
+					"invertAxis": "xy",
+					"translate": [0, 18, -2],
+					"rotate": [0, 90, 0],
+					"boxes": [
+						{"coordinates": [-6, -2, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-3, -1, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -3, -0.5, 4, 1, 1], "textureOffset": [54, 30]},
+						{"coordinates": [-2, -4, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 2, 1], "textureOffset": [60, 29]},
+						{"coordinates": [-2, -6, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -8, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-3, -10, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -12, -0.5, 1, 1, 1], "textureOffset": [60, 30]},
+						{"coordinates": [-2, -5, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -9, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -11, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-2, -13, -0.5, 2, 1, 1], "textureOffset": [58, 30]},
+						{"coordinates": [-3, -7, -0.5, 3, 1, 1], "textureOffset": [56, 30]}
+					]
+				}
+			]
+		},
+		{
+			"part": "tentacle8",
+			"id": "tentacle8",
+			"invertAxis": "xy",
+			"translate": [-3.5, -18, -3.5],
+			"submodels": [
+				{
+					"id": "bone8",
+					"invertAxis": "xy",
+					"translate": [3.5, 16, 3.5],
+					"rotate": [0, -90, 0],
+					"boxes": [
+						{"coordinates": [-5.5, -2, -0.5, 5, 1, 1], "textureOffset": [52, 0]},
+						{"coordinates": [-1.5, -1, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -3, -0.5, 4, 1, 1], "textureOffset": [54, 0]},
+						{"coordinates": [-0.5, -4, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-5.5, -1, -0.5, 1, 3, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -6, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -8, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-1.5, -10, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -12, -0.5, 1, 1, 1], "textureOffset": [60, 0]},
+						{"coordinates": [-0.5, -5, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -9, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -11, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-0.5, -13, -0.5, 2, 1, 1], "textureOffset": [58, 0]},
+						{"coordinates": [-1.5, -7, -0.5, 3, 1, 1], "textureOffset": [56, 0]}
+					]
+				}
+			]
+		}
+	]
+}
