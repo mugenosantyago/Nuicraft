@@ -12,6 +12,11 @@ public class NuiCraftClient {
     public static void registerModBusEvents(IEventBus modEventBus) {
         modEventBus.addListener(NuiCraftClient::registerLayerDefinitions);
         modEventBus.addListener(NuiCraftClient::registerRenderers);
+        modEventBus.addListener(NuiCraftClient::clientSetup);
+    }
+
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(MaskArmorRendererRegistry::registerAll);
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
