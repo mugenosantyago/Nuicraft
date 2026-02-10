@@ -120,9 +120,14 @@ public class NuiCraftItems {
             ), EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
         }
         
-        // Simple equippable component for head slot
-        // AzureLib will intercept and render the 3D model
-        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD).build();
+        // Use empty equipment asset to prevent vanilla 2D armor rendering
+        // AzureLib will handle all 3D rendering
+        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
+        );
+        
+        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD).setAsset(emptyAsset).build();
         
         return props.stacksTo(1)
                 .attributes(attrs.build())
