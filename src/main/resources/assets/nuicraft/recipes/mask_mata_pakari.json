@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "BAB",
+    "CCC",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "item": "nuicraft:ingot_protodermis"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "nuicraft:mask_mata_pakari"
+  }
+}

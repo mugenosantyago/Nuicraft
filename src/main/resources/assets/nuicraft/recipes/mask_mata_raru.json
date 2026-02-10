@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "BCB",
+    "BAB",
+    "BCB"
+  ],
+  "key": {
+    "A": {
+      "item": "nuicraft:ingot_protodermis"
+    },
+    "B": {
+      "item": "minecraft:book"
+    },
+    "C": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "nuicraft:mask_mata_raru"
+  }
+}

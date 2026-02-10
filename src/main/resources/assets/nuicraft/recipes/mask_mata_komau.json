@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "CAC",
+    "BAB",
+    "CAC"
+  ],
+  "key": {
+    "A": {
+      "item": "nuicraft:ingot_protodermis"
+    },
+    "B": {
+      "item": "minecraft:emerald"
+    },
+    "C": {
+      "item": "minecraft:enchanting_table"
+    }
+  },
+  "result": {
+    "item": "nuicraft:mask_mata_komau"
+  }
+}

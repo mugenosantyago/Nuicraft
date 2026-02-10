@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "BAB",
+    "CAC",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "item": "nuicraft:ingot_protodermis"
+    },
+    "B": {
+      "item": "minecraft:feather"
+    },
+    "C": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "result": {
+    "item": "nuicraft:mask_mata_kakama"
+  }
+}

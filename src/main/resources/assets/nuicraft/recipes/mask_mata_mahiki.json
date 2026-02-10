@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "BCB",
+    "CAC",
+    "BCB"
+  ],
+  "key": {
+    "A": {
+      "item": "nuicraft:ingot_protodermis"
+    },
+    "B": {
+      "item": "minecraft:purple_dye"
+    },
+    "C": {
+      "item": "minecraft:dark_oak_wood"
+    }
+  },
+  "result": {
+    "item": "nuicraft:mask_mata_mahiki"
+  }
+}
