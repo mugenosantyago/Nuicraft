@@ -1,55 +1,5 @@
-package eastonium.nuicraft.core;
+// Add these to NuiCraftEntityTypes.java:
 
-import eastonium.nuicraft.NuiCraft;
-import eastonium.nuicraft.entity.*;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
-public class NuiCraftEntityTypes {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = 
-            DeferredRegister.create(Registries.ENTITY_TYPE, NuiCraft.MODID);
-
-    // Core Bionicle mobs with custom models
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityMahi>> MAHI =
-            ENTITY_TYPES.register("mahi", () -> EntityType.Builder.of(EntityMahi::new, MobCategory.CREATURE)
-                    .sized(0.9F, 1.4F)
-                    .clientTrackingRange(64)
-                    .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
-                            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mahi"))));
-    
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityFikou>> FIKOU =
-            ENTITY_TYPES.register("fikou", () -> EntityType.Builder.of(EntityFikou::new, MobCategory.CREATURE)
-                    .sized(0.7F, 0.5F)
-                    .clientTrackingRange(64)
-                    .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
-                            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "fikou"))));
-    
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityHoi>> HOI =
-            ENTITY_TYPES.register("hoi", () -> EntityType.Builder.of(EntityHoi::new, MobCategory.CREATURE)
-                    .sized(0.6F, 0.4F)
-                    .clientTrackingRange(64)
-                    .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
-                            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "hoi"))));
-    
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityKofoJaga>> KOFO_JAGA =
-            ENTITY_TYPES.register("kofo_jaga", () -> EntityType.Builder.of(EntityKofoJaga::new, MobCategory.CREATURE)
-                    .sized(1.0F, 0.8F)
-                    .clientTrackingRange(64)
-                    .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
-                            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "kofo_jaga"))));
-    
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityNuiJaga>> NUI_JAGA =
-            ENTITY_TYPES.register("nui_jaga", () -> EntityType.Builder.of(EntityNuiJaga::new, MobCategory.MONSTER)
-                    .sized(1.4F, 1.2F)
-                    .clientTrackingRange(64)
-                    .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
-                            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "nui_jaga"))));
-
-    // Bohrok
     public static final DeferredHolder<EntityType<?>, EntityType<EntityBohrokTahnok>> BOHROKTAHNOK =
             ENTITY_TYPES.register("bohrok_tahnok", () -> EntityType.Builder.of(EntityBohrokTahnok::new, MobCategory.MONSTER)
                     .sized(0.8F, 0.8F)
@@ -91,8 +41,7 @@ public class NuiCraftEntityTypes {
                     .clientTrackingRange(64)
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "pahrak"))));
-
-    // Rahkshi
+    
     public static final DeferredHolder<EntityType<?>, EntityType<EntityGuurahk>> GUURAHK =
             ENTITY_TYPES.register("guurahk", () -> EntityType.Builder.of(EntityGuurahk::new, MobCategory.MONSTER)
                     .sized(0.6F, 2.5F)
@@ -141,8 +90,7 @@ public class NuiCraftEntityTypes {
                     .clientTrackingRange(64)
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "vohrak"))));
-
-    // Matoran
+    
     public static final DeferredHolder<EntityType<?>, EntityType<EntityAgniMatoran>> AGNIMATORAN =
             ENTITY_TYPES.register("agni_matoran", () -> EntityType.Builder.of(EntityAgniMatoran::new, MobCategory.CREATURE)
                     .sized(0.4F, 1.3F)
@@ -150,7 +98,7 @@ public class NuiCraftEntityTypes {
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "agni_matoran"))));
     
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityAkhmouMatoran>> AKHMOUMATORAN =
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityAkhmouMatoran>> AHKMOUMATORAN =
             ENTITY_TYPES.register("ahkmou_matoran", () -> EntityType.Builder.of(EntityAkhmouMatoran::new, MobCategory.CREATURE)
                     .sized(0.4F, 1.3F)
                     .clientTrackingRange(64)
@@ -268,8 +216,7 @@ public class NuiCraftEntityTypes {
                     .clientTrackingRange(64)
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "zemya_matoran"))));
-
-    // Turaga
+    
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatauTuraga>> MATAUTURAGA =
             ENTITY_TYPES.register("matau_turaga", () -> EntityType.Builder.of(EntityMatauTuraga::new, MobCategory.CREATURE)
                     .sized(0.5F, 1.8F)
@@ -305,14 +252,13 @@ public class NuiCraftEntityTypes {
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "vakama_turaga"))));
     
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityWhenauTuraga>> WHENAUTURAGA =
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityWhenauTuraga>> WHENUATURAGA =
             ENTITY_TYPES.register("whenua_turaga", () -> EntityType.Builder.of(EntityWhenauTuraga::new, MobCategory.CREATURE)
                     .sized(0.5F, 1.8F)
                     .clientTrackingRange(64)
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "whenua_turaga"))));
-
-    // Rahi
+    
     public static final DeferredHolder<EntityType<?>, EntityType<EntityKaneRa>> KANERA =
             ENTITY_TYPES.register("kane_ra", () -> EntityType.Builder.of(EntityKaneRa::new, MobCategory.CREATURE)
                     .sized(1.2F, 1.0F)
@@ -375,4 +321,6 @@ public class NuiCraftEntityTypes {
                     .clientTrackingRange(64)
                     .build(net.minecraft.resources.ResourceKey.create(Registries.ENTITY_TYPE, 
                             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "makuta"))));
-}
+    
+
+Total entities to add: 46
