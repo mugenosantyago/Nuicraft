@@ -6,12 +6,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:feather",
-          "weight": 1
+          "name": "minecraft:white_wool",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:wool",
+          "name": "minecraft:feather",
           "weight": 1
         }
       ]

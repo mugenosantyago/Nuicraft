@@ -1,1 +1,3 @@
-{"parent":"minecraft:item/generated","textures":{"layer0":"nuicraft:item/masks/normal/mata_hau"}}
+{
+  "parent": "minecraft:item/template_spawn_egg"
+}
