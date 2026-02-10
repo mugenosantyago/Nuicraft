@@ -59,8 +59,8 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<BlockProtodermisDeposit> PROTODERMIS_ORE = BLOCKS.registerBlock("protodermis_ore",
             BlockProtodermisDeposit::new, BlockOre.createProperties());
 
-    public static final DeferredBlock<Block> ONU_WAHI_STONE_ORE = BLOCKS.registerSimpleBlock("onu_wahi_stone_ore",
-            BlockOre.createProperties());
+    public static final DeferredBlock<BlockOre> ONU_WAHI_STONE_ORE = BLOCKS.registerBlock("onu_wahi_stone_ore",
+            BlockOre::new, BlockOre.createProperties());
 
     // Plants
     public static final DeferredBlock<BlockBamboo> BAMBOO = BLOCKS.registerBlock("bamboo",
@@ -72,4 +72,18 @@ public class NuiCraftBlocks {
     
     public static final DeferredBlock<BlockMetal> BLOCK_PROTOSTEEL = BLOCKS.registerBlock("block_protosteel",
             BlockMetal::new, BlockMetal.createProperties());
+
+    // Koro stones (for structures / decoration)
+    public static final DeferredBlock<Block> TA_KORO_STONE = BLOCKS.registerSimpleBlock("ta_koro_stone",
+            BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE));
+    public static final DeferredBlock<Block> ONU_KORO_STONE = BLOCKS.registerSimpleBlock("onu_koro_stone",
+            BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE));
+    public static final DeferredBlock<Block> GA_KORO_STONE = BLOCKS.registerSimpleBlock("ga_koro_stone",
+            BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE));
+    public static final DeferredBlock<Block> KO_KORO_STONE = BLOCKS.registerSimpleBlock("ko_koro_stone",
+            BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE));
+    public static final DeferredBlock<Block> LE_KORO_STONE = BLOCKS.registerSimpleBlock("le_koro_stone",
+            BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE));
+    public static final DeferredBlock<Block> PO_KORO_STONE = BLOCKS.registerSimpleBlock("po_koro_stone",
+            BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE));
 }

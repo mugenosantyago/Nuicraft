@@ -1,0 +1,17 @@
+{
+  "name": "nuicraft:gakoro_nixiehut",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "nuicraft:gakoro_nixiehut",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

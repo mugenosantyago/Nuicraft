@@ -1,0 +1,17 @@
+{
+  "name": "nuicraft:pokoro_leftsecondcorner",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "nuicraft:pokoro_leftsecondcorner",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

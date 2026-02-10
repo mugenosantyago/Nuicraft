@@ -1,0 +1,17 @@
+{
+  "name": "nuicraft:gakoro_leftsecondlilypad",
+  "fallback": "nuicraft:gakoro_leftsecondlilypad",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "nuicraft:gakoro_leftsecondlilypad",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}
