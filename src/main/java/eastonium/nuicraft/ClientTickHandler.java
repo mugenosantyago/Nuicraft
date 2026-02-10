@@ -18,24 +18,9 @@ public class ClientTickHandler {
         
         ItemStack helmet = player.getInventory().getItem(39); // Helmet slot (36+3)
         if (!helmet.isEmpty()) {
-            Vec3 motion = player.getDeltaMovement();
-            
-            // Gold Mata Mask (combined powers)
-            if (helmet.is(NuiCraftItems.MASK_MATA_GOLD.get())) {
-                if (minecraft.screen == null && minecraft.options.keyJump.isDown()) {
-                    if (motion.y < 0.15D) {
-                        player.setDeltaMovement(motion.x, motion.y + 0.05D, motion.z);
-                    }
-                } else {
-                    if (motion.y < 0.0D) {
-                        player.setDeltaMovement(motion.x, motion.y / 1.2D, motion.z);
-                    }
-                }
-                player.setDeltaMovement(0, motion.y, 0);
-                
-            } 
             // Mata Miru (Levitation)
-            else if (helmet.is(NuiCraftItems.MASK_MATA_MIRU.get())) {
+            if (helmet.is(NuiCraftItems.MASK_MATA_MIRU.get())) {
+                Vec3 motion = player.getDeltaMovement();
                 if (minecraft.screen == null && minecraft.options.keyJump.isDown()) {
                     if (motion.y < 0.15D) {
                         player.setDeltaMovement(motion.x, motion.y + 0.05D, motion.z);
@@ -43,20 +28,6 @@ public class ClientTickHandler {
                 } else {
                     if (motion.y < 0.0D) {
                         player.setDeltaMovement(motion.x, motion.y / 1.2D, motion.z);
-                    }
-                }
-                player.setDeltaMovement(0, motion.y, 0);
-                
-            } 
-            // Nuva Miru (Enhanced Levitation)
-            else if (helmet.is(NuiCraftItems.MASK_NUVA_MIRU.get())) {
-                if (minecraft.screen == null && minecraft.options.keyJump.isDown()) {
-                    if (motion.y < 0.30D) {
-                        player.setDeltaMovement(0, motion.y + 0.05D, 0);
-                    }
-                } else if (minecraft.screen == null && !minecraft.options.keyShift.isDown()) {
-                    if (motion.y < 0.0D) {
-                        player.setDeltaMovement(0, motion.y / 1.2D, 0);
                     }
                 }
             }

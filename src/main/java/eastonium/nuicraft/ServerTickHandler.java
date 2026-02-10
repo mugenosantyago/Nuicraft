@@ -29,70 +29,43 @@ public class ServerTickHandler {
                             player.resetFallDistance();
                         }
                         
-                        // MATA MASKS
-                        if (helmet.is(NuiCraftItems.MASK_MATA_GOLD.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 1, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.HASTE, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 1, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 1, false, false));
-                            
-                        } else if (helmet.is(NuiCraftItems.MASK_MATA_PAKARI.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.HASTE, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 30, 0, false, false));
-                            
-                        } else if (helmet.is(NuiCraftItems.MASK_MATA_KAUKAU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, false, false));
-                            
-                        } else if (helmet.is(NuiCraftItems.MASK_MATA_HAU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 1, false, false));
-                            
-                        } else if (helmet.is(NuiCraftItems.MASK_MATA_KAKAMA.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 1, false, false));
-                        } else if (helmet.is(NuiCraftItems.MASK_MATA_AKAKU.get())) {
+                        // Mata Masks
+                        if (helmet.is(NuiCraftItems.MASK_MATA_AKAKU.get())) {
+                            // Akaku - Vision
                             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false));
-                        } else if (helmet.is(NuiCraftItems.MASK_MATA_MIRU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 30, 0, false, false));
-                        }
-                        // NUVA MASKS
-                        else if (helmet.is(NuiCraftItems.MASK_NUVA_PAKARI.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 1, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.HASTE, 30, 1, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 30, 1, false, false));
-                        } else if (helmet.is(NuiCraftItems.MASK_NUVA_KAUKAU.get())) {
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_HAU.get())) {
+                            // Hau - Protection
+                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 1, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_HUNA.get())) {
+                            // Huna - Concealment
+                            player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 30, 0, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_KAKAMA.get())) {
+                            // Kakama - Speed
+                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 1, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_KAUKAU.get())) {
+                            // Kaukau - Water Breathing
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, false, false));
-                            player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 30, 0, false, false));
-                        } else if (helmet.is(NuiCraftItems.MASK_NUVA_MIRU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 30, 1, false, false));
-                        } else if (helmet.is(NuiCraftItems.MASK_NUVA_AKAKU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 1, false, false));
-                        } else if (helmet.is(NuiCraftItems.MASK_NUVA_HAU.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 3, false, false));
-                            
-                        } else if (helmet.is(NuiCraftItems.MASK_NUVA_KAKAMA.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 30, 3, false, false));
-                        }
-                        // LEGENDARY MASKS
-                        else if (helmet.is(NuiCraftItems.MASK_IGNIKA.get())) {
-                            List<Entity> nearbyEntities = level.getEntities(player, player.getBoundingBox().inflate(5.0D));
-                            for (Entity entity : nearbyEntities) {
-                                if (player.tickCount % 30 == 0 && (entity instanceof Mob || entity instanceof AmbientCreature || entity instanceof Squid)) {
-                                    entity.hurt(level.damageSources().wither(), 1.0F);
-                                    player.heal(1.0F);
-                                }
-                            }
-                        } else if (helmet.is(NuiCraftItems.MASK_VAHI.get())) {
-                            player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 30, 1, false, false));
-                            if (player.tickCount % 2 == 0) {
-                                level.setDayTime(level.getDayTime() - 1); // Slow down time
-                            }
-                            List<Entity> nearbyEntities = level.getEntities(player, player.getBoundingBox().inflate(10.0D));
-                            for (Entity entity : nearbyEntities) {
-                                if (entity instanceof Mob mob) {
-                                    mob.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 30, 3, false, false));
-                                }
-                            }
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_KOMAU.get())) {
+                            // Komau - Mind Control
+                            player.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 30, 0, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_MAHIKI.get())) {
+                            // Mahiki - Illusion
+                            player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 15, 0, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_MATATU.get())) {
+                            // Matatu - Telekinesis
+                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 0, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_MIRU.get())) {
+                            // Miru - Levitation
+                            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 30, 0, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_PAKARI.get())) {
+                            // Pakari - Strength
+                            player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 30, 1, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_RARU.get())) {
+                            // Raru - Chameleon/Concealment
+                            player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 30, 0, false, false));
+                        } else if (helmet.is(NuiCraftItems.MASK_MATA_RURU.get())) {
+                            // Ruru - Sleep/Sensing
+                            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false));
                         }
                     }
                 }
@@ -101,8 +74,6 @@ public class ServerTickHandler {
     }
 
     private boolean removeFallDistance(ItemStack helmet) {
-        return helmet.is(NuiCraftItems.MASK_MATA_MIRU.get()) || 
-               helmet.is(NuiCraftItems.MASK_NUVA_MIRU.get()) || 
-               helmet.is(NuiCraftItems.MASK_MATA_GOLD.get());
+        return helmet.is(NuiCraftItems.MASK_MATA_MIRU.get());
     }
 }
