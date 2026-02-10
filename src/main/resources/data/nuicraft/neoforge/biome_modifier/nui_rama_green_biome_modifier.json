@@ -1,7 +1,7 @@
 {
   "type": "neoforge:add_spawns",
   "biomes": {
-    "type": "forge:any"
+    "type": "minecraft:any"
   },
   "spawners": {
     "type": "nuicraft:nui_rama_green",
