@@ -21,11 +21,83 @@
   "entity.nuicraft.kofo_jaga": "Kofo-Jaga",
   "entity.nuicraft.nui_jaga": "Nui-Jaga",
   
+  "entity.nuicraft.ussal_crab": "Ussal Crab",
+  "entity.nuicraft.sheep_rahi": "Sheep Rahi",
+  "entity.nuicraft.rabbit_rahi": "Rabbit Rahi",
+  
+  "entity.nuicraft.muaka": "Muaka",
+  "entity.nuicraft.kane_ra": "Kane-Ra",
+  "entity.nuicraft.pokawi": "Pokawi",
+  
+  "entity.nuicraft.turtle_rahi": "Turtle Rahi",
+  "entity.nuicraft.hikaki": "Hikaki",
+  "entity.nuicraft.shore_turtle": "Shore Turtle",
+  
+  "entity.nuicraft.bird_rahi": "Bird Rahi",
+  "entity.nuicraft.bat_rahi": "Bat Rahi",
+  "entity.nuicraft.hoto_bug": "Hoto Bug",
+  
+  "entity.nuicraft.matoran": "Matoran",
+  "entity.nuicraft.bohrok": "Bohrok",
+  "entity.nuicraft.turaga": "Turaga",
+  "entity.nuicraft.mukau": "Mukau",
+  "entity.nuicraft.hapaka": "Hapaka",
+  "entity.nuicraft.bohrok_va": "Bohrok Va",
+  
+  "entity.nuicraft.nui_rama": "Nui-Rama",
+  "entity.nuicraft.ash_bear": "Ash Bear",
+  "entity.nuicraft.rahaga": "Rahaga",
+  "entity.nuicraft.vako": "Vako",
+  "entity.nuicraft.kikanalo": "Kikanalo",
+  "entity.nuicraft.rahkshi": "Rahkshi",
+  
+  "entity.nuicraft.kraata": "Kraata",
+  "entity.nuicraft.piraka": "Piraka",
+  "entity.nuicraft.dark_hunter": "Dark Hunter",
+  "entity.nuicraft.fusa": "Fusa",
+  "entity.nuicraft.skrall": "Skrall",
+  "entity.nuicraft.zesk": "Zesk",
+  "entity.nuicraft.agori": "Agori",
+  "entity.nuicraft.fox_rahi": "Fox Rahi",
+  "entity.nuicraft.kavinika": "Kavinika",
+  "entity.nuicraft.archives_mole": "Archives Mole",
+  "entity.nuicraft.takea_shark": "Takea Shark",
+  
   "item.nuicraft.mahi_spawn_egg": "Mahi Spawn Egg",
   "item.nuicraft.fikou_spawn_egg": "Fikou Spawn Egg",
   "item.nuicraft.hoi_spawn_egg": "Hoi Spawn Egg",
   "item.nuicraft.kofo_jaga_spawn_egg": "Kofo-Jaga Spawn Egg",
   "item.nuicraft.nui_jaga_spawn_egg": "Nui-Jaga Spawn Egg",
+  
+  "item.nuicraft.ussal_crab_spawn_egg": "Ussal Crab Spawn Egg",
+  "item.nuicraft.sheep_rahi_spawn_egg": "Sheep Rahi Spawn Egg",
+  "item.nuicraft.rabbit_rahi_spawn_egg": "Rabbit Rahi Spawn Egg",
+  
+  "item.nuicraft.muaka_spawn_egg": "Muaka Spawn Egg",
+  "item.nuicraft.kane_ra_spawn_egg": "Kane-Ra Spawn Egg",
+  "item.nuicraft.pokawi_spawn_egg": "Pokawi Spawn Egg",
+  
+  "item.nuicraft.turtle_rahi_spawn_egg": "Turtle Rahi Spawn Egg",
+  "item.nuicraft.hikaki_spawn_egg": "Hikaki Spawn Egg",
+  "item.nuicraft.shore_turtle_spawn_egg": "Shore Turtle Spawn Egg",
+  
+  "item.nuicraft.bird_rahi_spawn_egg": "Bird Rahi Spawn Egg",
+  "item.nuicraft.bat_rahi_spawn_egg": "Bat Rahi Spawn Egg",
+  "item.nuicraft.hoto_bug_spawn_egg": "Hoto Bug Spawn Egg",
+  
+  "item.nuicraft.matoran_spawn_egg": "Matoran Spawn Egg",
+  "item.nuicraft.bohrok_spawn_egg": "Bohrok Spawn Egg",
+  "item.nuicraft.turaga_spawn_egg": "Turaga Spawn Egg",
+  "item.nuicraft.mukau_spawn_egg": "Mukau Spawn Egg",
+  "item.nuicraft.hapaka_spawn_egg": "Hapaka Spawn Egg",
+  "item.nuicraft.bohrok_va_spawn_egg": "Bohrok Va Spawn Egg",
+  
+  "item.nuicraft.nui_rama_spawn_egg": "Nui-Rama Spawn Egg",
+  "item.nuicraft.ash_bear_spawn_egg": "Ash Bear Spawn Egg",
+  "item.nuicraft.rahaga_spawn_egg": "Rahaga Spawn Egg",
+  "item.nuicraft.vako_spawn_egg": "Vako Spawn Egg",
+  "item.nuicraft.kikanalo_spawn_egg": "Kikanalo Spawn Egg",
+  "item.nuicraft.rahkshi_spawn_egg": "Rahkshi Spawn Egg",
 
   "block.nuicraft.koro_block": "Koro Block",
   "block.nuicraft.nuva_cube": "Nuva Cube",

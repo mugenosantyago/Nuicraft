@@ -160,4 +160,88 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.KOFO_JAGA.get(), withItemId("kofo_jaga_spawn_egg", props)));
     public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.registerItem("nui_jaga_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_JAGA.get(), withItemId("nui_jaga_spawn_egg", props)));
+    
+    // Batch 1
+    public static final DeferredItem<Item> USSAL_CRAB_SPAWN_EGG = ITEMS.registerItem("ussal_crab_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.USSAL_CRAB.get(), withItemId("ussal_crab_spawn_egg", props)));
+    public static final DeferredItem<Item> SHEEP_RAHI_SPAWN_EGG = ITEMS.registerItem("sheep_rahi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.SHEEP_RAHI.get(), withItemId("sheep_rahi_spawn_egg", props)));
+    public static final DeferredItem<Item> RABBIT_RAHI_SPAWN_EGG = ITEMS.registerItem("rabbit_rahi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.RABBIT_RAHI.get(), withItemId("rabbit_rahi_spawn_egg", props)));
+    
+    // Batch 2
+    public static final DeferredItem<Item> MUAKA_SPAWN_EGG = ITEMS.registerItem("muaka_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MUAKA.get(), withItemId("muaka_spawn_egg", props)));
+    public static final DeferredItem<Item> KANE_RA_SPAWN_EGG = ITEMS.registerItem("kane_ra_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.KANE_RA.get(), withItemId("kane_ra_spawn_egg", props)));
+    public static final DeferredItem<Item> POKAWI_SPAWN_EGG = ITEMS.registerItem("pokawi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.POKAWI.get(), withItemId("pokawi_spawn_egg", props)));
+    
+    // Batch 3
+    public static final DeferredItem<Item> TURTLE_RAHI_SPAWN_EGG = ITEMS.registerItem("turtle_rahi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURTLE_RAHI.get(), withItemId("turtle_rahi_spawn_egg", props)));
+    public static final DeferredItem<Item> HIKAKI_SPAWN_EGG = ITEMS.registerItem("hikaki_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.HIKAKI.get(), withItemId("hikaki_spawn_egg", props)));
+    public static final DeferredItem<Item> SHORE_TURTLE_SPAWN_EGG = ITEMS.registerItem("shore_turtle_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.SHORE_TURTLE.get(), withItemId("shore_turtle_spawn_egg", props)));
+    
+    // Batch 4
+    public static final DeferredItem<Item> BIRD_RAHI_SPAWN_EGG = ITEMS.registerItem("bird_rahi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.BIRD_RAHI.get(), withItemId("bird_rahi_spawn_egg", props)));
+    public static final DeferredItem<Item> BAT_RAHI_SPAWN_EGG = ITEMS.registerItem("bat_rahi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.BAT_RAHI.get(), withItemId("bat_rahi_spawn_egg", props)));
+    public static final DeferredItem<Item> HOTO_BUG_SPAWN_EGG = ITEMS.registerItem("hoto_bug_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.HOTO_BUG.get(), withItemId("hoto_bug_spawn_egg", props)));
+    
+    // Batch 5
+    public static final DeferredItem<Item> MATORAN_SPAWN_EGG = ITEMS.registerItem("matoran_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN.get(), withItemId("matoran_spawn_egg", props)));
+    public static final DeferredItem<Item> BOHROK_SPAWN_EGG = ITEMS.registerItem("bohrok_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.BOHROK.get(), withItemId("bohrok_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_SPAWN_EGG = ITEMS.registerItem("turaga_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA.get(), withItemId("turaga_spawn_egg", props)));
+    public static final DeferredItem<Item> MUKAU_SPAWN_EGG = ITEMS.registerItem("mukau_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MUKAU.get(), withItemId("mukau_spawn_egg", props)));
+    public static final DeferredItem<Item> HAPAKA_SPAWN_EGG = ITEMS.registerItem("hapaka_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.HAPAKA.get(), withItemId("hapaka_spawn_egg", props)));
+    public static final DeferredItem<Item> BOHROK_VA_SPAWN_EGG = ITEMS.registerItem("bohrok_va_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.BOHROK_VA.get(), withItemId("bohrok_va_spawn_egg", props)));
+    
+    // Batch 5b
+    public static final DeferredItem<Item> NUI_RAMA_SPAWN_EGG = ITEMS.registerItem("nui_rama_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_RAMA.get(), withItemId("nui_rama_spawn_egg", props)));
+    public static final DeferredItem<Item> ASH_BEAR_SPAWN_EGG = ITEMS.registerItem("ash_bear_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.ASH_BEAR.get(), withItemId("ash_bear_spawn_egg", props)));
+    public static final DeferredItem<Item> RAHAGA_SPAWN_EGG = ITEMS.registerItem("rahaga_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.RAHAGA.get(), withItemId("rahaga_spawn_egg", props)));
+    public static final DeferredItem<Item> VAKO_SPAWN_EGG = ITEMS.registerItem("vako_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.VAKO.get(), withItemId("vako_spawn_egg", props)));
+    public static final DeferredItem<Item> KIKANALO_SPAWN_EGG = ITEMS.registerItem("kikanalo_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.KIKANALO.get(), withItemId("kikanalo_spawn_egg", props)));
+    public static final DeferredItem<Item> RAHKSHI_SPAWN_EGG = ITEMS.registerItem("rahkshi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.RAHKSHI.get(), withItemId("rahkshi_spawn_egg", props)));
+    
+    // Batch 5c
+    public static final DeferredItem<Item> KRAATA_SPAWN_EGG = ITEMS.registerItem("kraata_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.KRAATA.get(), withItemId("kraata_spawn_egg", props)));
+    public static final DeferredItem<Item> PIRAKA_SPAWN_EGG = ITEMS.registerItem("piraka_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.PIRAKA.get(), withItemId("piraka_spawn_egg", props)));
+    public static final DeferredItem<Item> DARK_HUNTER_SPAWN_EGG = ITEMS.registerItem("dark_hunter_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.DARK_HUNTER.get(), withItemId("dark_hunter_spawn_egg", props)));
+    public static final DeferredItem<Item> FUSA_SPAWN_EGG = ITEMS.registerItem("fusa_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.FUSA.get(), withItemId("fusa_spawn_egg", props)));
+    public static final DeferredItem<Item> SKRALL_SPAWN_EGG = ITEMS.registerItem("skrall_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.SKRALL.get(), withItemId("skrall_spawn_egg", props)));
+    public static final DeferredItem<Item> ZESK_SPAWN_EGG = ITEMS.registerItem("zesk_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.ZESK.get(), withItemId("zesk_spawn_egg", props)));
+    public static final DeferredItem<Item> AGORI_SPAWN_EGG = ITEMS.registerItem("agori_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.AGORI.get(), withItemId("agori_spawn_egg", props)));
+    public static final DeferredItem<Item> FOX_RAHI_SPAWN_EGG = ITEMS.registerItem("fox_rahi_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.FOX_RAHI.get(), withItemId("fox_rahi_spawn_egg", props)));
+    public static final DeferredItem<Item> KAVINIKA_SPAWN_EGG = ITEMS.registerItem("kavinika_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.KAVINIKA.get(), withItemId("kavinika_spawn_egg", props)));
+    public static final DeferredItem<Item> ARCHIVES_MOLE_SPAWN_EGG = ITEMS.registerItem("archives_mole_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.ARCHIVES_MOLE.get(), withItemId("archives_mole_spawn_egg", props)));
+    public static final DeferredItem<Item> TAKEA_SHARK_SPAWN_EGG = ITEMS.registerItem("takea_shark_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TAKEA_SHARK.get(), withItemId("takea_shark_spawn_egg", props)));
 }
