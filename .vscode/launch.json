@@ -1,0 +1,311 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Nuicraft - Client",
+      "presentation": {
+        "group": "NG - nuicraft",
+        "order": 0
+      },
+      "projectName": "nuicraft",
+      "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
+      "args": [
+        "--launchTarget",
+        "neoforgeclientdev",
+        "--version",
+        "21.8.52",
+        "--assetIndex",
+        "asset-index",
+        "--assetsDir",
+        "/Users/otoyume/.gradle/caches/minecraft/assets",
+        "--fml.fmlVersion",
+        "9.0.18",
+        "--fml.mcVersion",
+        "1.21.8",
+        "--fml.neoForgeVersion",
+        "21.8.52",
+        "--fml.neoFormVersion",
+        "20250717.133445"
+      ],
+      "vmArgs": [
+        "-p",
+        "/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/bootstraplauncher/9.0.18/ec6c91c3e44cd3c77be98069010ce94b1555e292/bootstraplauncher-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/securejarhandler/9.0.18/a130f48d1f454285428953ba2ab79861b7532db7/securejarhandler-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarFileSystems/0.4.1/78f59f89defcd032ed788b151ca6a0d40ace796a/JarJarFileSystems-0.4.1.jar",
+        "--add-modules",
+        "ALL-MODULE-PATH",
+        "--add-opens",
+        "java.base/java.util.jar\u003dcpw.mods.securejarhandler",
+        "--add-opens",
+        "java.base/java.lang.invoke\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "java.base/sun.security.util\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "jdk.naming.dns/com.sun.jndi.dns\u003djava.naming",
+        "-XstartOnFirstThread",
+        "-Dforge.logging.markers\u003dREGISTRIES",
+        "-Dforge.logging.console.level\u003ddebug",
+        "-Dforge.enabledGameTestNamespaces\u003dnuicraft",
+        "-Dneoforge.enableGameTest\u003dtrue",
+        "-DlegacyClassPath.file\u003d/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/configuration/neoForm/neoFormJoined1.21.8-20250717.133445/steps/writeMinecraftClasspathClient/classpath.txt",
+        "-DignoreList\u003dmixinextras-neoforge-0.5.0.jar,client-extra,neoforge-",
+        "-Djava.net.preferIPv6Addresses\u003dsystem"
+      ],
+      "cwd": "${workspaceFolder}/runs/client",
+      "env": {
+        "MOD_CLASSES": "nuicraft%%/Users/otoyume/Documents/GitHub/Nuicraft/bin/main"
+      },
+      "shortenCommandLine": "argfile"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Nuicraft - ClientData",
+      "presentation": {
+        "group": "NG - nuicraft",
+        "order": 1
+      },
+      "projectName": "nuicraft",
+      "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
+      "args": [
+        "--launchTarget",
+        "neoforgeclientdatadev",
+        "--assetIndex",
+        "asset-index",
+        "--assetsDir",
+        "/Users/otoyume/.gradle/caches/minecraft/assets",
+        "--fml.fmlVersion",
+        "9.0.18",
+        "--fml.mcVersion",
+        "1.21.8",
+        "--fml.neoForgeVersion",
+        "21.8.52",
+        "--fml.neoFormVersion",
+        "20250717.133445"
+      ],
+      "vmArgs": [
+        "-p",
+        "/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/bootstraplauncher/9.0.18/ec6c91c3e44cd3c77be98069010ce94b1555e292/bootstraplauncher-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/securejarhandler/9.0.18/a130f48d1f454285428953ba2ab79861b7532db7/securejarhandler-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarFileSystems/0.4.1/78f59f89defcd032ed788b151ca6a0d40ace796a/JarJarFileSystems-0.4.1.jar",
+        "--add-modules",
+        "ALL-MODULE-PATH",
+        "--add-opens",
+        "java.base/java.util.jar\u003dcpw.mods.securejarhandler",
+        "--add-opens",
+        "java.base/java.lang.invoke\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "java.base/sun.security.util\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "jdk.naming.dns/com.sun.jndi.dns\u003djava.naming",
+        "-XstartOnFirstThread",
+        "-Dforge.logging.markers\u003dREGISTRIES",
+        "-Dforge.logging.console.level\u003ddebug",
+        "-DlegacyClassPath.file\u003d/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/configuration/neoForm/neoFormJoined1.21.8-20250717.133445/steps/writeMinecraftClasspathClientData/classpath.txt",
+        "-DignoreList\u003dmixinextras-neoforge-0.5.0.jar,client-extra,neoforge-",
+        "-Djava.net.preferIPv6Addresses\u003dsystem"
+      ],
+      "cwd": "${workspaceFolder}/runs/clientData",
+      "env": {
+        "MOD_CLASSES": "nuicraft%%/Users/otoyume/Documents/GitHub/Nuicraft/bin/main"
+      },
+      "shortenCommandLine": "argfile"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Nuicraft - GameTestServer",
+      "presentation": {
+        "group": "NG - nuicraft",
+        "order": 2
+      },
+      "projectName": "nuicraft",
+      "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
+      "args": [
+        "--launchTarget",
+        "neoforgegametestserverdev",
+        "--fml.fmlVersion",
+        "9.0.18",
+        "--fml.mcVersion",
+        "1.21.8",
+        "--fml.neoForgeVersion",
+        "21.8.52",
+        "--fml.neoFormVersion",
+        "20250717.133445"
+      ],
+      "vmArgs": [
+        "-p",
+        "/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/bootstraplauncher/9.0.18/ec6c91c3e44cd3c77be98069010ce94b1555e292/bootstraplauncher-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/securejarhandler/9.0.18/a130f48d1f454285428953ba2ab79861b7532db7/securejarhandler-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarFileSystems/0.4.1/78f59f89defcd032ed788b151ca6a0d40ace796a/JarJarFileSystems-0.4.1.jar",
+        "--add-modules",
+        "ALL-MODULE-PATH",
+        "--add-opens",
+        "java.base/java.util.jar\u003dcpw.mods.securejarhandler",
+        "--add-opens",
+        "java.base/java.lang.invoke\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "java.base/sun.security.util\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "jdk.naming.dns/com.sun.jndi.dns\u003djava.naming",
+        "-Dforge.logging.markers\u003dREGISTRIES",
+        "-Dforge.logging.console.level\u003ddebug",
+        "-Dneoforge.enableGameTest\u003dtrue",
+        "-DlegacyClassPath.file\u003d/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/configuration/neoForm/neoFormJoined1.21.8-20250717.133445/steps/writeMinecraftClasspathGameTestServer/classpath.txt",
+        "-DignoreList\u003dmixinextras-neoforge-0.5.0.jar,client-extra,neoforge-",
+        "-Djava.net.preferIPv6Addresses\u003dsystem"
+      ],
+      "cwd": "${workspaceFolder}/runs/gameTestServer",
+      "env": {
+        "MOD_CLASSES": "nuicraft%%/Users/otoyume/Documents/GitHub/Nuicraft/bin/main"
+      },
+      "shortenCommandLine": "argfile"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Nuicraft - Junit",
+      "presentation": {
+        "group": "NG - nuicraft",
+        "order": 3
+      },
+      "projectName": "nuicraft",
+      "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
+      "args": [
+        "--launchTarget",
+        "neoforgejunitdev",
+        "--version",
+        "21.8.52",
+        "--assetIndex",
+        "asset-index",
+        "--assetsDir",
+        "/Users/otoyume/.gradle/caches/minecraft/assets",
+        "--fml.fmlVersion",
+        "9.0.18",
+        "--fml.mcVersion",
+        "1.21.8",
+        "--fml.neoForgeVersion",
+        "21.8.52",
+        "--fml.neoFormVersion",
+        "20250717.133445"
+      ],
+      "vmArgs": [
+        "-p",
+        "/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/bootstraplauncher/9.0.18/ec6c91c3e44cd3c77be98069010ce94b1555e292/bootstraplauncher-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/securejarhandler/9.0.18/a130f48d1f454285428953ba2ab79861b7532db7/securejarhandler-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarFileSystems/0.4.1/78f59f89defcd032ed788b151ca6a0d40ace796a/JarJarFileSystems-0.4.1.jar",
+        "--add-modules",
+        "ALL-MODULE-PATH",
+        "--add-opens",
+        "java.base/java.util.jar\u003dcpw.mods.securejarhandler",
+        "--add-opens",
+        "java.base/java.lang.invoke\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "java.base/sun.security.util\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "jdk.naming.dns/com.sun.jndi.dns\u003djava.naming",
+        "-XstartOnFirstThread",
+        "-Dforge.logging.markers\u003dREGISTRIES",
+        "-Dforge.logging.console.level\u003ddebug",
+        "-DlegacyClassPath.file\u003d/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/configuration/neoForm/neoFormJoined1.21.8-20250717.133445/steps/writeMinecraftClasspathJunit/classpath.txt",
+        "-DignoreList\u003dmixinextras-neoforge-0.5.0.jar,client-extra,neoforge-",
+        "-Djava.net.preferIPv6Addresses\u003dsystem"
+      ],
+      "cwd": "${workspaceFolder}/runs/junit",
+      "env": {
+        "MOD_CLASSES": "nuicraft%%/Users/otoyume/Documents/GitHub/Nuicraft/bin/main"
+      },
+      "shortenCommandLine": "argfile"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Nuicraft - Server",
+      "presentation": {
+        "group": "NG - nuicraft",
+        "order": 4
+      },
+      "projectName": "nuicraft",
+      "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
+      "args": [
+        "--nogui",
+        "--launchTarget",
+        "neoforgeserverdev",
+        "--fml.fmlVersion",
+        "9.0.18",
+        "--fml.mcVersion",
+        "1.21.8",
+        "--fml.neoForgeVersion",
+        "21.8.52",
+        "--fml.neoFormVersion",
+        "20250717.133445"
+      ],
+      "vmArgs": [
+        "-p",
+        "/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/bootstraplauncher/9.0.18/ec6c91c3e44cd3c77be98069010ce94b1555e292/bootstraplauncher-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/securejarhandler/9.0.18/a130f48d1f454285428953ba2ab79861b7532db7/securejarhandler-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarFileSystems/0.4.1/78f59f89defcd032ed788b151ca6a0d40ace796a/JarJarFileSystems-0.4.1.jar",
+        "--add-modules",
+        "ALL-MODULE-PATH",
+        "--add-opens",
+        "java.base/java.util.jar\u003dcpw.mods.securejarhandler",
+        "--add-opens",
+        "java.base/java.lang.invoke\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "java.base/sun.security.util\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "jdk.naming.dns/com.sun.jndi.dns\u003djava.naming",
+        "-Dforge.logging.markers\u003dREGISTRIES",
+        "-Dforge.logging.console.level\u003ddebug",
+        "-Dforge.enabledGameTestNamespaces\u003dnuicraft",
+        "-DlegacyClassPath.file\u003d/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/configuration/neoForm/neoFormJoined1.21.8-20250717.133445/steps/writeMinecraftClasspathServer/classpath.txt",
+        "-DignoreList\u003dmixinextras-neoforge-0.5.0.jar,client-extra,neoforge-",
+        "-Djava.net.preferIPv6Addresses\u003dsystem"
+      ],
+      "cwd": "${workspaceFolder}/runs/server",
+      "env": {
+        "MOD_CLASSES": "nuicraft%%/Users/otoyume/Documents/GitHub/Nuicraft/bin/main"
+      },
+      "shortenCommandLine": "argfile"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Nuicraft - ServerData",
+      "presentation": {
+        "group": "NG - nuicraft",
+        "order": 5
+      },
+      "projectName": "nuicraft",
+      "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
+      "args": [
+        "--launchTarget",
+        "neoforgeserverdatadev",
+        "--fml.fmlVersion",
+        "9.0.18",
+        "--fml.mcVersion",
+        "1.21.8",
+        "--fml.neoForgeVersion",
+        "21.8.52",
+        "--fml.neoFormVersion",
+        "20250717.133445"
+      ],
+      "vmArgs": [
+        "-p",
+        "/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/bootstraplauncher/9.0.18/ec6c91c3e44cd3c77be98069010ce94b1555e292/bootstraplauncher-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/securejarhandler/9.0.18/a130f48d1f454285428953ba2ab79861b7532db7/securejarhandler-9.0.18.jar:/Users/otoyume/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarFileSystems/0.4.1/78f59f89defcd032ed788b151ca6a0d40ace796a/JarJarFileSystems-0.4.1.jar",
+        "--add-modules",
+        "ALL-MODULE-PATH",
+        "--add-opens",
+        "java.base/java.util.jar\u003dcpw.mods.securejarhandler",
+        "--add-opens",
+        "java.base/java.lang.invoke\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "java.base/sun.security.util\u003dcpw.mods.securejarhandler",
+        "--add-exports",
+        "jdk.naming.dns/com.sun.jndi.dns\u003djava.naming",
+        "-Dforge.logging.markers\u003dREGISTRIES",
+        "-Dforge.logging.console.level\u003ddebug",
+        "-DlegacyClassPath.file\u003d/Users/otoyume/Documents/GitHub/Nuicraft/.gradle/configuration/neoForm/neoFormJoined1.21.8-20250717.133445/steps/writeMinecraftClasspathServerData/classpath.txt",
+        "-DignoreList\u003dmixinextras-neoforge-0.5.0.jar,client-extra,neoforge-",
+        "-Djava.net.preferIPv6Addresses\u003dsystem"
+      ],
+      "cwd": "${workspaceFolder}/runs/serverData",
+      "env": {
+        "MOD_CLASSES": "nuicraft%%/Users/otoyume/Documents/GitHub/Nuicraft/bin/main"
+      },
+      "shortenCommandLine": "argfile"
+    }
+  ]
+}
