@@ -59,6 +59,9 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<BlockProtodermisDeposit> PROTODERMIS_ORE = BLOCKS.registerBlock("protodermis_ore",
             BlockProtodermisDeposit::new, BlockOre.createProperties());
 
+    public static final DeferredBlock<Block> ONU_WAHI_STONE_ORE = BLOCKS.registerSimpleBlock("onu_wahi_stone_ore",
+            BlockOre.createProperties());
+
     // Plants
     public static final DeferredBlock<BlockBamboo> BAMBOO = BLOCKS.registerBlock("bamboo",
             BlockBamboo::new, BlockBamboo.createProperties());

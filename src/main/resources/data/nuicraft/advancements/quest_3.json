@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": {"item": "nuicraft:onu_wahi_stone"},
+    "title": {"translate": "advancement.nuicraft.quest_3.title"},
+    "description": {"translate": "advancement.nuicraft.quest_3.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_3_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["nuicraft:onu_wahi_stone"], "count": {"min": 1}}]}
+    }
+  },
+  "parent": "nuicraft:quest_1"
+}

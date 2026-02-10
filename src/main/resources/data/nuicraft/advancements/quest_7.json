@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": {"item": "nuicraft:protodermis_solid"},
+    "title": {"translate": "advancement.nuicraft.quest_7.title"},
+    "description": {"translate": "advancement.nuicraft.quest_7.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_7_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["nuicraft:protodermis_solid"], "count": {"min": 1}}]}
+    }
+  },
+  "parent": "nuicraft:quest_3"
+}

@@ -1,0 +1,15 @@
+{
+  "display": {
+    "icon": {"item": "nuicraft:element_swiper"},
+    "title": {"translate": "advancement.nuicraft.quest_2.title"},
+    "description": {"translate": "advancement.nuicraft.quest_2.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_2_0": {"trigger": "minecraft:impossible"}
+  },
+  "parent": "nuicraft:quest_1"
+}

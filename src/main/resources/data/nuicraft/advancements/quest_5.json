@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": {"item": "nuicraft:mask_forge"},
+    "title": {"translate": "advancement.nuicraft.quest_5.title"},
+    "description": {"translate": "advancement.nuicraft.quest_5.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_5_0": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {"block": "nuicraft:mask_forge"}
+    }
+  },
+  "parent": "nuicraft:quest_1"
+}

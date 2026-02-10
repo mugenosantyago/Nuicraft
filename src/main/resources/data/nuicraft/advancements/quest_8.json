@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": {"item": "nuicraft:fluid_protodermis"},
+    "title": {"translate": "advancement.nuicraft.quest_8.title"},
+    "description": {"translate": "advancement.nuicraft.quest_8.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_8_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["nuicraft:fluid_protodermis"], "count": {"min": 1}}]}
+    }
+  },
+  "parent": "nuicraft:quest_7"
+}

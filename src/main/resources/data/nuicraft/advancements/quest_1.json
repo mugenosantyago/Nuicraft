@@ -1,0 +1,15 @@
+{
+  "display": {
+    "background": "minecraft:textures/block/stone.png",
+    "icon": {"item": "nuicraft:kanoka_disc"},
+    "title": {"translate": "advancement.nuicraft.quest_1.title"},
+    "description": {"translate": "advancement.nuicraft.quest_1.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_1_0": {"trigger": "minecraft:impossible"}
+  }
+}

@@ -92,5 +92,24 @@
   "item.nuicraft.mask_nuva_akaku": "Kanohi Nuva Akaku - Mask of X-Ray Vision (WIP)",
 
   "item.nuicraft.mask_ignika": "Kanohi Ignika - Legendary Mask of Life",
-  "item.nuicraft.mask_vahi": "Kanohi Vahi - Legendary Mask of Time"
+  "item.nuicraft.mask_vahi": "Kanohi Vahi - Legendary Mask of Time",
+
+  "advancement.nuicraft.quest_1.title": "Quest for Nuicraft",
+  "advancement.nuicraft.quest_1.description": "Prepare your adventure.",
+  "advancement.nuicraft.quest_2.title": "How to become a Toa?",
+  "advancement.nuicraft.quest_2.description": "Trade for the first time with one Turaga.",
+  "advancement.nuicraft.quest_3.title": "Dust, dust and more dust.",
+  "advancement.nuicraft.quest_3.description": "Get an Onu-Wahi stone.",
+  "advancement.nuicraft.quest_4.title": "Light can give goodness.",
+  "advancement.nuicraft.quest_4.description": "Get a lightstone.",
+  "advancement.nuicraft.quest_5.title": "Ready to be a mask maker.",
+  "advancement.nuicraft.quest_5.description": "Place a mask forge.",
+  "advancement.nuicraft.quest_6.title": "Our energy source.",
+  "advancement.nuicraft.quest_6.description": "Forge a mask.",
+  "advancement.nuicraft.quest_7.title": "Better than metals.",
+  "advancement.nuicraft.quest_7.description": "Get solid protodermis.",
+  "advancement.nuicraft.quest_8.title": "After all, we are made of protodermis.",
+  "advancement.nuicraft.quest_8.description": "Melt protodermis to its liquid state.",
+  "advancement.nuicraft.quest_9.title": "I am the light.",
+  "advancement.nuicraft.quest_9.description": "Defeat Makuta."
 }
