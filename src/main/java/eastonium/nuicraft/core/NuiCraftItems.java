@@ -121,13 +121,14 @@ public class NuiCraftItems {
         }
         
         // Use empty equipment asset to prevent vanilla 2D armor rendering
-        // This is critical - without it, the vanilla armor layer will show a dark overlay
         ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
                 ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
         );
         
-        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD).setAsset(emptyAsset).build();
+        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD)
+                .setAsset(emptyAsset)
+                .build();
         
         return props.stacksTo(1)
                 .attributes(attrs.build())
