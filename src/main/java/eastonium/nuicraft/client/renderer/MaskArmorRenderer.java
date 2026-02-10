@@ -23,84 +23,84 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     public static MaskArmorRenderer mataAkaku() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/akaku.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_akaku.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_akaku.png")
         );
     }
 
     public static MaskArmorRenderer mataHau() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/hau.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_hau.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_hau.png")
         );
     }
 
     public static MaskArmorRenderer mataHuna() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/huna.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_huna.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_huna.png")
         );
     }
 
     public static MaskArmorRenderer mataKakama() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/kakama.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_kakama.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_kakama.png")
         );
     }
 
     public static MaskArmorRenderer mataKaukau() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/kaukau.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_kaukau.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_kaukau.png")
         );
     }
 
     public static MaskArmorRenderer mataKomau() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/komau.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_komau.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_komau.png")
         );
     }
 
     public static MaskArmorRenderer mataMahiki() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/mahiki.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_mahiki.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_mahiki.png")
         );
     }
 
     public static MaskArmorRenderer mataMatatu() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/matatu.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_matatu.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_matatu.png")
         );
     }
 
     public static MaskArmorRenderer mataMiru() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/miru.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_miru.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_miru.png")
         );
     }
 
     public static MaskArmorRenderer mataPakari() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/pakari.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_pakari.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_pakari.png")
         );
     }
 
     public static MaskArmorRenderer mataRaru() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/raru.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_raru.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_raru.png")
         );
     }
 
     public static MaskArmorRenderer mataRuru() {
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/armor/ruru.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/mask_mata_ruru.png")
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/armor/mask_mata_ruru.png")
         );
     }
 }
