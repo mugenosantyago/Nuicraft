@@ -104,14 +104,19 @@ public class NuiCraftItems {
     // =====================================================================
 
     /**
-     * Build mask Item.Properties - equippable in HEAD slot, no armor rendering.
-     * Stats are applied via ServerTickHandler as transient attribute modifiers
-     * to avoid vanilla armor rendering conflicts.
+     * Build mask Item.Properties - equippable in HEAD slot.
+     * Uses empty equipment asset to suppress vanilla 2D armor overlay rendering.
+     * Stats are applied via ServerTickHandler as transient attribute modifiers.
      */
     private static Item.Properties maskProps(Item.Properties props) {
+        ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> emptyAsset = ResourceKey.create(
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
+        );
         return props.stacksTo(1)
                 .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
                         Equippable.builder(EquipmentSlot.HEAD)
+                                .setAsset(emptyAsset)
                                 .build());
     }
 

@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": 13378048
-      },
-      {
-        "type": "minecraft:constant",
-        "value": 6684672
-      }
-    ]
+    "model": "nuicraft:item/kofo_jaga_spawn_egg"
   }
 }
