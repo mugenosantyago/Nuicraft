@@ -2,6 +2,7 @@ package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.item.NuiCraftTiers;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,6 +19,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class NuiCraftItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(NuiCraft.MODID);
+
+    /** Call on Item.Properties before passing to Item constructor (1.21 requires id set). */
+    private static Item.Properties withItemId(String name, Item.Properties props) {
+        return props.setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, name)));
+    }
 
     // Block items
     public static final DeferredItem<BlockItem> FLUID_PROTODERMIS = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.FLUID_PROTODERMIS);
@@ -82,21 +88,21 @@ public class NuiCraftItems {
 
     // Protodermis tools
     public static final DeferredItem<Item> PROTODERMIS_SWORD = ITEMS.registerItem("protodermis_sword",
-            props -> new Item(props.sword(NuiCraftTiers.PROTODERMIS, 3, -2.4F)));
+            props -> new Item(withItemId("protodermis_sword", props).sword(NuiCraftTiers.PROTODERMIS, 3, -2.4F)));
     public static final DeferredItem<Item> PROTODERMIS_PICK = ITEMS.registerItem("protodermis_pick",
-            props -> new Item(props.pickaxe(NuiCraftTiers.PROTODERMIS, 1, -2.8F)));
+            props -> new Item(withItemId("protodermis_pick", props).pickaxe(NuiCraftTiers.PROTODERMIS, 1, -2.8F)));
     public static final DeferredItem<Item> PROTODERMIS_AXE = ITEMS.registerItem("protodermis_axe",
-            props -> new Item(props.axe(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F)));
+            props -> new Item(withItemId("protodermis_axe", props).axe(NuiCraftTiers.PROTODERMIS, 6.0F, -3.1F)));
     public static final DeferredItem<Item> PROTODERMIS_SHOVEL = ITEMS.registerItem("protodermis_shovel",
-            props -> new Item(props.shovel(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F)));
+            props -> new Item(withItemId("protodermis_shovel", props).shovel(NuiCraftTiers.PROTODERMIS, 1.5F, -3.0F)));
     public static final DeferredItem<Item> PROTODERMIS_SCYTHE = ITEMS.registerItem("protodermis_scythe",
-            props -> new Item(props.hoe(NuiCraftTiers.PROTODERMIS, -2, -1.0F)));
+            props -> new Item(withItemId("protodermis_scythe", props).hoe(NuiCraftTiers.PROTODERMIS, -2, -1.0F)));
 
     // Special items
     public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.registerItem("heatstone_lighter",
-            props -> new eastonium.nuicraft.item.ItemHeatstoneLighter(props.stacksTo(1).durability(128)));
+            props -> new eastonium.nuicraft.item.ItemHeatstoneLighter(withItemId("heatstone_lighter", props).stacksTo(1).durability(128)));
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
-            props -> new eastonium.nuicraft.item.ItemSluice(props.stacksTo(1)));
+            props -> new eastonium.nuicraft.item.ItemSluice(withItemId("sluice", props).stacksTo(1)));
 
     // Masks - equippable as helmets with stat boosts (armor/toughness), vanilla HumanoidArmorLayer
     private static ResourceKey<EquipmentAsset> maskAsset(String name) {
