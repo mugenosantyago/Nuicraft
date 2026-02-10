@@ -35,9 +35,11 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.KOFO_JAGA.get(), KofoJagaRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
 
-        // Generic renderers for other mobs using Pig model + textures
+        // Generic renderers for other mobs using Pig model + entity textures
+        // Texture names must match files in textures/entity/{name}.png
+
         // Bohrok
-        event.registerEntityRenderer(NuiCraftEntityTypes.BOHROKTAHNOK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "bohrok_tahnok"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.BOHROKTAHNOK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tahnoktexture"));
         event.registerEntityRenderer(NuiCraftEntityTypes.GAHLOK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "gahloktexture"));
         event.registerEntityRenderer(NuiCraftEntityTypes.KOHRAK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "kohraktexture"));
         event.registerEntityRenderer(NuiCraftEntityTypes.LEHVAK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "lehvaktexture"));
@@ -49,9 +51,9 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.KURAHK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "kurahk"));
         event.registerEntityRenderer(NuiCraftEntityTypes.LERAHK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "lerahk"));
         event.registerEntityRenderer(NuiCraftEntityTypes.PANRAHK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "panrahk"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.RAHKSHIYELLOW.get(), ctx -> new GenericNuiCraftRenderer(ctx, "rahkshi_yellow"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.RAHKSHIYELLOW.get(), ctx -> new GenericNuiCraftRenderer(ctx, "rahkshiamarillo"));
         event.registerEntityRenderer(NuiCraftEntityTypes.TURAHK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turahk"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.VOHRAK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "vohrak"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.VOHRAK.get(), ctx -> new GenericNuiCraftRenderer(ctx, "vorahk"));
 
         // Matoran
         event.registerEntityRenderer(NuiCraftEntityTypes.AGNIMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "agnitexture"));
@@ -70,26 +72,26 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.ONEPUMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "oneputexture"));
         event.registerEntityRenderer(NuiCraftEntityTypes.PAKASTAAMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "matoranpakastaa"));
         event.registerEntityRenderer(NuiCraftEntityTypes.TUULIMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "matorantuuli"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.VOHONMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "vohon_matoran"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.ZEMYAMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "zemya_matoran"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.VOHONMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "vohontexture"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.ZEMYAMATORAN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "zemyatexture"));
 
         // Turaga
-        event.registerEntityRenderer(NuiCraftEntityTypes.MATAUTURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "matau_turaga"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.NOKAMATURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "nokama_turaga"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.NUJUTURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "nuju_turaga"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.ONEWATURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "onewa_turaga"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.VAKAMATURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "vakama_turaga"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.WHENAUTURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "whenua_turaga"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.MATAUTURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turagamatau"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.NOKAMATURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turaganokama"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.NUJUTURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turaganuju"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.ONEWATURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turagaonewa"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.VAKAMATURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turagavakama"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.WHENAUTURAGA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "turagawhenua"));
 
         // Rahi
         event.registerEntityRenderer(NuiCraftEntityTypes.KANERA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "kanera"));
         event.registerEntityRenderer(NuiCraftEntityTypes.MUAKA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "muaka"));
         event.registerEntityRenderer(NuiCraftEntityTypes.NUIRAMAGREEN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "nuiramagreen"));
         event.registerEntityRenderer(NuiCraftEntityTypes.NUIRAMAORANGE.get(), ctx -> new GenericNuiCraftRenderer(ctx, "nuiramaorange"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.SPIDERFIKOU.get(), ctx -> new GenericNuiCraftRenderer(ctx, "spider_fikou"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVABLUE.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tarakava_blue"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVAGREEN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tarakava_green"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVAYELLOW.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tarakava_yellow"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.SPIDERFIKOU.get(), ctx -> new GenericNuiCraftRenderer(ctx, "spiderfikoutexture"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVABLUE.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tarakavaazul"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVAGREEN.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tarakavaverde"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVAYELLOW.get(), ctx -> new GenericNuiCraftRenderer(ctx, "tarakavaamarillo"));
         event.registerEntityRenderer(NuiCraftEntityTypes.MAKUTA.get(), ctx -> new GenericNuiCraftRenderer(ctx, "makuta"));
     }
 }
