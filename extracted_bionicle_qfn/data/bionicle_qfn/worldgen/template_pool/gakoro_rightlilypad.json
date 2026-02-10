@@ -1,0 +1,17 @@
+{
+  "name": "bionicle_qfn:gakoro_rightlilypad",
+  "fallback": "bionicle_qfn:gakoro_rightsecondlilypad",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "bionicle_qfn:gakoro_rightlilypad",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

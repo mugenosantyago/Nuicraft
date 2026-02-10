@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "bionicle_qfn:cured_wood_stairs",
+    "bionicle_qfn:light_gray_toa_stone_stairs",
+    "bionicle_qfn:light_gray_stone_stairs",
+    "bionicle_qfn:black_stone_stairs",
+    "bionicle_qfn:ice_stairs",
+    "bionicle_qfn:seaweed_wood_stairs"
+  ]
+}

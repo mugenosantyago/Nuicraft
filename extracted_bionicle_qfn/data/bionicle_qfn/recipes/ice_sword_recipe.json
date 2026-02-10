@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:onu_wahi_stone"
+    },
+    "b": {
+      "item": "minecraft:ice"
+    },
+    "c": {
+      "item": "bionicle_qfn:ice_toa_stone"
+    },
+    "d": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:ice_sword",
+    "count": 1
+  }
+}

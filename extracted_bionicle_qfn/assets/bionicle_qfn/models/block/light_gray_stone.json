@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/matanui_stone",
+    "up": "bionicle_qfn:block/matanui_stone",
+    "north": "bionicle_qfn:block/matanui_stone",
+    "east": "bionicle_qfn:block/matanui_stone",
+    "south": "bionicle_qfn:block/matanui_stone",
+    "west": "bionicle_qfn:block/matanui_stone",
+    "particle": "bionicle_qfn:block/matanui_stone"
+  },
+  "render_type": "solid"
+}

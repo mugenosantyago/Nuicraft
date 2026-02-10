@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:seaweed_wood_planks"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:seaweed_planks",
+    "count": 4
+  }
+}

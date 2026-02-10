@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:any"
+  },
+  "spawners": {
+    "type": "bionicle_qfn:nui_rama_orange",
+    "weight": 9,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "bionicle_qfn:custom/lightstone",
+  "textures": {
+    "all": "bionicle_qfn:block/glowstone",
+    "particle": "bionicle_qfn:block/glowstone",
+    "0": "bionicle_qfn:block/glowstone"
+  },
+  "render_type": "solid"
+}

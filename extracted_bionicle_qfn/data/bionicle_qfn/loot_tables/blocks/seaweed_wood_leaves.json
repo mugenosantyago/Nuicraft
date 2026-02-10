@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "bionicle_qfn:blocks/seaweed_wood_leaves",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bionicle_qfn:seaweed_wood_leaves"
+        }
+      ]
+    }
+  ]
+}

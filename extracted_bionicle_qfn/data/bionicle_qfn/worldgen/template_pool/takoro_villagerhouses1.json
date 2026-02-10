@@ -1,0 +1,17 @@
+{
+  "name": "bionicle_qfn:takoro_villagerhouses1",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "bionicle_qfn:takoro_villagerhouses1",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

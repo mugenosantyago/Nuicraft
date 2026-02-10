@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "bionicle_qfn:block/lightgraystonebrick",
+    "bottom": "bionicle_qfn:block/lightgraystonebrick",
+    "top": "bionicle_qfn:block/lightgraystonebrick",
+    "side": "bionicle_qfn:block/lightgraystonebrick"
+  },
+  "render_type": "solid"
+}

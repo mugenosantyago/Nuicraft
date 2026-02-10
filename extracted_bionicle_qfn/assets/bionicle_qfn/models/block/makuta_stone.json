@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/makuta_stone",
+    "up": "bionicle_qfn:block/makuta_stone",
+    "north": "bionicle_qfn:block/makuta_stone_face",
+    "east": "bionicle_qfn:block/makuta_stone",
+    "south": "bionicle_qfn:block/makuta_stone",
+    "west": "bionicle_qfn:block/makuta_stone",
+    "particle": "bionicle_qfn:block/makuta_stone"
+  },
+  "render_type": "solid"
+}

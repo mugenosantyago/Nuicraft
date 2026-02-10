@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/stonehammer",
+  "textures": {
+    "0": "bionicle_qfn:block/stonehammer",
+    "particle": "bionicle_qfn:item/hammer"
+  }
+}

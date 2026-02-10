@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "bionicle_qfn:vakama_staff",
+    "bionicle_qfn:trident",
+    "bionicle_qfn:ice_sword",
+    "bionicle_qfn:fire_sword"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "minecraft:iron_nugget"
+    },
+    "c": {
+      "item": "bionicle_qfn:rock_toa_stone"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:pohatu_hands",
+    "count": 1
+  }
+}

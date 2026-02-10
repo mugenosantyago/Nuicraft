@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/waterhooks",
+  "textures": {
+    "0": "bionicle_qfn:block/waterhookstexture",
+    "particle": "bionicle_qfn:item/sword_water"
+  }
+}

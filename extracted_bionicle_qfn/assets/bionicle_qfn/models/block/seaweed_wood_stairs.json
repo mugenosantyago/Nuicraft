@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "bionicle_qfn:block/seaweedwood_planks",
+    "bottom": "bionicle_qfn:block/seaweedwood_planks",
+    "top": "bionicle_qfn:block/seaweedwood_planks",
+    "side": "bionicle_qfn:block/seaweedwood_planks"
+  },
+  "render_type": "solid"
+}

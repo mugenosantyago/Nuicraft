@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/pohatuhands",
+  "textures": {
+    "0": "bionicle_qfn:block/pohatuhands",
+    "particle": "bionicle_qfn:item/sword_earth"
+  }
+}

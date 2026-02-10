@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "bionicle_qfn:fire_sword"
+    },
+    "title": {
+      "translate": "advancements.quest_9.title"
+    },
+    "description": {
+      "translate": "advancements.quest_9.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "quest_9_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 20
+  },
+  "parent": "bionicle_qfn:quest_1"
+}

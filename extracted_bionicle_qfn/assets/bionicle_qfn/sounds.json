@@ -1,0 +1,71 @@
+{
+  "bioniclethegamemaintheme": {
+    "subtitle": "subtitles.bioniclethegamemaintheme",
+    "sounds": [
+      {
+        "name": "bionicle_qfn:01_main_theme",
+        "stream": false
+      }
+    ]
+  },
+  "matorantalks": {
+    "subtitle": "subtitles.matorantalks",
+    "sounds": [
+      {
+        "name": "bionicle_qfn:001.wav",
+        "stream": false
+      },
+      {
+        "name": "bionicle_qfn:002.wav",
+        "stream": false
+      },
+      {
+        "name": "bionicle_qfn:004.wav",
+        "stream": false
+      },
+      {
+        "name": "bionicle_qfn:005.wav",
+        "stream": false
+      },
+      {
+        "name": "bionicle_qfn:006.wav",
+        "stream": false
+      },
+      {
+        "name": "bionicle_qfn:007.wav",
+        "stream": false
+      },
+      {
+        "name": "bionicle_qfn:008.wav",
+        "stream": false
+      }
+    ]
+  },
+  "mask_power": {
+    "subtitle": "subtitles.mask_power",
+    "sounds": [
+      {
+        "name": "bionicle_qfn:game_00006",
+        "stream": false
+      }
+    ]
+  },
+  "bioniclemusic": {
+    "subtitle": "subtitles.bioniclemusic",
+    "sounds": [
+      {
+        "name": "bionicle_qfn:the_bionicle_music",
+        "stream": false
+      }
+    ]
+  },
+  "power": {
+    "subtitle": "subtitles.power",
+    "sounds": [
+      {
+        "name": "bionicle_qfn:wum",
+        "stream": false
+      }
+    ]
+  }
+}

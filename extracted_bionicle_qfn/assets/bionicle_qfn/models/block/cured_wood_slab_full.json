@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "bionicle_qfn:block/curedwood_planks",
+    "bottom": "bionicle_qfn:block/curedwood_planks",
+    "top": "bionicle_qfn:block/curedwood_planks",
+    "side": "bionicle_qfn:block/curedwood_planks"
+  },
+  "render_type": "solid"
+}

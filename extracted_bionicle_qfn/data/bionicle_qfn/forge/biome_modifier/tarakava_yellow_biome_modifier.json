@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "desert",
+  "spawners": {
+    "type": "bionicle_qfn:tarakava_yellow",
+    "weight": 7,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "windswept_gravelly_hills",
+    "stony_peaks",
+    "windswept_hills"
+  ],
+  "spawners": {
+    "type": "bionicle_qfn:nuparu_matoran",
+    "weight": 5,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "bionicle_qfn:le_koro_stone",
+    "bionicle_qfn:po_koro_stone",
+    "bionicle_qfn:light_gray_stone_brick",
+    "bionicle_qfn:ko_koro_stone",
+    "bionicle_qfn:black_stone_lamp",
+    "bionicle_qfn:black_stone_brick",
+    "bionicle_qfn:black_stone_block",
+    "bionicle_qfn:protodermis_block",
+    "bionicle_qfn:ta_koro_stone",
+    "bionicle_qfn:onu_koro_stone",
+    "bionicle_qfn:ga_koro_stone",
+    "bionicle_qfn:black_stone",
+    "bionicle_qfn:light_gray_stone",
+    "bionicle_qfn:makuta_stone",
+    "bionicle_qfn:mata_nui_stone",
+    "bionicle_qfn:lightstones_block"
+  ]
+}

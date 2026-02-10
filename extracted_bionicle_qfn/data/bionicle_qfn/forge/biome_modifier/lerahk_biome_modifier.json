@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "bamboo_jungle",
+    "jungle",
+    "sparse_jungle"
+  ],
+  "spawners": {
+    "type": "bionicle_qfn:lerahk",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

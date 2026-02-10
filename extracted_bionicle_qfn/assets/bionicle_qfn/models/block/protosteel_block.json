@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/protosteelblock",
+    "up": "bionicle_qfn:block/protosteelblock",
+    "north": "bionicle_qfn:block/protosteelblock",
+    "east": "bionicle_qfn:block/protosteelblock",
+    "south": "bionicle_qfn:block/protosteelblock",
+    "west": "bionicle_qfn:block/protosteelblock",
+    "particle": "bionicle_qfn:block/protosteelblock"
+  },
+  "render_type": "solid"
+}

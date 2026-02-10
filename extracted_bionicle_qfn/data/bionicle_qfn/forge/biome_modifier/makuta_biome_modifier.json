@@ -1,0 +1,16 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "desert",
+    "plains",
+    "savanna",
+    "snowy_plains",
+    "sunflower_plains"
+  ],
+  "spawners": {
+    "type": "bionicle_qfn:makuta",
+    "weight": 5,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

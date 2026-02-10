@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/blackstonelamp",
+    "up": "bionicle_qfn:block/blackstonelamp",
+    "north": "bionicle_qfn:block/blackstonelamp",
+    "east": "bionicle_qfn:block/blackstonelamp",
+    "south": "bionicle_qfn:block/blackstonelamp",
+    "west": "bionicle_qfn:block/blackstonelamp",
+    "particle": "bionicle_qfn:block/blackstonelamp"
+  },
+  "render_type": "solid"
+}

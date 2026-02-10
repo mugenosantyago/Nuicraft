@@ -1,0 +1,8 @@
+{
+  "parent": "block/fence_post",
+  "textures": {
+    "texture": "bionicle_qfn:block/seaweedwood_planks",
+    "particle": "bionicle_qfn:block/seaweedwood_planks"
+  },
+  "render_type": "solid"
+}

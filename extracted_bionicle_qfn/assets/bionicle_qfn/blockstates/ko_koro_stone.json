@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "bionicle_qfn:block/ko_koro_stone"
+    },
+    "facing=east": {
+      "model": "bionicle_qfn:block/ko_koro_stone",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "bionicle_qfn:block/ko_koro_stone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "bionicle_qfn:block/ko_koro_stone",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "bionicle_qfn:block/ko_koro_stone",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "bionicle_qfn:block/ko_koro_stone",
+      "x": 90
+    }
+  }
+}

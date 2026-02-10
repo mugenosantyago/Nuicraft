@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/onuwahistone",
+    "up": "bionicle_qfn:block/onuwahistone",
+    "north": "bionicle_qfn:block/onuwahistone",
+    "east": "bionicle_qfn:block/onuwahistone",
+    "south": "bionicle_qfn:block/onuwahistone",
+    "west": "bionicle_qfn:block/onuwahistone",
+    "particle": "bionicle_qfn:block/onuwahistone"
+  },
+  "render_type": "solid"
+}

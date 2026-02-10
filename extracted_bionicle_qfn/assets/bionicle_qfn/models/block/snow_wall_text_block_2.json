@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "minecraft:block/snow",
+    "up": "minecraft:block/snow",
+    "north": "bionicle_qfn:block/snowwalltext2",
+    "east": "minecraft:block/snow",
+    "south": "minecraft:block/snow",
+    "west": "minecraft:block/snow",
+    "particle": "minecraft:block/snow"
+  },
+  "render_type": "solid"
+}

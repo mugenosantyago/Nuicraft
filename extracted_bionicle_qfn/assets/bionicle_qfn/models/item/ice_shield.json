@@ -1,0 +1,15 @@
+{
+  "parent": "bionicle_qfn:custom/kopaka_shield",
+  "textures": {
+    "0": "bionicle_qfn:block/iceshieldtexture",
+    "particle": "bionicle_qfn:item/kopakashield"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "bionicle_qfn:item/ice_shield_0"
+    }
+  ]
+}

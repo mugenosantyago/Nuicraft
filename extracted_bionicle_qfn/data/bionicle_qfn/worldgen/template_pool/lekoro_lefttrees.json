@@ -1,0 +1,17 @@
+{
+  "name": "bionicle_qfn:lekoro_lefttrees",
+  "fallback": "bionicle_qfn:lekoro_lefttrees",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "bionicle_qfn:lekoro_lefttrees",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

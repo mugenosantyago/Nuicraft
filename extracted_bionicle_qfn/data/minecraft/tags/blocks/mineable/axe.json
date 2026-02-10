@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "bionicle_qfn:le_koro_ladder",
+    "bionicle_qfn:cured_wood_planks",
+    "bionicle_qfn:cured_wood_log",
+    "bionicle_qfn:cured_wood_wood",
+    "bionicle_qfn:lightgraystone_planks",
+    "bionicle_qfn:seaweed_wood_planks",
+    "bionicle_qfn:seaweed_wood_log",
+    "bionicle_qfn:seaweed_wood_wood"
+  ]
+}

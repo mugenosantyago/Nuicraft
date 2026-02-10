@@ -1,0 +1,8 @@
+{
+  "parent": "block/button",
+  "textures": {
+    "particle": "bionicle_qfn:block/ice_planks",
+    "texture": "bionicle_qfn:block/ice_planks"
+  },
+  "render_type": "solid"
+}

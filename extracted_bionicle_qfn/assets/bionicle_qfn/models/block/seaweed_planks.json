@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/seaweedplanks",
+    "up": "bionicle_qfn:block/seaweedplanks",
+    "north": "bionicle_qfn:block/seaweedplanks",
+    "east": "bionicle_qfn:block/seaweedplanks",
+    "south": "bionicle_qfn:block/seaweedplanks",
+    "west": "bionicle_qfn:block/seaweedplanks",
+    "particle": "bionicle_qfn:block/seaweedplanks"
+  },
+  "render_type": "solid"
+}

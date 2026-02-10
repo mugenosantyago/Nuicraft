@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "bionicle_qfn:block/lightgraystone_pressure_plate"
+    },
+    "powered=true": {
+      "model": "bionicle_qfn:block/lightgraystone_pressure_plate_down"
+    }
+  }
+}

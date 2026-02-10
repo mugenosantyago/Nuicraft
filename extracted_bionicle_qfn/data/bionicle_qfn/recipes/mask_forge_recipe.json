@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "cec"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:onu_wahi_stone"
+    },
+    "b": {
+      "item": "bionicle_qfn:protodermis_bucket"
+    },
+    "c": {
+      "item": "minecraft:iron_ingot"
+    },
+    "d": {
+      "item": "minecraft:lava_bucket"
+    },
+    "e": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:mask_forge",
+    "count": 1
+  }
+}

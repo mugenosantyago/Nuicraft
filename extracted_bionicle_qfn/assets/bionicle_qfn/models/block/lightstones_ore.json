@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "bionicle_qfn:block/lightstoneblock",
+    "particle": "bionicle_qfn:block/lightstoneblock"
+  },
+  "render_type": "solid"
+}

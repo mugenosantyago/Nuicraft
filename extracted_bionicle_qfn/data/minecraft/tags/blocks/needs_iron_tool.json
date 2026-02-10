@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "bionicle_qfn:protosteel_block",
+    "bionicle_qfn:lightstones_ore",
+    "bionicle_qfn:mask_forge"
+  ]
+}

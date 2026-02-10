@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "bionicle_qfn:haumaskred_helmet"
+    },
+    "title": {
+      "translate": "advancements.quest_6.title"
+    },
+    "description": {
+      "translate": "advancements.quest_6.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_6_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "bionicle_qfn:quest_5"
+}

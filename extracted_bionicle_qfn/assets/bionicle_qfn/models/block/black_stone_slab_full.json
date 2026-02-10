@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "bionicle_qfn:block/blackstonebrick",
+    "bottom": "bionicle_qfn:block/blackstonebrick",
+    "top": "bionicle_qfn:block/blackstonebrick",
+    "side": "bionicle_qfn:block/blackstonebrick"
+  },
+  "render_type": "solid"
+}

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.client.model.MaskModel;
-import eastonium.nuicraft.client.model.NuiCraftModelLayers;
 import eastonium.nuicraft.core.NuiCraftItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -14,15 +13,48 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Renders a 2D Bionicle mask flat in front of the player's face
+ * Renders a 2D Bionicle mask flat in front of the player's face (vanilla-style, like bionicle_qfn).
+ * Uses the same texture as each mask's item icon.
  */
 public class MaskRenderLayer<S extends HumanoidRenderState, M extends HumanoidModel<S>> extends RenderLayer<S, M> {
-    private static final ResourceLocation MASK_TEXTURE = ResourceLocation.fromNamespaceAndPath(
-            NuiCraft.MODID, "textures/entity/equipment/humanoid/nuicraft_mask.png");
-    
+
+    /** Per-mask texture (same path as item icon). */
+    private static final Map<Item, ResourceLocation> MASK_TEXTURES = new HashMap<>();
+
+    static {
+        put(NuiCraftItems.MASK_MATA_GOLD.get(), "textures/item/masks/gold/mata_hau_gold.png");
+        put(NuiCraftItems.MASK_MATA_KAKAMA.get(), "textures/item/masks/normal/mata_kakama.png");
+        put(NuiCraftItems.MASK_MATA_PAKARI.get(), "textures/item/masks/normal/mata_pakari.png");
+        put(NuiCraftItems.MASK_MATA_KAUKAU.get(), "textures/item/masks/normal/mata_kaukau.png");
+        put(NuiCraftItems.MASK_MATA_MIRU.get(), "textures/item/masks/normal/mata_miru.png");
+        put(NuiCraftItems.MASK_MATA_HAU.get(), "textures/item/masks/normal/mata_hau.png");
+        put(NuiCraftItems.MASK_MATA_AKAKU.get(), "textures/item/masks/normal/mata_akaku.png");
+        put(NuiCraftItems.MASK_NUVA_KAKAMA.get(), "textures/item/masks/normal/nuva_kakama.png");
+        put(NuiCraftItems.MASK_NUVA_PAKARI.get(), "textures/item/masks/normal/nuva_pakari.png");
+        put(NuiCraftItems.MASK_NUVA_KAUKAU.get(), "textures/item/masks/normal/nuva_kaukau.png");
+        put(NuiCraftItems.MASK_NUVA_MIRU.get(), "textures/item/masks/normal/nuva_miru.png");
+        put(NuiCraftItems.MASK_NUVA_HAU.get(), "textures/item/masks/normal/nuva_hau.png");
+        put(NuiCraftItems.MASK_NUVA_AKAKU.get(), "textures/item/masks/normal/nuva_akaku.png");
+        put(NuiCraftItems.MASK_IGNIKA.get(), "textures/item/masks/normal/ignika_0.png");
+        put(NuiCraftItems.MASK_VAHI.get(), "textures/item/masks/normal/vahi_0.png");
+    }
+
+    private static void put(Item item, String path) {
+        MASK_TEXTURES.put(item, ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, path));
+    }
+
+    private static ResourceLocation getTexture(ItemStack stack) {
+        return MASK_TEXTURES.getOrDefault(stack.getItem(),
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/masks/normal/mata_hau.png"));
+    }
+
     private final MaskModel maskModel;
 
     public MaskRenderLayer(RenderLayerParent<S, M> renderer, MaskModel maskModel) {
@@ -35,17 +67,13 @@ public class MaskRenderLayer<S extends HumanoidRenderState, M extends HumanoidMo
         ItemStack headItem = state.headEquipment;
         if (headItem.isEmpty()) return;
 
-        // Check if wearing any NuiCraft mask
         if (!isMask(headItem)) return;
 
-        // Move to head position and copy its rotation (mask follows head look direction)
         this.getParentModel().head.translateAndRotate(poseStack);
-        // In HumanoidModel head-local space: face is -Z (player looks toward -Z when facing camera).
-        // Push mask out in front of face.
         poseStack.translate(0, 0, -1.5);
-        
-        // Render the 2D mask flat in front of face
-        VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(MASK_TEXTURE));
+
+        ResourceLocation texture = getTexture(headItem);
+        VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(texture));
         this.maskModel.root().render(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
     }
 

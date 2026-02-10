@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bionicle_qfn:lightstones_block"
+    }
+  ],
+  "result": {
+    "item": "bionicle_qfn:lightstones",
+    "count": 9
+  }
+}

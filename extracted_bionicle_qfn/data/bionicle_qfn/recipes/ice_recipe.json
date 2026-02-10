@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:ice"
+    },
+    "b": {
+      "item": "bionicle_qfn:hammer"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:ice_wood",
+    "count": 1
+  }
+}

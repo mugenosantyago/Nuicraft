@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/kopaka_shield_blocking",
+  "textures": {
+    "2": "bionicle_qfn:block/iceshieldblockingtexture",
+    "particle": "bionicle_qfn:item/kopakashield"
+  }
+}

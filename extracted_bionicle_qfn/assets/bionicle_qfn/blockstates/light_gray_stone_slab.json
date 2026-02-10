@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bionicle_qfn:block/light_gray_stone_slab"
+    },
+    "type=top": {
+      "model": "bionicle_qfn:block/light_gray_stone_slab_top"
+    },
+    "type=double": {
+      "model": "bionicle_qfn:block/light_gray_stone_slab_full"
+    }
+  }
+}

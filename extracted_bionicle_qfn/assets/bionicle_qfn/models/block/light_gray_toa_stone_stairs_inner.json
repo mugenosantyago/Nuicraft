@@ -1,0 +1,10 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "particle": "bionicle_qfn:block/matanui_stone",
+    "bottom": "bionicle_qfn:block/matanui_stone",
+    "top": "bionicle_qfn:block/matanui_stone",
+    "side": "bionicle_qfn:block/matanui_stone"
+  },
+  "render_type": "solid"
+}

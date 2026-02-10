@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/icepickaxe",
+  "textures": {
+    "0": "bionicle_qfn:block/icepickaxe",
+    "particle": "bionicle_qfn:item/sword_ice"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "bionicle_qfn:pokoro_entrancepaths",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "bionicle_qfn:pokoro_entrance",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

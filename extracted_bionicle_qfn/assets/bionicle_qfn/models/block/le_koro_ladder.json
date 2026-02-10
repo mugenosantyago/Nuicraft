@@ -1,0 +1,9 @@
+{
+  "parent": "bionicle_qfn:custom/le-koroladder",
+  "textures": {
+    "all": "bionicle_qfn:block/le-koroladder",
+    "particle": "bionicle_qfn:block/le-koroladder",
+    "0": "bionicle_qfn:block/le-koroladder"
+  },
+  "render_type": "solid"
+}

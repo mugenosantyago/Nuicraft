@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/onuaclaws",
+  "textures": {
+    "0": "bionicle_qfn:block/onuaclaws",
+    "particle": "bionicle_qfn:item/sword_earth"
+  }
+}

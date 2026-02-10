@@ -1,0 +1,17 @@
+{
+  "name": "bionicle_qfn:pokoro_leftcorner",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "bionicle_qfn:pokoro_leftcorner",
+        "projection": "rigid",
+        "processors": {
+          "processors": []
+        }
+      }
+    }
+  ]
+}

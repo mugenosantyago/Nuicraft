@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "bionicle_qfn:block/le_koro_ladder"
+    },
+    "facing=east": {
+      "model": "bionicle_qfn:block/le_koro_ladder",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "bionicle_qfn:block/le_koro_ladder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "bionicle_qfn:block/le_koro_ladder",
+      "y": 270
+    }
+  }
+}

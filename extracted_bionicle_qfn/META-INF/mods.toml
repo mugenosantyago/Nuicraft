@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="bionicle_qfn"
+version="0.2.0"
+displayName="Bionicle: Quest for NuiCraft"
+displayURL="https://discord.gg/yr8adernZm"
+logoFile="logo.png"
+credits="By bionicle fans for bionicle fans."
+authors="Nuva Team"
+description="Can you save Mata Nui Island from the shadows?"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.bionicle_qfn]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="AFTER"
+    side="BOTH"
+
+
+
+
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration

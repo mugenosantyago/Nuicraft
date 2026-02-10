@@ -1,0 +1,9 @@
+{
+  "parent": "bionicle_qfn:custom/calderomod",
+  "textures": {
+    "all": "bionicle_qfn:block/caldero",
+    "particle": "bionicle_qfn:block/caldero",
+    "0": "bionicle_qfn:block/caldero"
+  },
+  "render_type": "solid"
+}

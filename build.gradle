@@ -36,13 +36,10 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     mavenLocal()
-    maven { url = 'https://maven.azuredoom.com/mods' }
 }
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    // Local AzureLib (build from AzureLib/ first: ./gradlew :neo:jar -x javadoc)
-    implementation files("${rootDir}/AzureLib/neo/build/libs/azurelib-neo-${minecraft_version}-3.2.0.jar")
 }
 
 tasks.withType(ProcessResources).configureEach {

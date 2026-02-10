@@ -1,0 +1,7 @@
+{
+  "parent": "bionicle_qfn:custom/kaukaustaff",
+  "textures": {
+    "0": "bionicle_qfn:block/kaukaustaff",
+    "particle": "bionicle_qfn:item/sword_air"
+  }
+}

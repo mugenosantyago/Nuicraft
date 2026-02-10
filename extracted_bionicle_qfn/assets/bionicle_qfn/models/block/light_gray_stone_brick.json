@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/lightgraystonebrick",
+    "up": "bionicle_qfn:block/lightgraystonebrick",
+    "north": "bionicle_qfn:block/lightgraystonebrick",
+    "east": "bionicle_qfn:block/lightgraystonebrick",
+    "south": "bionicle_qfn:block/lightgraystonebrick",
+    "west": "bionicle_qfn:block/lightgraystonebrick",
+    "particle": "bionicle_qfn:block/lightgraystonebrick"
+  },
+  "render_type": "solid"
+}

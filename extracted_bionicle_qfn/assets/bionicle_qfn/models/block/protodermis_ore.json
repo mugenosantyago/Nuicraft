@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "bionicle_qfn:block/protodermisore",
+    "up": "bionicle_qfn:block/protodermisore",
+    "north": "bionicle_qfn:block/protodermisore",
+    "east": "bionicle_qfn:block/protodermisore",
+    "south": "bionicle_qfn:block/protodermisore",
+    "west": "bionicle_qfn:block/protodermisore",
+    "particle": "bionicle_qfn:block/protodermisore"
+  },
+  "render_type": "solid"
+}
