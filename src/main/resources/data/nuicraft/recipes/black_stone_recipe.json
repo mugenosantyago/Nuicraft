@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:black_stone_block"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:black_stone_brick",
+    "count": 4
+  }
+}

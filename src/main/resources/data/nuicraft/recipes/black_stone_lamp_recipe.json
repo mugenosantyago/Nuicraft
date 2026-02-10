@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bbb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:black_stone_brick"
+    },
+    "b": {
+      "item": "bionicle_qfn:lightstones"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:black_stone_lamp",
+    "count": 4
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:protodermis_block"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:protodermis_solid",
+    "count": 9
+  }
+}

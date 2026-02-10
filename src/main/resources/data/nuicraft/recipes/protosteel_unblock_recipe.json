@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:protosteel_block"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:protosteel",
+    "count": 9
+  }
+}

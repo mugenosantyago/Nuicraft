@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b",
+    "c"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:air_toa_stone"
+    },
+    "b": {
+      "item": "bionicle_qfn:light_gray_stone"
+    },
+    "c": {
+      "item": "bionicle_qfn:hammer"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:le_koro_stone",
+    "count": 1
+  }
+}

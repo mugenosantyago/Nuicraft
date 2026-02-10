@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "bionicle_qfn:seaweed_wood_log"
+    }
+  ],
+  "result": {
+    "item": "bionicle_qfn:seaweed_wood_planks",
+    "count": 4
+  }
+}
