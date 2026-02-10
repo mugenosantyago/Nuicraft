@@ -130,31 +130,31 @@ public class NuiCraftItems {
                         Equippable.builder(EquipmentSlot.HEAD).setAsset(asset).build());
     }
 
-    public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerItem("mask_mata_gold", props -> new Item(maskProps(props, maskAsset("mata_gold"), 2, 0.5)));
-    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama", props -> new Item(maskProps(props, maskAsset("mata_kakama"), 1, 0)));
-    public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari", props -> new Item(maskProps(props, maskAsset("mata_pakari"), 1, 0)));
-    public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau", props -> new Item(maskProps(props, maskAsset("mata_kaukau"), 1, 0)));
-    public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru", props -> new Item(maskProps(props, maskAsset("mata_miru"), 1, 0)));
-    public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau", props -> new Item(maskProps(props, maskAsset("mata_hau"), 1, 0)));
-    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku", props -> new Item(maskProps(props, maskAsset("mata_akaku"), 1, 0)));
-    public static final DeferredItem<Item> MASK_NUVA_KAKAMA = ITEMS.registerItem("mask_nuva_kakama", props -> new Item(maskProps(props, maskAsset("nuva_kakama"), 2, 1)));
-    public static final DeferredItem<Item> MASK_NUVA_PAKARI = ITEMS.registerItem("mask_nuva_pakari", props -> new Item(maskProps(props, maskAsset("nuva_pakari"), 2, 1)));
-    public static final DeferredItem<Item> MASK_NUVA_KAUKAU = ITEMS.registerItem("mask_nuva_kaukau", props -> new Item(maskProps(props, maskAsset("nuva_kaukau"), 2, 1)));
-    public static final DeferredItem<Item> MASK_NUVA_MIRU = ITEMS.registerItem("mask_nuva_miru", props -> new Item(maskProps(props, maskAsset("nuva_miru"), 2, 1)));
-    public static final DeferredItem<Item> MASK_NUVA_HAU = ITEMS.registerItem("mask_nuva_hau", props -> new Item(maskProps(props, maskAsset("nuva_hau"), 2, 1)));
-    public static final DeferredItem<Item> MASK_NUVA_AKAKU = ITEMS.registerItem("mask_nuva_akaku", props -> new Item(maskProps(props, maskAsset("nuva_akaku"), 2, 1)));
-    public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerItem("mask_ignika", props -> new Item(maskProps(props, maskAsset("ignika"), 3, 2)));
-    public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerItem("mask_vahi", props -> new Item(maskProps(props, maskAsset("vahi"), 3, 2)));
+    public static final DeferredItem<Item> MASK_MATA_GOLD = ITEMS.registerItem("mask_mata_gold", props -> new Item(maskProps(withItemId("mask_mata_gold", props), maskAsset("mata_gold"), 2, 0.5)));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama", props -> new Item(maskProps(withItemId("mask_mata_kakama", props), maskAsset("mata_kakama"), 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari", props -> new Item(maskProps(withItemId("mask_mata_pakari", props), maskAsset("mata_pakari"), 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau", props -> new Item(maskProps(withItemId("mask_mata_kaukau", props), maskAsset("mata_kaukau"), 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru", props -> new Item(maskProps(withItemId("mask_mata_miru", props), maskAsset("mata_miru"), 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau", props -> new Item(maskProps(withItemId("mask_mata_hau", props), maskAsset("mata_hau"), 1, 0)));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku", props -> new Item(maskProps(withItemId("mask_mata_akaku", props), maskAsset("mata_akaku"), 1, 0)));
+    public static final DeferredItem<Item> MASK_NUVA_KAKAMA = ITEMS.registerItem("mask_nuva_kakama", props -> new Item(maskProps(withItemId("mask_nuva_kakama", props), maskAsset("nuva_kakama"), 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_PAKARI = ITEMS.registerItem("mask_nuva_pakari", props -> new Item(maskProps(withItemId("mask_nuva_pakari", props), maskAsset("nuva_pakari"), 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_KAUKAU = ITEMS.registerItem("mask_nuva_kaukau", props -> new Item(maskProps(withItemId("mask_nuva_kaukau", props), maskAsset("nuva_kaukau"), 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_MIRU = ITEMS.registerItem("mask_nuva_miru", props -> new Item(maskProps(withItemId("mask_nuva_miru", props), maskAsset("nuva_miru"), 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_HAU = ITEMS.registerItem("mask_nuva_hau", props -> new Item(maskProps(withItemId("mask_nuva_hau", props), maskAsset("nuva_hau"), 2, 1)));
+    public static final DeferredItem<Item> MASK_NUVA_AKAKU = ITEMS.registerItem("mask_nuva_akaku", props -> new Item(maskProps(withItemId("mask_nuva_akaku", props), maskAsset("nuva_akaku"), 2, 1)));
+    public static final DeferredItem<Item> MASK_IGNIKA = ITEMS.registerItem("mask_ignika", props -> new Item(maskProps(withItemId("mask_ignika", props), maskAsset("ignika"), 3, 2)));
+    public static final DeferredItem<Item> MASK_VAHI = ITEMS.registerItem("mask_vahi", props -> new Item(maskProps(withItemId("mask_vahi", props), maskAsset("vahi"), 3, 2)));
 
     // Spawn Eggs
     public static final DeferredItem<Item> MAHI_SPAWN_EGG = ITEMS.registerItem("mahi_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.MAHI.get(), props));
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MAHI.get(), withItemId("mahi_spawn_egg", props)));
     public static final DeferredItem<Item> FIKOU_SPAWN_EGG = ITEMS.registerItem("fikou_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.FIKOU.get(), props));
+            props -> new SpawnEggItem(NuiCraftEntityTypes.FIKOU.get(), withItemId("fikou_spawn_egg", props)));
     public static final DeferredItem<Item> HOI_SPAWN_EGG = ITEMS.registerItem("hoi_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.HOI.get(), props));
+            props -> new SpawnEggItem(NuiCraftEntityTypes.HOI.get(), withItemId("hoi_spawn_egg", props)));
     public static final DeferredItem<Item> KOFO_JAGA_SPAWN_EGG = ITEMS.registerItem("kofo_jaga_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.KOFO_JAGA.get(), props));
+            props -> new SpawnEggItem(NuiCraftEntityTypes.KOFO_JAGA.get(), withItemId("kofo_jaga_spawn_egg", props)));
     public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.registerItem("nui_jaga_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_JAGA.get(), props));
+            props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_JAGA.get(), withItemId("nui_jaga_spawn_egg", props)));
 }
