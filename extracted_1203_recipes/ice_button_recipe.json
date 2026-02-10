@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "bionicle_qfn:ice_planks"
+    }
+  ],
+  "result": {
+    "item": "bionicle_qfn:ice_button",
+    "count": 1
+  }
+}

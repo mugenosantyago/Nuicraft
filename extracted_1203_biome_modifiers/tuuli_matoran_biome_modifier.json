@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "sparse_jungle",
+    "jungle",
+    "bamboo_jungle"
+  ],
+  "spawners": {
+    "type": "bionicle_qfn:tuuli_matoran",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "beach",
+    "river",
+    "swamp",
+    "mangrove_swamp"
+  ],
+  "spawners": {
+    "type": "bionicle_qfn:kotu_matoran",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

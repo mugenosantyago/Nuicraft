@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "bionicle_qfn:rock_toa_stone"
+    },
+    "c": {
+      "item": "bionicle_qfn:onu_wahi_stone"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:stone_toa_armor_leggings",
+    "count": 1
+  }
+}

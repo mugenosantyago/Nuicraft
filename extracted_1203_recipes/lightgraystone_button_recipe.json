@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "bionicle_qfn:lightgraystone_planks"
+    }
+  ],
+  "result": {
+    "item": "bionicle_qfn:lightgraystone_button",
+    "count": 1
+  }
+}

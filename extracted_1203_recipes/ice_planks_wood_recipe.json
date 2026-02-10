@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "bionicle_qfn:ice_wood"
+    },
+    {
+      "item": "bionicle_qfn:hammer"
+    }
+  ],
+  "result": {
+    "item": "bionicle_qfn:ice_planks",
+    "count": 4
+  }
+}

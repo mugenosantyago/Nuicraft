@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "category": "redstone",
+  "pattern": [
+    "aba",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:stick"
+    },
+    "b": {
+      "item": "bionicle_qfn:seaweed_wood_planks"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:seaweed_wood_fence_gate",
+    "count": 1
+  }
+}

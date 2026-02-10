@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "bionicle_qfn:onu_wahi_stone"
+    },
+    "c": {
+      "item": "bionicle_qfn:gear"
+    },
+    "d": {
+      "item": "bionicle_qfn:water_toa_stone"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:water_toa_armor_chestplate",
+    "count": 1
+  }
+}

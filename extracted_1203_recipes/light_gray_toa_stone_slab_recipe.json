@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:light_gray_stone"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:light_gray_toa_stone_slab",
+    "count": 1
+  }
+}

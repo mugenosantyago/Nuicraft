@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    " cb",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "bionicle_qfn:onu_wahi_stone"
+    },
+    "b": {
+      "item": "minecraft:iron_ingot"
+    },
+    "c": {
+      "item": "bionicle_qfn:water_toa_stone"
+    },
+    "d": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:water_hooks",
+    "count": 1
+  }
+}

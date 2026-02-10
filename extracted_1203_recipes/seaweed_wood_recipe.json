@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:seagrass"
+    },
+    "b": {
+      "tag": "minecraft:logs"
+    },
+    "c": {
+      "item": "bionicle_qfn:hammer"
+    }
+  },
+  "result": {
+    "item": "bionicle_qfn:seaweed_wood_log",
+    "count": 1
+  }
+}
