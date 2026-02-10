@@ -1,8 +1,6 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": {
-    "type": "minecraft:any"
-  },
+  "biomes": "#minecraft:is_overworld",
   "spawners": {
     "type": "nuicraft:nui_rama_green",
     "weight": 9,

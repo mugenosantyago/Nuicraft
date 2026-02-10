@@ -1,8 +1,6 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": {
-    "type": "minecraft:any"
-  },
+  "biomes": "#minecraft:is_overworld",
   "spawners": {
     "type": "nuicraft:kane_ra",
     "weight": 5,
