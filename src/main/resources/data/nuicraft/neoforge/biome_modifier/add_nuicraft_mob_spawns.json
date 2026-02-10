@@ -111,6 +111,12 @@
       "maxCount": 2
     },
     {
+      "type": "nuicraft:matoran",
+      "weight": 3,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
       "type": "nuicraft:bohrok",
       "weight": 2,
       "minCount": 1,
