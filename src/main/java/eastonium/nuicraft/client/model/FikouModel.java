@@ -8,102 +8,106 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
- * Ported from 1.12.1 ModelFikou - Bionicle Fikou (spider-like Rahi) model.
- * Original texture: 32x32.
+ * Custom Spider Fikou model ported from bionicle_qfn ModelSpiderFikou.
+ * Texture: 64x64 (spiderfikoutexture.png from bionicle_qfn).
  */
 public class FikouModel extends EntityModel<LivingEntityRenderState> {
-    private final ModelPart legL1, legL2, legL3;
-    private final ModelPart legR1, legR2, legR3;
+    private static final CubeDeformation DEF = CubeDeformation.NONE;
+
+    public final ModelPart PakariMask;
+    public final ModelPart Body;
+    public final ModelPart PrimeraPiernaIzquierda;
+    public final ModelPart SegundaPiernaIzquierda;
+    public final ModelPart TerceraPiernaIzquierda;
+    public final ModelPart PrimeraPiernaDerecha;
+    public final ModelPart SegundaPiernaDerecha;
+    public final ModelPart TerceraPiernaDerecha;
 
     public FikouModel(ModelPart root) {
         super(root);
-        this.legL1 = root.getChild("leg_l1");
-        this.legL2 = root.getChild("leg_l2");
-        this.legL3 = root.getChild("leg_l3");
-        this.legR1 = root.getChild("leg_r1");
-        this.legR2 = root.getChild("leg_r2");
-        this.legR3 = root.getChild("leg_r3");
+        this.PakariMask = root.getChild("PakariMask");
+        this.Body = root.getChild("Body");
+        this.PrimeraPiernaIzquierda = root.getChild("PrimeraPiernaIzquierda");
+        this.SegundaPiernaIzquierda = root.getChild("SegundaPiernaIzquierda");
+        this.TerceraPiernaIzquierda = root.getChild("TerceraPiernaIzquierda");
+        this.PrimeraPiernaDerecha = root.getChild("PrimeraPiernaDerecha");
+        this.SegundaPiernaDerecha = root.getChild("SegundaPiernaDerecha");
+        this.TerceraPiernaDerecha = root.getChild("TerceraPiernaDerecha");
     }
 
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
 
-        // Body - 3 boxes: Mask, Body1, Body2 (original order)
-        root.addOrReplaceChild("body",
-                CubeListBuilder.create()
-                        .texOffs(0, 0).addBox(0F, 1F, 0F, 8, 5, 8)
-                        .texOffs(0, 13).addBox(1F, 2F, 1F, 6, 4, 6)
-                        .texOffs(0, 23).addBox(2F, 4F, -2F, 4, 2, 5),
-                PartPose.offset(-4F, 16F, 0F));
+        root.addOrReplaceChild("PakariMask", CubeListBuilder.create()
+                .texOffs(30, 33).addBox(-2.0f, 30.0f, -9.0f, 4.0f, 1.0f, 2.0f, DEF)
+                .texOffs(4, 34).addBox(-2.0f, 19.0f, -9.0f, 4.0f, 1.0f, 1.0f, DEF)
+                .texOffs(38, 21).addBox(1.0f, 20.0f, -9.0f, 1.0f, 1.0f, 1.0f, DEF)
+                .texOffs(22, 36).addBox(-2.0f, 20.0f, -9.0f, 1.0f, 1.0f, 1.0f, DEF)
+                .texOffs(18, 33).addBox(-2.0f, 21.0f, -10.0f, 4.0f, 1.0f, 2.0f, DEF)
+                .texOffs(23, 8).addBox(-4.0f, 23.0f, -10.0f, 8.0f, 1.0f, 2.0f, DEF)
+                .texOffs(20, 30).addBox(-3.0f, 26.0f, -10.0f, 6.0f, 1.0f, 2.0f, DEF)
+                .texOffs(24, 19).addBox(-4.0f, 25.0f, -10.0f, 8.0f, 1.0f, 1.0f, DEF)
+                .texOffs(36, 36).addBox(-1.0f, 24.0f, -10.0f, 2.0f, 1.0f, 1.0f, DEF)
+                .texOffs(36, 30).addBox(1.0f, 24.0f, -9.0f, 2.0f, 2.0f, 1.0f, DEF)
+                .texOffs(30, 36).addBox(-3.0f, 24.0f, -9.0f, 2.0f, 2.0f, 1.0f, DEF)
+                .texOffs(6, 36).addBox(-1.0f, 29.0f, -10.0f, 2.0f, 1.0f, 2.0f, DEF)
+                .texOffs(37, 14).addBox(2.0f, 28.0f, -9.0f, 1.0f, 2.0f, 1.0f, DEF)
+                .texOffs(24, 36).addBox(1.0f, 27.0f, -10.0f, 1.0f, 2.0f, 2.0f, DEF)
+                .texOffs(18, 36).addBox(-2.0f, 27.0f, -10.0f, 1.0f, 2.0f, 2.0f, DEF)
+                .texOffs(28, 33).addBox(3.0f, 24.0f, -10.0f, 1.0f, 1.0f, 1.0f, DEF)
+                .texOffs(18, 30).addBox(-4.0f, 24.0f, -10.0f, 1.0f, 1.0f, 1.0f, DEF)
+                .texOffs(0, 34).addBox(4.0f, 23.0f, -9.0f, 1.0f, 4.0f, 2.0f, DEF)
+                .texOffs(0, 14).addBox(-5.0f, 23.0f, -9.0f, 1.0f, 4.0f, 2.0f, DEF)
+                .texOffs(18, 26).addBox(3.0f, 27.0f, -9.0f, 1.0f, 1.0f, 1.0f, DEF)
+                .texOffs(14, 37).addBox(2.0f, 20.0f, -9.0f, 1.0f, 2.0f, 1.0f, DEF)
+                .texOffs(12, 34).addBox(2.0f, 22.0f, -10.0f, 2.0f, 1.0f, 2.0f, DEF)
+                .texOffs(34, 11).addBox(-4.0f, 22.0f, -10.0f, 2.0f, 1.0f, 2.0f, DEF)
+                .texOffs(7, 5).addBox(-3.0f, 20.0f, -9.0f, 1.0f, 2.0f, 1.0f, DEF)
+                .texOffs(7, 0).addBox(-3.0f, 28.0f, -9.0f, 1.0f, 2.0f, 1.0f, DEF)
+                .texOffs(18, 22).addBox(-4.0f, 27.0f, -9.0f, 1.0f, 1.0f, 1.0f, DEF),
+                PartPose.offsetAndRotation(0.0f, 27.0f, 28.0f, -1.5708f, 0.0f, 0.0f));
 
-        // Head - 3 boxes: Head, Eye1, Eye2
-        root.addOrReplaceChild("head",
-                CubeListBuilder.create()
-                        .texOffs(0, 23).addBox(0F, 0F, 0F, 4, 2, 5)
-                        .texOffs(24, 13).addBox(-2F, 0F, 2F, 2, 2, 2)
-                        .texOffs(24, 13).addBox(4F, 0F, 2F, 2, 2, 2),
-                PartPose.offset(-2F, 19F, -6F));
+        root.addOrReplaceChild("Body", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-3.0f, -3.0f, -6.0f, 6.0f, 3.0f, 11.0f, DEF)
+                .texOffs(0, 30).addBox(-4.0f, -5.0f, -1.0f, 8.0f, 2.0f, 2.0f, DEF)
+                .texOffs(18, 14).addBox(-4.0f, -5.0f, -6.0f, 8.0f, 2.0f, 3.0f, DEF)
+                .texOffs(0, 14).addBox(-3.0f, -5.0f, 1.0f, 6.0f, 2.0f, 6.0f, DEF)
+                .texOffs(0, 5).addBox(1.0f, -5.0f, -9.0f, 2.0f, 2.0f, 3.0f, DEF)
+                .texOffs(0, 0).addBox(-3.0f, -5.0f, -9.0f, 2.0f, 2.0f, 3.0f, DEF),
+                PartPose.offset(0.0f, 24.0f, 0.0f));
 
-        // Legs - original: 6 legs (3 left, 3 right), each 6x1x1 box
-        root.addOrReplaceChild("leg_l1", CubeListBuilder.create().texOffs(18, 23).addBox(0F, 0F, 0F, 6, 1, 1),
-                PartPose.offsetAndRotation(1F, 21F, -2F, 0F, 0.2617994F, 0.4363323F));
-        root.addOrReplaceChild("leg_l2", CubeListBuilder.create().texOffs(18, 23).addBox(0F, 0F, 0F, 6, 1, 1),
-                PartPose.offsetAndRotation(1F, 21F, 0F, 0F, 0F, 0.4363323F));
-        root.addOrReplaceChild("leg_l3", CubeListBuilder.create().texOffs(18, 23).addBox(0F, 0F, 0F, 6, 1, 1),
-                PartPose.offsetAndRotation(1F, 21F, 2F, 0F, -0.2617994F, 0.4363323F));
-        root.addOrReplaceChild("leg_r1", CubeListBuilder.create().texOffs(18, 23).mirror().addBox(-6F, 0F, 0F, 6, 1, 1),
-                PartPose.offsetAndRotation(-1F, 21F, -2F, 0F, -0.2617994F, -0.4363323F));
-        root.addOrReplaceChild("leg_r2", CubeListBuilder.create().texOffs(18, 23).mirror().addBox(-6F, 0F, 0F, 6, 1, 1),
-                PartPose.offsetAndRotation(-1F, 21F, 0F, 0F, 0F, -0.4363323F));
-        root.addOrReplaceChild("leg_r3", CubeListBuilder.create().texOffs(18, 23).mirror().addBox(-6F, 0F, 0F, 6, 1, 1),
-                PartPose.offsetAndRotation(-1F, 21F, 2F, 0F, 0.2617994F, -0.4363323F));
+        PartDefinition PrimeraPiernaIzquierda = root.addOrReplaceChild("PrimeraPiernaIzquierda", CubeListBuilder.create(), PartPose.offset(3.0f, 23.0f, -5.0f));
+        PrimeraPiernaIzquierda.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 26).addBox(3.0f, -3.0f, -5.0f, 8.0f, 2.0f, 2.0f, DEF), PartPose.offsetAndRotation(-3.0f, 1.0f, 5.0f, 0.0f, 0.2618f, 0.2618f));
 
-        return LayerDefinition.create(mesh, 32, 32);
+        PartDefinition SegundaPiernaIzquierda = root.addOrReplaceChild("SegundaPiernaIzquierda", CubeListBuilder.create(), PartPose.offset(3.0f, 23.0f, 0.0f));
+        SegundaPiernaIzquierda.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(20, 26).addBox(2.0f, -3.0f, -1.0f, 8.0f, 2.0f, 2.0f, DEF), PartPose.offsetAndRotation(-3.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.2618f));
+
+        PartDefinition TerceraPiernaIzquierda = root.addOrReplaceChild("TerceraPiernaIzquierda", CubeListBuilder.create(), PartPose.offset(3.0f, 23.0f, 4.0f));
+        TerceraPiernaIzquierda.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(23, 4).addBox(3.0f, -3.0f, 2.0f, 8.0f, 2.0f, 2.0f, DEF), PartPose.offsetAndRotation(-3.0f, 1.0f, -4.0f, 0.0f, -0.2618f, 0.2618f));
+
+        PartDefinition PrimeraPiernaDerecha = root.addOrReplaceChild("PrimeraPiernaDerecha", CubeListBuilder.create(), PartPose.offset(-3.0f, 23.0f, -5.0f));
+        PrimeraPiernaDerecha.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(20, 22).addBox(-11.0f, -3.0f, -5.0f, 8.0f, 2.0f, 2.0f, DEF), PartPose.offsetAndRotation(3.0f, 1.0f, 5.0f, 0.0f, -0.2618f, -0.2618f));
+
+        PartDefinition SegundaPiernaDerecha = root.addOrReplaceChild("SegundaPiernaDerecha", CubeListBuilder.create(), PartPose.offset(-3.0f, 23.0f, 0.0f));
+        SegundaPiernaDerecha.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(23, 0).addBox(-10.0f, -3.0f, -1.0f, 8.0f, 2.0f, 2.0f, DEF), PartPose.offsetAndRotation(3.0f, 1.0f, 0.0f, 0.0f, 0.0f, -0.2618f));
+
+        PartDefinition TerceraPiernaDerecha = root.addOrReplaceChild("TerceraPiernaDerecha", CubeListBuilder.create(), PartPose.offset(-3.0f, 23.0f, 4.0f));
+        TerceraPiernaDerecha.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(0, 22).addBox(-11.0f, -3.0f, 2.0f, 8.0f, 2.0f, 2.0f, DEF), PartPose.offsetAndRotation(3.0f, 1.0f, -4.0f, 0.0f, 0.2618f, -0.2618f));
+
+        return LayerDefinition.create(mesh, 64, 64);
     }
 
     @Override
     public void setupAnim(LivingEntityRenderState state) {
         super.setupAnim(state);
-        float f6 = -((float) Math.PI / 4F);
-        legL1.zRot = -f6 * 0.75F;
-        legR1.zRot = f6 * 0.75F;
-        legL2.zRot = -f6 * 0.6F;
-        legR2.zRot = f6 * 0.6F;
-        legL3.zRot = -f6 * 0.75F;
-        legR3.zRot = f6 * 0.75F;
-
-        float f7 = 0F;
-        float f8 = 0.3926991F;
-        legL1.yRot = f8 * 1.0F + f7;
-        legR1.yRot = -f8 * 1.0F - f7;
-        legL2.yRot = f7;
-        legR2.yRot = -f7;
-        legL3.yRot = -f8 * 1.0F + f7;
-        legR3.yRot = f8 * 1.0F - f7;
-
         float f = state.walkAnimationPos;
         float f1 = state.walkAnimationSpeed;
-        float f9 = -(Mth.cos(f * 0.6662F * 2.0F + 0.0F) * 0.4F) * f1;
-        float f10 = -(Mth.cos(f * 0.6662F * 2.0F + (float) Math.PI) * 0.4F) * f1;
-        float f11 = -(Mth.cos(f * 0.6662F * 2.0F + ((float) Math.PI / 2F)) * 0.4F) * f1;
-        float f12 = -(Mth.cos(f * 0.6662F * 2.0F + ((float) Math.PI * 3F / 2F)) * 0.4F) * f1;
-        float f13 = Math.abs(Mth.sin(f * 0.6662F + 0.0F) * 0.4F) * f1;
-        float f14 = Math.abs(Mth.sin(f * 0.6662F + (float) Math.PI) * 0.4F) * f1;
-        float f15 = Math.abs(Mth.sin(f * 0.6662F + ((float) Math.PI / 2F)) * 0.4F) * f1;
-        float f16 = Math.abs(Mth.sin(f * 0.6662F + ((float) Math.PI * 3F / 2F)) * 0.4F) * f1;
-
-        legL1.yRot += f9;
-        legR1.yRot += -f9;
-        legL2.yRot += (f10 + f11) / 2;
-        legR2.yRot += -(f10 + f11) / 2;
-        legL3.yRot += f12;
-        legR3.yRot += -f12;
-        legL1.zRot += f13;
-        legR1.zRot += -f13;
-        legL2.zRot += (f14 + f15) / 2;
-        legR2.zRot += -(f14 + f15) / 2;
-        legL3.zRot += f16;
-        legR3.zRot += -f16;
+        TerceraPiernaIzquierda.xRot = Mth.cos(f * 0.6662f) * f1;
+        PrimeraPiernaDerecha.xRot = Mth.cos(f * 1.0f) * 1.0f * f1;
+        SegundaPiernaDerecha.yRot = Mth.cos(f * 1.0f) * 1.0f * f1;
+        SegundaPiernaIzquierda.yRot = Mth.cos(f * 0.6662f) * f1;
+        TerceraPiernaDerecha.xRot = Mth.cos(f * 1.0f) * 1.0f * f1;
+        PrimeraPiernaIzquierda.xRot = Mth.cos(f * 0.6662f) * f1;
     }
 }
