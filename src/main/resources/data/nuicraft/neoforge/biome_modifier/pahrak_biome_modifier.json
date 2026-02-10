@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "desert",
+    "badlands",
+    "eroded_badlands"
+  ],
+  "spawners": {
+    "type": "nuicraft:pahrak",
+    "weight": 9,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

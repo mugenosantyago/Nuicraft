@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "windswept_gravelly_hills",
+    "windswept_hills",
+    "stony_peaks"
+  ],
+  "spawners": {
+    "type": "nuicraft:vohrak",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

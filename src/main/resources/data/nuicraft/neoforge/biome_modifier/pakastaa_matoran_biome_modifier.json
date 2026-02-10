@@ -1,0 +1,18 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "jagged_peaks",
+    "frozen_peaks",
+    "grove",
+    "snowy_plains",
+    "snowy_slopes",
+    "snowy_taiga",
+    "frozen_river"
+  ],
+  "spawners": {
+    "type": "nuicraft:pakastaa_matoran",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

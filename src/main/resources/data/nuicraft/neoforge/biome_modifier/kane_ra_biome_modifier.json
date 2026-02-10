@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": {
+    "type": "forge:any"
+  },
+  "spawners": {
+    "type": "nuicraft:kane_ra",
+    "weight": 5,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

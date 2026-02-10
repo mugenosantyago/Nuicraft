@@ -1,0 +1,15 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "beach",
+    "river",
+    "swamp",
+    "mangrove_swamp"
+  ],
+  "spawners": {
+    "type": "nuicraft:macku_matoran",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

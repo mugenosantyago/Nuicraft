@@ -1,0 +1,18 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "jagged_peaks",
+    "grove",
+    "frozen_peaks",
+    "snowy_slopes",
+    "snowy_taiga",
+    "frozen_river",
+    "snowy_plains"
+  ],
+  "spawners": {
+    "type": "nuicraft:nuju_turaga",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "jungle",
+    "bamboo_jungle",
+    "sparse_jungle"
+  ],
+  "spawners": {
+    "type": "nuicraft:matau_turaga",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

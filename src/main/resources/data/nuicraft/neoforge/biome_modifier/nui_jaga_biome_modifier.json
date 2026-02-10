@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "desert",
+    "plains",
+    "badlands"
+  ],
+  "spawners": {
+    "type": "nuicraft:nui_jaga",
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "bamboo_jungle",
+    "jungle",
+    "sparse_jungle"
+  ],
+  "spawners": {
+    "type": "nuicraft:lerahk",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

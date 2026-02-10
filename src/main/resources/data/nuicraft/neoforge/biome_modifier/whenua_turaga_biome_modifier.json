@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "windswept_gravelly_hills",
+    "stony_peaks",
+    "windswept_hills"
+  ],
+  "spawners": {
+    "type": "nuicraft:whenua_turaga",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}
