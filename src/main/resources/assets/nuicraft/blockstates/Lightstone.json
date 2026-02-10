@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "nuicraft:block/lightstone"
-    }
+    "facing=north": { "model": "nuicraft:block/lightstone" },
+    "facing=south": { "model": "nuicraft:block/lightstone", "y": 180 },
+    "facing=east": { "model": "nuicraft:block/lightstone", "y": 90 },
+    "facing=west": { "model": "nuicraft:block/lightstone", "y": 270 }
   }
 }
