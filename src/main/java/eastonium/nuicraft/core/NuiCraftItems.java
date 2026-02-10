@@ -105,7 +105,6 @@ public class NuiCraftItems {
 
     // Masks - equippable as helmets with stat boosts (armor/toughness).
     // Rendered via AzureLib 3D models (geo/armor/*.geo.json) using MaskArmorRenderer.
-    // Uses empty equipment asset to prevent vanilla 2D rendering layer, letting AzureLib render instead.
     private static Item.Properties maskProps(Item.Properties props, double armor, double toughness) {
         ItemAttributeModifiers.Builder attrs = ItemAttributeModifiers.builder();
         attrs.add(Attributes.ARMOR, new AttributeModifier(
@@ -121,16 +120,8 @@ public class NuiCraftItems {
             ), EquipmentSlotGroup.bySlot(EquipmentSlot.HEAD));
         }
         
-        // Use empty equipment asset to prevent vanilla 2D rendering layer
-        // AzureLib's MaskArmorRenderer will handle all 3D rendering instead
-        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
-                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
-        );
-        
-        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD)
-                .setAsset(emptyAsset)
-                .build();
+        // Register as equippable helmet - AzureLib will intercept and render 3D model
+        Equippable equippable = Equippable.builder(EquipmentSlot.HEAD).build();
         
         return props.stacksTo(1)
                 .attributes(attrs.build())
