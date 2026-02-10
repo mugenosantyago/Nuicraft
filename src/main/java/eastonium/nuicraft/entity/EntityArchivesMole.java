@@ -23,7 +23,7 @@ public class EntityArchivesMole extends Animal {
 
     @Override
     public boolean isFood(ItemStack stack) {
-        return stack.is(Items.CARROTS) || stack.is(Items.POTATOES);
+        return stack.is(Items.CARROT) || stack.is(Items.POTATO);
     }
 
     @Override

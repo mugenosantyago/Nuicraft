@@ -175,6 +175,72 @@
       "weight": 2,
       "minCount": 1,
       "maxCount": 1
+    },
+    {
+      "type": "nuicraft:kraata",
+      "weight": 4,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "nuicraft:piraka",
+      "weight": 2,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "nuicraft:dark_hunter",
+      "weight": 1,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "nuicraft:fusa",
+      "weight": 3,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "nuicraft:skrall",
+      "weight": 2,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "nuicraft:zesk",
+      "weight": 2,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "nuicraft:agori",
+      "weight": 3,
+      "minCount": 2,
+      "maxCount": 4
+    },
+    {
+      "type": "nuicraft:fox_rahi",
+      "weight": 4,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "nuicraft:kavinika",
+      "weight": 5,
+      "minCount": 2,
+      "maxCount": 4
+    },
+    {
+      "type": "nuicraft:archives_mole",
+      "weight": 4,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "nuicraft:takea_shark",
+      "weight": 3,
+      "minCount": 1,
+      "maxCount": 2
     }
   ]
 }
