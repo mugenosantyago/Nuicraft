@@ -8,7 +8,7 @@
     "old_growth_birch_forest"
   ],
   "spawners": {
-    "type": "nuicraft:tahnok",
+    "type": "nuicraft:bohrok_tahnok",
     "weight": 9,
     "minCount": 1,
     "maxCount": 1

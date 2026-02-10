@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_spawns",
-  "biomes": "#is_overworld",
-  "features": "bionicle_qfn:onu_wahi_stone_ore",
-  "step": "underground_ores"
-}
