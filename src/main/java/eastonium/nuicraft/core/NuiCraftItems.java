@@ -113,18 +113,24 @@ public class NuiCraftItems {
         return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, path);
     }
 
+    private static final ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> MASK_EMPTY_ASSET = ResourceKey.create(
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+            ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
+    );
+
     /**
-     * Build mask Item.Properties with the given attribute modifiers, durability, and equippable HEAD slot.
-     * All masks are equippable as helmets with 3D AzureLib rendering.
-     * No equipment asset is set, which prevents vanilla 2D armor layer rendering
-     * (the 3D mask model is rendered separately by AzureLib).
+     * Build mask Item.Properties with the given attribute modifiers and equippable HEAD slot.
+     * Uses an empty equipment asset (no layers) to prevent vanilla 2D armor overlay.
+     * The 3D mask model is rendered separately by AzureLib.
+     * Durability is omitted to avoid triggering vanilla armor rendering behaviour.
      */
     private static Item.Properties maskProps(Item.Properties props, ItemAttributeModifiers attributes) {
         return props.stacksTo(1)
-                .durability(MASK_DURABILITY)
                 .attributes(attributes)
                 .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
                         Equippable.builder(EquipmentSlot.HEAD)
+                                .setAsset(MASK_EMPTY_ASSET)
+                                .setDamageOnHurt(false)
                                 .build());
     }
 
