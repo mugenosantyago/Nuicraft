@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 
 /**
  * 3D mask armor renderer using individual 3D models for each Mata mask.
- * Each mask has its own geo.json model converted from the OBJ files.
+ * Each mask has its own geo.json model.
  */
 public class MaskArmorRenderer extends AzArmorRenderer {
 
@@ -29,27 +29,52 @@ public class MaskArmorRenderer extends AzArmorRenderer {
                 NuiCraft.MODID, "textures/entity/equipment/humanoid/masks/" + name + ".png");
     }
 
+    public static MaskArmorRenderer mataAkaku() {
+        return new MaskArmorRenderer(maskGeo("akaku"), maskTexture("mata_akaku"));
+    }
+
     public static MaskArmorRenderer mataHau() {
         return new MaskArmorRenderer(maskGeo("hau"), maskTexture("mata_hau"));
+    }
+
+    public static MaskArmorRenderer mataHuna() {
+        return new MaskArmorRenderer(maskGeo("huna"), maskTexture("mata_huna"));
     }
 
     public static MaskArmorRenderer mataKakama() {
         return new MaskArmorRenderer(maskGeo("kakama"), maskTexture("mata_kakama"));
     }
 
-    public static MaskArmorRenderer mataPakari() {
-        return new MaskArmorRenderer(maskGeo("pakari"), maskTexture("mata_pakari"));
-    }
-
     public static MaskArmorRenderer mataKaukau() {
         return new MaskArmorRenderer(maskGeo("kaukau"), maskTexture("mata_kaukau"));
+    }
+
+    public static MaskArmorRenderer mataKomau() {
+        return new MaskArmorRenderer(maskGeo("komau"), maskTexture("mata_komau"));
+    }
+
+    public static MaskArmorRenderer mataMahiki() {
+        return new MaskArmorRenderer(maskGeo("mahiki"), maskTexture("mata_mahiki"));
+    }
+
+    public static MaskArmorRenderer mataMatatu() {
+        return new MaskArmorRenderer(maskGeo("matatu"), maskTexture("mata_matatu"));
     }
 
     public static MaskArmorRenderer mataMiru() {
         return new MaskArmorRenderer(maskGeo("miru"), maskTexture("mata_miru"));
     }
 
-    public static MaskArmorRenderer mataAkaku() {
-        return new MaskArmorRenderer(maskGeo("akaku"), maskTexture("mata_akaku"));
+    public static MaskArmorRenderer mataPakari() {
+        return new MaskArmorRenderer(maskGeo("pakari"), maskTexture("mata_pakari"));
+    }
+
+    public static MaskArmorRenderer mataRaru() {
+        return new MaskArmorRenderer(maskGeo("raru"), maskTexture("mata_raru"));
+    }
+
+    public static MaskArmorRenderer mataRuru() {
+        return new MaskArmorRenderer(maskGeo("ruru"), maskTexture("mata_ruru"));
     }
 }
+
