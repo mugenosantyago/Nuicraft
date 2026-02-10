@@ -107,29 +107,53 @@ public class NuiCraftItems {
     
     // Mata Masks - 12 equippable helmet masks with 2D icons and 3D geo rendering
     public static final DeferredItem<Item> MASK_MATA_AKAKU = ITEMS.registerItem("mask_mata_akaku",
-            props -> new Item(withItemId("mask_mata_akaku", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_akaku", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau",
-            props -> new Item(withItemId("mask_mata_hau", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_hau", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_HUNA = ITEMS.registerItem("mask_mata_huna",
-            props -> new Item(withItemId("mask_mata_huna", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_huna", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_KAKAMA = ITEMS.registerItem("mask_mata_kakama",
-            props -> new Item(withItemId("mask_mata_kakama", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_kakama", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau",
-            props -> new Item(withItemId("mask_mata_kaukau", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_kaukau", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_KOMAU = ITEMS.registerItem("mask_mata_komau",
-            props -> new Item(withItemId("mask_mata_komau", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_komau", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_MAHIKI = ITEMS.registerItem("mask_mata_mahiki",
-            props -> new Item(withItemId("mask_mata_mahiki", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_mahiki", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_MATATU = ITEMS.registerItem("mask_mata_matatu",
-            props -> new Item(withItemId("mask_mata_matatu", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_matatu", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_MIRU = ITEMS.registerItem("mask_mata_miru",
-            props -> new Item(withItemId("mask_mata_miru", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_miru", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_PAKARI = ITEMS.registerItem("mask_mata_pakari",
-            props -> new Item(withItemId("mask_mata_pakari", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_pakari", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_RARU = ITEMS.registerItem("mask_mata_raru",
-            props -> new Item(withItemId("mask_mata_raru", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_raru", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
     public static final DeferredItem<Item> MASK_MATA_RURU = ITEMS.registerItem("mask_mata_ruru",
-            props -> new Item(withItemId("mask_mata_ruru", props).stacksTo(1)));
+            props -> new Item(withItemId("mask_mata_ruru", props).stacksTo(1)
+                    .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                            net.minecraft.world.item.equipment.Equippable.builder(EquipmentSlot.HEAD).build())));
 
 
     // Spawn Eggs
