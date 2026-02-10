@@ -36,6 +36,7 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
         
         // Generic renderers for all other NuiCraft mobs (fallback to prevent null renderer crash)
+        // These use the PigModel as a base and load textures from the resource pack
         event.registerEntityRenderer(NuiCraftEntityTypes.USSAL_CRAB.get(), ctx -> new GenericNuiCraftRenderer<>(ctx, "ussal_crab"));
         event.registerEntityRenderer(NuiCraftEntityTypes.SHEEP_RAHI.get(), ctx -> new GenericNuiCraftRenderer<>(ctx, "sheep_rahi"));
         event.registerEntityRenderer(NuiCraftEntityTypes.RABBIT_RAHI.get(), ctx -> new GenericNuiCraftRenderer<>(ctx, "rabbit_rahi"));
