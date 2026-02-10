@@ -37,33 +37,19 @@ public class NuiCraft {
             .title(Component.translatable("itemGroup.nuicraft_mask_tab"))
             .icon(() -> new ItemStack(NuiCraftItems.MASK_MATA_HAU.get()))
             .displayItems((parameters, output) -> {
-                // Add mask items - Mata
-                output.accept(NuiCraftItems.MASK_MATA_GOLD.get());
-                output.accept(NuiCraftItems.MASK_MATA_KAKAMA.get());
-                output.accept(NuiCraftItems.MASK_MATA_PAKARI.get());
-                output.accept(NuiCraftItems.MASK_MATA_KAUKAU.get());
-                output.accept(NuiCraftItems.MASK_MATA_MIRU.get());
-                output.accept(NuiCraftItems.MASK_MATA_HAU.get());
+                // Add all Mata masks
                 output.accept(NuiCraftItems.MASK_MATA_AKAKU.get());
-                
-                // Add mask items - Alternative Mata
+                output.accept(NuiCraftItems.MASK_MATA_HAU.get());
+                output.accept(NuiCraftItems.MASK_MATA_HUNA.get());
+                output.accept(NuiCraftItems.MASK_MATA_KAKAMA.get());
+                output.accept(NuiCraftItems.MASK_MATA_KAUKAU.get());
                 output.accept(NuiCraftItems.MASK_MATA_KOMAU.get());
                 output.accept(NuiCraftItems.MASK_MATA_MAHIKI.get());
                 output.accept(NuiCraftItems.MASK_MATA_MATATU.get());
+                output.accept(NuiCraftItems.MASK_MATA_MIRU.get());
+                output.accept(NuiCraftItems.MASK_MATA_PAKARI.get());
                 output.accept(NuiCraftItems.MASK_MATA_RARU.get());
                 output.accept(NuiCraftItems.MASK_MATA_RURU.get());
-                
-                // Add mask items - Nuva
-                output.accept(NuiCraftItems.MASK_NUVA_KAKAMA.get());
-                output.accept(NuiCraftItems.MASK_NUVA_PAKARI.get());
-                output.accept(NuiCraftItems.MASK_NUVA_KAUKAU.get());
-                output.accept(NuiCraftItems.MASK_NUVA_MIRU.get());
-                output.accept(NuiCraftItems.MASK_NUVA_HAU.get());
-                output.accept(NuiCraftItems.MASK_NUVA_AKAKU.get());
-                
-                // Add legendary masks
-                output.accept(NuiCraftItems.MASK_IGNIKA.get());
-                output.accept(NuiCraftItems.MASK_VAHI.get());
             })
             .build());
     
