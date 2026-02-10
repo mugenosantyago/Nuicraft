@@ -29,21 +29,21 @@ public class MaskRenderLayer<S extends HumanoidRenderState, M extends HumanoidMo
     private static final Map<Item, ResourceLocation> MASK_TEXTURES = new HashMap<>();
 
     static {
-        put(NuiCraftItems.MASK_MATA_GOLD.get(), "textures/item/masks/gold/mata_hau_gold.png");
-        put(NuiCraftItems.MASK_MATA_KAKAMA.get(), "textures/item/masks/normal/mata_kakama.png");
-        put(NuiCraftItems.MASK_MATA_PAKARI.get(), "textures/item/masks/normal/mata_pakari.png");
-        put(NuiCraftItems.MASK_MATA_KAUKAU.get(), "textures/item/masks/normal/mata_kaukau.png");
-        put(NuiCraftItems.MASK_MATA_MIRU.get(), "textures/item/masks/normal/mata_miru.png");
-        put(NuiCraftItems.MASK_MATA_HAU.get(), "textures/item/masks/normal/mata_hau.png");
-        put(NuiCraftItems.MASK_MATA_AKAKU.get(), "textures/item/masks/normal/mata_akaku.png");
-        put(NuiCraftItems.MASK_NUVA_KAKAMA.get(), "textures/item/masks/normal/nuva_kakama.png");
-        put(NuiCraftItems.MASK_NUVA_PAKARI.get(), "textures/item/masks/normal/nuva_pakari.png");
-        put(NuiCraftItems.MASK_NUVA_KAUKAU.get(), "textures/item/masks/normal/nuva_kaukau.png");
-        put(NuiCraftItems.MASK_NUVA_MIRU.get(), "textures/item/masks/normal/nuva_miru.png");
-        put(NuiCraftItems.MASK_NUVA_HAU.get(), "textures/item/masks/normal/nuva_hau.png");
-        put(NuiCraftItems.MASK_NUVA_AKAKU.get(), "textures/item/masks/normal/nuva_akaku.png");
-        put(NuiCraftItems.MASK_IGNIKA.get(), "textures/item/masks/normal/ignika_0.png");
-        put(NuiCraftItems.MASK_VAHI.get(), "textures/item/masks/normal/vahi_0.png");
+        put(NuiCraftItems.MASK_MATA_GOLD.get(), "textures/item/masks/gold/mata_hau_gold");
+        put(NuiCraftItems.MASK_MATA_KAKAMA.get(), "textures/item/masks/normal/mata_kakama");
+        put(NuiCraftItems.MASK_MATA_PAKARI.get(), "textures/item/masks/normal/mata_pakari");
+        put(NuiCraftItems.MASK_MATA_KAUKAU.get(), "textures/item/masks/normal/mata_kaukau");
+        put(NuiCraftItems.MASK_MATA_MIRU.get(), "textures/item/masks/normal/mata_miru");
+        put(NuiCraftItems.MASK_MATA_HAU.get(), "textures/item/masks/normal/mata_hau");
+        put(NuiCraftItems.MASK_MATA_AKAKU.get(), "textures/item/masks/normal/mata_akaku");
+        put(NuiCraftItems.MASK_NUVA_KAKAMA.get(), "textures/item/masks/normal/nuva_kakama");
+        put(NuiCraftItems.MASK_NUVA_PAKARI.get(), "textures/item/masks/normal/nuva_pakari");
+        put(NuiCraftItems.MASK_NUVA_KAUKAU.get(), "textures/item/masks/normal/nuva_kaukau");
+        put(NuiCraftItems.MASK_NUVA_MIRU.get(), "textures/item/masks/normal/nuva_miru");
+        put(NuiCraftItems.MASK_NUVA_HAU.get(), "textures/item/masks/normal/nuva_hau");
+        put(NuiCraftItems.MASK_NUVA_AKAKU.get(), "textures/item/masks/normal/nuva_akaku");
+        put(NuiCraftItems.MASK_IGNIKA.get(), "textures/item/masks/normal/ignika_0");
+        put(NuiCraftItems.MASK_VAHI.get(), "textures/item/masks/normal/vahi_0");
     }
 
     private static void put(Item item, String path) {
@@ -52,7 +52,7 @@ public class MaskRenderLayer<S extends HumanoidRenderState, M extends HumanoidMo
 
     private static ResourceLocation getTexture(ItemStack stack) {
         return MASK_TEXTURES.getOrDefault(stack.getItem(),
-                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/masks/normal/mata_hau.png"));
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/item/masks/normal/mata_hau"));
     }
 
     private final MaskModel maskModel;
