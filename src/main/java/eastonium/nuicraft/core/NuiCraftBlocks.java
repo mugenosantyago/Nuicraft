@@ -81,17 +81,23 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<BlockMetal> BLOCK_PROTOSTEEL = BLOCKS.registerBlock("block_protosteel",
             BlockMetal::new, withBlockId("block_protosteel", BlockMetal.createProperties()));
 
-    // Koro stones (for structures / decoration)
+    // Koro stones (for structures / decoration) - each region has unique properties
+    // Ta Koro - Dark lava-themed stone, harder and hotter
     public static final DeferredBlock<Block> TA_KORO_STONE = BLOCKS.registerSimpleBlock("ta_koro_stone",
-            withBlockId("ta_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE)));
+            withBlockId("ta_koro_stone", BlockBehaviour.Properties.of().strength(2.5F, 5.0F).sound(SoundType.STONE)));
+    // Onu Koro - Sandy, earthy stone, softer
     public static final DeferredBlock<Block> ONU_KORO_STONE = BLOCKS.registerSimpleBlock("onu_koro_stone",
-            withBlockId("onu_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE)));
+            withBlockId("onu_koro_stone", BlockBehaviour.Properties.of().strength(1.5F, 3.0F).sound(SoundType.STONE)));
+    // Ga Koro - Seaweed/water stone, smooth and slippery
     public static final DeferredBlock<Block> GA_KORO_STONE = BLOCKS.registerSimpleBlock("ga_koro_stone",
-            withBlockId("ga_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE)));
+            withBlockId("ga_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.DEEPSLATE)));
+    // Ko Koro - Frozen ice stone, brittle
     public static final DeferredBlock<Block> KO_KORO_STONE = BLOCKS.registerSimpleBlock("ko_koro_stone",
-            withBlockId("ko_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE)));
+            withBlockId("ko_koro_stone", BlockBehaviour.Properties.of().strength(1.0F, 2.0F).sound(SoundType.GLASS)));
+    // Le Koro - Light/sky stone
     public static final DeferredBlock<Block> LE_KORO_STONE = BLOCKS.registerSimpleBlock("le_koro_stone",
-            withBlockId("le_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE)));
+            withBlockId("le_koro_stone", BlockBehaviour.Properties.of().strength(1.5F, 2.5F).sound(SoundType.STONE)));
+    // Po Koro - Stone rock, smooth and polished
     public static final DeferredBlock<Block> PO_KORO_STONE = BLOCKS.registerSimpleBlock("po_koro_stone",
-            withBlockId("po_koro_stone", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.STONE)));
+            withBlockId("po_koro_stone", BlockBehaviour.Properties.of().strength(2.2F, 4.0F).sound(SoundType.STONE)));
 }
