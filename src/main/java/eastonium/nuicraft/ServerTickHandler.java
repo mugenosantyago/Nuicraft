@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.List;
@@ -29,11 +30,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ServerTickHandler {
 
-    /** Run mask check every N ticks; only attribute updates when mask actually changes. */
-    private static final int TICK_INTERVAL = 10;
+    /** Run mask check every N ticks to limit server load; only update attributes when mask changes. */
+    private static final int TICK_INTERVAL = 20;
     private static final int EFFECT_INTERVAL = 60;
     private static final int EFFECT_DURATION = 60;
     private static final double KOMAU_RANGE = 8.0;
+    /** Max mobs to apply Komau effect per tick to avoid lag spikes. */
+    private static final int KOMAU_MOB_CAP = 8;
 
     // Unique modifier IDs for each mask stat
     private static final ResourceLocation MOD_ARMOR = ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_armor");
@@ -45,6 +48,13 @@ public class ServerTickHandler {
 
     /** Cache last equipped mask per player so we only run attribute updates when it changes (reduces lag). */
     private static final Map<UUID, Item> LAST_MASK_BY_PLAYER = new ConcurrentHashMap<>();
+
+    @SubscribeEvent
+    public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            LAST_MASK_BY_PLAYER.remove(serverPlayer.getUUID());
+        }
+    }
 
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Post event) {
@@ -63,18 +73,14 @@ public class ServerTickHandler {
                 UUID uuid = player.getUUID();
                 Item lastMask = LAST_MASK_BY_PLAYER.get(uuid);
 
+                // Only run attribute logic when equipped mask actually changed (reduces tick load)
                 if (mask != lastMask) {
                     if (mask != null) {
                         LAST_MASK_BY_PLAYER.put(uuid, mask);
                     } else {
-                        LAST_MASK_BY_PLAYER.remove(uuid); // ConcurrentHashMap does not allow null values
+                        LAST_MASK_BY_PLAYER.remove(uuid);
                     }
-                }
-                // Always re-apply mask attributes when a NuiCraft mask is worn (every TICK_INTERVAL) so boosts persist and are visible
-                if (mask != null && isNuiCraftMask(mask)) {
                     updateMaskAttributes(player, mask);
-                } else if (lastMask != null && isNuiCraftMask(lastMask)) {
-                    updateMaskAttributes(player, null); // clear when removed
                 }
 
                 // Apply potion effects periodically; stagger by player to avoid spikes
@@ -83,15 +89,6 @@ public class ServerTickHandler {
                 }
             }
         }
-    }
-
-    private static boolean isNuiCraftMask(Item item) {
-        return item == NuiCraftItems.MASK_MATA_HAU.get() || item == NuiCraftItems.MASK_MATA_KAUKAU.get()
-                || item == NuiCraftItems.MASK_MATA_MIRU.get() || item == NuiCraftItems.MASK_MATA_KAKAMA.get()
-                || item == NuiCraftItems.MASK_MATA_PAKARI.get() || item == NuiCraftItems.MASK_MATA_AKAKU.get()
-                || item == NuiCraftItems.MASK_MATA_HUNA.get() || item == NuiCraftItems.MASK_MATA_MAHIKI.get()
-                || item == NuiCraftItems.MASK_MATA_MATATU.get() || item == NuiCraftItems.MASK_MATA_KOMAU.get()
-                || item == NuiCraftItems.MASK_MATA_RARU.get() || item == NuiCraftItems.MASK_MATA_RURU.get();
     }
 
     /**
@@ -180,7 +177,9 @@ public class ServerTickHandler {
         } else if (mask == NuiCraftItems.MASK_MATA_KOMAU.get()) {
             AABB aura = player.getBoundingBox().inflate(KOMAU_RANGE);
             List<Monster> nearbyMobs = level.getEntitiesOfClass(Monster.class, aura);
+            int count = 0;
             for (Monster mob : nearbyMobs) {
+                if (count++ >= KOMAU_MOB_CAP) break;
                 mob.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, EFFECT_DURATION, 0, true, true, true));
                 mob.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, EFFECT_DURATION, 0, true, true, true));
             }
