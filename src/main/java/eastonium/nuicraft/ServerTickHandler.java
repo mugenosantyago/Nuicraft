@@ -49,6 +49,7 @@ public class ServerTickHandler {
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Post event) {
         var server = event.getServer();
+        if (server.getPlayerCount() == 0) return; // no players: skip all work to avoid contributing to tick lag
         var overworld = server.overworld();
         if (overworld == null) return;
         long gameTime = overworld.getGameTime();
