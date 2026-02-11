@@ -180,7 +180,15 @@
   "item.nuicraft.mask_mata_komau": "Kanohi Komau - Mask of Mind Control",
   "item.nuicraft.mask_mata_raru": "Kanohi Rau - Mask of Translation",
   "item.nuicraft.mask_mata_ruru": "Kanohi Ruru - Mask of Night Vision",
-  
+
+  "item.nuicraft.mask.when_worn": "When worn:",
+  "item.nuicraft.mask.armor": "+%s Armor",
+  "item.nuicraft.mask.toughness": "+%s Toughness",
+  "item.nuicraft.mask.speed": "+%s%% Speed",
+  "item.nuicraft.mask.attack": "+%s Attack Damage",
+  "item.nuicraft.mask.knockback_resist": "+%s%% Knockback Resistance",
+  "item.nuicraft.mask.reach": "+%s Block Reach",
+
   "item.nuicraft.mask_nuva_kakama": "Kanohi Nuva Kakama - Mask of Speed (+1.0 armor)",
   "item.nuicraft.mask_nuva_pakari": "Kanohi Nuva Pakari - Mask of Strength (+1.0 armor)",
   "item.nuicraft.mask_nuva_kaukau": "Kanohi Nuva Kaukau - Mask of Water Breathing (+1.0 armor)",

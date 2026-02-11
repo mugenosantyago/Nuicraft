@@ -63,10 +63,18 @@ public class ServerTickHandler {
                 UUID uuid = player.getUUID();
                 Item lastMask = LAST_MASK_BY_PLAYER.get(uuid);
 
-                // Only run attribute logic when the equipped mask actually changed (stat boosts apply immediately on equip)
                 if (mask != lastMask) {
-                    LAST_MASK_BY_PLAYER.put(uuid, mask);
+                    if (mask != null) {
+                        LAST_MASK_BY_PLAYER.put(uuid, mask);
+                    } else {
+                        LAST_MASK_BY_PLAYER.remove(uuid); // ConcurrentHashMap does not allow null values
+                    }
+                }
+                // Always re-apply mask attributes when a NuiCraft mask is worn (every TICK_INTERVAL) so boosts persist and are visible
+                if (mask != null && isNuiCraftMask(mask)) {
                     updateMaskAttributes(player, mask);
+                } else if (lastMask != null && isNuiCraftMask(lastMask)) {
+                    updateMaskAttributes(player, null); // clear when removed
                 }
 
                 // Apply potion effects periodically; stagger by player to avoid spikes
@@ -75,6 +83,15 @@ public class ServerTickHandler {
                 }
             }
         }
+    }
+
+    private static boolean isNuiCraftMask(Item item) {
+        return item == NuiCraftItems.MASK_MATA_HAU.get() || item == NuiCraftItems.MASK_MATA_KAUKAU.get()
+                || item == NuiCraftItems.MASK_MATA_MIRU.get() || item == NuiCraftItems.MASK_MATA_KAKAMA.get()
+                || item == NuiCraftItems.MASK_MATA_PAKARI.get() || item == NuiCraftItems.MASK_MATA_AKAKU.get()
+                || item == NuiCraftItems.MASK_MATA_HUNA.get() || item == NuiCraftItems.MASK_MATA_MAHIKI.get()
+                || item == NuiCraftItems.MASK_MATA_MATATU.get() || item == NuiCraftItems.MASK_MATA_KOMAU.get()
+                || item == NuiCraftItems.MASK_MATA_RARU.get() || item == NuiCraftItems.MASK_MATA_RURU.get();
     }
 
     /**
