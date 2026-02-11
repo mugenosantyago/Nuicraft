@@ -18,6 +18,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Applies all Kanohi mask powers: both attribute modifiers and potion effects.
@@ -26,9 +29,9 @@ import java.util.List;
  */
 public class ServerTickHandler {
 
-    /** Only run mask logic every N ticks to avoid lag (20 = once per second). */
-    private static final int TICK_INTERVAL = 20;
-    private static final int EFFECT_INTERVAL = 40;
+    /** Run mask check every N ticks; only attribute updates when mask actually changes. */
+    private static final int TICK_INTERVAL = 10;
+    private static final int EFFECT_INTERVAL = 60;
     private static final int EFFECT_DURATION = 60;
     private static final double KOMAU_RANGE = 8.0;
 
@@ -40,13 +43,15 @@ public class ServerTickHandler {
     private static final ResourceLocation MOD_KB_RESIST = ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_kb_resist");
     private static final ResourceLocation MOD_REACH = ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_reach");
 
+    /** Cache last equipped mask per player so we only run attribute updates when it changes (reduces lag). */
+    private static final Map<UUID, Item> LAST_MASK_BY_PLAYER = new ConcurrentHashMap<>();
+
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Post event) {
         var server = event.getServer();
         var overworld = server.overworld();
         if (overworld == null) return;
         long gameTime = overworld.getGameTime();
-        // Throttle: only run once per second to avoid periodic lag and reduce CPU use
         if (gameTime % TICK_INTERVAL != 0) {
             return;
         }
@@ -54,11 +59,16 @@ public class ServerTickHandler {
             for (ServerPlayer player : level.players()) {
                 ItemStack headSlot = player.getItemBySlot(EquipmentSlot.HEAD);
                 Item mask = headSlot.isEmpty() ? null : headSlot.getItem();
+                UUID uuid = player.getUUID();
+                Item lastMask = LAST_MASK_BY_PLAYER.get(uuid);
 
-                // Apply or remove attribute modifiers based on current mask
-                updateMaskAttributes(player, mask);
+                // Only run attribute logic when the equipped mask actually changed (stat boosts apply immediately on equip)
+                if (mask != lastMask) {
+                    LAST_MASK_BY_PLAYER.put(uuid, mask);
+                    updateMaskAttributes(player, mask);
+                }
 
-                // Apply potion effects periodically; stagger by player ID to spread load and reduce visual flash
+                // Apply potion effects periodically; stagger by player to avoid spikes
                 if (mask != null && (gameTime + player.getId()) % EFFECT_INTERVAL == 0) {
                     applyMaskEffects(player, mask, level);
                 }
