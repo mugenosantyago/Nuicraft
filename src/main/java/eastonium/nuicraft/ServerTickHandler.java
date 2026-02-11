@@ -26,6 +26,8 @@ import java.util.List;
  */
 public class ServerTickHandler {
 
+    /** Only run mask logic every N ticks to avoid lag (20 = once per second). */
+    private static final int TICK_INTERVAL = 20;
     private static final int EFFECT_INTERVAL = 40;
     private static final int EFFECT_DURATION = 60;
     private static final double KOMAU_RANGE = 8.0;
@@ -40,7 +42,15 @@ public class ServerTickHandler {
 
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Post event) {
-        for (ServerLevel level : event.getServer().getAllLevels()) {
+        var server = event.getServer();
+        var overworld = server.overworld();
+        if (overworld == null) return;
+        long gameTime = overworld.getGameTime();
+        // Throttle: only run once per second to avoid periodic lag and reduce CPU use
+        if (gameTime % TICK_INTERVAL != 0) {
+            return;
+        }
+        for (ServerLevel level : server.getAllLevels()) {
             for (ServerPlayer player : level.players()) {
                 ItemStack headSlot = player.getItemBySlot(EquipmentSlot.HEAD);
                 Item mask = headSlot.isEmpty() ? null : headSlot.getItem();
@@ -48,8 +58,8 @@ public class ServerTickHandler {
                 // Apply or remove attribute modifiers based on current mask
                 updateMaskAttributes(player, mask);
 
-                // Apply potion effects periodically
-                if (mask != null && level.getGameTime() % EFFECT_INTERVAL == 0) {
+                // Apply potion effects periodically; stagger by player ID to spread load and reduce visual flash
+                if (mask != null && (gameTime + player.getId()) % EFFECT_INTERVAL == 0) {
                     applyMaskEffects(player, mask, level);
                 }
             }

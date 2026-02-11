@@ -47,8 +47,10 @@ public class NuiCraftItems {
 
     // Generic items
     public static final DeferredItem<Item> GENERIC_ITEM = ITEMS.registerSimpleItem("generic_item");
-    public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerSimpleItem("kanoka_bamboo");
-    public static final DeferredItem<Item> KANOKA_DISC = ITEMS.registerSimpleItem("kanoka_disc");
+    public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerItem("kanoka_bamboo",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));
+    public static final DeferredItem<Item> KANOKA_DISC = ITEMS.registerItem("kanoka_disc",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disc", props)));
     public static final DeferredItem<Item> DISC_LAUNCHER = ITEMS.registerSimpleItem("disc_launcher");
 
     // Materials (from bionicle_qfn)
@@ -71,14 +73,21 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> ROCK_TOA_STONE = ITEMS.registerSimpleItem("rock_toa_stone");
     public static final DeferredItem<Item> ONU_WAHI_STONE = ITEMS.registerSimpleItem("onu_wahi_stone");
 
-    // Kanoka disk variants (from bionicle_qfn)
-    public static final DeferredItem<Item> KANOKA_DISK_GA = ITEMS.registerSimpleItem("kanoka_disk_ga");
-    public static final DeferredItem<Item> KANOKA_DISK_KO = ITEMS.registerSimpleItem("kanoka_disk_ko");
-    public static final DeferredItem<Item> KANOKA_DISK_LE = ITEMS.registerSimpleItem("kanoka_disk_le");
-    public static final DeferredItem<Item> KANOKA_DISK_ONU = ITEMS.registerSimpleItem("kanoka_disk_onu");
-    public static final DeferredItem<Item> KANOKA_DISK_PO = ITEMS.registerSimpleItem("kanoka_disk_po");
-    public static final DeferredItem<Item> KANOKA_DISK_TA = ITEMS.registerSimpleItem("kanoka_disk_ta");
-    public static final DeferredItem<Item> KANOKA_OF_TIME = ITEMS.registerSimpleItem("kanoka_of_time");
+    // Kanoka disk variants (from bionicle_qfn) - all throwable
+    public static final DeferredItem<Item> KANOKA_DISK_GA = ITEMS.registerItem("kanoka_disk_ga",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disk_ga", props)));
+    public static final DeferredItem<Item> KANOKA_DISK_KO = ITEMS.registerItem("kanoka_disk_ko",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disk_ko", props)));
+    public static final DeferredItem<Item> KANOKA_DISK_LE = ITEMS.registerItem("kanoka_disk_le",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disk_le", props)));
+    public static final DeferredItem<Item> KANOKA_DISK_ONU = ITEMS.registerItem("kanoka_disk_onu",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disk_onu", props)));
+    public static final DeferredItem<Item> KANOKA_DISK_PO = ITEMS.registerItem("kanoka_disk_po",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disk_po", props)));
+    public static final DeferredItem<Item> KANOKA_DISK_TA = ITEMS.registerItem("kanoka_disk_ta",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disk_ta", props)));
+    public static final DeferredItem<Item> KANOKA_OF_TIME = ITEMS.registerItem("kanoka_of_time",
+            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_of_time", props)));
 
     // Protodermis tools
     public static final DeferredItem<Item> PROTODERMIS_SWORD = ITEMS.registerItem("protodermis_sword",

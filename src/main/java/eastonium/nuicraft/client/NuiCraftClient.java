@@ -3,6 +3,8 @@ package eastonium.nuicraft.client;
 import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
+import eastonium.nuicraft.entity.EntityThrownDisc;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -33,5 +35,6 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.HOI.get(), HoiRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.KOFO_JAGA.get(), KofoJagaRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.THROWN_DISC.get(), ThrownItemRenderer::new);
     }
 }
