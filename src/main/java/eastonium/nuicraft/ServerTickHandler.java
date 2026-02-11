@@ -31,12 +31,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ServerTickHandler {
 
     /** Run mask check every N ticks to limit server load; only update attributes when mask changes. */
-    private static final int TICK_INTERVAL = 20;
-    private static final int EFFECT_INTERVAL = 60;
+    private static final int TICK_INTERVAL = 40;
+    private static final int EFFECT_INTERVAL = 80;
+    private static final int KOMAU_EFFECT_INTERVAL = 100;
     private static final int EFFECT_DURATION = 60;
-    private static final double KOMAU_RANGE = 8.0;
+    private static final double KOMAU_RANGE = 5.0;
     /** Max mobs to apply Komau effect per tick to avoid lag spikes. */
-    private static final int KOMAU_MOB_CAP = 8;
+    private static final int KOMAU_MOB_CAP = 5;
 
     // Unique modifier IDs for each mask stat
     private static final ResourceLocation MOD_ARMOR = ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_armor");
@@ -67,13 +68,17 @@ public class ServerTickHandler {
             return;
         }
         for (ServerLevel level : server.getAllLevels()) {
+            if (level.players().isEmpty()) continue;
             for (ServerPlayer player : level.players()) {
                 ItemStack headSlot = player.getItemBySlot(EquipmentSlot.HEAD);
                 Item mask = headSlot.isEmpty() ? null : headSlot.getItem();
                 UUID uuid = player.getUUID();
                 Item lastMask = LAST_MASK_BY_PLAYER.get(uuid);
 
-                // Only run attribute logic when equipped mask actually changed (reduces tick load)
+                // Skip players who have no helmet and never had a mask (reduces work when no one uses masks)
+                if (mask == null && lastMask == null) continue;
+
+                // Only run attribute logic when equipped mask actually changed
                 if (mask != lastMask) {
                     if (mask != null) {
                         LAST_MASK_BY_PLAYER.put(uuid, mask);
@@ -83,8 +88,12 @@ public class ServerTickHandler {
                     updateMaskAttributes(player, mask);
                 }
 
-                // Apply potion effects periodically; stagger by player to avoid spikes
-                if (mask != null && (gameTime + player.getId()) % EFFECT_INTERVAL == 0) {
+                // Apply potion effects periodically; stagger by player. Komau uses longer interval (entity query cost).
+                if (mask == null) continue;
+                long effectTick = gameTime + player.getId();
+                if (mask == NuiCraftItems.MASK_MATA_KOMAU.get()) {
+                    if (effectTick % KOMAU_EFFECT_INTERVAL == 0) applyMaskEffects(player, mask, level);
+                } else if (effectTick % EFFECT_INTERVAL == 0) {
                     applyMaskEffects(player, mask, level);
                 }
             }
