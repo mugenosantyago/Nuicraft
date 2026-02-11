@@ -1,17 +1,1 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:feather"
-    },
-    {
-      "item": "minecraft:air_block"
-    },
-    {
-      "item": "minecraft:white_wool"
-    }
-  ],
-  "result": {
-    "item": "nuicraft:mask_mata_miru"
-  }
-}
+{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"nuicraft:ingot_protodermis"},{"item":"minecraft:feather"},{"item":"minecraft:air_block"},{"item":"minecraft:white_wool"}],"result":{"item":"nuicraft:mask_mata_miru"}}

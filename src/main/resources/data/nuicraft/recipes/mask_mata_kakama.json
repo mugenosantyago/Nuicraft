@@ -1,17 +1,1 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:feather"
-    },
-    {
-      "item": "minecraft:honey_block"
-    },
-    {
-      "item": "minecraft:sugar"
-    }
-  ],
-  "result": {
-    "item": "nuicraft:mask_mata_kakama"
-  }
-}
+{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"nuicraft:ingot_protodermis"},{"item":"minecraft:feather"},{"item":"minecraft:honey_block"},{"item":"minecraft:sugar"}],"result":{"item":"nuicraft:mask_mata_kakama"}}
