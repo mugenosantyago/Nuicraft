@@ -44,12 +44,8 @@ public class NuiCraft {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(NuiCraftEntityAttributes::registerEntityAttributes);
         
-        // Register event handlers
-        NeoForge.EVENT_BUS.register(new ServerTickHandler());
-        
-        // Client-side event handlers (only register on client)
+        // Client-side (renderers, etc.) – no server tick or mask stat logic
         if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
-            NeoForge.EVENT_BUS.register(new eastonium.nuicraft.client.MaskTooltipHandler());
             eastonium.nuicraft.client.NuiCraftClient.registerModBusEvents(modEventBus);
         }
     }

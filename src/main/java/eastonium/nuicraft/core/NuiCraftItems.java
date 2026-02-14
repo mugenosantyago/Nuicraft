@@ -115,7 +115,7 @@ public class NuiCraftItems {
     /**
      * Build mask Item.Properties - equippable in HEAD slot.
      * Uses empty equipment asset to suppress vanilla 2D armor overlay rendering.
-     * Stats are applied via ServerTickHandler as transient attribute modifiers.
+     * Masks are cosmetic (no stat boosts or effects).
      */
     private static Item.Properties maskProps(Item.Properties props) {
         ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> emptyAsset = ResourceKey.create(
@@ -129,7 +129,7 @@ public class NuiCraftItems {
                                 .build());
     }
 
-    // --- Masks: stats and effects are handled in ServerTickHandler ---
+    // --- Masks: cosmetic only (equippable in head slot, 3D rendered via AzureLib) ---
     public static final DeferredItem<Item> MASK_MATA_HAU = ITEMS.registerItem("mask_mata_hau",
             props -> new Item(maskProps(withItemId("mask_mata_hau", props))));
     public static final DeferredItem<Item> MASK_MATA_KAUKAU = ITEMS.registerItem("mask_mata_kaukau",
