@@ -13,6 +13,25 @@
           {
             "processor_type": "minecraft:block_ignore",
             "blocks": [{"Name": "minecraft:structure_block"}]
+          },
+          {
+            "processor_type": "minecraft:rule",
+            "rules": [
+              {
+                "output_state": {"Name": "minecraft:chest"},
+                "block_entity_modifier": {
+                  "type": "minecraft:append_loot",
+                  "loot_table": "nuicraft:chests/mata_nui_island"
+                }
+              },
+              {
+                "output_state": {"Name": "minecraft:barrel"},
+                "block_entity_modifier": {
+                  "type": "minecraft:append_loot",
+                  "loot_table": "nuicraft:chests/mata_nui_island"
+                }
+              }
+            ]
           }
         ]
       }
