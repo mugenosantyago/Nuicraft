@@ -170,4 +170,8 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.KOFO_JAGA.get(), withItemId("kofo_jaga_spawn_egg", props)));
     public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.registerItem("nui_jaga_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_JAGA.get(), withItemId("nui_jaga_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_SPAWN_EGG = ITEMS.registerItem("matoran_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN.get(), withItemId("matoran_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_SPAWN_EGG = ITEMS.registerItem("turaga_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA.get(), withItemId("turaga_spawn_egg", props)));
 }

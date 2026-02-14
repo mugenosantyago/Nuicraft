@@ -16,5 +16,9 @@ public class NuiCraftEntityAttributes {
         // Hostile Rahi
         event.put(NuiCraftEntityTypes.KOFO_JAGA.get(), EntityKofoJaga.createAttributes().build());
         event.put(NuiCraftEntityTypes.NUI_JAGA.get(), EntityNuiJaga.createAttributes().build());
+
+        // NPCs
+        event.put(NuiCraftEntityTypes.MATORAN.get(), EntityMatoran.createAttributes().build());
+        event.put(NuiCraftEntityTypes.TURAGA.get(), EntityTuraga.createAttributes().build());
     }
 }

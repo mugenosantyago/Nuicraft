@@ -5,6 +5,8 @@ import eastonium.nuicraft.core.NuiCraftBlocks;
 import eastonium.nuicraft.core.NuiCraftEntityAttributes;
 import eastonium.nuicraft.core.NuiCraftItems;
 import eastonium.nuicraft.core.NuiCraftRegistration;
+import eastonium.nuicraft.event.DialogueEventHandler;
+import eastonium.nuicraft.network.NuiCraftPayloads;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -43,6 +45,10 @@ public class NuiCraft {
         // Register mod event listeners
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(NuiCraftEntityAttributes::registerEntityAttributes);
+        modEventBus.addListener(NuiCraftPayloads::register);
+        
+        // Game events (entity interact for dialogue)
+        NeoForge.EVENT_BUS.register(DialogueEventHandler.class);
         
         // Client-side (renderers, etc.) – no server tick or mask stat logic
         if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {

@@ -44,6 +44,16 @@ public class NuiCraftEntityTypes {
             ENTITY_TYPES.register("nui_jaga", () -> EntityType.Builder.of(EntityNuiJaga::new, MobCategory.MONSTER)
                     .sized(1.4F, 1.2F).clientTrackingRange(64).build(key("nui_jaga")));
 
+    // ---- NPCs (dialogue) ----
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN =
+            ENTITY_TYPES.register("matoran", () -> EntityType.Builder.of(EntityMatoran::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran")));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA =
+            ENTITY_TYPES.register("turaga", () -> EntityType.Builder.of(EntityTuraga::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga")));
+
     // ---- Projectiles ----
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityThrownDisc>> THROWN_DISC =

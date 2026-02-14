@@ -35,6 +35,8 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.HOI.get(), HoiRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.KOFO_JAGA.get(), KofoJagaRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.MATORAN.get(), context -> new GenericNuiCraftRenderer<>(context, "matoran"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA.get(), context -> new GenericNuiCraftRenderer<>(context, "turaga"));
         event.registerEntityRenderer(NuiCraftEntityTypes.THROWN_DISC.get(), ThrownItemRenderer::new);
     }
 }

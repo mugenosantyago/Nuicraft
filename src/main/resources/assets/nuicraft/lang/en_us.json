@@ -201,6 +201,10 @@
   "item.nuicraft.mask_ignika": "Kanohi Ignika - Legendary Mask of Life (+2.0 armor)",
   "item.nuicraft.mask_vahi": "Kanohi Vahi - Legendary Mask of Time (+2.0 armor)",
 
+  "gui.nuicraft.dialogue.close": "Close",
+  "dialogue.nuicraft.matoran.greeting": "Hello, traveler. The Great Spirit guides us all. Have you come to help protect Mata Nui?",
+  "dialogue.nuicraft.turaga.greeting": "Welcome, friend. I am a Turaga, elder of this land. Speak with me when you wish to trade or learn of the old ways.",
+
   "advancement.nuicraft.quest_1.title": "Quest for Nuicraft",
   "advancement.nuicraft.quest_1.description": "Prepare your adventure.",
   "advancement.nuicraft.quest_2.title": "How to become a Toa?",
