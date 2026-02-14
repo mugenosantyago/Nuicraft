@@ -21,6 +21,10 @@ public class NuiCraftEntityAttributes {
         event.put(NuiCraftEntityTypes.KOFO_JAGA.get(), EntityKofoJaga.createAttributes().build());
         event.put(NuiCraftEntityTypes.NUI_JAGA.get(), EntityNuiJaga.createAttributes().build());
 
+        // Flying Rahi
+        event.put(NuiCraftEntityTypes.GUKKO.get(), EntityGukko.createAttributes().build());
+        event.put(NuiCraftEntityTypes.NUI_RAMA.get(), EntityNuiRama.createAttributes().build());
+
         // NPCs
         event.put(NuiCraftEntityTypes.MATORAN.get(), EntityMatoran.createAttributes().build());
         event.put(NuiCraftEntityTypes.TURAGA.get(), EntityTuraga.createAttributes().build());

@@ -18,7 +18,10 @@ public class NuiCraftClient {
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(MaskArmorRendererRegistry::registerAll);
+        event.enqueueWork(() -> {
+            MaskArmorRendererRegistry.registerAll();
+            net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(GukkoInputSender.class);
+        });
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -41,6 +44,8 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA_BLUE.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava_blue"));
         event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA_GREEN.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava_green"));
         event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA_YELLOW.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava_yellow"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.GUKKO.get(), context -> new GenericNuiCraftRenderer<>(context, "gukko"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.NUI_RAMA.get(), context -> new GenericNuiCraftRenderer<>(context, "nui_rama"));
         event.registerEntityRenderer(NuiCraftEntityTypes.THROWN_DISC.get(), ThrownItemRenderer::new);
     }
 }

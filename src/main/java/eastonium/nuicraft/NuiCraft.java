@@ -50,7 +50,7 @@ public class NuiCraft {
         // Game events (entity interact for dialogue)
         NeoForge.EVENT_BUS.register(DialogueEventHandler.class);
         
-        // Client-side (renderers, etc.) – no server tick or mask stat logic
+        // Client-side (renderers, Gukko input when riding)
         if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
             eastonium.nuicraft.client.NuiCraftClient.registerModBusEvents(modEventBus);
         }

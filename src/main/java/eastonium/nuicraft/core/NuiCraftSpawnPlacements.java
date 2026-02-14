@@ -42,6 +42,13 @@ public class NuiCraftSpawnPlacements {
         event.register(NuiCraftEntityTypes.TARAKAVA_YELLOW.get(),
                 SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        // Flying Rahi (no heightmap - they fly)
+        event.register(NuiCraftEntityTypes.GUKKO.get(),
+                SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                PathfinderMob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(NuiCraftEntityTypes.NUI_RAMA.get(),
+                SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                PathfinderMob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         // NPCs (spawn-egg / structure only by default; use biome modifiers to add natural spawns)
         event.register(NuiCraftEntityTypes.MATORAN.get(),
                 SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
