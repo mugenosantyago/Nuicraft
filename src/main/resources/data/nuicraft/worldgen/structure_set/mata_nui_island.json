@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "nuicraft:mata_nui_island",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 400,
+    "separation": 380,
+    "salt": 190045212
+  }
+}
