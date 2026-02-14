@@ -36,6 +36,20 @@ public class NuiCraftEntityTypes {
 
     // ---- Hostile Rahi ----
 
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityMuaka>> MUAKA =
+            ENTITY_TYPES.register("muaka", () -> EntityType.Builder.of(EntityMuaka::new, MobCategory.MONSTER)
+                    .sized(1.4F, 1.2F).clientTrackingRange(64).build(key("muaka")));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityTarakava>> TARAKAVA_BLUE =
+            ENTITY_TYPES.register("tarakava_blue", () -> EntityType.Builder.of(EntityTarakava::new, MobCategory.MONSTER)
+                    .sized(1.2F, 1.0F).clientTrackingRange(64).build(key("tarakava_blue")));
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityTarakava>> TARAKAVA_GREEN =
+            ENTITY_TYPES.register("tarakava_green", () -> EntityType.Builder.of(EntityTarakava::new, MobCategory.MONSTER)
+                    .sized(1.2F, 1.0F).clientTrackingRange(64).build(key("tarakava_green")));
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityTarakava>> TARAKAVA_YELLOW =
+            ENTITY_TYPES.register("tarakava_yellow", () -> EntityType.Builder.of(EntityTarakava::new, MobCategory.MONSTER)
+                    .sized(1.2F, 1.0F).clientTrackingRange(64).build(key("tarakava_yellow")));
+
     public static final DeferredHolder<EntityType<?>, EntityType<EntityKofoJaga>> KOFO_JAGA =
             ENTITY_TYPES.register("kofo_jaga", () -> EntityType.Builder.of(EntityKofoJaga::new, MobCategory.MONSTER)
                     .sized(1.0F, 0.8F).clientTrackingRange(64).build(key("kofo_jaga")));

@@ -14,6 +14,10 @@ public class NuiCraftEntityAttributes {
         event.put(NuiCraftEntityTypes.HOI.get(), EntityHoi.createAttributes().build());
 
         // Hostile Rahi
+        event.put(NuiCraftEntityTypes.MUAKA.get(), EntityMuaka.createAttributes().build());
+        event.put(NuiCraftEntityTypes.TARAKAVA_BLUE.get(), EntityTarakava.createAttributes().build());
+        event.put(NuiCraftEntityTypes.TARAKAVA_GREEN.get(), EntityTarakava.createAttributes().build());
+        event.put(NuiCraftEntityTypes.TARAKAVA_YELLOW.get(), EntityTarakava.createAttributes().build());
         event.put(NuiCraftEntityTypes.KOFO_JAGA.get(), EntityKofoJaga.createAttributes().build());
         event.put(NuiCraftEntityTypes.NUI_JAGA.get(), EntityNuiJaga.createAttributes().build());
 
