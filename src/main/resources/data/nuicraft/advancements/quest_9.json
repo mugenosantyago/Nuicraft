@@ -9,8 +9,26 @@
     "hidden": true
   },
   "criteria": {
-    "quest_9_0": {"trigger": "minecraft:impossible"}
+    "killed_muaka": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "nuicraft:muaka"
+        }
+      }
+    },
+    "killed_tarakava": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "#nuicraft:tarakava"
+        }
+      }
+    }
   },
+  "requirements": [
+    ["killed_muaka", "killed_tarakava"]
+  ],
   "rewards": {"experience": 20},
   "parent": "nuicraft:quest_1"
 }

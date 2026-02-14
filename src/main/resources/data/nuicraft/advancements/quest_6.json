@@ -9,7 +9,17 @@
     "hidden": false
   },
   "criteria": {
-    "quest_6_0": {"trigger": "minecraft:impossible"}
+    "quest_6_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["#nuicraft:masks"],
+            "count": {"min": 1}
+          }
+        ]
+      }
+    }
   },
   "parent": "nuicraft:quest_5"
 }

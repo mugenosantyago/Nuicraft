@@ -9,7 +9,14 @@
     "hidden": false
   },
   "criteria": {
-    "quest_2_0": {"trigger": "minecraft:impossible"}
+    "quest_2_0": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": {
+          "type": "#nuicraft:turaga"
+        }
+      }
+    }
   },
   "parent": "nuicraft:quest_1"
 }
