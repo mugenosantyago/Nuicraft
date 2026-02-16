@@ -3,7 +3,7 @@
   "generator": {
     "type": "minecraft:flat",
     "settings": {
-      "biome": "minecraft:plains",
+      "biome": "nuicraft:mata_nui_plains",
       "layers": [
         { "height": 1, "block": "minecraft:bedrock" },
         { "height": 2, "block": "minecraft:dirt" },

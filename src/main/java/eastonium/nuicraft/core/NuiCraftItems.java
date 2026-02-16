@@ -176,12 +176,8 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA.get(), withItemId("turaga_spawn_egg", props)));
     public static final DeferredItem<Item> MUAKA_SPAWN_EGG = ITEMS.registerItem("muaka_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.MUAKA.get(), withItemId("muaka_spawn_egg", props)));
-    public static final DeferredItem<Item> TARAKAVA_BLUE_SPAWN_EGG = ITEMS.registerItem("tarakava_blue_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.TARAKAVA_BLUE.get(), withItemId("tarakava_blue_spawn_egg", props)));
-    public static final DeferredItem<Item> TARAKAVA_GREEN_SPAWN_EGG = ITEMS.registerItem("tarakava_green_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.TARAKAVA_GREEN.get(), withItemId("tarakava_green_spawn_egg", props)));
-    public static final DeferredItem<Item> TARAKAVA_YELLOW_SPAWN_EGG = ITEMS.registerItem("tarakava_yellow_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.TARAKAVA_YELLOW.get(), withItemId("tarakava_yellow_spawn_egg", props)));
+    public static final DeferredItem<Item> TARAKAVA_SPAWN_EGG = ITEMS.registerItem("tarakava_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TARAKAVA.get(), withItemId("tarakava_spawn_egg", props)));
     public static final DeferredItem<Item> GUKKO_SPAWN_EGG = ITEMS.registerItem("gukko_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.GUKKO.get(), withItemId("gukko_spawn_egg", props)));
     public static final DeferredItem<Item> NUI_RAMA_SPAWN_EGG = ITEMS.registerItem("nui_rama_spawn_egg",

@@ -41,9 +41,7 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.MATORAN.get(), context -> new GenericNuiCraftRenderer<>(context, "matoran"));
         event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA.get(), context -> new GenericNuiCraftRenderer<>(context, "turaga"));
         event.registerEntityRenderer(NuiCraftEntityTypes.MUAKA.get(), context -> new GenericNuiCraftRenderer<>(context, "muaka"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA_BLUE.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava_blue"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA_GREEN.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava_green"));
-        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA_YELLOW.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava_yellow"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava"));
         event.registerEntityRenderer(NuiCraftEntityTypes.GUKKO.get(), context -> new GenericNuiCraftRenderer<>(context, "gukko"));
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_RAMA.get(), context -> new GenericNuiCraftRenderer<>(context, "nui_rama"));
         event.registerEntityRenderer(NuiCraftEntityTypes.THROWN_DISC.get(), ThrownItemRenderer::new);

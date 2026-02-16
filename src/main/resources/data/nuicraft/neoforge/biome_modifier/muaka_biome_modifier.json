@@ -1,0 +1,1 @@
+{"type":"neoforge:add_spawns","biomes":["minecraft:savanna","minecraft:savanna_plateau","minecraft:windswept_savanna","minecraft:badlands","minecraft:eroded_badlands"],"spawners":{"type":"nuicraft:muaka","weight":6,"minCount":1,"maxCount":1}}

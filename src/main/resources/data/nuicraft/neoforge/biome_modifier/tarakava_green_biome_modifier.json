@@ -1,0 +1,1 @@
+{"type":"neoforge:add_spawns","biomes":["minecraft:ocean","minecraft:deep_ocean","minecraft:warm_ocean","minecraft:lukewarm_ocean","minecraft:river","minecraft:beach"],"spawners":{"type":"nuicraft:tarakava_green","weight":4,"minCount":1,"maxCount":1}}
