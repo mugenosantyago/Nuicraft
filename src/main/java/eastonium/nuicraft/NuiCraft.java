@@ -5,7 +5,10 @@ import eastonium.nuicraft.core.NuiCraftBlocks;
 import eastonium.nuicraft.core.NuiCraftEntityAttributes;
 import eastonium.nuicraft.core.NuiCraftItems;
 import eastonium.nuicraft.core.NuiCraftRegistration;
+import eastonium.nuicraft.config.NuiCraftConfig;
 import eastonium.nuicraft.event.DialogueEventHandler;
+import eastonium.nuicraft.event.MataNuiWorldImport;
+import eastonium.nuicraft.event.ProtodermisPortalHandler;
 import eastonium.nuicraft.network.NuiCraftPayloads;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -13,6 +16,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -46,9 +51,12 @@ public class NuiCraft {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(NuiCraftEntityAttributes::registerEntityAttributes);
         modEventBus.addListener(NuiCraftPayloads::register);
-        
-        // Game events (entity interact for dialogue)
+        ModList.get().getModContainerById(MODID).ifPresent(c -> c.registerConfig(ModConfig.Type.COMMON, NuiCraftConfig.SPEC));
+
+        // Game events (entity interact for dialogue; Toa stone on protodermis for portal)
         NeoForge.EVENT_BUS.register(DialogueEventHandler.class);
+        NeoForge.EVENT_BUS.register(ProtodermisPortalHandler.class);
+        NeoForge.EVENT_BUS.register(MataNuiWorldImport.class);
         
         // Client-side (renderers, Gukko input when riding)
         if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
