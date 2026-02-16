@@ -1,6 +1,7 @@
 package eastonium.nuicraft.jei;
 
 import eastonium.nuicraft.NuiCraft;
+import eastonium.nuicraft.core.NuiCraftBlocks;
 import eastonium.nuicraft.core.NuiCraftItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -42,5 +43,10 @@ public class NuiCraftJeiPlugin implements IModPlugin {
                 NuiCraftItems.MASK_MATA_RURU
         ).map(d -> new ItemStack(d.get())).toList();
         registration.addItemStackInfo(masks, Component.translatable("jei.nuicraft.mask.info"));
+
+        // Mask Forge: show in item list with description; recipe is discovered from recipe manager
+        registration.addItemStackInfo(
+                List.of(new ItemStack(NuiCraftBlocks.MASK_FORGE.get())),
+                Component.translatable("jei.nuicraft.mask_forge.info"));
     }
 }
