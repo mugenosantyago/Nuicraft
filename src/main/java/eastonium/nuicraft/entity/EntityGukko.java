@@ -13,8 +13,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Gukko - large flying Rahi. Can be ridden; player controls flight (like a rideable flying mount).
- * Flies most of the time when not ridden. Animations can be added later.
+ * Gukko - large flying Rahi. Rideable like a flying mount (no saddle or harness required).
+ * Right-click to mount; WASD to move, Jump to ascend, Shift to descend.
+ * Flies on its own when not ridden.
  */
 public class EntityGukko extends PathfinderMob {
 
@@ -147,8 +148,11 @@ public class EntityGukko extends PathfinderMob {
 
     @Override
     public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
-        if (!this.level().isClientSide && this.getPassengers().isEmpty() && !player.isSecondaryUseActive()) {
-            player.startRiding(this);
+        // No harness or saddle required - right-click (not sneaking) to mount
+        if (this.getPassengers().isEmpty() && !player.isSecondaryUseActive()) {
+            if (!this.level().isClientSide) {
+                player.startRiding(this);
+            }
             return net.minecraft.world.InteractionResult.SUCCESS;
         }
         return this.level().isClientSide ? net.minecraft.world.InteractionResult.SUCCESS : net.minecraft.world.InteractionResult.CONSUME;
