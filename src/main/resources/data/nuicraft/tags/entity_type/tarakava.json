@@ -1,7 +1,6 @@
 {
+  "replace": false,
   "values": [
-    "nuicraft:tarakava_blue",
-    "nuicraft:tarakava_green",
-    "nuicraft:tarakava_yellow"
+    "nuicraft:tarakava"
   ]
 }

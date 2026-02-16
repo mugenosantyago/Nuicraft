@@ -33,13 +33,7 @@ public class NuiCraftSpawnPlacements {
         event.register(NuiCraftEntityTypes.MUAKA.get(),
                 SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        event.register(NuiCraftEntityTypes.TARAKAVA_BLUE.get(),
-                SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        event.register(NuiCraftEntityTypes.TARAKAVA_GREEN.get(),
-                SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        event.register(NuiCraftEntityTypes.TARAKAVA_YELLOW.get(),
+        event.register(NuiCraftEntityTypes.TARAKAVA.get(),
                 SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         // Flying Rahi (no heightmap - they fly)
