@@ -232,6 +232,8 @@
   "advancement.nuicraft.quest_8.description": "Melt protodermis to its liquid state.",
   "advancement.nuicraft.quest_9.title": "I am the light.",
   "advancement.nuicraft.quest_9.description": "Defeat a Muaka and a Tarakava.",
+  "advancement.nuicraft.quest_10_ride_gukko.title": "Wings of the Gukko",
+  "advancement.nuicraft.quest_10_ride_gukko.description": "Ride a Gukko.",
 
   "nuicraft.config.matanuiWorldPath": "Matanui world path",
   "nuicraft.config.matanuiWorldPath.tooltip": "Path to the Matanui world save folder (relative to game directory). Leave empty to use flat generation for the Mata Nui dimension."
