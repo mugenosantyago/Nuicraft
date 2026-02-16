@@ -1,23 +1,30 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
  * Gukko - large flying Rahi. Rideable like a flying mount (no saddle or harness required).
  * Right-click to mount; WASD to move, Jump to ascend, Shift to descend.
- * Flies on its own when not ridden.
+ * Breed with feathers. Flies on its own when not ridden.
  */
-public class EntityGukko extends PathfinderMob {
+public class EntityGukko extends Animal {
 
     /** Movement input from the controlling player (set by server from GukkoInputPayload). */
     private boolean inputForward;
@@ -31,7 +38,7 @@ public class EntityGukko extends PathfinderMob {
     private static final double VERTICAL_SPEED = 0.28;
     private static final float RIDEABLE_HEIGHT_OFFSET = 0.5f;
 
-    public EntityGukko(EntityType<? extends PathfinderMob> type, Level level) {
+    public EntityGukko(EntityType<? extends EntityGukko> type, Level level) {
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.setNoGravity(true);
@@ -47,7 +54,10 @@ public class EntityGukko extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 0.8, 20) {
+        this.goalSelector.addGoal(1, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
+        this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.8, 20) {
             @Override
             public boolean canUse() {
                 return !EntityGukko.this.isVehicle() && super.canUse();
@@ -56,11 +66,22 @@ public class EntityGukko extends PathfinderMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return PathfinderMob.createMobAttributes()
+        return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 24.0)
                 .add(Attributes.FLYING_SPEED, 0.4)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
-                .add(Attributes.FOLLOW_RANGE, 24.0);
+                .add(Attributes.FOLLOW_RANGE, 24.0)
+                .add(Attributes.TEMPT_RANGE, 10.0);
+    }
+
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return stack.is(Items.FEATHER);
+    }
+
+    @Override
+    public AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, AgeableMob otherParent) {
+        return new EntityGukko(NuiCraftEntityTypes.GUKKO.get(), level);
     }
 
     /** Called from server payload handler to set movement input from the rider. */
@@ -148,6 +169,12 @@ public class EntityGukko extends PathfinderMob {
 
     @Override
     public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        // Breeding: feed with feather when not mounted
+        if (this.getPassengers().isEmpty() && this.isFood(stack)) {
+            net.minecraft.world.InteractionResult result = super.mobInteract(player, hand);
+            if (result.consumesAction()) return result;
+        }
         // No harness or saddle required - right-click (not sneaking) to mount
         if (this.getPassengers().isEmpty() && !player.isSecondaryUseActive()) {
             if (!this.level().isClientSide) {
