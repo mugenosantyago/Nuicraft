@@ -135,9 +135,6 @@
   "block.nuicraft.ko_koro_stone": "Ko-Koro Stone",
   "block.nuicraft.le_koro_stone": "Le-Koro Stone",
   "block.nuicraft.po_koro_stone": "Po-Koro Stone",
-  "block.nuicraft.mata_nui_portal": "Mata Nui Portal",
-
-  "dimension.nuicraft.mata_nui": "Mata Nui",
 
   "item.nuicraft.generic_item": "Generic Item",
   "item.nuicraft.heatstone_lighter": "Heatstone Lighter",
@@ -234,8 +231,5 @@
   "advancement.nuicraft.quest_9.title": "I am the light.",
   "advancement.nuicraft.quest_9.description": "Defeat a Muaka and a Tarakava.",
   "advancement.nuicraft.quest_10_ride_gukko.title": "Wings of the Gukko",
-  "advancement.nuicraft.quest_10_ride_gukko.description": "Ride a Gukko.",
-
-  "nuicraft.config.matanuiWorldPath": "Matanui world path",
-  "nuicraft.config.matanuiWorldPath.tooltip": "Path to the Matanui world save folder (relative to game directory). Leave empty to use flat generation for the Mata Nui dimension."
+  "advancement.nuicraft.quest_10_ride_gukko.description": "Ride a Gukko."
 }

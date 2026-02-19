@@ -74,10 +74,6 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<BlockBamboo> BAMBOO = BLOCKS.registerBlock("bamboo",
             BlockBamboo::new, withBlockId("bamboo", BlockBamboo.createProperties()));
 
-    // Portal
-    public static final DeferredBlock<BlockMataNuiPortal> MATA_NUI_PORTAL = BLOCKS.registerBlock("mata_nui_portal",
-            BlockMataNuiPortal::new, withBlockId("mata_nui_portal", BlockBehaviour.Properties.of().noCollission().strength(-1.0F).sound(SoundType.GLASS).lightLevel(s -> 11)));
-
     // Metal blocks
     public static final DeferredBlock<BlockProtodermis> BLOCK_PROTODERMIS = BLOCKS.registerBlock("block_protodermis",
             BlockProtodermis::new, withBlockId("block_protodermis", BlockMetal.createProperties()));
