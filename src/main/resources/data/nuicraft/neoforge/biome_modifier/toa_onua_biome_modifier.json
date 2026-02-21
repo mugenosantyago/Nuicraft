@@ -1,1 +1,0 @@
-{"type":"neoforge:add_spawns","biomes":["minecraft:lush_caves","minecraft:dripstone_caves","minecraft:deep_dark"],"spawners":{"type":"nuicraft:toa_onua","weight":1,"minCount":0,"maxCount":1}}
