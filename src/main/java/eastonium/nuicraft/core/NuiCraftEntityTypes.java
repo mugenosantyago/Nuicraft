@@ -58,7 +58,7 @@ public class NuiCraftEntityTypes {
                     .sized(1.2F, 0.9F).clientTrackingRange(64).build(key("gukko")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityNuiRama>> NUI_RAMA =
-            ENTITY_TYPES.register("nui_rama", () -> EntityType.Builder.of(EntityNuiRama::new, MobCategory.CREATURE)
+            ENTITY_TYPES.register("nui_rama", () -> EntityType.Builder.of(EntityNuiRama::new, MobCategory.MONSTER)
                     .sized(0.9F, 0.6F).clientTrackingRange(64).build(key("nui_rama")));
 
     // ---- NPCs (dialogue) ----

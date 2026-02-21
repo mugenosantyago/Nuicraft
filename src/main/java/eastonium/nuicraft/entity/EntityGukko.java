@@ -3,6 +3,7 @@ package eastonium.nuicraft.entity;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
@@ -20,9 +21,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Gukko - large flying Rahi. Rideable like a flying mount (no saddle or harness required).
+ * Gukko - large flying Rahi, acts like a friendly Happy Ghast. Rideable (no saddle required).
  * Right-click to mount; WASD to move, Jump to ascend, Shift to descend.
- * Breed with feathers. Flies on its own when not ridden.
+ * Breed with feathers. Floats and bobs when not ridden.
  */
 public class EntityGukko extends Animal {
 
@@ -57,7 +58,8 @@ public class EntityGukko extends Animal {
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
         this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.8, 20) {
+        this.goalSelector.addGoal(4, new Ghast.RandomFloatAroundGoal(this, 16));
+        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.06, 20) {
             @Override
             public boolean canUse() {
                 return !EntityGukko.this.isVehicle() && super.canUse();
@@ -67,11 +69,11 @@ public class EntityGukko extends Animal {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 24.0)
-                .add(Attributes.FLYING_SPEED, 0.4)
-                .add(Attributes.MOVEMENT_SPEED, 0.2)
-                .add(Attributes.FOLLOW_RANGE, 24.0)
-                .add(Attributes.TEMPT_RANGE, 10.0);
+                .add(Attributes.MAX_HEALTH, 20.0)
+                .add(Attributes.FLYING_SPEED, 0.06)
+                .add(Attributes.MOVEMENT_SPEED, 0.05)
+                .add(Attributes.FOLLOW_RANGE, 16.0)
+                .add(Attributes.TEMPT_RANGE, 16.0);
     }
 
     @Override
