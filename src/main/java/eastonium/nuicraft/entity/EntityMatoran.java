@@ -1,29 +1,112 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.core.NuiCraftBlocks;
+import eastonium.nuicraft.core.NuiCraftItems;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.Merchant;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Matoran - peaceful villager-like NPC that can be spoken to.
+ * Matoran - villager-like NPC that trades items relative to their Koro.
+ * Ta-Koro Matoran trade fire/desert items, Ga-Koro trade water items, etc.
  */
-public class EntityMatoran extends PathfinderMob {
+public class EntityMatoran extends PathfinderMob implements Merchant {
+
+    public enum Koro {
+        TA("matoran_ta", NuiCraftBlocks.TA_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.FIRE_TOA_STONE.get(), Items.BLAZE_POWDER),
+        GA("matoran_ga", NuiCraftBlocks.GA_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.WATER_TOA_STONE.get(), Items.PRISMARINE_SHARD),
+        PO("matoran_po", NuiCraftBlocks.PO_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.ROCK_TOA_STONE.get(), Items.SMOOTH_STONE),
+        ONU("matoran_onu", NuiCraftBlocks.ONU_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.EARTH_TOA_STONE.get(), Items.COAL),
+        LE("matoran_le", NuiCraftBlocks.LE_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.AIR_TOA_STONE.get(), Items.FEATHER),
+        KO("matoran_ko", NuiCraftBlocks.KO_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.ICE_TOA_STONE.get(), Items.SNOWBALL);
+
+        private final String textureName;
+        private final net.minecraft.world.level.ItemLike koroStone;
+        private final net.minecraft.world.level.ItemLike protodermis;
+        private final net.minecraft.world.level.ItemLike toaStone;
+        private final net.minecraft.world.level.ItemLike extraItem;
+
+        Koro(String textureName, net.minecraft.world.level.ItemLike koroStone, net.minecraft.world.level.ItemLike protodermis, net.minecraft.world.level.ItemLike toaStone, net.minecraft.world.level.ItemLike extraItem) {
+            this.textureName = textureName;
+            this.koroStone = koroStone;
+            this.protodermis = protodermis;
+            this.toaStone = toaStone;
+            this.extraItem = extraItem;
+        }
+
+        public String getTextureName() { return textureName; }
+        public net.minecraft.world.level.ItemLike getKoroStone() { return koroStone; }
+        public net.minecraft.world.level.ItemLike getProtodermis() { return protodermis; }
+        public net.minecraft.world.level.ItemLike getToaStone() { return toaStone; }
+        public net.minecraft.world.level.ItemLike getExtraItem() { return extraItem; }
+    }
+
+    private static final EntityDataAccessor<Integer> DATA_KORO = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+
+    @Nullable
+    private Player tradingPlayer;
+    @Nullable
+    private MerchantOffers offers;
 
     public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level) {
+        this(type, level, Koro.TA);
+    }
+
+    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro) {
         super(type, level);
+        this.entityData.set(DATA_KORO, koro.ordinal());
+    }
+
+    public Koro getKoro() {
+        int i = this.entityData.get(DATA_KORO);
+        Koro[] koros = Koro.values();
+        return i >= 0 && i < koros.length ? koros[i] : Koro.TA;
+    }
+
+    public void setKoro(Koro koro) {
+        this.entityData.set(DATA_KORO, koro.ordinal());
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_KORO, Koro.TA.ordinal());
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -31,5 +114,168 @@ public class EntityMatoran extends PathfinderMob {
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.5D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D);
+    }
+
+    @Override
+    public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(ServerLevelAccessor level, net.minecraft.world.DifficultyInstance difficulty, net.minecraft.world.entity.EntitySpawnReason reason, @Nullable net.minecraft.world.entity.SpawnGroupData spawnData) {
+        if (spawnData == null && reason == net.minecraft.world.entity.EntitySpawnReason.NATURAL) {
+            // Infer Koro from biome
+            var biome = level.getBiome(this.blockPosition());
+            if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) setKoro(Koro.TA);
+            else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) setKoro(Koro.GA);
+            else if (biome.is(Biomes.SAVANNA) || biome.is(Biomes.SAVANNA_PLATEAU) || biome.is(Biomes.WINDSWEPT_SAVANNA)) setKoro(Koro.PO);
+            else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK) || biome.is(Biomes.WINDSWEPT_GRAVELLY_HILLS)) setKoro(Koro.ONU);
+            else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) setKoro(Koro.LE);
+            else if (biome.is(Biomes.SNOWY_PLAINS) || biome.is(Biomes.ICE_SPIKES) || biome.is(Biomes.FROZEN_PEAKS) || biome.is(Biomes.SNOWY_TAIGA)) setKoro(Koro.KO);
+        }
+        return super.finalizeSpawn(level, difficulty, reason, spawnData);
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (!this.level().isClientSide && !this.getOffers().isEmpty()) {
+            player.awardStat(Stats.TALKED_TO_VILLAGER);
+            this.setTradingPlayer(player);
+            this.openTradingScreen(player, this.getDisplayName(), this.getVillagerXp());
+            return InteractionResult.SUCCESS;
+        }
+        return super.mobInteract(player, hand);
+    }
+
+    // ---- Merchant implementation ----
+
+    @Override
+    public void setTradingPlayer(@Nullable Player player) {
+        this.tradingPlayer = player;
+    }
+
+    @Nullable
+    @Override
+    public Player getTradingPlayer() {
+        return this.tradingPlayer;
+    }
+
+    @Override
+    public MerchantOffers getOffers() {
+        if (this.level().isClientSide) {
+            throw new IllegalStateException("Cannot load Matoran offers on the client");
+        }
+        if (this.offers == null) {
+            this.offers = new MerchantOffers();
+            this.updateTrades();
+        }
+        return this.offers;
+    }
+
+    @Override
+    public void overrideOffers(MerchantOffers offers) {
+        this.offers = offers;
+    }
+
+    @Override
+    public void notifyTrade(MerchantOffer offer) {
+        offer.increaseUses();
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
+        this.rewardTradeXp(offer);
+    }
+
+    protected void rewardTradeXp(MerchantOffer offer) {
+        if (offer.shouldRewardExp() && this.level() != null) {
+            int xp = 2 + this.random.nextInt(4);
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY() + 0.5, this.getZ(), xp));
+        }
+    }
+
+    @Override
+    public void notifyTradeUpdated(ItemStack stack) {
+        if (!this.level().isClientSide && this.ambientSoundTime > -this.getAmbientSoundInterval() + 20) {
+            this.ambientSoundTime = -this.getAmbientSoundInterval();
+            this.playSound(stack.isEmpty() ? SoundEvents.VILLAGER_NO : SoundEvents.VILLAGER_YES, 1.0F, 1.0F);
+        }
+    }
+
+    @Override
+    public int getVillagerXp() {
+        return 0;
+    }
+
+    @Override
+    public void overrideXp(int xp) {}
+
+    @Override
+    public boolean showProgressBar() {
+        return false;
+    }
+
+    @Override
+    public SoundEvent getNotifyTradeSound() {
+        return SoundEvents.VILLAGER_YES;
+    }
+
+    @Override
+    public boolean isClientSide() {
+        return this.level().isClientSide;
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return this.getTradingPlayer() == player && this.isAlive() && player.canInteractWithEntity(this, 4.0);
+    }
+
+    private void updateTrades() {
+        Koro koro = getKoro();
+        MerchantOffers offers = this.getOffers();
+        offers.clear();
+
+        // Koro stone: emeralds -> koro stone
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(koro.getKoroStone(), 4), 12, 1, 0.1F));
+        // Protodermis: koro stone -> protodermis ingot
+        offers.add(new MerchantOffer(new ItemCost(koro.getKoroStone(), 8), new ItemStack(koro.getProtodermis(), 1), 8, 1, 0.1F));
+        // Toa stone: protodermis + emerald -> toa stone
+        offers.add(new MerchantOffer(new ItemCost(koro.getProtodermis(), 2), java.util.Optional.of(new ItemCost(Items.EMERALD, 1)), new ItemStack(koro.getToaStone(), 1), 4, 2, 0.1F));
+        // Extra item: emeralds -> koro-themed item
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(koro.getExtraItem(), 4), 16, 1, 0.05F));
+        // Reverse: koro stone -> emeralds
+        offers.add(new MerchantOffer(new ItemCost(koro.getKoroStone(), 4), new ItemStack(Items.EMERALD, 1), 12, 1, 0.1F));
+    }
+
+    @Override
+    public void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.putInt("Koro", this.entityData.get(DATA_KORO));
+        if (!this.level().isClientSide) {
+            MerchantOffers offers = this.getOffers();
+            if (!offers.isEmpty()) {
+                output.store("Offers", MerchantOffers.CODEC, offers);
+            }
+        }
+    }
+
+    @Override
+    public void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.entityData.set(DATA_KORO, input.getIntOr("Koro", Koro.TA.ordinal()));
+        this.offers = input.read("Offers", MerchantOffers.CODEC).orElse(null);
+    }
+
+    @Override
+    public void die(DamageSource source) {
+        this.setTradingPlayer(null);
+        super.die(source);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return this.getTradingPlayer() != null ? SoundEvents.VILLAGER_TRADE : SoundEvents.VILLAGER_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEvents.VILLAGER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.VILLAGER_DEATH;
     }
 }

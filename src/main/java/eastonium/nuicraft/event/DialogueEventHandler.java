@@ -23,10 +23,8 @@ public class DialogueEventHandler {
             return;
         }
         var entity = event.getTarget();
-        if (entity.getType() == NuiCraftEntityTypes.MATORAN.get()) {
-            PacketDistributor.sendToPlayer(serverPlayer, new OpenDialoguePayload("matoran"));
-            event.setCanceled(true);
-        } else if (entity.getType() == NuiCraftEntityTypes.TURAGA.get()) {
+        // Matoran: trade screen handled by EntityMatoran.mobInteract
+        if (entity.getType() == NuiCraftEntityTypes.TURAGA.get()) {
             PacketDistributor.sendToPlayer(serverPlayer, new OpenDialoguePayload("turaga"));
             // Quest 2: "Trade for the first time with one Turaga"
             var advancementHolder = serverPlayer.getServer().getAdvancements().get(ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "quest_2"));

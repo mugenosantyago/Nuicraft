@@ -64,7 +64,7 @@ public class NuiCraftEntityTypes {
     // ---- NPCs (dialogue) ----
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN =
-            ENTITY_TYPES.register("matoran", () -> EntityType.Builder.of(EntityMatoran::new, MobCategory.CREATURE)
+            ENTITY_TYPES.register("matoran", () -> EntityType.Builder.<EntityMatoran>of((type, level) -> new EntityMatoran(type, level), MobCategory.CREATURE)
                     .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA =
