@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {"item": "nuicraft:mask_mata_hau"},
+    "title": {"translate": "advancement.nuicraft.quest_all_masks.title"},
+    "description": {"translate": "advancement.nuicraft.quest_all_masks.description"},
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hau": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_hau"], "count": {"min": 1}}]}},
+    "kaukau": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_kaukau"], "count": {"min": 1}}]}},
+    "miru": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_miru"], "count": {"min": 1}}]}},
+    "kakama": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_kakama"], "count": {"min": 1}}]}},
+    "pakari": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_pakari"], "count": {"min": 1}}]}},
+    "akaku": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_akaku"], "count": {"min": 1}}]}},
+    "huna": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_huna"], "count": {"min": 1}}]}},
+    "mahiki": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_mahiki"], "count": {"min": 1}}]}},
+    "matatu": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_matatu"], "count": {"min": 1}}]}},
+    "komau": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_komau"], "count": {"min": 1}}]}},
+    "raru": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_raru"], "count": {"min": 1}}]}},
+    "ruru": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["nuicraft:mask_mata_ruru"], "count": {"min": 1}}]}}
+  },
+  "requirements": [["hau", "kaukau", "miru", "kakama", "pakari", "akaku", "huna", "mahiki", "matatu", "komau", "raru", "ruru"]],
+  "parent": "nuicraft:quest_6"
+}
