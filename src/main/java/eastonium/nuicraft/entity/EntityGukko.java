@@ -35,8 +35,9 @@ public class EntityGukko extends Animal {
     private boolean inputUp;
     private boolean inputDown;
 
-    private static final double FLY_SPEED = 0.35;
-    private static final double VERTICAL_SPEED = 0.28;
+    /** Elytra-like flight: ~22+ blocks/sec level, build-up when diving. */
+    private static final double FLY_SPEED = 0.12;
+    private static final double VERTICAL_SPEED = 0.12;
     private static final float RIDEABLE_HEIGHT_OFFSET = 0.5f;
 
     public EntityGukko(EntityType<? extends EntityGukko> type, Level level) {
@@ -59,7 +60,7 @@ public class EntityGukko extends Animal {
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
         this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
         this.goalSelector.addGoal(4, new Ghast.RandomFloatAroundGoal(this, 16));
-        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.06, 20) {
+        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.5, 20) {
             @Override
             public boolean canUse() {
                 return !EntityGukko.this.isVehicle() && super.canUse();
@@ -70,9 +71,9 @@ public class EntityGukko extends Animal {
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0)
-                .add(Attributes.FLYING_SPEED, 0.06)
-                .add(Attributes.MOVEMENT_SPEED, 0.05)
-                .add(Attributes.FOLLOW_RANGE, 16.0)
+                .add(Attributes.FLYING_SPEED, 0.5)
+                .add(Attributes.MOVEMENT_SPEED, 0.2)
+                .add(Attributes.FOLLOW_RANGE, 24.0)
                 .add(Attributes.TEMPT_RANGE, 16.0);
     }
 
@@ -143,7 +144,7 @@ public class EntityGukko extends Animal {
             y *= 0.9;
         }
 
-        this.setDeltaMovement(Mth.clamp(x, -1.5, 1.5), Mth.clamp(y, -1.0, 1.0), Mth.clamp(z, -1.5, 1.5));
+        this.setDeltaMovement(Mth.clamp(x, -2.5, 2.5), Mth.clamp(y, -1.5, 1.5), Mth.clamp(z, -2.5, 2.5));
         this.move(net.minecraft.world.entity.MoverType.SELF, this.getDeltaMovement());
         this.setDeltaMovement(this.getDeltaMovement().scale(0.91));
     }
