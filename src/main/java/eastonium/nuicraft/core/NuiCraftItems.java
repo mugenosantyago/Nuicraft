@@ -5,9 +5,11 @@ import eastonium.nuicraft.item.NuiCraftTiers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.equipment.Equippable;
+import net.minecraft.world.item.enchantment.Enchantable;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -113,9 +115,9 @@ public class NuiCraftItems {
     // =====================================================================
 
     /**
-     * Build mask Item.Properties - equippable in HEAD slot.
+     * Build mask Item.Properties - equippable in HEAD slot, enchantable like helmets.
      * Uses empty equipment asset to suppress vanilla 2D armor overlay rendering.
-     * Masks are cosmetic (no stat boosts or effects).
+     * Enchantability 15 (between iron 9 and gold 25) - accepts Protection, Unbreaking, Mending, Respiration, Aqua Affinity.
      */
     private static Item.Properties maskProps(Item.Properties props) {
         ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> emptyAsset = ResourceKey.create(
@@ -123,10 +125,11 @@ public class NuiCraftItems {
                 ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "empty")
         );
         return props.stacksTo(1)
-                .component(net.minecraft.core.component.DataComponents.EQUIPPABLE,
+                .component(DataComponents.EQUIPPABLE,
                         Equippable.builder(EquipmentSlot.HEAD)
                                 .setAsset(emptyAsset)
-                                .build());
+                                .build())
+                .component(DataComponents.ENCHANTABLE, new Enchantable(15));
     }
 
     // --- Masks: cosmetic only (equippable in head slot, 3D rendered via AzureLib) ---
