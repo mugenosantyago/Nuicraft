@@ -7,7 +7,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -114,10 +118,16 @@ public class NuiCraftItems {
     // Each mask provides armor and a unique Kanohi power.
     // =====================================================================
 
+    /** +3 armor when worn in head slot. Applied to all masks. */
+    private static final ItemAttributeModifiers MASK_ARMOR_MODIFIERS = ItemAttributeModifiers.builder()
+            .add(Attributes.ARMOR, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "mask_armor"), 3.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD)
+            .build();
+
     /**
      * Build mask Item.Properties - equippable in HEAD slot, enchantable like helmets.
      * Uses empty equipment asset to suppress vanilla 2D armor overlay rendering.
      * Enchantability 15 (between iron 9 and gold 25) - accepts Protection, Unbreaking, Mending, Respiration, Aqua Affinity.
+     * Each mask adds +3 armor when worn.
      */
     private static Item.Properties maskProps(Item.Properties props) {
         ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> emptyAsset = ResourceKey.create(
@@ -129,6 +139,7 @@ public class NuiCraftItems {
                         Equippable.builder(EquipmentSlot.HEAD)
                                 .setAsset(emptyAsset)
                                 .build())
+                .component(DataComponents.ATTRIBUTE_MODIFIERS, MASK_ARMOR_MODIFIERS)
                 .component(DataComponents.ENCHANTABLE, new Enchantable(15));
     }
 
