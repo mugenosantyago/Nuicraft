@@ -39,6 +39,12 @@
   "entity.nuicraft.hoto_bug": "Hoto Bug",
   
   "entity.nuicraft.matoran": "Matoran",
+  "entity.nuicraft.matoran.ta": "Ta-Koro Matoran",
+  "entity.nuicraft.matoran.ga": "Ga-Koro Matoran",
+  "entity.nuicraft.matoran.po": "Po-Koro Matoran",
+  "entity.nuicraft.matoran.onu": "Onu-Koro Matoran",
+  "entity.nuicraft.matoran.le": "Le-Koro Matoran",
+  "entity.nuicraft.matoran.ko": "Ko-Koro Matoran",
   "entity.nuicraft.bohrok": "Bohrok",
   "entity.nuicraft.turaga": "Turaga",
   "entity.nuicraft.mukau": "Mukau",

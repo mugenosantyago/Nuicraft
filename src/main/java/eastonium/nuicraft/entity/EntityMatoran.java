@@ -6,7 +6,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
@@ -129,6 +128,11 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
             else if (biome.is(Biomes.SNOWY_PLAINS) || biome.is(Biomes.ICE_SPIKES) || biome.is(Biomes.FROZEN_PEAKS) || biome.is(Biomes.SNOWY_TAIGA)) setKoro(Koro.KO);
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("entity.nuicraft.matoran." + getKoro().name().toLowerCase());
     }
 
     @Override
