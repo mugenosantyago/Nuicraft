@@ -38,12 +38,27 @@ import org.jetbrains.annotations.Nullable;
  */
 public class EntityMatoran extends PathfinderMob implements Merchant {
 
+    /** Kanohi Mata mask variant. Model/texture path uses getId() (e.g. pakari, hau). */
+    public enum Mask {
+        HAU("hau"), KAUKAU("kaukau"), MIRU("miru"), KAKAMA("kakama"), PAKARI("pakari"), AKAKU("akaku"),
+        HUNA("huna"), MAHIKI("mahiki"), MATATU("matatu"), KOMAU("komau"), RARU("raru"), RURU("ruru");
+        private final String id;
+        Mask(String id) { this.id = id; }
+        public String getId() { return id; }
+    }
+
     public enum Koro {
+        /** Ta-Koro (red) - fire/desert */
         TA("matoran_ta", NuiCraftBlocks.TA_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.FIRE_TOA_STONE.get(), Items.BLAZE_POWDER),
+        /** Ga-Koro (blue) - water */
         GA("matoran_ga", NuiCraftBlocks.GA_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.WATER_TOA_STONE.get(), Items.PRISMARINE_SHARD),
+        /** Po-Koro (brown) - rock/stone */
         PO("matoran_po", NuiCraftBlocks.PO_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.ROCK_TOA_STONE.get(), Items.SMOOTH_STONE),
+        /** Onu-Koro (black) - earth */
         ONU("matoran_onu", NuiCraftBlocks.ONU_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.EARTH_TOA_STONE.get(), Items.COAL),
+        /** Le-Koro (green) - air */
         LE("matoran_le", NuiCraftBlocks.LE_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.AIR_TOA_STONE.get(), Items.FEATHER),
+        /** Ko-Koro (white) - ice */
         KO("matoran_ko", NuiCraftBlocks.KO_KORO_STONE.get(), NuiCraftItems.INGOT_PROTODERMIS.get(), NuiCraftItems.ICE_TOA_STONE.get(), Items.SNOWBALL);
 
         private final String textureName;
@@ -68,6 +83,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     }
 
     private static final EntityDataAccessor<Integer> DATA_KORO = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_MASK = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
 
     @Nullable
     private Player tradingPlayer;
@@ -79,8 +95,13 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     }
 
     public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro) {
+        this(type, level, koro, Mask.PAKARI);
+    }
+
+    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro, Mask mask) {
         super(type, level);
         this.entityData.set(DATA_KORO, koro.ordinal());
+        this.entityData.set(DATA_MASK, mask.ordinal());
     }
 
     public Koro getKoro() {
@@ -93,10 +114,26 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         this.entityData.set(DATA_KORO, koro.ordinal());
     }
 
+    public Mask getMask() {
+        int i = this.entityData.get(DATA_MASK);
+        Mask[] masks = Mask.values();
+        return i >= 0 && i < masks.length ? masks[i] : Mask.PAKARI;
+    }
+
+    public void setMask(Mask mask) {
+        this.entityData.set(DATA_MASK, mask.ordinal());
+    }
+
+    /** Variant key for model/texture: matoran_{koro}_{mask} (e.g. matoran_ta_pakari). */
+    public String getVariantKey() {
+        return getKoro().getTextureName() + "_" + getMask().getId();
+    }
+
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_KORO, Koro.TA.ordinal());
+        builder.define(DATA_MASK, Mask.PAKARI.ordinal());
     }
 
     @Override
@@ -118,7 +155,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(ServerLevelAccessor level, net.minecraft.world.DifficultyInstance difficulty, net.minecraft.world.entity.EntitySpawnReason reason, @Nullable net.minecraft.world.entity.SpawnGroupData spawnData) {
         if (spawnData == null && reason == net.minecraft.world.entity.EntitySpawnReason.NATURAL) {
-            // Infer Koro from biome
+            // Infer Koro from biome (color: TA=red, GA=blue, PO=brown, ONU=black, KO=white, LE=green)
             var biome = level.getBiome(this.blockPosition());
             if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) setKoro(Koro.TA);
             else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) setKoro(Koro.GA);
@@ -126,6 +163,8 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
             else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK) || biome.is(Biomes.WINDSWEPT_GRAVELLY_HILLS)) setKoro(Koro.ONU);
             else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) setKoro(Koro.LE);
             else if (biome.is(Biomes.SNOWY_PLAINS) || biome.is(Biomes.ICE_SPIKES) || biome.is(Biomes.FROZEN_PEAKS) || biome.is(Biomes.SNOWY_TAIGA)) setKoro(Koro.KO);
+            // Random Kanohi mask (model contains mask; texture path matoran_{koro}_{mask})
+            setMask(Mask.values()[level.getRandom().nextInt(Mask.values().length)]);
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
@@ -247,6 +286,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     public void addAdditionalSaveData(ValueOutput output) {
         super.addAdditionalSaveData(output);
         output.putInt("Koro", this.entityData.get(DATA_KORO));
+        output.putInt("Mask", this.entityData.get(DATA_MASK));
         if (!this.level().isClientSide) {
             MerchantOffers offers = this.getOffers();
             if (!offers.isEmpty()) {
@@ -259,6 +299,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     public void readAdditionalSaveData(ValueInput input) {
         super.readAdditionalSaveData(input);
         this.entityData.set(DATA_KORO, input.getIntOr("Koro", Koro.TA.ordinal()));
+        this.entityData.set(DATA_MASK, input.getIntOr("Mask", Mask.PAKARI.ordinal()));
         this.offers = input.read("Offers", MerchantOffers.CODEC).orElse(null);
     }
 
