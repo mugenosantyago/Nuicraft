@@ -26,7 +26,7 @@ public class NuiCraftClient {
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(NuiCraftModelLayers.MAHI, MahiModel::createBodyLayer);
-        event.registerLayerDefinition(NuiCraftModelLayers.FIKOU, FikouModel::createBodyLayer);
+        // Fikou uses Geo model (fikou.geo.json), no layer
         event.registerLayerDefinition(NuiCraftModelLayers.HOI, HoiModel::createBodyLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.KOFO_JAGA, KofoJagaModel::createBodyLayer);
         event.registerLayerDefinition(NuiCraftModelLayers.NUI_JAGA, NuiJagaModel::createBodyLayer);
@@ -34,7 +34,7 @@ public class NuiCraftClient {
 
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(NuiCraftEntityTypes.MAHI.get(), MahiRenderer::new);
-        event.registerEntityRenderer(NuiCraftEntityTypes.FIKOU.get(), FikouRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.FIKOU.get(), FikouGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.HOI.get(), HoiRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.KOFO_JAGA.get(), KofoJagaRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
@@ -44,6 +44,12 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava"));
         event.registerEntityRenderer(NuiCraftEntityTypes.GUKKO.get(), context -> new GenericNuiCraftRenderer<>(context, "gukko"));
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_RAMA.get(), context -> new GenericNuiCraftRenderer<>(context, "nui_rama"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TOA_TAHU.get(), context -> new GenericNuiCraftRenderer<>(context, "toa_tahu"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TOA_GALI.get(), context -> new GenericNuiCraftRenderer<>(context, "toa_gali"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TOA_LEWA.get(), context -> new GenericNuiCraftRenderer<>(context, "toa_lewa"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TOA_ONUA.get(), context -> new GenericNuiCraftRenderer<>(context, "toa_onua"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TOA_POHATU.get(), context -> new GenericNuiCraftRenderer<>(context, "toa_pohatu"));
+        event.registerEntityRenderer(NuiCraftEntityTypes.TOA_KOPAKA.get(), context -> new GenericNuiCraftRenderer<>(context, "toa_kopaka"));
         event.registerEntityRenderer(NuiCraftEntityTypes.THROWN_DISC.get(), ThrownItemRenderer::new);
     }
 }

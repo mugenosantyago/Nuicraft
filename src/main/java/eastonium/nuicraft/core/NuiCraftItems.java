@@ -182,4 +182,18 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.GUKKO.get(), withItemId("gukko_spawn_egg", props)));
     public static final DeferredItem<Item> NUI_RAMA_SPAWN_EGG = ITEMS.registerItem("nui_rama_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_RAMA.get(), withItemId("nui_rama_spawn_egg", props)));
+
+    // Toa spawn eggs
+    public static final DeferredItem<Item> TOA_TAHU_SPAWN_EGG = ITEMS.registerItem("toa_tahu_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TOA_TAHU.get(), withItemId("toa_tahu_spawn_egg", props)));
+    public static final DeferredItem<Item> TOA_GALI_SPAWN_EGG = ITEMS.registerItem("toa_gali_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TOA_GALI.get(), withItemId("toa_gali_spawn_egg", props)));
+    public static final DeferredItem<Item> TOA_LEWA_SPAWN_EGG = ITEMS.registerItem("toa_lewa_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TOA_LEWA.get(), withItemId("toa_lewa_spawn_egg", props)));
+    public static final DeferredItem<Item> TOA_ONUA_SPAWN_EGG = ITEMS.registerItem("toa_onua_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TOA_ONUA.get(), withItemId("toa_onua_spawn_egg", props)));
+    public static final DeferredItem<Item> TOA_POHATU_SPAWN_EGG = ITEMS.registerItem("toa_pohatu_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TOA_POHATU.get(), withItemId("toa_pohatu_spawn_egg", props)));
+    public static final DeferredItem<Item> TOA_KOPAKA_SPAWN_EGG = ITEMS.registerItem("toa_kopaka_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TOA_KOPAKA.get(), withItemId("toa_kopaka_spawn_egg", props)));
 }
