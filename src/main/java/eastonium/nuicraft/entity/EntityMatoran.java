@@ -152,10 +152,19 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
                 .add(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
+    /**
+     * Masks that have converted geo + texture sets ready. Only these are assigned
+     * during natural/structure spawning so every matoran shows a valid model.
+     * Expand this list as new bbmodel batches are converted.
+     */
+    private static final Mask[] IMPLEMENTED_MASKS = {
+        Mask.HAU, Mask.HUNA, Mask.KAKAMA, Mask.KAUKAU, Mask.MIRU, Mask.PAKARI
+    };
+
     @Override
     public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(ServerLevelAccessor level, net.minecraft.world.DifficultyInstance difficulty, net.minecraft.world.entity.EntitySpawnReason reason, @Nullable net.minecraft.world.entity.SpawnGroupData spawnData) {
         if (spawnData == null && reason == net.minecraft.world.entity.EntitySpawnReason.NATURAL) {
-            // Infer Koro from biome (color: TA=red, GA=blue, PO=brown, ONU=black, KO=white, LE=green)
+            // Infer Koro from biome so all matoran in a structure share the same color.
             var biome = level.getBiome(this.blockPosition());
             if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) setKoro(Koro.TA);
             else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) setKoro(Koro.GA);
@@ -163,8 +172,8 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
             else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK) || biome.is(Biomes.WINDSWEPT_GRAVELLY_HILLS)) setKoro(Koro.ONU);
             else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) setKoro(Koro.LE);
             else if (biome.is(Biomes.SNOWY_PLAINS) || biome.is(Biomes.ICE_SPIKES) || biome.is(Biomes.FROZEN_PEAKS) || biome.is(Biomes.SNOWY_TAIGA)) setKoro(Koro.KO);
-            // Random Kanohi mask (model contains mask; texture path matoran_{koro}_{mask})
-            setMask(Mask.values()[level.getRandom().nextInt(Mask.values().length)]);
+            // Pick a random mask from only the implemented set (geo + textures exist).
+            setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
