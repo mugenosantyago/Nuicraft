@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
@@ -14,11 +15,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
@@ -40,11 +44,24 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
 
     /** Kanohi Mata mask variant. Model/texture path uses getId() (e.g. pakari, hau). */
     public enum Mask {
-        HAU("hau"), KAUKAU("kaukau"), MIRU("miru"), KAKAMA("kakama"), PAKARI("pakari"), AKAKU("akaku"),
-        HUNA("huna"), MAHIKI("mahiki"), MATATU("matatu"), KOMAU("komau"), RARU("raru"), RURU("ruru");
+        HAU("hau")      { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_HAU.get(); } },
+        KAUKAU("kaukau"){ @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_KAUKAU.get(); } },
+        MIRU("miru")    { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_MIRU.get(); } },
+        KAKAMA("kakama"){ @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_KAKAMA.get(); } },
+        PAKARI("pakari"){ @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_PAKARI.get(); } },
+        AKAKU("akaku")  { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_AKAKU.get(); } },
+        HUNA("huna")    { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_HUNA.get(); } },
+        MAHIKI("mahiki"){ @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_MAHIKI.get(); } },
+        MATATU("matatu"){ @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_MATATU.get(); } },
+        KOMAU("komau")  { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_KOMAU.get(); } },
+        RARU("raru")    { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_RARU.get(); } },
+        RURU("ruru")    { @Override public Item getDropItem() { return NuiCraftItems.MASK_MATA_RURU.get(); } };
+
         private final String id;
         Mask(String id) { this.id = id; }
         public String getId() { return id; }
+        /** The mask item dropped when this matoran is killed. */
+        public abstract Item getDropItem();
     }
 
     public enum Koro {
@@ -139,17 +156,35 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.8D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        // Fight back when hurt — peaceful until attacked
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return PathfinderMob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.5D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D);
+                .add(Attributes.FOLLOW_RANGE, 16.0D)
+                .add(Attributes.ATTACK_DAMAGE, 2.0D);   // 1 heart — small but feisty
+    }
+
+    /** Prevent natural despawn — matoran are persistent NPCs. */
+    @Override
+    public boolean requiresCustomPersistence() {
+        return true;
+    }
+
+    /** Stop trading the moment this matoran acquires a combat target. */
+    @Override
+    public void setTarget(@Nullable LivingEntity target) {
+        super.setTarget(target);
+        if (target != null) {
+            this.setTradingPlayer(null);
+        }
     }
 
     /**
@@ -315,6 +350,10 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     public void die(DamageSource source) {
         this.setTradingPlayer(null);
+        // Drop the mask the matoran was wearing
+        if (!this.level().isClientSide) {
+            this.spawnAtLocation((ServerLevel) this.level(), new ItemStack(getMask().getDropItem()));
+        }
         super.die(source);
     }
 
