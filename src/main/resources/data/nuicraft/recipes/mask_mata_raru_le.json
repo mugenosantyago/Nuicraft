@@ -41,14 +41,14 @@
       "item": "nuicraft:le_koro_stone"
     },
     {
-      "item": "minecraft:feather"
+      "item": "minecraft:jukebox"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:fire_charge"
     }
   ],
   "result": {
-    "item": "nuicraft:mask_mata_miru",
+    "item": "nuicraft:mask_mata_raru",
     "count": 1
   }
 }

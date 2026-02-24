@@ -41,14 +41,14 @@
       "item": "nuicraft:le_koro_stone"
     },
     {
-      "item": "minecraft:feather"
+      "item": "minecraft:lapis_lazuli"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:amethyst_shard"
     }
   ],
   "result": {
-    "item": "nuicraft:mask_mata_miru",
+    "item": "nuicraft:mask_mata_akaku",
     "count": 1
   }
 }

@@ -38,17 +38,17 @@
       "item": "nuicraft:ingot_protodermis"
     },
     {
-      "item": "nuicraft:le_koro_stone"
+      "item": "nuicraft:ko_koro_stone"
     },
     {
-      "item": "minecraft:feather"
+      "item": "minecraft:gold_block"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:enchanting_table"
     }
   ],
   "result": {
-    "item": "nuicraft:mask_mata_miru",
+    "item": "nuicraft:mask_mata_hau",
     "count": 1
   }
 }

@@ -38,17 +38,17 @@
       "item": "nuicraft:ingot_protodermis"
     },
     {
-      "item": "nuicraft:le_koro_stone"
+      "item": "nuicraft:ga_koro_stone"
     },
     {
-      "item": "minecraft:feather"
+      "item": "minecraft:pufferfish"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:redstone_block"
     }
   ],
   "result": {
-    "item": "nuicraft:mask_mata_miru",
+    "item": "nuicraft:mask_mata_ruru",
     "count": 1
   }
 }

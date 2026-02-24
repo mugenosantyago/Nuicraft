@@ -38,17 +38,17 @@
       "item": "nuicraft:ingot_protodermis"
     },
     {
-      "item": "nuicraft:le_koro_stone"
+      "item": "nuicraft:po_koro_stone"
     },
     {
-      "item": "minecraft:feather"
+      "item": "minecraft:water_bucket"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:prismarine_shard"
     }
   ],
   "result": {
-    "item": "nuicraft:mask_mata_miru",
+    "item": "nuicraft:mask_mata_kaukau",
     "count": 1
   }
 }
