@@ -186,6 +186,21 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_JAGA.get(), withItemId("nui_jaga_spawn_egg", props)));
     public static final DeferredItem<Item> MATORAN_SPAWN_EGG = ITEMS.registerItem("matoran_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN.get(), withItemId("matoran_spawn_egg", props)));
+
+    // Koro-specific Matoran spawn eggs
+    public static final DeferredItem<Item> MATORAN_TA_SPAWN_EGG = ITEMS.registerItem("matoran_ta_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_TA.get(), withItemId("matoran_ta_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_GA_SPAWN_EGG = ITEMS.registerItem("matoran_ga_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_GA.get(), withItemId("matoran_ga_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_LE_SPAWN_EGG = ITEMS.registerItem("matoran_le_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_LE.get(), withItemId("matoran_le_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_ONU_SPAWN_EGG = ITEMS.registerItem("matoran_onu_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_ONU.get(), withItemId("matoran_onu_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_KO_SPAWN_EGG = ITEMS.registerItem("matoran_ko_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_KO.get(), withItemId("matoran_ko_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_PO_SPAWN_EGG = ITEMS.registerItem("matoran_po_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_PO.get(), withItemId("matoran_po_spawn_egg", props)));
+
     public static final DeferredItem<Item> TURAGA_SPAWN_EGG = ITEMS.registerItem("turaga_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA.get(), withItemId("turaga_spawn_egg", props)));
     public static final DeferredItem<Item> MUAKA_SPAWN_EGG = ITEMS.registerItem("muaka_spawn_egg",

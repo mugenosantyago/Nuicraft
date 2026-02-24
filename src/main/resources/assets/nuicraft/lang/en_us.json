@@ -247,5 +247,17 @@
 	"advancement.nuicraft.quest_all_masks.title": "Collector of the Great Masks",
 	"advancement.nuicraft.quest_all_masks.description": "Forge all twelve Kanohi Mata masks.",
 	"entity.nuicraft.turaga.matatu": "Turaga Nuju",
-	"entity.nuicraft.turaga.rau": "Turaga Nokama"
+	"entity.nuicraft.turaga.rau": "Turaga Nokama",
+	"item.nuicraft.matoran_ta_spawn_egg": "Ta-Koro Matoran Spawn Egg",
+	"entity.nuicraft.matoran_ta": "Ta-Koro Matoran",
+	"item.nuicraft.matoran_ga_spawn_egg": "Ga-Koro Matoran Spawn Egg",
+	"entity.nuicraft.matoran_ga": "Ga-Koro Matoran",
+	"item.nuicraft.matoran_le_spawn_egg": "Le-Koro Matoran Spawn Egg",
+	"entity.nuicraft.matoran_le": "Le-Koro Matoran",
+	"item.nuicraft.matoran_onu_spawn_egg": "Onu-Koro Matoran Spawn Egg",
+	"entity.nuicraft.matoran_onu": "Onu-Koro Matoran",
+	"item.nuicraft.matoran_ko_spawn_egg": "Ko-Koro Matoran Spawn Egg",
+	"entity.nuicraft.matoran_ko": "Ko-Koro Matoran",
+	"item.nuicraft.matoran_po_spawn_egg": "Po-Koro Matoran Spawn Egg",
+	"entity.nuicraft.matoran_po": "Po-Koro Matoran"
 }

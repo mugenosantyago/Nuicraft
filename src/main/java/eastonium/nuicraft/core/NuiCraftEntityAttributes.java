@@ -24,7 +24,14 @@ public class NuiCraftEntityAttributes {
         event.put(NuiCraftEntityTypes.NUI_RAMA.get(), EntityNuiRama.createAttributes().build());
 
         // NPCs
-        event.put(NuiCraftEntityTypes.MATORAN.get(), EntityMatoran.createAttributes().build());
+        var matoranAttrs = EntityMatoran.createAttributes().build();
+        event.put(NuiCraftEntityTypes.MATORAN.get(), matoranAttrs);
+        event.put(NuiCraftEntityTypes.MATORAN_TA.get(), matoranAttrs);
+        event.put(NuiCraftEntityTypes.MATORAN_GA.get(), matoranAttrs);
+        event.put(NuiCraftEntityTypes.MATORAN_LE.get(), matoranAttrs);
+        event.put(NuiCraftEntityTypes.MATORAN_ONU.get(), matoranAttrs);
+        event.put(NuiCraftEntityTypes.MATORAN_KO.get(), matoranAttrs);
+        event.put(NuiCraftEntityTypes.MATORAN_PO.get(), matoranAttrs);
         event.put(NuiCraftEntityTypes.TURAGA.get(), EntityTuraga.createAttributes().build());
 
         // Toa (one per Koro biome)
