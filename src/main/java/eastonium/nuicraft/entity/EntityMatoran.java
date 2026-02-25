@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import eastonium.nuicraft.client.animator.MatoranAnimator;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -176,6 +177,15 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     public boolean requiresCustomPersistence() {
         return true;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        // Dispatch idle animation loop from server every second so AzureLib keeps it running.
+        if (!this.level().isClientSide && this.tickCount % 20 == 0) {
+            MatoranAnimator.sendIdleCommand(this);
+        }
     }
 
     /** Stop trading the moment this matoran acquires a combat target. */

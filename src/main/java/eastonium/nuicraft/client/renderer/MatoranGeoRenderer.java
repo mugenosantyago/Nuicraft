@@ -1,6 +1,7 @@
 package eastonium.nuicraft.client.renderer;
 
 import eastonium.nuicraft.NuiCraft;
+import eastonium.nuicraft.client.animator.MatoranAnimator;
 import eastonium.nuicraft.entity.EntityMatoran;
 import mod.azure.azurelib.common.render.entity.AzEntityRenderer;
 import mod.azure.azurelib.common.render.entity.AzEntityRendererConfig;
@@ -31,6 +32,7 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
                         MatoranGeoRenderer::geoFor,
                         MatoranGeoRenderer::textureFor
                 )
+                .setAnimatorProvider(MatoranAnimator::new)
                 .setShadowRadius(0.4f)
                 .build(),
                 context

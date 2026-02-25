@@ -1,6 +1,7 @@
 """
 Converts .bbmodel files (Blockbench free format) to:
   - Bedrock .geo.json (AzureLib compatible, format_version 1.12.0)
+  - Bedrock .animation.json (AzureLib compatible, format_version 1.8.0)
   - Extracted .png textures renamed by village (ta, le, onu, ga, ko, po)
 
 Color → village mapping:
@@ -25,8 +26,9 @@ import re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(ROOT, "models", "bionicle_job_part1")
-GEO_OUT = os.path.join(ROOT, "src", "main", "resources", "assets", "nuicraft", "geo", "entity")
-TEX_OUT = os.path.join(ROOT, "src", "main", "resources", "assets", "nuicraft", "textures", "entity")
+GEO_OUT  = os.path.join(ROOT, "src", "main", "resources", "assets", "nuicraft", "geo", "entity")
+TEX_OUT  = os.path.join(ROOT, "src", "main", "resources", "assets", "nuicraft", "textures", "entity")
+ANIM_OUT = os.path.join(ROOT, "src", "main", "resources", "assets", "nuicraft", "animations", "entity")
 
 # ── Color → village name ───────────────────────────────────────────────────────
 
@@ -177,13 +179,16 @@ def build_bones(outliner, elements_by_uuid, groups_by_uuid, parent_name=None):
 
 # ── Main conversion function ───────────────────────────────────────────────────
 
-def convert_bbmodel(bbmodel_path, entity_name):
+def convert_bbmodel(bbmodel_path_or_data, entity_name):
     """
-    Read a .bbmodel file and return:
-      (geo_dict, [(village_name, png_bytes), ...])
+    Accept either a file path or pre-loaded dict.
+    Returns: (geo_dict, [(village_name, png_bytes, original_name), ...])
     """
-    with open(bbmodel_path, encoding="utf-8") as f:
-        data = json.load(f)
+    if isinstance(bbmodel_path_or_data, dict):
+        data = bbmodel_path_or_data
+    else:
+        with open(bbmodel_path_or_data, encoding="utf-8") as f:
+            data = json.load(f)
 
     resolution = data.get("resolution", {"width": 64, "height": 64})
     tex_w = resolution["width"]
@@ -261,10 +266,107 @@ def convert_bbmodel(bbmodel_path, entity_name):
     return geo, textures
 
 
+# ── Animation conversion ───────────────────────────────────────────────────────
+# Coordinate conversion (Blockbench free → Bedrock, X-axis mirrored):
+#   rotation : [rx,  ry,  rz] → [rx, -ry, -rz]
+#   position : [ x,  y,   z] → [-x,   y,   z]
+#   scale    : unchanged
+
+def _conv_rot(v):  return [v[0], -v[1], -v[2]]
+def _conv_pos(v):  return [-v[0], v[1], v[2]]
+def _conv_scale(v): return v
+
+
+def _kf_value(channel, data_points):
+    """Return a list [x, y, z] for a single keyframe data_point."""
+    dp = data_points[0]
+    raw = [float(dp.get("x", 0)), float(dp.get("y", 0)), float(dp.get("z", 0))]
+    if channel == "rotation":
+        return _conv_rot(raw)
+    if channel == "position":
+        return _conv_pos(raw)
+    return _conv_scale(raw)
+
+
+def convert_animation(bbmodel_data, entity_name):
+    """
+    Convert all bbmodel animations to a single Bedrock .animation.json dict.
+    Returns None if there are no animations with keyframes.
+    """
+    raw_anims = bbmodel_data.get("animations", [])
+    if not raw_anims:
+        return None
+
+    groups_by_uuid = {g["uuid"]: g["name"] for g in bbmodel_data.get("groups", [])}
+
+    out_animations = {}
+
+    for anim in raw_anims:
+        anim_name   = anim.get("name", "idle")
+        loop_flag   = anim.get("loop", "once")
+        anim_length = float(anim.get("length", 0))
+        animators   = anim.get("animators", {})
+
+        # Map loop string to Bedrock value
+        if loop_flag == "loop":
+            loop_val = True
+        elif loop_flag == "hold":
+            loop_val = "hold_on_last_frame"
+        else:
+            loop_val = False
+
+        bones_out = {}
+
+        for bone_uuid, bone_data in animators.items():
+            keyframes = bone_data.get("keyframes", [])
+            if not keyframes:
+                continue
+
+            bone_name = groups_by_uuid.get(bone_uuid, bone_uuid[:8])
+
+            # Group by channel
+            channels = {}
+            for kf in keyframes:
+                ch   = kf["channel"]
+                t    = kf["time"]
+                interp = kf.get("interpolation", "linear")
+                val  = _kf_value(ch, kf["data_points"])
+
+                if ch not in channels:
+                    channels[ch] = {}
+
+                t_str = str(round(float(t), 4))
+                if interp == "catmullrom":
+                    channels[ch][t_str] = {"lerp_mode": "catmullrom", "post": val}
+                else:
+                    channels[ch][t_str] = val
+
+            if channels:
+                bones_out[bone_name] = channels
+
+        if not bones_out and anim_length == 0:
+            continue   # empty / zero-length pose — skip
+
+        anim_entry = {"animation_length": anim_length}
+        if loop_val is not False:
+            anim_entry["loop"] = loop_val
+        anim_entry["bones"] = bones_out
+        out_animations[anim_name] = anim_entry
+
+    if not out_animations:
+        return None
+
+    return {
+        "format_version": "1.8.0",
+        "animations": out_animations,
+    }
+
+
 # ── Run ────────────────────────────────────────────────────────────────────────
 
 def main():
     os.makedirs(GEO_OUT, exist_ok=True)
+    os.makedirs(ANIM_OUT, exist_ok=True)
 
     issues = []
 
@@ -288,13 +390,25 @@ def main():
         print(f"\n{'─'*60}")
         print(f"Processing: {folder_name}  →  {entity_name}")
 
-        geo, textures = convert_bbmodel(bbmodel_file, entity_name)
+        with open(bbmodel_file, encoding="utf-8") as f:
+            bbmodel_data = json.load(f)
+
+        geo, textures = convert_bbmodel(bbmodel_data, entity_name)
 
         # Write geo.json
         geo_path = os.path.join(GEO_OUT, f"{entity_name}.geo.json")
         with open(geo_path, "w", encoding="utf-8") as f:
             json.dump(geo, f, indent="\t")
         print(f"  ✓ geo.json  → geo/entity/{entity_name}.geo.json")
+
+        # Write animation.json (if any)
+        anim_data = convert_animation(bbmodel_data, entity_name)
+        if anim_data:
+            anim_path = os.path.join(ANIM_OUT, f"{entity_name}.animation.json")
+            with open(anim_path, "w", encoding="utf-8") as f:
+                json.dump(anim_data, f, indent="\t")
+            anim_names = list(anim_data["animations"].keys())
+            print(f"  ✓ animation → animations/entity/{entity_name}.animation.json  {anim_names}")
 
         # Write textures
         tex_dir = os.path.join(TEX_OUT, entity_name)
