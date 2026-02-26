@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * JEI plugin for NuiCraft. Registers mask items with JEI (item list + info) and ensures
- * data-pack recipes (mask_mata_*.json, etc.) are available for recipe lookup.
+ * JEI plugin for NuiCraft. Registers mod items with JEI (item list + info) and ensures
+ * data-pack recipes are available for recipe lookup.
  */
 @JeiPlugin
 public class NuiCraftJeiPlugin implements IModPlugin {
@@ -27,7 +27,8 @@ public class NuiCraftJeiPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        // Explicitly add all Mata masks to JEI with description so they appear in item list and show recipe lookup
+
+        // ---- Mata masks ----
         List<ItemStack> masks = Stream.of(
                 NuiCraftItems.MASK_MATA_HAU,
                 NuiCraftItems.MASK_MATA_KAUKAU,
@@ -44,9 +45,35 @@ public class NuiCraftJeiPlugin implements IModPlugin {
         ).map(d -> new ItemStack(d.get())).toList();
         registration.addItemStackInfo(masks, Component.translatable("jei.nuicraft.mask.info"));
 
-        // Mask Forge: show in item list with description; recipe is discovered from recipe manager
+        // Mask Forge
         registration.addItemStackInfo(
                 List.of(new ItemStack(NuiCraftBlocks.MASK_FORGE.get())),
                 Component.translatable("jei.nuicraft.mask_forge.info"));
+
+        // ---- Kanoka discs ----
+        // General throwable discs
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.KANOKA_BAMBOO.get()),
+                        new ItemStack(NuiCraftItems.KANOKA_DISC.get())
+                ),
+                Component.translatable("jei.nuicraft.disc.info"));
+
+        // Koro-specific Kanoka disks
+        List<ItemStack> koroDiscs = Stream.of(
+                NuiCraftItems.KANOKA_DISK_TA,
+                NuiCraftItems.KANOKA_DISK_GA,
+                NuiCraftItems.KANOKA_DISK_LE,
+                NuiCraftItems.KANOKA_DISK_ONU,
+                NuiCraftItems.KANOKA_DISK_PO,
+                NuiCraftItems.KANOKA_DISK_KO,
+                NuiCraftItems.KANOKA_OF_TIME
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(koroDiscs, Component.translatable("jei.nuicraft.disc.koro.info"));
+
+        // Disc Launcher
+        registration.addItemStackInfo(
+                List.of(new ItemStack(NuiCraftItems.DISC_LAUNCHER.get())),
+                Component.translatable("jei.nuicraft.disc_launcher.info"));
     }
 }

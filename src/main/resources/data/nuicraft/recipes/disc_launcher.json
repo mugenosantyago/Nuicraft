@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P P",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "P": { "item": "nuicraft:ingot_protodermis" }
+  },
+  "result": {
+    "id": "nuicraft:disc_launcher",
+    "count": 1
+  }
+}
