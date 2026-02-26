@@ -3,8 +3,10 @@ package eastonium.nuicraft.network;
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.client.screen.DialogueScreen;
 import eastonium.nuicraft.entity.EntityGukko;
+import eastonium.nuicraft.morph.PlayerMorphEventHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -35,6 +37,23 @@ public class NuiCraftPayloads {
                         gukko.setMovementInput(payload.forward(), payload.back(), payload.left(), payload.right(), payload.up(), payload.down());
                     }
                 })
+        );
+
+        // Morph system
+        registrar.playToServer(
+                MorphRequestPayload.TYPE,
+                MorphRequestPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() -> {
+                    if (context.player() instanceof ServerPlayer sp) {
+                        PlayerMorphEventHandler.handleMorphRequest(sp, payload.requested());
+                    }
+                })
+        );
+        registrar.playToClient(
+                MorphBroadcastPayload.TYPE,
+                MorphBroadcastPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() ->
+                        PlayerMorphEventHandler.onMorphBroadcast(payload))
         );
     }
 }

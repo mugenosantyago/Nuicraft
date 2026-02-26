@@ -7,6 +7,7 @@ import eastonium.nuicraft.core.NuiCraftItems;
 import eastonium.nuicraft.core.NuiCraftRegistration;
 import eastonium.nuicraft.config.NuiCraftConfig;
 import eastonium.nuicraft.event.DialogueEventHandler;
+import eastonium.nuicraft.morph.PlayerMorphEventHandler;
 import eastonium.nuicraft.network.NuiCraftPayloads;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -51,8 +52,9 @@ public class NuiCraft {
         modEventBus.addListener(NuiCraftPayloads::register);
         ModList.get().getModContainerById(MODID).ifPresent(c -> c.registerConfig(ModConfig.Type.COMMON, NuiCraftConfig.SPEC));
 
-        // Game events (entity interact for dialogue)
+        // Game events
         NeoForge.EVENT_BUS.register(DialogueEventHandler.class);
+        NeoForge.EVENT_BUS.register(PlayerMorphEventHandler.class);
         
         // Client-side (renderers, Gukko input when riding)
         if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {

@@ -259,5 +259,8 @@
 	"item.nuicraft.matoran_ko_spawn_egg": "Ko-Koro Matoran Spawn Egg",
 	"entity.nuicraft.matoran_ko": "Ko-Koro Matoran",
 	"item.nuicraft.matoran_po_spawn_egg": "Po-Koro Matoran Spawn Egg",
-	"entity.nuicraft.matoran_po": "Po-Koro Matoran"
+	"entity.nuicraft.matoran_po": "Po-Koro Matoran",
+	"key.nuicraft.morph_matoran": "Morph: Matoran Form",
+	"key.nuicraft.morph_toa": "Morph: Toa Form",
+	"key.categories.nuicraft": "NuiCraft"
 }

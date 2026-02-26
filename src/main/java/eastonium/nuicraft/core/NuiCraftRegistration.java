@@ -10,6 +10,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import eastonium.nuicraft.NuiCraft;
+import eastonium.nuicraft.morph.NuiCraftAttachments;
 
 public class NuiCraftRegistration {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, NuiCraft.MODID);
@@ -18,6 +19,7 @@ public class NuiCraftRegistration {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, NuiCraft.MODID);
 
     public static void register(IEventBus modEventBus) {
+        NuiCraftAttachments.register(modEventBus);
         // Register blocks and items from their respective classes
         NuiCraftBlocks.BLOCKS.register(modEventBus);
         NuiCraftItems.ITEMS.register(modEventBus);

@@ -4,24 +4,36 @@ import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.entity.EntityThrownDisc;
+import eastonium.nuicraft.morph.PlayerMorphEventHandler;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class NuiCraftClient {
 
     public static void registerModBusEvents(IEventBus modEventBus) {
         modEventBus.addListener(NuiCraftClient::registerLayerDefinitions);
         modEventBus.addListener(NuiCraftClient::registerRenderers);
+        modEventBus.addListener(NuiCraftClient::registerAddLayers);
         modEventBus.addListener(NuiCraftClient::clientSetup);
+        modEventBus.addListener(NuiCraftKeys::register);
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MaskArmorRendererRegistry.registerAll();
-            net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(GukkoInputSender.class);
+            NeoForge.EVENT_BUS.register(GukkoInputSender.class);
+            NeoForge.EVENT_BUS.register(PlayerMorphKeyHandler.class);
+            NeoForge.EVENT_BUS.register(PlayerMorphEventHandler.class);
         });
+    }
+
+    private static void registerAddLayers(EntityRenderersEvent.AddLayers event) {
+        // Grab the renderer context to build the morph renderer
+        PlayerMorphGeoRenderer.init(event.getContext());
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
