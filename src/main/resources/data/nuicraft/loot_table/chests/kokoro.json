@@ -11,7 +11,7 @@
         {
           "type": "minecraft:item",
           "name": "nuicraft:ingot_protodermis",
-          "weight": 6,
+          "weight": 8,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -26,7 +26,7 @@
         {
           "type": "minecraft:item",
           "name": "nuicraft:protodermis_solid",
-          "weight": 5,
+          "weight": 6,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -40,8 +40,34 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nuicraft:onu_wahi_stone",
+          "name": "nuicraft:ko_koro_stone",
           "weight": 6,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nuicraft:ice_toa_stone",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nuicraft:kanoka_disc",
+          "weight": 8,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -55,7 +81,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nuicraft:lightstone",
+          "name": "nuicraft:gear",
           "weight": 4,
           "functions": [
             {
@@ -70,33 +96,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nuicraft:kanoka_disc",
-          "weight": 12,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 2
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:hammer",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:element_swiper",
+          "name": "nuicraft:ingot_protosteel",
           "weight": 2,
           "functions": [
             {
@@ -107,73 +107,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nuicraft:water_toa_stone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:fire_toa_stone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:earth_toa_stone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:air_toa_stone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:ice_toa_stone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "nuicraft:rock_toa_stone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:gold_ingot",
+          "name": "minecraft:snowball",
           "weight": 4,
           "functions": [
             {
