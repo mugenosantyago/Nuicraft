@@ -262,5 +262,12 @@
 	"entity.nuicraft.matoran_po": "Po-Koro Matoran",
 	"key.nuicraft.morph_matoran": "Morph: Matoran Form",
 	"key.nuicraft.morph_toa": "Morph: Toa Form",
-	"key.categories.nuicraft": "NuiCraft"
+	"key.categories.nuicraft": "NuiCraft",
+	"entity.nuicraft.matoran.name_format": "%s %s",
+	"entity.nuicraft.matoran.profession.maskmaker": "Maskmaker",
+	"entity.nuicraft.matoran.profession.smith": "Smith",
+	"entity.nuicraft.matoran.profession.miner": "Miner",
+	"entity.nuicraft.matoran.profession.disc_crafter": "Disc Crafter",
+	"entity.nuicraft.matoran.profession.scholar": "Scholar",
+	"entity.nuicraft.matoran.profession.merchant": "Merchant"
 }

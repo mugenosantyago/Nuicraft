@@ -38,8 +38,10 @@ import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Matoran - villager-like NPC that trades items relative to their Koro.
+ * Matoran - villager-like NPC that trades items relative to their Koro and Profession.
  * Ta-Koro Matoran trade fire/desert items, Ga-Koro trade water items, etc.
+ * Each Matoran also has a profession (Maskmaker, Smith, Miner, etc.) that adds
+ * additional specialised trades on top of their koro-specific base trades.
  */
 public class EntityMatoran extends PathfinderMob implements Merchant {
 
@@ -98,10 +100,70 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         public net.minecraft.world.level.ItemLike getProtodermis() { return protodermis; }
         public net.minecraft.world.level.ItemLike getToaStone() { return toaStone; }
         public net.minecraft.world.level.ItemLike getExtraItem() { return extraItem; }
+
+        /** The Toa's signature Kanohi mask associated with this Koro. */
+        public Item getToaMask() {
+            return switch (this) {
+                case TA  -> NuiCraftItems.MASK_MATA_HAU.get();
+                case GA  -> NuiCraftItems.MASK_MATA_KAUKAU.get();
+                case LE  -> NuiCraftItems.MASK_MATA_MIRU.get();
+                case ONU -> NuiCraftItems.MASK_MATA_PAKARI.get();
+                case PO  -> NuiCraftItems.MASK_MATA_KAKAMA.get();
+                case KO  -> NuiCraftItems.MASK_MATA_AKAKU.get();
+            };
+        }
+
+        /** A secondary Kanohi associated with this Koro's culture. */
+        public Item getSecondaryMask() {
+            return switch (this) {
+                case TA  -> NuiCraftItems.MASK_MATA_RURU.get();
+                case GA  -> NuiCraftItems.MASK_MATA_HUNA.get();
+                case LE  -> NuiCraftItems.MASK_MATA_MATATU.get();
+                case ONU -> NuiCraftItems.MASK_MATA_KOMAU.get();
+                case PO  -> NuiCraftItems.MASK_MATA_MAHIKI.get();
+                case KO  -> NuiCraftItems.MASK_MATA_RARU.get();
+            };
+        }
+
+        /** Koro-specific Kanoka disk. */
+        public Item getKoroDisk() {
+            return switch (this) {
+                case TA  -> NuiCraftItems.KANOKA_DISK_TA.get();
+                case GA  -> NuiCraftItems.KANOKA_DISK_GA.get();
+                case LE  -> NuiCraftItems.KANOKA_DISK_LE.get();
+                case ONU -> NuiCraftItems.KANOKA_DISK_ONU.get();
+                case PO  -> NuiCraftItems.KANOKA_DISK_PO.get();
+                case KO  -> NuiCraftItems.KANOKA_DISK_KO.get();
+            };
+        }
     }
 
-    private static final EntityDataAccessor<Integer> DATA_KORO = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> DATA_MASK = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    /**
+     * Matoran profession — analogous to vanilla villager professions.
+     * Determines additional trade offers on top of the standard koro-stone/toa-stone base trades.
+     */
+    public enum Profession {
+        /** Crafts and sells Kanohi masks. */
+        MASKMAKER("maskmaker"),
+        /** Forges protodermis weapons and tools. */
+        SMITH("smith"),
+        /** Extracts and sells ores and ingots from the earth. */
+        MINER("miner"),
+        /** Carves and launches Kanoka disks. */
+        DISC_CRAFTER("disc_crafter"),
+        /** Studies elemental lore; trades toa stones and special items. */
+        SCHOLAR("scholar"),
+        /** General goods trader; deals in everyday mod materials. */
+        MERCHANT("merchant");
+
+        private final String id;
+        Profession(String id) { this.id = id; }
+        public String getId() { return id; }
+    }
+
+    private static final EntityDataAccessor<Integer> DATA_KORO       = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_MASK       = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_PROFESSION = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
 
     @Nullable
     private Player tradingPlayer;
@@ -117,9 +179,14 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     }
 
     public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro, Mask mask) {
+        this(type, level, koro, mask, Profession.MERCHANT);
+    }
+
+    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro, Mask mask, Profession profession) {
         super(type, level);
-        this.entityData.set(DATA_KORO, koro.ordinal());
-        this.entityData.set(DATA_MASK, mask.ordinal());
+        this.entityData.set(DATA_KORO,       koro.ordinal());
+        this.entityData.set(DATA_MASK,       mask.ordinal());
+        this.entityData.set(DATA_PROFESSION, profession.ordinal());
     }
 
     public Koro getKoro() {
@@ -142,6 +209,18 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         this.entityData.set(DATA_MASK, mask.ordinal());
     }
 
+    public Profession getProfession() {
+        int i = this.entityData.get(DATA_PROFESSION);
+        Profession[] profs = Profession.values();
+        return i >= 0 && i < profs.length ? profs[i] : Profession.MERCHANT;
+    }
+
+    public void setProfession(Profession profession) {
+        this.entityData.set(DATA_PROFESSION, profession.ordinal());
+        // Invalidate cached offers so new profession trades are generated.
+        this.offers = null;
+    }
+
     /** Variant key for model/texture: matoran_{koro}_{mask} (e.g. matoran_ta_pakari). */
     public String getVariantKey() {
         return getKoro().getTextureName() + "_" + getMask().getId();
@@ -150,8 +229,9 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(DATA_KORO, Koro.TA.ordinal());
-        builder.define(DATA_MASK, Mask.PAKARI.ordinal());
+        builder.define(DATA_KORO,       Koro.TA.ordinal());
+        builder.define(DATA_MASK,       Mask.PAKARI.ordinal());
+        builder.define(DATA_PROFESSION, Profession.MERCHANT.ordinal());
     }
 
     @Override
@@ -217,15 +297,22 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
             else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK) || biome.is(Biomes.WINDSWEPT_GRAVELLY_HILLS)) setKoro(Koro.ONU);
             else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) setKoro(Koro.LE);
             else if (biome.is(Biomes.SNOWY_PLAINS) || biome.is(Biomes.ICE_SPIKES) || biome.is(Biomes.FROZEN_PEAKS) || biome.is(Biomes.SNOWY_TAIGA)) setKoro(Koro.KO);
+
             // Pick a random mask from only the implemented set (geo + textures exist).
             setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
+
+            // Assign a random profession.
+            Profession[] professions = Profession.values();
+            setProfession(professions[level.getRandom().nextInt(professions.length)]);
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("entity.nuicraft.matoran." + getKoro().name().toLowerCase());
+        Component koroName       = Component.translatable("entity.nuicraft.matoran." + getKoro().name().toLowerCase());
+        Component professionName = Component.translatable("entity.nuicraft.matoran.profession." + getProfession().getId());
+        return Component.translatable("entity.nuicraft.matoran.name_format", koroName, professionName);
     }
 
     @Override
@@ -324,23 +411,114 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         MerchantOffers offers = this.getOffers();
         offers.clear();
 
-        // Koro stone: emeralds -> koro stone
+        // ---- Base koro trades (every matoran regardless of profession) ----
+        // Buy koro stone with emeralds
         offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(koro.getKoroStone(), 4), 12, 1, 0.1F));
-        // Protodermis: koro stone -> protodermis ingot
+        // Smelt koro stone into protodermis ingot
         offers.add(new MerchantOffer(new ItemCost(koro.getKoroStone(), 8), new ItemStack(koro.getProtodermis(), 1), 8, 1, 0.1F));
-        // Toa stone: protodermis + emerald -> toa stone
+        // Trade up to toa stone: protodermis + emerald
         offers.add(new MerchantOffer(new ItemCost(koro.getProtodermis(), 2), java.util.Optional.of(new ItemCost(Items.EMERALD, 1)), new ItemStack(koro.getToaStone(), 1), 4, 2, 0.1F));
-        // Extra item: emeralds -> koro-themed item
-        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(koro.getExtraItem(), 4), 16, 1, 0.05F));
-        // Reverse: koro stone -> emeralds
+        // Sell koro stone back for emeralds
         offers.add(new MerchantOffer(new ItemCost(koro.getKoroStone(), 4), new ItemStack(Items.EMERALD, 1), 12, 1, 0.1F));
+
+        // ---- Profession-specific trades ----
+        switch (getProfession()) {
+            case MASKMAKER -> addMaskmakerTrades(offers, koro);
+            case SMITH     -> addSmithTrades(offers, koro);
+            case MINER     -> addMinerTrades(offers, koro);
+            case DISC_CRAFTER -> addDiscCrafterTrades(offers, koro);
+            case SCHOLAR   -> addScholarTrades(offers, koro);
+            case MERCHANT  -> addMerchantTrades(offers, koro);
+        }
+    }
+
+    /**
+     * Maskmaker: sells the koro's signature Toa mask and a secondary cultural mask.
+     * Also buys protodermis ingots.
+     */
+    private void addMaskmakerTrades(MerchantOffers offers, Koro koro) {
+        // Toa's signature mask — premium item
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(koro.getToaMask(), 1), 6, 2, 0.05F));
+        // Secondary cultural mask
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 3), new ItemStack(koro.getSecondaryMask(), 1), 8, 1, 0.05F));
+        // Buy protodermis ingots (raw material for masks)
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.INGOT_PROTODERMIS.get(), 4), new ItemStack(Items.EMERALD, 1), 16, 1, 0.1F));
+    }
+
+    /**
+     * Smith: sells protodermis tools and weapons.
+     */
+    private void addSmithTrades(MerchantOffers offers, Koro koro) {
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 8),  new ItemStack(NuiCraftItems.PROTODERMIS_SWORD.get(), 1),  4, 2, 0.05F));
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 6),  new ItemStack(NuiCraftItems.PROTODERMIS_PICK.get(), 1),   4, 2, 0.05F));
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 6),  new ItemStack(NuiCraftItems.PROTODERMIS_AXE.get(), 1),    4, 2, 0.05F));
+        // Buy protodermis ingots
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.INGOT_PROTODERMIS.get(), 5), new ItemStack(Items.EMERALD, 1), 12, 1, 0.1F));
+    }
+
+    /**
+     * Miner: sells raw materials — protodermis and protosteel ingots.
+     */
+    private void addMinerTrades(MerchantOffers offers, Koro koro) {
+        // Buy ingots with emeralds
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(NuiCraftItems.INGOT_PROTODERMIS.get(), 2), 16, 1, 0.1F));
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(NuiCraftItems.INGOT_PROTOSTEEL.get(), 1),  8, 2, 0.1F));
+        // Sell koro's extra item in bulk
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(koro.getExtraItem(), 6), 16, 1, 0.05F));
+        // Sell ingots back for emeralds
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.INGOT_PROTODERMIS.get(), 6), new ItemStack(Items.EMERALD, 1), 16, 1, 0.1F));
+    }
+
+    /**
+     * Disc Crafter: sells koro-specific Kanoka disks and general discs.
+     */
+    private void addDiscCrafterTrades(MerchantOffers offers, Koro koro) {
+        // Koro-specific disk — thematic
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(koro.getKoroDisk(), 2), 12, 1, 0.1F));
+        // General bamboo kanoka discs cheap
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(NuiCraftItems.KANOKA_BAMBOO.get(), 3), 16, 1, 0.05F));
+        // Craft up: bamboo discs → proper kanoka disc
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.KANOKA_BAMBOO.get(), 4), new ItemStack(NuiCraftItems.KANOKA_DISC.get(), 1), 8, 2, 0.1F));
+        // Sell extra item for emeralds
+        offers.add(new MerchantOffer(new ItemCost(koro.getExtraItem(), 4), new ItemStack(Items.EMERALD, 1), 12, 1, 0.1F));
+    }
+
+    /**
+     * Scholar: studies elemental lore; trades toa stones, Onu-Wahi stones, and special tools.
+     */
+    private void addScholarTrades(MerchantOffers offers, Koro koro) {
+        // Element Swiper — exotic elemental tool
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 4), new ItemStack(NuiCraftItems.ELEMENT_SWIPER.get(), 1), 6, 2, 0.05F));
+        // Onu-Wahi stones — useful for mask forging
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(NuiCraftItems.ONU_WAHI_STONE.get(), 2), 12, 1, 0.1F));
+        // Sell back Onu-Wahi stones for emeralds
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.ONU_WAHI_STONE.get(), 2), new ItemStack(Items.EMERALD, 1), 12, 1, 0.1F));
+        // Extra toa stone trade: koro stone + protodermis → toa stone (alternate route)
+        offers.add(new MerchantOffer(new ItemCost(koro.getKoroStone(), 6), java.util.Optional.of(new ItemCost(NuiCraftItems.INGOT_PROTODERMIS.get(), 1)), new ItemStack(koro.getToaStone(), 1), 4, 2, 0.1F));
+    }
+
+    /**
+     * Merchant: general goods dealer; trades crafting components and handy tools.
+     */
+    private void addMerchantTrades(MerchantOffers offers, Koro koro) {
+        // Heatstone Lighter — handy tool
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(NuiCraftItems.HEATSTONE_LIGHTER.get(), 1), 4, 2, 0.05F));
+        // Gears — crafting component
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(NuiCraftItems.GEAR.get(), 4), 16, 1, 0.05F));
+        // Stone Hammer
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(NuiCraftItems.STONE_HAMMER.get(), 1), 12, 1, 0.05F));
+        // Sell gears back for emeralds
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.GEAR.get(), 3), new ItemStack(Items.EMERALD, 1), 16, 1, 0.1F));
+        // Koro's extra item — themed goods
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(koro.getExtraItem(), 4), 16, 1, 0.05F));
     }
 
     @Override
     public void addAdditionalSaveData(ValueOutput output) {
         super.addAdditionalSaveData(output);
-        output.putInt("Koro", this.entityData.get(DATA_KORO));
-        output.putInt("Mask", this.entityData.get(DATA_MASK));
+        output.putInt("Koro",       this.entityData.get(DATA_KORO));
+        output.putInt("Mask",       this.entityData.get(DATA_MASK));
+        output.putInt("Profession", this.entityData.get(DATA_PROFESSION));
         if (!this.level().isClientSide) {
             MerchantOffers offers = this.getOffers();
             if (!offers.isEmpty()) {
@@ -352,8 +530,9 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     public void readAdditionalSaveData(ValueInput input) {
         super.readAdditionalSaveData(input);
-        this.entityData.set(DATA_KORO, input.getIntOr("Koro", Koro.TA.ordinal()));
-        this.entityData.set(DATA_MASK, input.getIntOr("Mask", Mask.PAKARI.ordinal()));
+        this.entityData.set(DATA_KORO,       input.getIntOr("Koro",       Koro.TA.ordinal()));
+        this.entityData.set(DATA_MASK,       input.getIntOr("Mask",       Mask.PAKARI.ordinal()));
+        this.entityData.set(DATA_PROFESSION, input.getIntOr("Profession", Profession.MERCHANT.ordinal()));
         this.offers = input.read("Offers", MerchantOffers.CODEC).orElse(null);
     }
 
