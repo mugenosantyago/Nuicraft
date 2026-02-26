@@ -35,8 +35,38 @@ public enum MorphState {
         };
     }
 
-    /** Mask IDs that have converted geo + full texture sets ready. */
+    /**
+     * Maps a worn mask to the corresponding Toa entity name.
+     * Uses canonical Bionicle lore (HAU=Tahu, KAUKAU=Gali, MIRU=Lewa,
+     * PAKARI=Onua, KAKAMA=Pohatu, AKAKU=Kopaka).
+     * Returns null if no Toa corresponds to this mask.
+     */
+    public static String toaNameFor(String maskId) {
+        return switch (maskId) {
+            case "hau"    -> "toa_tahu";
+            case "kaukau" -> "toa_gali";
+            case "miru"   -> "toa_lewa";
+            case "pakari" -> "toa_onua";
+            case "kakama" -> "toa_pohatu";
+            case "akaku"  -> "toa_kopaka";
+            case "huna"   -> "toa_tahu";  // Vakama wore HUNA as a matoran → Tahu
+            default       -> null;
+        };
+    }
+
+    /** Mask IDs that are valid for morph (matoran form: must have geo+textures; toa form: must map to a Toa). */
     public static boolean isImplemented(String maskId) {
+        return switch (maskId) {
+            // Matoran models available
+            case "hau", "huna", "miru", "pakari", "kaukau", "kakama" -> true;
+            // AKAKU only valid for Toa form (no matoran model yet)
+            case "akaku" -> true;
+            default      -> false;
+        };
+    }
+
+    /** Returns true if this mask has a matoran body model ready. */
+    public static boolean hasMatoranModel(String maskId) {
         return switch (maskId) {
             case "hau", "huna", "miru", "pakari", "kaukau", "kakama" -> true;
             default -> false;

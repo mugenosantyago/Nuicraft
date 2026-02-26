@@ -1,5 +1,6 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.client.animator.ToaAnimator;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -58,5 +59,13 @@ public class EntityToa extends PathfinderMob {
                 .add(Attributes.MAX_HEALTH, 30.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
                 .add(Attributes.FOLLOW_RANGE, 20.0D);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.level().isClientSide && this.tickCount % 20 == 0) {
+            ToaAnimator.sendIdleCommand(this);
+        }
     }
 }

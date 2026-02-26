@@ -1,6 +1,7 @@
 package eastonium.nuicraft.client.animator;
 
 import eastonium.nuicraft.client.MorphRenderHelper;
+import eastonium.nuicraft.client.renderer.PlayerMorphGeoRenderer;
 import eastonium.nuicraft.morph.MorphState;
 import mod.azure.azurelib.common.animation.controller.AzAnimationController;
 import mod.azure.azurelib.common.animation.controller.AzAnimationControllerContainer;
@@ -25,7 +26,9 @@ public class PlayerMorphAnimator extends AzEntityAnimator<AbstractClientPlayer> 
     public @NotNull ResourceLocation getAnimationLocation(AbstractClientPlayer player) {
         String maskId = MorphRenderHelper.getMaskId(player.getItemBySlot(EquipmentSlot.HEAD));
         if (maskId == null) maskId = "hau";
-        return MorphRenderHelper.animationLocation(maskId);
+        MorphState state = PlayerMorphGeoRenderer.MORPH_STATES.getOrDefault(
+                player.getUUID(), MorphState.NONE);
+        return MorphRenderHelper.animationLocation(state, maskId);
     }
 
     /** Dispatches the looping idle command for a morphed player. */

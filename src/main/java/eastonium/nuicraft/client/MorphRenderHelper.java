@@ -29,23 +29,45 @@ public final class MorphRenderHelper {
         return MorphState.isImplemented(maskId) ? maskId : null;
     }
 
-    /** Geo file for the given morph state and mask.  Toa falls back to matoran until Toa models arrive. */
+    /** Geo file for the given morph state and mask. */
     public static ResourceLocation geoLocation(MorphState state, String maskId) {
-        // Both MATORAN and TOA use the matoran body geo for now
+        if (state == MorphState.TOA) {
+            String toaName = MorphState.toaNameFor(maskId);
+            if (toaName != null) {
+                return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "geo/entity/" + toaName + ".geo.json");
+            }
+        }
+        // Matoran form (or Toa fallback if no Toa model for this mask)
+        String effectiveMask = MorphState.hasMatoranModel(maskId) ? maskId : "hau";
         return ResourceLocation.fromNamespaceAndPath(
-                NuiCraft.MODID, "geo/entity/" + maskId + "_matoran.geo.json");
+                NuiCraft.MODID, "geo/entity/" + effectiveMask + "_matoran.geo.json");
     }
 
-    /** Texture for the given morph state, mask and koro color. */
+    /** Texture for the given morph state and mask. */
     public static ResourceLocation textureLocation(MorphState state, String maskId) {
-        String koro = MorphState.canonicalKoroFor(maskId);
+        if (state == MorphState.TOA) {
+            String toaName = MorphState.toaNameFor(maskId);
+            if (toaName != null) {
+                return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "textures/entity/" + toaName + ".png");
+            }
+        }
+        // Matoran form
+        String effectiveMask = MorphState.hasMatoranModel(maskId) ? maskId : "hau";
+        String koro = MorphState.canonicalKoroFor(effectiveMask);
         return ResourceLocation.fromNamespaceAndPath(
-                NuiCraft.MODID, "textures/entity/" + maskId + "_matoran/" + koro + ".png");
+                NuiCraft.MODID, "textures/entity/" + effectiveMask + "_matoran/" + koro + ".png");
     }
 
     /** Animation file for the given morph state and mask. */
-    public static ResourceLocation animationLocation(String maskId) {
+    public static ResourceLocation animationLocation(MorphState state, String maskId) {
+        if (state == MorphState.TOA) {
+            String toaName = MorphState.toaNameFor(maskId);
+            if (toaName != null) {
+                return ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "animations/entity/" + toaName + ".animation.json");
+            }
+        }
+        String effectiveMask = MorphState.hasMatoranModel(maskId) ? maskId : "hau";
         return ResourceLocation.fromNamespaceAndPath(
-                NuiCraft.MODID, "animations/entity/" + maskId + "_matoran.animation.json");
+                NuiCraft.MODID, "animations/entity/" + effectiveMask + "_matoran.animation.json");
     }
 }
