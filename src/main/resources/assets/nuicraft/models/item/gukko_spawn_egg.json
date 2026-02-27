@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nuicraft:item/muaka_spawn_egg"
+    "layer0": "nuicraft:item/gukko_spawn_egg"
   }
 }
