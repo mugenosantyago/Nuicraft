@@ -168,6 +168,8 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
 
     /** Tracks the last animation dispatched so we only send on state transitions. */
     private boolean lastMoving = false;
+    /** Counts idle ticks before firing the next ambient animation (wave / work). */
+    private int ambientAnimTimer = 0;
 
     @Nullable
     private Player tradingPlayer;
@@ -307,6 +309,16 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
             if (moving != lastMoving) {
                 lastMoving = moving;
                 MatoranAnimator.sendMovementCommand(this);
+            }
+            if (!moving) {
+                ambientAnimTimer++;
+                // Fire an ambient animation every 80–200 ticks (~4–10 s) while idle
+                if (ambientAnimTimer >= 80 + this.random.nextInt(120)) {
+                    ambientAnimTimer = 0;
+                    MatoranAnimator.sendAmbientCommand(this);
+                }
+            } else {
+                ambientAnimTimer = 0;
             }
         }
     }
