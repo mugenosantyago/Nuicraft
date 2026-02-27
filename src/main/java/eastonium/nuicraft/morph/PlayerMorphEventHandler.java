@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -118,6 +119,16 @@ public class PlayerMorphEventHandler {
 
     @OnlyIn(Dist.CLIENT)
     public static void onMorphBroadcast(MorphBroadcastPayload payload) {
-        PlayerMorphGeoRenderer.MORPH_STATES.put(payload.playerUUID(), payload.state());
+        if (payload.state() == MorphState.NONE) {
+            PlayerMorphGeoRenderer.MORPH_STATES.remove(payload.playerUUID());
+        } else {
+            PlayerMorphGeoRenderer.MORPH_STATES.put(payload.playerUUID(), payload.state());
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event) {
+        PlayerMorphGeoRenderer.MORPH_STATES.clear();
     }
 }

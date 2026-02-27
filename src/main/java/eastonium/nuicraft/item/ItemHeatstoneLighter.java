@@ -49,13 +49,15 @@ public class ItemHeatstoneLighter extends FlintAndSteelItem {
         return InteractionResult.FAIL;
     }
 
+    @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        // Auto-repair in the Nether
-        if (entity instanceof LivingEntity living && 
-            level.getBiome(entity.blockPosition()).is(Biomes.NETHER_WASTES)) {
-            if (level.random.nextInt(60) == 0 && stack.getDamageValue() > 0) {
-                stack.setDamageValue(stack.getDamageValue() - 1);
-            }
+        // Auto-repair in the Nether: check damage and random gate first to avoid biome lookup every tick
+        if (level.isClientSide) return;
+        if (!(entity instanceof LivingEntity)) return;
+        if (stack.getDamageValue() <= 0) return;
+        if (level.random.nextInt(60) != 0) return;
+        if (level.getBiome(entity.blockPosition()).is(Biomes.NETHER_WASTES)) {
+            stack.setDamageValue(stack.getDamageValue() - 1);
         }
     }
 }
