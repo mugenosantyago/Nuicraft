@@ -1,12 +1,19 @@
 package eastonium.nuicraft.client.renderer;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.client.animator.ToaAnimator;
 import eastonium.nuicraft.entity.EntityToa;
+import mod.azure.azurelib.common.model.AzBone;
 import mod.azure.azurelib.common.render.entity.AzEntityRenderer;
 import mod.azure.azurelib.common.render.entity.AzEntityRendererConfig;
+import mod.azure.azurelib.common.render.entity.state.AzEntityRenderState;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * AzureLib Geo renderer for all six Toa variants (Tahu, Gali, Lewa, Onua, Pohatu, Kopaka).
@@ -14,8 +21,14 @@ import net.minecraft.resources.ResourceLocation;
  * Model  : geo/entity/toa_{name}.geo.json
  * Texture: textures/entity/toa_{name}.png
  * Anim   : animations/entity/toa_{name}.animation.json
+ *
+ * Each Toa model contains all six mask bones (Hau, Miru, Kakama, Pakari, Akaku, Kaukau).
+ * Before rendering, the five non-matching masks are hidden so only the correct one shows.
  */
 public class ToaGeoRenderer extends AzEntityRenderer<EntityToa> {
+
+    private static final List<String> ALL_MASK_BONES =
+            List.of("Hau", "Miru", "Kakama", "Pakari", "Akaku", "Kaukau");
 
     public ToaGeoRenderer(EntityRendererProvider.Context context) {
         super(
@@ -28,6 +41,28 @@ public class ToaGeoRenderer extends AzEntityRenderer<EntityToa> {
                 .build(),
                 context
         );
+    }
+
+    @Override
+    public void render(@NotNull AzEntityRenderState renderState,
+                       @NotNull PoseStack poseStack,
+                       @NotNull MultiBufferSource bufferSource,
+                       int packedLight) {
+        @SuppressWarnings("unchecked")
+        EntityToa toa = (EntityToa) renderState.entity;
+        if (toa != null) {
+            String activeMask = toa.getVariant().getMaskBone();
+            var model = provider.provideBakedModel(toa, toa);
+            if (model != null) {
+                for (String boneName : ALL_MASK_BONES) {
+                    AzBone bone = model.getBoneOrNull(boneName);
+                    if (bone != null) {
+                        bone.setHidden(!boneName.equals(activeMask));
+                    }
+                }
+            }
+        }
+        super.render(renderState, poseStack, bufferSource, packedLight);
     }
 
     private static ResourceLocation geoFor(EntityToa toa) {

@@ -16,22 +16,23 @@ import net.minecraft.world.level.Level;
 public class EntityToa extends PathfinderMob {
 
     public enum Variant {
-        TAHU("toa_tahu"),
-        GALI("toa_gali"),
-        LEWA("toa_lewa"),
-        ONUA("toa_onua"),
-        POHATU("toa_pohatu"),
-        KOPAKA("toa_kopaka");
+        TAHU("toa_tahu",   "Hau"),
+        GALI("toa_gali",   "Kaukau"),
+        LEWA("toa_lewa",   "Miru"),
+        ONUA("toa_onua",   "Pakari"),
+        POHATU("toa_pohatu", "Kakama"),
+        KOPAKA("toa_kopaka", "Akaku");
 
         private final String textureName;
+        private final String maskBone;
 
-        Variant(String textureName) {
+        Variant(String textureName, String maskBone) {
             this.textureName = textureName;
+            this.maskBone = maskBone;
         }
 
-        public String getTextureName() {
-            return textureName;
-        }
+        public String getTextureName() { return textureName; }
+        public String getMaskBone()    { return maskBone; }
     }
 
     private final Variant variant;
