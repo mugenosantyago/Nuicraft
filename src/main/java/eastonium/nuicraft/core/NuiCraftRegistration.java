@@ -1,7 +1,6 @@
 package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
-import eastonium.nuicraft.block.BlockPurifier;
 import eastonium.nuicraft.blockentity.PurifierBlockEntity;
 import eastonium.nuicraft.menu.PurifierMenu;
 import eastonium.nuicraft.morph.NuiCraftAttachments;
@@ -27,13 +26,12 @@ public class NuiCraftRegistration {
     /** Purifier block entity type — referenced by BlockPurifier and PurifierBlockEntity. */
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PurifierBlockEntity>> PURIFIER_BE =
             BLOCK_ENTITY_TYPES.register("purifier", () ->
-                    BlockEntityType.Builder.of(PurifierBlockEntity::new, NuiCraftBlocks.PURIFIER.get())
-                            .build(null));
+                    new BlockEntityType<>(PurifierBlockEntity::new, NuiCraftBlocks.PURIFIER.get()));
 
     /** Purifier menu type — referenced by PurifierMenu and PurifierScreen. */
     public static final DeferredHolder<MenuType<?>, MenuType<PurifierMenu>> PURIFIER_MENU =
             MENU_TYPES.register("purifier", () ->
-                    IMenuTypeExtension.create(PurifierMenu::new));
+                    IMenuTypeExtension.create((windowId, inv, buf) -> new PurifierMenu(windowId, inv)));
 
     public static void register(IEventBus modEventBus) {
         NuiCraftAttachments.register(modEventBus);

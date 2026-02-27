@@ -7,7 +7,7 @@ import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.core.NuiCraftRegistration;
 import eastonium.nuicraft.entity.EntityThrownDisc;
 import eastonium.nuicraft.morph.PlayerMorphEventHandler;
-import net.minecraft.client.gui.screens.MenuScreens;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -22,7 +22,12 @@ public class NuiCraftClient {
         modEventBus.addListener(NuiCraftClient::registerRenderers);
         modEventBus.addListener(NuiCraftClient::registerAddLayers);
         modEventBus.addListener(NuiCraftClient::clientSetup);
+        modEventBus.addListener(NuiCraftClient::registerScreens);
         modEventBus.addListener(NuiCraftKeys::register);
+    }
+
+    private static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(NuiCraftRegistration.PURIFIER_MENU.get(), PurifierScreen::new);
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
@@ -31,7 +36,6 @@ public class NuiCraftClient {
             NeoForge.EVENT_BUS.register(GukkoInputSender.class);
             NeoForge.EVENT_BUS.register(PlayerMorphKeyHandler.class);
             NeoForge.EVENT_BUS.register(PlayerMorphEventHandler.class);
-            MenuScreens.register(NuiCraftRegistration.PURIFIER_MENU.get(), PurifierScreen::new);
         });
     }
 
