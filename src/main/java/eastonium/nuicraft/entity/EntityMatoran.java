@@ -166,6 +166,9 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     private static final EntityDataAccessor<Integer> DATA_MASK       = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_PROFESSION = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
 
+    /** Tracks the last animation dispatched so we only send on state transitions. */
+    private boolean lastMoving = false;
+
     @Nullable
     private Player tradingPlayer;
     @Nullable
@@ -299,9 +302,12 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     public void tick() {
         super.tick();
-        // Dispatch walk/idle animation from server every 5 ticks for responsive transitions.
-        if (!this.level().isClientSide && this.tickCount % 5 == 0) {
-            MatoranAnimator.sendMovementCommand(this);
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                MatoranAnimator.sendMovementCommand(this);
+            }
         }
     }
 

@@ -35,6 +35,7 @@ public class EntityToa extends PathfinderMob {
     }
 
     private final Variant variant;
+    private boolean lastMoving = false;
 
     public EntityToa(EntityType<? extends PathfinderMob> type, Level level, Variant variant) {
         super(type, level);
@@ -64,8 +65,12 @@ public class EntityToa extends PathfinderMob {
     @Override
     public void tick() {
         super.tick();
-        if (!this.level().isClientSide && this.tickCount % 20 == 0) {
-            ToaAnimator.sendIdleCommand(this);
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                ToaAnimator.sendMovementCommand(this);
+            }
         }
     }
 }

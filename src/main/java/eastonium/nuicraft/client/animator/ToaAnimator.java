@@ -25,8 +25,10 @@ public class ToaAnimator extends AzEntityAnimator<EntityToa> {
         );
     }
 
-    public static void sendIdleCommand(EntityToa entity) {
-        AzCommand.create("base_controller", "idle", AzPlayBehaviors.LOOP)
+    public static void sendMovementCommand(EntityToa entity) {
+        boolean moving = entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+        String anim = moving ? "walk" : "idle";
+        AzCommand.create("base_controller", anim, AzPlayBehaviors.LOOP)
                 .sendForEntity(entity);
     }
 }
