@@ -2,6 +2,7 @@ package eastonium.nuicraft.entity;
 
 import eastonium.nuicraft.core.NuiCraftBlocks;
 import eastonium.nuicraft.core.NuiCraftItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,6 +23,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import java.util.EnumSet;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -275,11 +278,93 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         }
     }
 
+    /**
+     * Makes the Matoran seek a nearby unoccupied bed at night, sleep in it,
+     * and wake at dawn. Trading and combat take priority.
+     */
+    private class BedSleepGoal extends Goal {
+        private static final int SEARCH_RADIUS = 16;
+        private BlockPos targetBed = null;
+
+        BedSleepGoal() {
+            setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
+        }
+
+        private boolean isNight() {
+            long t = EntityMatoran.this.level().getDayTime() % 24000L;
+            return t >= 13000L && t < 23000L;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (EntityMatoran.this.isSleeping()) return false;
+            if (EntityMatoran.this.getTradingPlayer() != null) return false;
+            if (!isNight()) return false;
+            targetBed = findFreeBed();
+            return targetBed != null;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return isNight()
+                    && !EntityMatoran.this.isSleeping()
+                    && targetBed != null
+                    && EntityMatoran.this.getTradingPlayer() == null;
+        }
+
+        @Override
+        public void start() {
+            if (targetBed != null) {
+                EntityMatoran.this.getNavigation().moveTo(
+                        targetBed.getX() + 0.5, targetBed.getY(), targetBed.getZ() + 0.5, 1.0);
+            }
+        }
+
+        @Override
+        public void tick() {
+            if (targetBed == null) return;
+            double dx = EntityMatoran.this.getX() - (targetBed.getX() + 0.5);
+            double dz = EntityMatoran.this.getZ() - (targetBed.getZ() + 0.5);
+            if (dx * dx + dz * dz < 1.5 * 1.5) {
+                EntityMatoran.this.startSleeping(targetBed);
+            }
+        }
+
+        @Override
+        public void stop() {
+            if (EntityMatoran.this.isSleeping()) {
+                EntityMatoran.this.stopSleeping();
+            }
+            targetBed = null;
+        }
+
+        /** Wake up when daytime arrives. */
+        @Override
+        public boolean requiresUpdateEveryTick() { return false; }
+
+        private BlockPos findFreeBed() {
+            BlockPos origin = EntityMatoran.this.blockPosition();
+            Level lvl = EntityMatoran.this.level();
+            for (BlockPos pos : BlockPos.betweenClosed(
+                    origin.offset(-SEARCH_RADIUS, -3, -SEARCH_RADIUS),
+                    origin.offset( SEARCH_RADIUS,  3,  SEARCH_RADIUS))) {
+                var state = lvl.getBlockState(pos);
+                if (state.getBlock() instanceof BedBlock
+                        && state.getValue(BedBlock.PART) == BedPart.HEAD
+                        && !state.getValue(BedBlock.OCCUPIED)) {
+                    return pos.immutable();
+                }
+            }
+            return null;
+        }
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new TradingFreezeGoal());
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(3, new BedSleepGoal());
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.8D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));

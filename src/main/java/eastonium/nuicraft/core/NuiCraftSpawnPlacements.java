@@ -1,6 +1,7 @@
 package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.entity.*;
+import eastonium.nuicraft.entity.EntityToa;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
@@ -55,13 +56,13 @@ public class NuiCraftSpawnPlacements {
         event.register(NuiCraftEntityTypes.MATORAN_KO.get(),  SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
         event.register(NuiCraftEntityTypes.MATORAN_PO.get(),  SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
 
-        // Toa (all 6 variants)
-        event.register(NuiCraftEntityTypes.TOA_TAHU.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
-        event.register(NuiCraftEntityTypes.TOA_GALI.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
-        event.register(NuiCraftEntityTypes.TOA_LEWA.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
-        event.register(NuiCraftEntityTypes.TOA_ONUA.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
-        event.register(NuiCraftEntityTypes.TOA_POHATU.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
-        event.register(NuiCraftEntityTypes.TOA_KOPAKA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
+        // Toa (all 6 variants) — limited to one per 160-block radius via custom spawn check
+        event.register(NuiCraftEntityTypes.TOA_TAHU.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);
+        event.register(NuiCraftEntityTypes.TOA_GALI.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);
+        event.register(NuiCraftEntityTypes.TOA_LEWA.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);
+        event.register(NuiCraftEntityTypes.TOA_ONUA.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);
+        event.register(NuiCraftEntityTypes.TOA_POHATU.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);
+        event.register(NuiCraftEntityTypes.TOA_KOPAKA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);
 
         // Turaga (generic + all 6 named characters)
         event.register(NuiCraftEntityTypes.TURAGA.get(),        SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
