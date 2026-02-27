@@ -533,7 +533,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         // General bamboo kanoka discs cheap
         offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(NuiCraftItems.KANOKA_BAMBOO.get(), 3), 16, 1, 0.05F));
         // Craft up: bamboo discs → proper kanoka disc
-        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.KANOKA_BAMBOO.get(), 4), new ItemStack(NuiCraftItems.KANOKA_DISC.get(), 1), 8, 2, 0.1F));
+        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.KANOKA_BAMBOO.get(), 4), new ItemStack(koro.getKoroDisk(), 1), 8, 2, 0.1F));
         // Sell extra item for emeralds
         offers.add(new MerchantOffer(new ItemCost(koro.getExtraItem(), 4), new ItemStack(Items.EMERALD, 1), 12, 1, 0.1F));
     }

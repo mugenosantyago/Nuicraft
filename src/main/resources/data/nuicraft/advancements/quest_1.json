@@ -1,7 +1,7 @@
 {
   "display": {
     "background": "minecraft:textures/block/stone.png",
-    "icon": {"item": "nuicraft:kanoka_disc"},
+    "icon": {"item": "nuicraft:kanoka_disk_ta"},
     "title": {"translate": "advancement.nuicraft.quest_1.title"},
     "description": {"translate": "advancement.nuicraft.quest_1.description"},
     "frame": "task",
