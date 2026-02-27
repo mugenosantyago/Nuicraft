@@ -39,6 +39,6 @@
       "absolute": 60
     }
   },
-  "biomes": "minecraft:snowy_plains",
+  "biomes": "#nuicraft:ko_koro",
   "use_expansion_hack": false
 }

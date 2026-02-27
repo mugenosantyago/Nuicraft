@@ -1,0 +1,15 @@
+{
+  "values": [
+    "minecraft:snowy_plains",
+    "minecraft:ice_spikes",
+    "minecraft:frozen_peaks",
+    "minecraft:snowy_taiga",
+    "minecraft:grove",
+    { "id": "biomesoplenty:tundra",                  "required": false },
+    { "id": "biomesoplenty:snowy_coniferous_forest",  "required": false },
+    { "id": "biomesoplenty:snowy_fir_clearing",       "required": false },
+    { "id": "biomesoplenty:snowblossom_grove",        "required": false },
+    { "id": "biomesoplenty:snowy_maple_woods",        "required": false },
+    { "id": "biomesoplenty:muskeg",                  "required": false }
+  ]
+}

@@ -1,1 +1,1 @@
-{"structures":[{"structure":"nuicraft:kokoro","weight":1}],"placement":{"type":"minecraft:random_spread","spacing":50,"separation":49,"salt":301432296}}
+{"structures": [{"structure": "nuicraft:kokoro", "weight": 1}], "placement": {"type": "minecraft:random_spread", "spacing": 32, "separation": 8, "salt": 301432296}}

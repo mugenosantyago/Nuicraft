@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:badlands",
+    "minecraft:wooded_badlands",
+    "minecraft:eroded_badlands",
+    { "id": "biomesoplenty:volcanic_plains", "required": false },
+    { "id": "biomesoplenty:volcano",         "required": false },
+    { "id": "biomesoplenty:wasteland",       "required": false },
+    { "id": "biomesoplenty:wasteland_steppe","required": false }
+  ]
+}

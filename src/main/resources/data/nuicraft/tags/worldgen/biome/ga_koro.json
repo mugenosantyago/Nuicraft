@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:warm_ocean",
+    "minecraft:lukewarm_ocean",
+    "minecraft:deep_lukewarm_ocean",
+    { "id": "biomesoplenty:tropics",    "required": false },
+    { "id": "biomesoplenty:dune_beach", "required": false }
+  ]
+}
