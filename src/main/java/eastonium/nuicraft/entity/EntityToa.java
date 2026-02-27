@@ -33,23 +33,32 @@ import net.minecraft.world.phys.AABB;
 public class EntityToa extends PathfinderMob {
 
     public enum Variant {
-        TAHU("toa_tahu",   "Hau"),
-        GALI("toa_gali",   "Kaukau"),
-        LEWA("toa_lewa",   "Miru"),
-        ONUA("toa_onua",   "Pakari"),
-        POHATU("toa_pohatu", "Kakama"),
-        KOPAKA("toa_kopaka", "Akaku");
+        //                texture          maskBone   toaStone                         signatureMask
+        TAHU  ("toa_tahu",   "Hau",    () -> NuiCraftItems.FIRE_TOA_STONE.get(),  () -> NuiCraftItems.MASK_MATA_HAU.get()),
+        GALI  ("toa_gali",   "Kaukau", () -> NuiCraftItems.WATER_TOA_STONE.get(), () -> NuiCraftItems.MASK_MATA_KAUKAU.get()),
+        LEWA  ("toa_lewa",   "Miru",   () -> NuiCraftItems.AIR_TOA_STONE.get(),   () -> NuiCraftItems.MASK_MATA_MIRU.get()),
+        ONUA  ("toa_onua",   "Pakari", () -> NuiCraftItems.EARTH_TOA_STONE.get(), () -> NuiCraftItems.MASK_MATA_PAKARI.get()),
+        POHATU("toa_pohatu", "Kakama", () -> NuiCraftItems.ROCK_TOA_STONE.get(),  () -> NuiCraftItems.MASK_MATA_KAKAMA.get()),
+        KOPAKA("toa_kopaka", "Akaku",  () -> NuiCraftItems.ICE_TOA_STONE.get(),   () -> NuiCraftItems.MASK_MATA_AKAKU.get());
 
         private final String textureName;
         private final String maskBone;
+        private final java.util.function.Supplier<Item> toaStoneSupplier;
+        private final java.util.function.Supplier<Item> signatureMaskSupplier;
 
-        Variant(String textureName, String maskBone) {
-            this.textureName = textureName;
-            this.maskBone = maskBone;
+        Variant(String textureName, String maskBone,
+                java.util.function.Supplier<Item> toaStoneSupplier,
+                java.util.function.Supplier<Item> signatureMaskSupplier) {
+            this.textureName           = textureName;
+            this.maskBone              = maskBone;
+            this.toaStoneSupplier      = toaStoneSupplier;
+            this.signatureMaskSupplier = signatureMaskSupplier;
         }
 
-        public String getTextureName() { return textureName; }
-        public String getMaskBone()    { return maskBone; }
+        public String getTextureName()  { return textureName; }
+        public String getMaskBone()     { return maskBone; }
+        public Item   getToaStone()     { return toaStoneSupplier.get(); }
+        public Item   getSignatureMask(){ return signatureMaskSupplier.get(); }
     }
 
     private final Variant variant;
@@ -95,6 +104,52 @@ public class EntityToa extends PathfinderMob {
                 .add(Attributes.MAX_HEALTH, 30.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
                 .add(Attributes.FOLLOW_RANGE, 20.0D);
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (this.level().isClientSide) return InteractionResult.SUCCESS;
+
+        ItemStack held = player.getItemInHand(hand);
+        if (!held.is(this.variant.getToaStone())) {
+            return super.mobInteract(player, hand);
+        }
+
+        // Consume one toa stone
+        held.shrink(1);
+
+        // Build the enchanted signature mask
+        ItemStack mask = new ItemStack(this.variant.getSignatureMask());
+        try {
+            Holder<Enchantment> mending = this.level().registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT)
+                    .getOrThrow(Enchantments.MENDING);
+            mask.enchant(mending, 1);
+        } catch (Exception ignored) { /* mending not available — give unenchanted */ }
+
+        giveOrDrop(player, mask);
+
+        // Full protodermis tool + weapon set
+        for (Item tool : new Item[]{
+                NuiCraftItems.PROTODERMIS_SWORD.get(),
+                NuiCraftItems.PROTODERMIS_PICK.get(),
+                NuiCraftItems.PROTODERMIS_AXE.get(),
+                NuiCraftItems.PROTODERMIS_SHOVEL.get(),
+                NuiCraftItems.PROTODERMIS_SCYTHE.get()
+        }) {
+            giveOrDrop(player, new ItemStack(tool));
+        }
+
+        this.level().playSound(null, this.getX(), this.getY(), this.getZ(),
+                SoundEvents.VILLAGER_YES, SoundSource.NEUTRAL, 1.0F, 1.0F);
+
+        return InteractionResult.CONSUME;
+    }
+
+    private void giveOrDrop(Player player, ItemStack stack) {
+        if (!player.getInventory().add(stack)) {
+            player.drop(stack, false);
+        }
     }
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#nuicraft:onu_koro",
+  "features": "nuicraft:onu_koro_stone_gen",
+  "step": "underground_ores"
+}
