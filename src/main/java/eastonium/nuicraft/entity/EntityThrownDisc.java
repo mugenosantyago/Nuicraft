@@ -72,7 +72,8 @@ public class EntityThrownDisc extends ThrowableItemProjectile {
 
         var owner = getOwner();
         if (owner instanceof Player player) {
-            // Silently add — no pickup sound to avoid confusion, just quietly return.
+            // Creative players never consumed the disc, so don't add it back.
+            if (player.isCreative()) return;
             if (!player.getInventory().add(returnStack)) {
                 player.drop(returnStack, false);
             }
