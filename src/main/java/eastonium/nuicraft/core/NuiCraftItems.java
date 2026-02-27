@@ -184,10 +184,7 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.KOFO_JAGA.get(), withItemId("kofo_jaga_spawn_egg", props)));
     public static final DeferredItem<Item> NUI_JAGA_SPAWN_EGG = ITEMS.registerItem("nui_jaga_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.NUI_JAGA.get(), withItemId("nui_jaga_spawn_egg", props)));
-    public static final DeferredItem<Item> MATORAN_SPAWN_EGG = ITEMS.registerItem("matoran_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN.get(), withItemId("matoran_spawn_egg", props)));
-
-    // Koro-specific Matoran spawn eggs (legacy — one per koro, canonical mask)
+    // Koro-specific Matoran spawn eggs (one per koro, canonical mask)
     public static final DeferredItem<Item> MATORAN_TA_SPAWN_EGG = ITEMS.registerItem("matoran_ta_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.MATORAN_TA.get(), withItemId("matoran_ta_spawn_egg", props)));
     public static final DeferredItem<Item> MATORAN_GA_SPAWN_EGG = ITEMS.registerItem("matoran_ga_spawn_egg",
@@ -244,9 +241,6 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> MATORAN_KO_KAUKAU_EGG= ITEMS.registerItem("matoran_ko_kaukau_spawn_egg",p -> new eastonium.nuicraft.item.MatoranSpawnEggItem(eastonium.nuicraft.entity.EntityMatoran.Koro.KO,  eastonium.nuicraft.entity.EntityMatoran.Mask.KAUKAU, withItemId("matoran_ko_kaukau_spawn_egg", p)));
     public static final DeferredItem<Item> MATORAN_KO_MIRU_EGG  = ITEMS.registerItem("matoran_ko_miru_spawn_egg",  p -> new eastonium.nuicraft.item.MatoranSpawnEggItem(eastonium.nuicraft.entity.EntityMatoran.Koro.KO,  eastonium.nuicraft.entity.EntityMatoran.Mask.MIRU,   withItemId("matoran_ko_miru_spawn_egg", p)));
     public static final DeferredItem<Item> MATORAN_KO_PAKARI_EGG= ITEMS.registerItem("matoran_ko_pakari_spawn_egg",p -> new eastonium.nuicraft.item.MatoranSpawnEggItem(eastonium.nuicraft.entity.EntityMatoran.Koro.KO,  eastonium.nuicraft.entity.EntityMatoran.Mask.PAKARI, withItemId("matoran_ko_pakari_spawn_egg", p)));
-
-    public static final DeferredItem<Item> TURAGA_SPAWN_EGG = ITEMS.registerItem("turaga_spawn_egg",
-            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA.get(), withItemId("turaga_spawn_egg", props)));
 
     // Per-character Turaga spawn eggs (Mata series)
     public static final DeferredItem<Item> TURAGA_VAKAMA_SPAWN_EGG = ITEMS.registerItem("turaga_vakama_spawn_egg",
