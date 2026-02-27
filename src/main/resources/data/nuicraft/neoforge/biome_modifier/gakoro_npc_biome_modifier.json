@@ -1,0 +1,24 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#nuicraft:ga_koro",
+  "spawners": [
+    {
+      "type": "nuicraft:matoran_ga",
+      "weight": 8,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "nuicraft:turaga_nokama",
+      "weight": 2,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "nuicraft:toa_gali",
+      "weight": 1,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}

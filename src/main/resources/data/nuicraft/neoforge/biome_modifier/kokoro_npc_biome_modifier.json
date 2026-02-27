@@ -1,0 +1,24 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#nuicraft:ko_koro",
+  "spawners": [
+    {
+      "type": "nuicraft:matoran_ko",
+      "weight": 8,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "nuicraft:turaga_nuju",
+      "weight": 2,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "nuicraft:toa_kopaka",
+      "weight": 1,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}
