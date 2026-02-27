@@ -55,8 +55,6 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> GENERIC_ITEM = ITEMS.registerSimpleItem("generic_item");
     public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerItem("kanoka_bamboo",
             props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));
-    public static final DeferredItem<Item> KANOKA_DISC = ITEMS.registerItem("kanoka_disc",
-            props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_disc", props)));
     public static final DeferredItem<Item> DISC_LAUNCHER = ITEMS.registerSimpleItem("disc_launcher");
 
     // Materials (from bionicle_qfn)
