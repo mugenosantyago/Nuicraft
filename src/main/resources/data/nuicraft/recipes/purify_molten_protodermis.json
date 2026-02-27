@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "nuicraft:molten_protodermis_bucket",
+  "result": {
+    "id": "nuicraft:pure_molten_protodermis_bucket"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

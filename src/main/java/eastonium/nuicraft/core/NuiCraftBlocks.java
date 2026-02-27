@@ -2,6 +2,7 @@ package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.block.*;
+import eastonium.nuicraft.block.BlockPurifier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -36,8 +37,8 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<Block> MASK_FORGE = BLOCKS.registerSimpleBlock("mask_forge",
             withBlockId("mask_forge", BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
     
-    public static final DeferredBlock<Block> PURIFIER = BLOCKS.registerSimpleBlock("purifier",
-            withBlockId("purifier", BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
+    public static final DeferredBlock<BlockPurifier> PURIFIER = BLOCKS.registerBlock("purifier",
+            BlockPurifier::new, withBlockId("purifier", BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
 
     // Decorative blocks
     public static final DeferredBlock<BlockKoro> KORO_BLOCK = BLOCKS.registerBlock("koro_block",

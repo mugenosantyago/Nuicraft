@@ -57,6 +57,11 @@ public class NuiCraftItems {
             props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));
     public static final DeferredItem<Item> DISC_LAUNCHER = ITEMS.registerSimpleItem("disc_launcher");
 
+    // Protodermis fluid buckets (plain items — fluids not yet full Fluid instances)
+    public static final DeferredItem<Item> PROTODERMIS_BUCKET          = ITEMS.registerSimpleItem("protodermis_bucket");
+    public static final DeferredItem<Item> MOLTEN_PROTODERMIS_BUCKET   = ITEMS.registerSimpleItem("molten_protodermis_bucket");
+    public static final DeferredItem<Item> PURE_MOLTEN_PROTODERMIS_BUCKET = ITEMS.registerSimpleItem("pure_molten_protodermis_bucket");
+
     // Materials (from bionicle_qfn)
     public static final DeferredItem<Item> PROTODERMIS_SOLID = ITEMS.registerSimpleItem("protodermis_solid");
     public static final DeferredItem<Item> INGOT_PROTODERMIS = ITEMS.registerSimpleItem("ingot_protodermis");

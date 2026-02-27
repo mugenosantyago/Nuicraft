@@ -2,9 +2,12 @@ package eastonium.nuicraft.client;
 
 import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
+import eastonium.nuicraft.client.screen.PurifierScreen;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
+import eastonium.nuicraft.core.NuiCraftRegistration;
 import eastonium.nuicraft.entity.EntityThrownDisc;
 import eastonium.nuicraft.morph.PlayerMorphEventHandler;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -28,6 +31,7 @@ public class NuiCraftClient {
             NeoForge.EVENT_BUS.register(GukkoInputSender.class);
             NeoForge.EVENT_BUS.register(PlayerMorphKeyHandler.class);
             NeoForge.EVENT_BUS.register(PlayerMorphEventHandler.class);
+            MenuScreens.register(NuiCraftRegistration.PURIFIER_MENU.get(), PurifierScreen::new);
         });
     }
 
