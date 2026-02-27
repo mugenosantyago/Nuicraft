@@ -8,18 +8,17 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 /**
  * Disc item that can be thrown (Kanoka, bamboo disc, etc.).
- * Uses the same projectile entity for all disc types; the thrown entity displays this item.
+ * Flies flat (low gravity), deals 2 damage on hit, and returns exactly 1 disc to the thrower.
  */
 public class ItemThrowableDisc extends Item {
 
-    private static final float PROJECTILE_SHOOT_POWER = 1.5F;
+    private static final float THROW_POWER = 2.5F;
 
     public ItemThrowableDisc(Properties properties) {
         super(properties);
@@ -33,19 +32,15 @@ public class ItemThrowableDisc extends Item {
         }
 
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F,
-                0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+                SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 0.5F,
+                0.9F + level.getRandom().nextFloat() * 0.2F);
 
         if (level instanceof ServerLevel serverLevel) {
-            Projectile.spawnProjectileFromRotation(
-                    EntityThrownDisc::new,
-                    serverLevel,
-                    stack,
-                    player,
-                    0.0F,
-                    PROJECTILE_SHOOT_POWER,
-                    1.0F
-            );
+            // Spawn projectile carrying exactly 1 disc — prevents returning extra items.
+            ItemStack throwStack = stack.copyWithCount(1);
+            EntityThrownDisc disc = new EntityThrownDisc(level, player, throwStack);
+            disc.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, THROW_POWER, 1.0F);
+            serverLevel.addFreshEntity(disc);
         }
 
         player.awardStat(Stats.ITEM_USED.get(this));
