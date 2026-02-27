@@ -53,12 +53,9 @@ public class MatoranSpawnEggItem extends SpawnEggItem {
         EntityMatoran.Profession[] profs = EntityMatoran.Profession.values();
         matoran.setProfession(profs[serverLevel.getRandom().nextInt(profs.length)]);
 
-        matoran.moveTo(
-                spawnPos.getX() + 0.5,
-                (double) spawnPos.getY(),
-                spawnPos.getZ() + 0.5,
-                serverLevel.getRandom().nextFloat() * 360f,
-                0f);
+        matoran.setPos(spawnPos.getX() + 0.5, (double) spawnPos.getY(), spawnPos.getZ() + 0.5);
+        matoran.setYRot(serverLevel.getRandom().nextFloat() * 360f);
+        matoran.yRotO = matoran.getYRot();
 
         serverLevel.addFreshEntityWithPassengers(matoran);
 
