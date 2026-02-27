@@ -8,15 +8,12 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * AzureLib Geo renderer for Turaga NPCs.
+ * AzureLib Geo renderer for all six Turaga of the Mata series.
  *
- * Model  : geo/entity/{type}.geo.json   (e.g. matatu_turaga.geo.json)
- * Texture: textures/entity/{type}/default.png
+ * Model  : geo/entity/{geoId}.geo.json  (matatu_turaga or rau_turaga)
+ * Texture: textures/entity/{textureFile}.png  (e.g. turagavakama.png)
  *
- * Turaga types are assigned in EntityTuraga.finalizeSpawn() based on biome:
- *   Ga biome  → RAU    (Turaga Nokama)
- *   Ko biome  → MATATU (Turaga Nuju)
- *   All other → MATATU (fallback until remaining models arrive)
+ * Only MATATU and RAU have dedicated geo files; all others fall back to matatu_turaga.
  */
 public class TuragaGeoRenderer extends AzEntityRenderer<EntityTuraga> {
 
@@ -35,14 +32,14 @@ public class TuragaGeoRenderer extends AzEntityRenderer<EntityTuraga> {
     private static ResourceLocation geoFor(EntityTuraga turaga) {
         return ResourceLocation.fromNamespaceAndPath(
                 NuiCraft.MODID,
-                "geo/entity/" + turaga.getTuragaType().getId() + ".geo.json"
+                "geo/entity/" + turaga.getTuragaType().getGeoId() + ".geo.json"
         );
     }
 
     private static ResourceLocation textureFor(EntityTuraga turaga) {
         return ResourceLocation.fromNamespaceAndPath(
                 NuiCraft.MODID,
-                "textures/entity/" + turaga.getTuragaType().getId() + "/default.png"
+                "textures/entity/" + turaga.getTuragaType().getTextureFile() + ".png"
         );
     }
 }

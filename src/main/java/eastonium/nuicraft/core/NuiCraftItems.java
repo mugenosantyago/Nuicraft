@@ -247,6 +247,20 @@ public class NuiCraftItems {
 
     public static final DeferredItem<Item> TURAGA_SPAWN_EGG = ITEMS.registerItem("turaga_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA.get(), withItemId("turaga_spawn_egg", props)));
+
+    // Per-character Turaga spawn eggs (Mata series)
+    public static final DeferredItem<Item> TURAGA_VAKAMA_SPAWN_EGG = ITEMS.registerItem("turaga_vakama_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA_VAKAMA.get(), withItemId("turaga_vakama_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_NOKAMA_SPAWN_EGG = ITEMS.registerItem("turaga_nokama_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA_NOKAMA.get(), withItemId("turaga_nokama_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_MATAU_SPAWN_EGG = ITEMS.registerItem("turaga_matau_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA_MATAU.get(), withItemId("turaga_matau_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_ONEWA_SPAWN_EGG = ITEMS.registerItem("turaga_onewa_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA_ONEWA.get(), withItemId("turaga_onewa_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_WHENUA_SPAWN_EGG = ITEMS.registerItem("turaga_whenua_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA_WHENUA.get(), withItemId("turaga_whenua_spawn_egg", props)));
+    public static final DeferredItem<Item> TURAGA_NUJU_SPAWN_EGG = ITEMS.registerItem("turaga_nuju_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.TURAGA_NUJU.get(), withItemId("turaga_nuju_spawn_egg", props)));
     public static final DeferredItem<Item> MUAKA_SPAWN_EGG = ITEMS.registerItem("muaka_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.MUAKA.get(), withItemId("muaka_spawn_egg", props)));
     public static final DeferredItem<Item> TARAKAVA_SPAWN_EGG = ITEMS.registerItem("tarakava_spawn_egg",

@@ -57,7 +57,13 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.MATORAN_ONU.get(), MatoranGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.MATORAN_KO.get(), MatoranGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.MATORAN_PO.get(), MatoranGeoRenderer::new);
-        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA.get(), TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA.get(),        TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA_VAKAMA.get(), TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA_NOKAMA.get(), TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA_MATAU.get(),  TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA_ONEWA.get(),  TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA_WHENUA.get(), TuragaGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.TURAGA_NUJU.get(),   TuragaGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.MUAKA.get(), context -> new GenericNuiCraftRenderer<>(context, "muaka"));
         event.registerEntityRenderer(NuiCraftEntityTypes.TARAKAVA.get(), context -> new GenericNuiCraftRenderer<>(context, "tarakava"));
         event.registerEntityRenderer(NuiCraftEntityTypes.GUKKO.get(), context -> new GenericNuiCraftRenderer<>(context, "gukko"));

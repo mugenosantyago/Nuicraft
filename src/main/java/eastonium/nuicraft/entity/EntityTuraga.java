@@ -21,23 +21,41 @@ import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Turaga - elder NPC that can be spoken to and traded with (dialogue first).
+ * Turaga - elder NPC representing one of the six village elders of Mata Nui.
  *
- * Each Turaga wears the mask associated with their Koro:
- *   Ko-Koro → MATATU (Turaga Nuju)
- *   Ga-Koro → RAU    (Turaga Nokama)
- *   Other Koros → MATATU as fallback until remaining models are delivered.
+ * The six Turaga of the Mata series, each tied to a Koro:
+ *   Ta-Koro → VAKAMA  (Huna mask)
+ *   Ga-Koro → NOKAMA  (Rau mask)
+ *   Le-Koro → MATAU   (Mahiki mask)
+ *   Po-Koro → ONEWA   (Komau mask)
+ *   Onu-Koro → WHENUA (Ruru mask)
+ *   Ko-Koro → NUJU    (Matatu mask)
+ *
+ * geoId  - which geo/animation file to use (falls back to matatu_turaga if not implemented)
+ * textureFile - flat texture filename under textures/entity/
  */
 public class EntityTuraga extends PathfinderMob {
 
-    /** Which Turaga mask / model to use. */
     public enum TuragaType {
-        MATATU("matatu_turaga"),
-        RAU("rau_turaga");
+        VAKAMA("matatu_turaga", "turagavakama"),
+        NOKAMA("rau_turaga",    "turaganokama"),
+        MATAU("matatu_turaga",  "turagamatau"),
+        ONEWA("matatu_turaga",  "turagaonewa"),
+        WHENUA("matatu_turaga", "turagawhenua"),
+        NUJU("matatu_turaga",   "turaganuju");
 
-        private final String id;
-        TuragaType(String id) { this.id = id; }
-        public String getId() { return id; }
+        private final String geoId;
+        private final String textureFile;
+
+        TuragaType(String geoId, String textureFile) {
+            this.geoId = geoId;
+            this.textureFile = textureFile;
+        }
+
+        /** Geo/animation file prefix, e.g. "matatu_turaga" → matatu_turaga.geo.json */
+        public String getGeoId()      { return geoId; }
+        /** Flat texture filename, e.g. "turagavakama" → textures/entity/turagavakama.png */
+        public String getTextureFile(){ return textureFile; }
     }
 
     private static final EntityDataAccessor<Integer> DATA_TYPE =
@@ -47,16 +65,22 @@ public class EntityTuraga extends PathfinderMob {
         super(type, level);
     }
 
+    /** Constructor used by per-character entity types to pin the type at spawn. */
+    public EntityTuraga(EntityType<? extends PathfinderMob> type, Level level, TuragaType turagaType) {
+        super(type, level);
+        this.entityData.set(DATA_TYPE, turagaType.ordinal());
+    }
+
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(DATA_TYPE, TuragaType.MATATU.ordinal());
+        builder.define(DATA_TYPE, TuragaType.NUJU.ordinal());
     }
 
     public TuragaType getTuragaType() {
         int i = this.entityData.get(DATA_TYPE);
         TuragaType[] types = TuragaType.values();
-        return i >= 0 && i < types.length ? types[i] : TuragaType.MATATU;
+        return i >= 0 && i < types.length ? types[i] : TuragaType.NUJU;
     }
 
     public void setTuragaType(TuragaType type) {
@@ -67,18 +91,32 @@ public class EntityTuraga extends PathfinderMob {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty,
                                         EntitySpawnReason reason, @Nullable SpawnGroupData spawnData) {
         var biome = level.getBiome(this.blockPosition());
-        if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) {
-            setTuragaType(TuragaType.RAU);
+        if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) {
+            setTuragaType(TuragaType.VAKAMA);
+        } else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) {
+            setTuragaType(TuragaType.NOKAMA);
+        } else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) {
+            setTuragaType(TuragaType.MATAU);
+        } else if (biome.is(Biomes.SAVANNA) || biome.is(Biomes.SAVANNA_PLATEAU) || biome.is(Biomes.WINDSWEPT_SAVANNA)) {
+            setTuragaType(TuragaType.ONEWA);
+        } else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK)) {
+            setTuragaType(TuragaType.WHENUA);
         } else {
-            // Ko-Koro and all other koros default to MATATU until more models are added
-            setTuragaType(TuragaType.MATATU);
+            setTuragaType(TuragaType.NUJU);
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("entity.nuicraft.turaga." + getTuragaType().name().toLowerCase());
+        return switch (getTuragaType()) {
+            case VAKAMA -> Component.literal("Turaga Vakama");
+            case NOKAMA -> Component.literal("Turaga Nokama");
+            case MATAU  -> Component.literal("Turaga Matau");
+            case ONEWA  -> Component.literal("Turaga Onewa");
+            case WHENUA -> Component.literal("Turaga Whenua");
+            case NUJU   -> Component.literal("Turaga Nuju");
+        };
     }
 
     @Override
@@ -106,6 +144,6 @@ public class EntityTuraga extends PathfinderMob {
     @Override
     public void readAdditionalSaveData(ValueInput input) {
         super.readAdditionalSaveData(input);
-        this.entityData.set(DATA_TYPE, input.getIntOr("TuragaType", TuragaType.MATATU.ordinal()));
+        this.entityData.set(DATA_TYPE, input.getIntOr("TuragaType", TuragaType.NUJU.ordinal()));
     }
 }
