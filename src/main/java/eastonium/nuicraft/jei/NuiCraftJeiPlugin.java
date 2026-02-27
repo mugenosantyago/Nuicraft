@@ -55,7 +55,12 @@ public class NuiCraftJeiPlugin implements IModPlugin {
         registration.addItemStackInfo(
                 List.of(
                         new ItemStack(NuiCraftItems.KANOKA_BAMBOO.get()),
-                        new ItemStack(NuiCraftItems.KANOKA_DISC.get())
+                        new ItemStack(NuiCraftItems.KANOKA_DISK_TA.get()),
+                        new ItemStack(NuiCraftItems.KANOKA_DISK_GA.get()),
+                        new ItemStack(NuiCraftItems.KANOKA_DISK_LE.get()),
+                        new ItemStack(NuiCraftItems.KANOKA_DISK_PO.get()),
+                        new ItemStack(NuiCraftItems.KANOKA_DISK_ONU.get()),
+                        new ItemStack(NuiCraftItems.KANOKA_DISK_KO.get())
                 ),
                 Component.translatable("jei.nuicraft.disc.info"));
 

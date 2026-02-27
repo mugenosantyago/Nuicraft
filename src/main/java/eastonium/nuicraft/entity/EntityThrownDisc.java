@@ -34,7 +34,7 @@ public class EntityThrownDisc extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return NuiCraftItems.KANOKA_DISC.get();
+        return NuiCraftItems.KANOKA_BAMBOO.get();
     }
 
     /** Very low gravity so the disc flies mostly flat rather than arcing like a snowball. */
