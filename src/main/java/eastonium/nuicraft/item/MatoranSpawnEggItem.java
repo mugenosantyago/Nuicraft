@@ -55,7 +55,7 @@ public class MatoranSpawnEggItem extends SpawnEggItem {
 
         matoran.moveTo(
                 spawnPos.getX() + 0.5,
-                spawnPos.getY(),
+                (double) spawnPos.getY(),
                 spawnPos.getZ() + 0.5,
                 serverLevel.getRandom().nextFloat() * 360f,
                 0f);
