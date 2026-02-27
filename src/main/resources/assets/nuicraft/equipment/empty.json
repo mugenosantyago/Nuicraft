@@ -1,5 +1,9 @@
 {
   "layers": {
-    "humanoid": []
+    "humanoid": [
+      {
+        "texture": "nuicraft:empty"
+      }
+    ]
   }
 }
