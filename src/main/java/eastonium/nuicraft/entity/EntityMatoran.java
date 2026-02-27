@@ -22,6 +22,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import java.util.EnumSet;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -234,13 +235,49 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         builder.define(DATA_PROFESSION, Profession.MERCHANT.ordinal());
     }
 
+    /**
+     * Freezes the matoran in place while it has an active trading player.
+     * Placed at priority 1 so it overrides strolling and attack.
+     */
+    private class TradingFreezeGoal extends Goal {
+        TradingFreezeGoal() {
+            setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            return EntityMatoran.this.getTradingPlayer() != null
+                    && EntityMatoran.this.getTradingPlayer().isAlive();
+        }
+
+        @Override
+        public void start() {
+            EntityMatoran.this.getNavigation().stop();
+        }
+
+        @Override
+        public void tick() {
+            Player trader = EntityMatoran.this.getTradingPlayer();
+            if (trader != null) {
+                EntityMatoran.this.getNavigation().stop();
+                EntityMatoran.this.getLookControl().setLookAt(trader, 30.0F, 30.0F);
+            }
+        }
+
+        @Override
+        public void stop() {
+            EntityMatoran.this.setTradingPlayer(null);
+        }
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new TradingFreezeGoal());
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
         // Fight back when hurt — peaceful until attacked
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
@@ -248,7 +285,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     public static AttributeSupplier.Builder createAttributes() {
         return PathfinderMob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.5D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
                 .add(Attributes.ATTACK_DAMAGE, 2.0D);   // 1 heart — small but feisty
     }
@@ -262,9 +299,9 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Override
     public void tick() {
         super.tick();
-        // Dispatch idle animation loop from server every second so AzureLib keeps it running.
-        if (!this.level().isClientSide && this.tickCount % 20 == 0) {
-            MatoranAnimator.sendIdleCommand(this);
+        // Dispatch walk/idle animation from server every 5 ticks for responsive transitions.
+        if (!this.level().isClientSide && this.tickCount % 5 == 0) {
+            MatoranAnimator.sendMovementCommand(this);
         }
     }
 
@@ -403,7 +440,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
 
     @Override
     public boolean stillValid(Player player) {
-        return this.getTradingPlayer() == player && this.isAlive() && player.canInteractWithEntity(this, 4.0);
+        return this.getTradingPlayer() == player && this.isAlive() && player.canInteractWithEntity(this, 8.0);
     }
 
     private void updateTrades() {

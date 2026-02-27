@@ -42,9 +42,14 @@ public class MatoranAnimator extends AzEntityAnimator<EntityMatoran> {
         );
     }
 
-    /** Called from EntityMatoran.tick() — sends the idle loop command to the controller. */
-    public static void sendIdleCommand(EntityMatoran entity) {
-        AzCommand.create("base_controller", "idle", AzPlayBehaviors.LOOP)
+    /**
+     * Called from EntityMatoran.tick() every 5 ticks.
+     * Sends "walk" when the entity is moving horizontally, "idle" when still.
+     */
+    public static void sendMovementCommand(EntityMatoran entity) {
+        boolean moving = entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+        String anim = moving ? "walk" : "idle";
+        AzCommand.create("base_controller", anim, AzPlayBehaviors.LOOP)
                 .sendForEntity(entity);
     }
 }
