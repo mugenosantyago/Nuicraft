@@ -20,7 +20,7 @@
           "maxCount": 1
         },
         {
-          "type": "nuicraft:matoran_po",
+          "type": "nuicraft:matoran",
           "weight": 5,
           "minCount": 2,
           "maxCount": 5
