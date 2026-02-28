@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "nuicraft:block/mata_nui_stone",
+    "up": "nuicraft:block/mata_nui_stone",
+    "north": "nuicraft:block/mata_nui_stone_face",
+    "east": "nuicraft:block/mata_nui_stone_left",
+    "south": "nuicraft:block/mata_nui_stone",
+    "west": "nuicraft:block/mata_nui_stone_right",
+    "particle": "nuicraft:block/mata_nui_stone"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "nuicraft:block/lightgraystonebrick",
+    "up": "nuicraft:block/lightgraystonebrick",
+    "north": "nuicraft:block/lightgraystonebrick",
+    "east": "nuicraft:block/lightgraystonebrick",
+    "south": "nuicraft:block/lightgraystonebrick",
+    "west": "nuicraft:block/lightgraystonebrick",
+    "particle": "nuicraft:block/lightgraystonebrick"
+  },
+  "render_type": "solid"
+}

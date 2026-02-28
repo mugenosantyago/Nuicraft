@@ -1,0 +1,8 @@
+{
+  "parent": "block/fence_post",
+  "textures": {
+    "texture": "nuicraft:block/cured_wood_planks",
+    "particle": "nuicraft:block/cured_wood_planks"
+  },
+  "render_type": "solid"
+}

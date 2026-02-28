@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "particle": "nuicraft:block/lightgraystonebrick",
+    "bottom": "nuicraft:block/lightgraystonebrick",
+    "top": "nuicraft:block/lightgraystonebrick",
+    "side": "nuicraft:block/lightgraystonebrick"
+  },
+  "render_type": "solid"
+}

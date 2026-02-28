@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "particle": "nuicraft:block/seaweed_wood_planks",
+    "bottom": "nuicraft:block/seaweed_wood_planks",
+    "top": "nuicraft:block/seaweed_wood_planks",
+    "side": "nuicraft:block/seaweed_wood_planks"
+  },
+  "render_type": "solid"
+}

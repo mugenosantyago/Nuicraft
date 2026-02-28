@@ -49,6 +49,19 @@ public class NuiCraftItems {
     public static final DeferredItem<BlockItem> KO_KORO_STONE = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.KO_KORO_STONE);
     public static final DeferredItem<BlockItem> LE_KORO_STONE = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.LE_KORO_STONE);
     public static final DeferredItem<BlockItem> PO_KORO_STONE = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.PO_KORO_STONE);
+    // Ga-Koro structure blocks (ported from QFN 1.20.1)
+    public static final DeferredItem<BlockItem> SEAWEED_WOOD_PLANKS = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.SEAWEED_WOOD_PLANKS);
+    public static final DeferredItem<BlockItem> SEAWEED_WOOD_WOOD   = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.SEAWEED_WOOD_WOOD);
+    public static final DeferredItem<BlockItem> SEAWEED_WOOD_SLAB   = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.SEAWEED_WOOD_SLAB);
+    public static final DeferredItem<BlockItem> SEAWEED_WOOD_STAIRS = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.SEAWEED_WOOD_STAIRS);
+    public static final DeferredItem<BlockItem> CURED_WOOD_LOG      = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.CURED_WOOD_LOG);
+    public static final DeferredItem<BlockItem> CURED_WOOD_FENCE    = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.CURED_WOOD_FENCE);
+    public static final DeferredItem<BlockItem> LIGHTSTONES_BLOCK   = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.LIGHTSTONES_BLOCK);
+    public static final DeferredItem<BlockItem> LIGHT_GRAY_STONE    = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.LIGHT_GRAY_STONE);
+    public static final DeferredItem<BlockItem> MATA_NUI_STONE      = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.MATA_NUI_STONE);
+    public static final DeferredItem<BlockItem> LE_KORO_LADDER      = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.LE_KORO_LADDER);
+    public static final DeferredItem<BlockItem> PATH                = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.PATH);
+    public static final DeferredItem<BlockItem> PATH2               = ITEMS.registerSimpleBlockItem(NuiCraftBlocks.PATH2);
 
     public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerItem("kanoka_bamboo",
             props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));

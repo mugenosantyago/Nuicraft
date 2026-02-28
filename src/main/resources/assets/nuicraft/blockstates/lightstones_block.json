@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "nuicraft:block/lightstones_block"
+    }
+  }
+}

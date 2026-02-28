@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "nuicraft:block/mata_nui_stone"
+    },
+    "facing=east": {
+      "model": "nuicraft:block/mata_nui_stone",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "nuicraft:block/mata_nui_stone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nuicraft:block/mata_nui_stone",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "nuicraft:block/mata_nui_stone",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "nuicraft:block/mata_nui_stone",
+      "x": 90
+    }
+  }
+}

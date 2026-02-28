@@ -7,7 +7,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.LadderBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -80,6 +84,40 @@ public class NuiCraftBlocks {
     
     public static final DeferredBlock<BlockMetal> BLOCK_PROTOSTEEL = BLOCKS.registerBlock("block_protosteel",
             BlockMetal::new, withBlockId("block_protosteel", BlockMetal.createProperties()));
+
+    // ---- Ga-Koro wood set (seaweed wood) ----
+    // Used by gakoro structure templates — ported from QFN 1.20.1.
+    public static final DeferredBlock<Block> SEAWEED_WOOD_PLANKS = BLOCKS.registerSimpleBlock("seaweed_wood_planks",
+            withBlockId("seaweed_wood_planks", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> SEAWEED_WOOD_WOOD = BLOCKS.registerSimpleBlock("seaweed_wood_wood",
+            withBlockId("seaweed_wood_wood", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<SlabBlock> SEAWEED_WOOD_SLAB = BLOCKS.registerBlock("seaweed_wood_slab",
+            SlabBlock::new, withBlockId("seaweed_wood_slab", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<StairBlock> SEAWEED_WOOD_STAIRS = BLOCKS.registerBlock("seaweed_wood_stairs",
+            props -> new StairBlock(() -> SEAWEED_WOOD_PLANKS.get().defaultBlockState(), props),
+            withBlockId("seaweed_wood_stairs", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    // ---- Ga-Koro cured wood (rope/platform frames) ----
+    public static final DeferredBlock<Block> CURED_WOOD_LOG = BLOCKS.registerSimpleBlock("cured_wood_log",
+            withBlockId("cured_wood_log", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<FenceBlock> CURED_WOOD_FENCE = BLOCKS.registerBlock("cured_wood_fence",
+            FenceBlock::new, withBlockId("cured_wood_fence", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    // ---- Ga-Koro decorative blocks ----
+    public static final DeferredBlock<Block> LIGHTSTONES_BLOCK = BLOCKS.registerSimpleBlock("lightstones_block",
+            withBlockId("lightstones_block", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.STONE)
+                    .lightLevel(state -> 12)));
+    public static final DeferredBlock<Block> LIGHT_GRAY_STONE = BLOCKS.registerSimpleBlock("light_gray_stone",
+            withBlockId("light_gray_stone", BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    // mata_nui_stone: the old name used in gakoro NBTs, distinct from matanui_stone (which has the face texture)
+    public static final DeferredBlock<Block> MATA_NUI_STONE = BLOCKS.registerSimpleBlock("mata_nui_stone",
+            withBlockId("mata_nui_stone", BlockBehaviour.Properties.of().strength(3.0F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<LadderBlock> LE_KORO_LADDER = BLOCKS.registerBlock("le_koro_ladder",
+            LadderBlock::new, withBlockId("le_koro_ladder", BlockBehaviour.Properties.of().strength(0.4F)
+                    .sound(SoundType.LADDER).noOcclusion()));
+    // Path/walkway blocks used in gakoro platform surfaces
+    public static final DeferredBlock<Block> PATH = BLOCKS.registerSimpleBlock("path",
+            withBlockId("path", BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> PATH2 = BLOCKS.registerSimpleBlock("path2",
+            withBlockId("path2", BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.WOOD)));
 
     // Koro stones (for structures / decoration) - each region has unique properties
     // Ta Koro - Dark lava-themed stone, harder and hotter
