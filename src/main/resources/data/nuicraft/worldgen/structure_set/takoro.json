@@ -6,7 +6,7 @@
     "separation": 10,
     "salt": 101432296,
     "exclusion_zones": [
-      {"other_set": "nuicraft:gakoro",  "chunk_count": 10},
+      {"other_set": "nuicraft:gakoro",  "chunk_count": 20},
       {"other_set": "nuicraft:lekoro",  "chunk_count": 10},
       {"other_set": "nuicraft:onukoro", "chunk_count": 10},
       {"other_set": "nuicraft:pokoro",  "chunk_count": 10},
