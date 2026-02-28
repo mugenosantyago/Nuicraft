@@ -99,6 +99,11 @@ public class EntityToa extends PathfinderMob {
         return true;
     }
 
+    @Override
+    public boolean requiresCustomPersistence() {
+        return true;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return PathfinderMob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0D)

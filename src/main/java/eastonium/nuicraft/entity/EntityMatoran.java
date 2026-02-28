@@ -283,9 +283,9 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
      * and wake at dawn. Trading and combat take priority.
      */
     private class BedSleepGoal extends Goal {
-        private static final int SEARCH_RADIUS = 16;
-        /** Ticks to wait between bed searches. Prevents 7 000+ blockstate reads per tick. */
-        private static final int SEARCH_INTERVAL = 40;
+        private static final int SEARCH_RADIUS = 10;
+        /** Ticks to wait between bed searches. Prevents excessive blockstate reads per tick. */
+        private static final int SEARCH_INTERVAL = 120;
         private BlockPos targetBed = null;
         private int searchCooldown = 0;
 
@@ -430,14 +430,15 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
      * during natural/structure spawning so every matoran shows a valid model.
      * Expand this list as new bbmodel batches are converted.
      */
-    private static final Mask[] IMPLEMENTED_MASKS = {
+    public static final Mask[] IMPLEMENTED_MASKS = {
         Mask.HAU, Mask.HUNA, Mask.KAKAMA, Mask.KAUKAU, Mask.MIRU, Mask.PAKARI
     };
 
     @Override
     public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(ServerLevelAccessor level, net.minecraft.world.DifficultyInstance difficulty, net.minecraft.world.entity.EntitySpawnReason reason, @Nullable net.minecraft.world.entity.SpawnGroupData spawnData) {
-        if (reason == net.minecraft.world.entity.EntitySpawnReason.NATURAL || reason == net.minecraft.world.entity.EntitySpawnReason.STRUCTURE) {
-            // Infer Koro from biome so all matoran in a structure share the same color.
+        if (reason == net.minecraft.world.entity.EntitySpawnReason.NATURAL) {
+            // Infer Koro from biome for natural/ambient spawning (not used for KoroSpawnHandler
+            // which sets koro/mask/profession directly via constructor).
             var biome = level.getBiome(this.blockPosition());
             if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) setKoro(Koro.TA);
             else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)

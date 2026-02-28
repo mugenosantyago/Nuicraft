@@ -137,6 +137,11 @@ public class EntityTuraga extends PathfinderMob {
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
 
+    @Override
+    public boolean requiresCustomPersistence() {
+        return true;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return PathfinderMob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 24.0D)
