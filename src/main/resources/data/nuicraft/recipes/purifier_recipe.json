@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OSO",
+    "SHS",
+    "OSO"
+  ],
+  "key": {
+    "O": { "item": "nuicraft:onu_wahi_stone" },
+    "S": { "item": "nuicraft:ingot_protodermis" },
+    "H": { "item": "nuicraft:heatstone" }
+  },
+  "result": {
+    "id": "nuicraft:purifier",
+    "count": 1
+  }
+}
