@@ -94,19 +94,24 @@ public class EntityTuraga extends PathfinderMob {
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty,
                                         EntitySpawnReason reason, @Nullable SpawnGroupData spawnData) {
-        var biome = level.getBiome(this.blockPosition());
-        if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) {
-            setTuragaType(TuragaType.VAKAMA);
-        } else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) {
-            setTuragaType(TuragaType.NOKAMA);
-        } else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) {
-            setTuragaType(TuragaType.MATAU);
-        } else if (biome.is(Biomes.SAVANNA) || biome.is(Biomes.SAVANNA_PLATEAU) || biome.is(Biomes.WINDSWEPT_SAVANNA)) {
-            setTuragaType(TuragaType.ONEWA);
-        } else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK)) {
-            setTuragaType(TuragaType.WHENUA);
-        } else {
-            setTuragaType(TuragaType.NUJU);
+        // Only infer type from biome for the generic turaga entity.
+        // Character-specific types (TURAGA_NOKAMA, TURAGA_VAKAMA, etc.) have their
+        // type fixed in the constructor and must not be overwritten here.
+        if (this.getType() == eastonium.nuicraft.core.NuiCraftEntityTypes.TURAGA.get()) {
+            var biome = level.getBiome(this.blockPosition());
+            if (biome.is(Biomes.BADLANDS) || biome.is(Biomes.WOODED_BADLANDS) || biome.is(Biomes.DESERT)) {
+                setTuragaType(TuragaType.VAKAMA);
+            } else if (biome.is(Biomes.WARM_OCEAN) || biome.is(Biomes.OCEAN) || biome.is(Biomes.BEACH)) {
+                setTuragaType(TuragaType.NOKAMA);
+            } else if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE)) {
+                setTuragaType(TuragaType.MATAU);
+            } else if (biome.is(Biomes.SAVANNA) || biome.is(Biomes.SAVANNA_PLATEAU) || biome.is(Biomes.WINDSWEPT_SAVANNA)) {
+                setTuragaType(TuragaType.ONEWA);
+            } else if (biome.is(Biomes.LUSH_CAVES) || biome.is(Biomes.DRIPSTONE_CAVES) || biome.is(Biomes.DEEP_DARK)) {
+                setTuragaType(TuragaType.WHENUA);
+            } else {
+                setTuragaType(TuragaType.NUJU);
+            }
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
