@@ -3,7 +3,7 @@
   "biomes": "#nuicraft:po_koro",
   "spawners": [
     {
-      "type": "nuicraft:matoran_po",
+      "type": "nuicraft:matoran",
       "weight": 8,
       "minCount": 2,
       "maxCount": 5

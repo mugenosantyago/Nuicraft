@@ -14,17 +14,23 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
 /**
  * Placeholder liquid protodermis block that can be sluiced to yield protodermis nuggets.
- * One use of the sluice consumes the entire liquid block and drops 1–3 nuggets.
+ * Each use of the sluice drops 1 nugget and decrements USES; the block disappears after 20 uses.
  */
 public class BlockLiquidProtodermis extends Block {
 
+    public static final int MAX_USES = 20;
+    public static final IntegerProperty USES = IntegerProperty.create("uses", 0, MAX_USES);
+
     public BlockLiquidProtodermis(BlockBehaviour.Properties properties) {
         super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(USES, MAX_USES));
     }
 
     @Override
@@ -37,7 +43,7 @@ public class BlockLiquidProtodermis extends Block {
         Vec3 hitVec = hitResult.getLocation();
 
         if (level.isClientSide) {
-            for (int i = 0; i < 8; ++i) {
+            for (int i = 0; i < 5; ++i) {
                 level.addParticle(
                     new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get())),
                     hitVec.x, hitVec.y, hitVec.z,
@@ -47,8 +53,7 @@ public class BlockLiquidProtodermis extends Block {
                 );
             }
         } else {
-            int count = 1 + level.random.nextInt(3);
-            ItemStack dropStack = new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get(), count);
+            ItemStack dropStack = new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get(), 1);
             ItemEntity itemEntity = new ItemEntity(level, hitVec.x, hitVec.y, hitVec.z, dropStack);
             itemEntity.setDeltaMovement(
                 level.random.nextGaussian() * 0.06D,
@@ -56,9 +61,20 @@ public class BlockLiquidProtodermis extends Block {
                 level.random.nextGaussian() * 0.06D
             );
             level.addFreshEntity(itemEntity);
-            level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+
+            int uses = state.getValue(USES);
+            if (uses <= 1) {
+                level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            } else {
+                level.setBlock(pos, state.setValue(USES, uses - 1), 3);
+            }
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(USES);
     }
 }

@@ -1,1 +1,1 @@
-{"parent":"minecraft:item/generated","textures":{"layer0":"minecraft:item/bucket","layer1":"nuicraft:block/protodermis_molten_still"}}
+{"parent":"minecraft:item/generated","textures":{"layer0":"nuicraft:block/protodermis_molten_still","layer1":"minecraft:item/bucket"}}

@@ -3,7 +3,7 @@
   "biomes": "#nuicraft:le_koro",
   "spawners": [
     {
-      "type": "nuicraft:matoran_le",
+      "type": "nuicraft:matoran",
       "weight": 8,
       "minCount": 2,
       "maxCount": 5
