@@ -4,6 +4,9 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
+
+import java.util.List;
 
 /**
  * Simple dialogue screen showing an NPC name and message with a Close button.
@@ -17,6 +20,7 @@ public class DialogueScreen extends Screen {
 
     private final Component title;
     private final Component message;
+    private List<FormattedCharSequence> messageLines;
 
     public DialogueScreen(Component title, Component message) {
         super(Component.empty());
@@ -27,6 +31,7 @@ public class DialogueScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        messageLines = this.font.split(this.message, MAX_MESSAGE_WIDTH);
         int buttonWidth = 120;
         int buttonHeight = 20;
         int buttonX = (this.width - buttonWidth) / 2;
@@ -58,9 +63,9 @@ public class DialogueScreen extends Screen {
         int titleY = panelTop + PANEL_PADDING;
         guiGraphics.drawCenteredString(this.font, this.title, centerX, titleY, 0xFF_FF_CC_00);
 
-        // Message (wrapped)
+        // Message (wrapped — lines cached in init() to avoid re-splitting every frame)
         int messageY = titleY + LINE_HEIGHT + 8;
-        for (var line : this.font.split(this.message, MAX_MESSAGE_WIDTH)) {
+        for (var line : messageLines) {
             guiGraphics.drawCenteredString(this.font, line, centerX, messageY, 0xFF_EE_EE_EE);
             messageY += LINE_HEIGHT;
         }

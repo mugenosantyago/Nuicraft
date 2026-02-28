@@ -57,7 +57,12 @@ public class ToaGeoRenderer extends AzEntityRenderer<EntityToa> {
                 for (String boneName : ALL_MASK_BONES) {
                     AzBone bone = model.getBoneOrNull(boneName);
                     if (bone != null) {
-                        bone.setHidden(!boneName.equals(activeMask));
+                        boolean shouldHide = !boneName.equals(activeMask);
+                        // Only write the field when it needs to change — avoids redundant
+                        // work (including child-bone recursion inside setHidden) every frame.
+                        if (bone.isHidden() != shouldHide) {
+                            bone.setHidden(shouldHide);
+                        }
                     }
                 }
             }

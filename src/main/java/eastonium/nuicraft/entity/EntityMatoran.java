@@ -284,7 +284,10 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
      */
     private class BedSleepGoal extends Goal {
         private static final int SEARCH_RADIUS = 16;
+        /** Ticks to wait between bed searches. Prevents 7 000+ blockstate reads per tick. */
+        private static final int SEARCH_INTERVAL = 40;
         private BlockPos targetBed = null;
+        private int searchCooldown = 0;
 
         BedSleepGoal() {
             setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
@@ -299,7 +302,12 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         public boolean canUse() {
             if (EntityMatoran.this.isSleeping()) return false;
             if (EntityMatoran.this.getTradingPlayer() != null) return false;
-            if (!isNight()) return false;
+            if (!isNight()) {
+                searchCooldown = 0; // reset so the first nighttime check searches immediately
+                return false;
+            }
+            if (--searchCooldown > 0) return false;
+            searchCooldown = SEARCH_INTERVAL;
             targetBed = findFreeBed();
             return targetBed != null;
         }
