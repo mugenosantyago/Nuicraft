@@ -33,7 +33,8 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<Block> FLUID_PROTODERMIS_PURE = BLOCKS.registerSimpleBlock("fluid_protodermis_pure",
             withBlockId("fluid_protodermis_pure", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
     
-    public static final DeferredBlock<Block> FLUID_PROTODERMIS_MOLTEN = BLOCKS.registerSimpleBlock("fluid_protodermis_molten",
+    public static final DeferredBlock<BlockMoltenProtodermis> FLUID_PROTODERMIS_MOLTEN = BLOCKS.registerBlock("fluid_protodermis_molten",
+            BlockMoltenProtodermis::new,
             withBlockId("fluid_protodermis_molten", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
     
     public static final DeferredBlock<Block> FLUID_PROTODERMIS_PURE_MOLTEN = BLOCKS.registerSimpleBlock("fluid_protodermis_pure_molten",
