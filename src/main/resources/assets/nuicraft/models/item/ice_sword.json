@@ -1,0 +1,7 @@
+{
+  "parent": "nuicraft:custom/icesword",
+  "textures": {
+    "0": "nuicraft:item/iceswordtexture",
+    "particle": "nuicraft:item/iceswordtexture"
+  }
+}

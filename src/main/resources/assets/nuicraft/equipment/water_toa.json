@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nuicraft:water_toa"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "nuicraft:water_toa"
+      }
+    ]
+  }
+}

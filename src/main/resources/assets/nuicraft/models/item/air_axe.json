@@ -1,0 +1,7 @@
+{
+  "parent": "nuicraft:custom/airaxe",
+  "textures": {
+    "0": "nuicraft:item/airaxetexture",
+    "particle": "nuicraft:item/airaxetexture"
+  }
+}

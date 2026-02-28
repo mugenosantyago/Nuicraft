@@ -1,0 +1,7 @@
+{
+  "parent": "nuicraft:custom/waterhooks",
+  "textures": {
+    "0": "nuicraft:item/waterhookstexture",
+    "particle": "nuicraft:item/waterhookstexture"
+  }
+}

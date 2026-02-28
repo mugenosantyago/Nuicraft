@@ -1,0 +1,7 @@
+{
+  "parent": "nuicraft:custom/trident",
+  "textures": {
+    "0": "nuicraft:item/trident",
+    "particle": "nuicraft:item/trident"
+  }
+}

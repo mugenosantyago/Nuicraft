@@ -1,0 +1,7 @@
+{
+  "parent": "nuicraft:custom/pohatuhands",
+  "textures": {
+    "0": "nuicraft:item/pohatuhands",
+    "particle": "nuicraft:item/pohatuhands"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "nuicraft:custom/onuadrill",
+  "textures": {
+    "0": "nuicraft:item/onuadrill",
+    "particle": "nuicraft:item/onuadrill"
+  }
+}

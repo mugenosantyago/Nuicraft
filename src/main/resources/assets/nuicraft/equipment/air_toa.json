@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nuicraft:air_toa"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "nuicraft:air_toa"
+      }
+    ]
+  }
+}

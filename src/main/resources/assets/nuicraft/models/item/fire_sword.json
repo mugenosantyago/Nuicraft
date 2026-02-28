@@ -1,0 +1,8 @@
+{
+  "parent": "nuicraft:custom/espadafuego",
+  "textures": {
+    "0": "nuicraft:item/espadafuego2",
+    "1": "nuicraft:item/espadafuego3",
+    "particle": "nuicraft:item/sword_fire_modeltest"
+  }
+}

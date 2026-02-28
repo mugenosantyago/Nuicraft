@@ -108,6 +108,66 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> KANOKA_OF_TIME = ITEMS.registerItem("kanoka_of_time",
             props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_of_time", props)));
 
+    // =====================================================================
+    // Toa Weapons — 3D Blockbench models ported from QFN 1.20.1
+    // =====================================================================
+    public static final DeferredItem<Item> AIR_AXE     = ITEMS.registerItem("air_axe",     props -> new Item(withItemId("air_axe",     props).stacksTo(1).axe(NuiCraftTiers.PROTODERMIS,    6.0F, -3.1F)));
+    public static final DeferredItem<Item> FIRE_STAFF   = ITEMS.registerItem("fire_staff",  props -> new Item(withItemId("fire_staff",  props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  4, -2.0F)));
+    public static final DeferredItem<Item> FIRE_SWORD   = ITEMS.registerItem("fire_sword",  props -> new Item(withItemId("fire_sword",  props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  3, -2.4F)));
+    public static final DeferredItem<Item> ICE_SWORD    = ITEMS.registerItem("ice_sword",   props -> new Item(withItemId("ice_sword",   props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  3, -2.4F)));
+    public static final DeferredItem<Item> ICE_PICKAXE  = ITEMS.registerItem("ice_pickaxe", props -> new Item(withItemId("ice_pickaxe", props).stacksTo(1).pickaxe(NuiCraftTiers.PROTODERMIS,1, -2.8F)));
+    public static final DeferredItem<Item> ICE_SHIELD   = ITEMS.registerItem("ice_shield",  props -> new Item(withItemId("ice_shield",  props).stacksTo(1)));
+    public static final DeferredItem<Item> KAUKAU_STAFF = ITEMS.registerItem("kaukau_staff",props -> new Item(withItemId("kaukau_staff",props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  2, -2.0F)));
+    public static final DeferredItem<Item> ONUA_CLAWS   = ITEMS.registerItem("onua_claws",  props -> new Item(withItemId("onua_claws",  props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  4, -2.4F)));
+    public static final DeferredItem<Item> ONUA_DRILL   = ITEMS.registerItem("onua_drill",  props -> new Item(withItemId("onua_drill",  props).stacksTo(1).pickaxe(NuiCraftTiers.PROTODERMIS,2, -2.8F)));
+    public static final DeferredItem<Item> POHATU_HANDS = ITEMS.registerItem("pohatu_hands",props -> new Item(withItemId("pohatu_hands",props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  5, -2.4F)));
+    public static final DeferredItem<Item> WATER_HOOKS  = ITEMS.registerItem("water_hooks", props -> new Item(withItemId("water_hooks", props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  2, -2.0F)));
+    public static final DeferredItem<Item> TOA_TRIDENT  = ITEMS.registerItem("toa_trident", props -> new Item(withItemId("toa_trident", props).stacksTo(1).sword(NuiCraftTiers.PROTODERMIS,  4, -2.4F)));
+
+    // =====================================================================
+    // Toa Armor — 6 elemental sets (boots, chestplate, leggings)
+    // Helmets are the Kanohi masks above. Rendering via 1.21 EquipmentAsset.
+    // Defense: boots=2, leggings=5, chestplate=6 (iron-equivalent per set).
+    // =====================================================================
+    private static Item.Properties armorProps(String id, EquipmentSlot slot, String assetName, int defense) {
+        ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> asset = ResourceKey.create(
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, assetName));
+        return withItemId(id, new Item.Properties()).stacksTo(1).durability(slot == EquipmentSlot.LEGS ? 225 : slot == EquipmentSlot.CHEST ? 240 : 195)
+                .component(DataComponents.EQUIPPABLE, Equippable.builder(slot).setAsset(asset).build())
+                .component(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.builder()
+                        .add(Attributes.ARMOR, new AttributeModifier(
+                                ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, id + "_armor"),
+                                defense, AttributeModifier.Operation.ADD_VALUE),
+                                EquipmentSlotGroup.bySlot(slot))
+                        .build())
+                .component(DataComponents.ENCHANTABLE, new Enchantable(9));
+    }
+    // Fire Toa armor
+    public static final DeferredItem<Item> BOOTS_FIRE      = ITEMS.registerItem("boots_fire",       props -> new Item(armorProps("boots_fire",      EquipmentSlot.FEET,  "fire_toa",  2)));
+    public static final DeferredItem<Item> CHESTPLATE_FIRE = ITEMS.registerItem("chestplate_fire",  props -> new Item(armorProps("chestplate_fire",  EquipmentSlot.CHEST, "fire_toa",  6)));
+    public static final DeferredItem<Item> LEGGINGS_FIRE   = ITEMS.registerItem("leggings_fire",    props -> new Item(armorProps("leggings_fire",    EquipmentSlot.LEGS,  "fire_toa",  5)));
+    // Water Toa armor
+    public static final DeferredItem<Item> BOOTS_WATER     = ITEMS.registerItem("boots_water",      props -> new Item(armorProps("boots_water",      EquipmentSlot.FEET,  "water_toa", 2)));
+    public static final DeferredItem<Item> CHESTPLATE_WATER= ITEMS.registerItem("chestplate_water", props -> new Item(armorProps("chestplate_water", EquipmentSlot.CHEST, "water_toa", 6)));
+    public static final DeferredItem<Item> LEGGINGS_WATER  = ITEMS.registerItem("leggings_water",   props -> new Item(armorProps("leggings_water",   EquipmentSlot.LEGS,  "water_toa", 5)));
+    // Air Toa armor
+    public static final DeferredItem<Item> BOOTS_AIR       = ITEMS.registerItem("boots_air",        props -> new Item(armorProps("boots_air",        EquipmentSlot.FEET,  "air_toa",   2)));
+    public static final DeferredItem<Item> CHESTPLATE_AIR  = ITEMS.registerItem("chestplate_air",   props -> new Item(armorProps("chestplate_air",   EquipmentSlot.CHEST, "air_toa",   6)));
+    public static final DeferredItem<Item> LEGGINGS_AIR    = ITEMS.registerItem("leggings_air",     props -> new Item(armorProps("leggings_air",     EquipmentSlot.LEGS,  "air_toa",   5)));
+    // Earth Toa armor
+    public static final DeferredItem<Item> BOOTS_EARTH     = ITEMS.registerItem("boots_earth",      props -> new Item(armorProps("boots_earth",      EquipmentSlot.FEET,  "earth_toa", 2)));
+    public static final DeferredItem<Item> CHESTPLATE_EARTH= ITEMS.registerItem("chestplate_earth", props -> new Item(armorProps("chestplate_earth", EquipmentSlot.CHEST, "earth_toa", 6)));
+    public static final DeferredItem<Item> LEGGINGS_EARTH  = ITEMS.registerItem("leggings_earth",   props -> new Item(armorProps("leggings_earth",   EquipmentSlot.LEGS,  "earth_toa", 5)));
+    // Ice Toa armor
+    public static final DeferredItem<Item> BOOTS_ICE       = ITEMS.registerItem("boots_ice",        props -> new Item(armorProps("boots_ice",        EquipmentSlot.FEET,  "ice_toa",   2)));
+    public static final DeferredItem<Item> CHESTPLATE_ICE  = ITEMS.registerItem("chestplate_ice",   props -> new Item(armorProps("chestplate_ice",   EquipmentSlot.CHEST, "ice_toa",   6)));
+    public static final DeferredItem<Item> LEGGINGS_ICE    = ITEMS.registerItem("leggings_ice",     props -> new Item(armorProps("leggings_ice",     EquipmentSlot.LEGS,  "ice_toa",   5)));
+    // Stone Toa armor
+    public static final DeferredItem<Item> BOOTS_STONE     = ITEMS.registerItem("boots_stone",      props -> new Item(armorProps("boots_stone",      EquipmentSlot.FEET,  "stone_toa", 2)));
+    public static final DeferredItem<Item> CHESTPLATE_STONE= ITEMS.registerItem("chestplate_stone", props -> new Item(armorProps("chestplate_stone", EquipmentSlot.CHEST, "stone_toa", 6)));
+    public static final DeferredItem<Item> LEGGINGS_STONE  = ITEMS.registerItem("leggings_stone",   props -> new Item(armorProps("leggings_stone",   EquipmentSlot.LEGS,  "stone_toa", 5)));
+
     // Protodermis tools
     public static final DeferredItem<Item> PROTODERMIS_SWORD = ITEMS.registerItem("protodermis_sword",
             props -> new Item(withItemId("protodermis_sword", props).sword(NuiCraftTiers.PROTODERMIS, 3, -2.4F)));
