@@ -37,29 +37,33 @@ import org.jetbrains.annotations.Nullable;
 public class EntityTuraga extends PathfinderMob {
 
     public enum TuragaType {
-        VAKAMA("matatu_turaga", "turagavakama"),
-        NOKAMA("rau_turaga",    "turaganokama"),
-        MATAU("matatu_turaga",  "turagamatau"),
-        ONEWA("matatu_turaga",  "turagaonewa"),
-        WHENUA("matatu_turaga", "turagawhenua"),
-        NUJU("matatu_turaga",   "turaganuju");
+        VAKAMA("matatu_turaga", "matatu_turaga/ta"),
+        NOKAMA("rau_turaga",    "rau_turaga/default"),
+        MATAU("matatu_turaga",  "matatu_turaga/le"),
+        ONEWA("matatu_turaga",  "matatu_turaga/po"),
+        WHENUA("matatu_turaga", "matatu_turaga/onu"),
+        NUJU("matatu_turaga",   "matatu_turaga/ko");
 
         private final String geoId;
-        private final String textureFile;
+        private final String texturePath;
 
-        TuragaType(String geoId, String textureFile) {
+        TuragaType(String geoId, String texturePath) {
             this.geoId = geoId;
-            this.textureFile = textureFile;
+            this.texturePath = texturePath;
         }
 
         /** Geo/animation file prefix, e.g. "matatu_turaga" → matatu_turaga.geo.json */
-        public String getGeoId()      { return geoId; }
-        /** Flat texture filename, e.g. "turagavakama" → textures/entity/turagavakama.png */
-        public String getTextureFile(){ return textureFile; }
+        public String getGeoId()       { return geoId; }
+        /** Texture path under textures/entity/, e.g. "matatu_turaga/ta" */
+        public String getTexturePath() { return texturePath; }
     }
 
     private static final EntityDataAccessor<Integer> DATA_TYPE =
             SynchedEntityData.defineId(EntityTuraga.class, EntityDataSerializers.INT);
+
+    /** Counts idle ticks before firing the next ambient animation. */
+    private int ambientAnimTimer = 0;
+    private boolean lastMoving = false;
 
     public EntityTuraga(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
@@ -145,5 +149,26 @@ public class EntityTuraga extends PathfinderMob {
     public void readAdditionalSaveData(ValueInput input) {
         super.readAdditionalSaveData(input);
         this.entityData.set(DATA_TYPE, input.getIntOr("TuragaType", TuragaType.NUJU.ordinal()));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                eastonium.nuicraft.client.animator.TuragaAnimator.sendMovementCommand(this);
+            }
+            if (!moving) {
+                ambientAnimTimer++;
+                if (ambientAnimTimer >= 80 + this.random.nextInt(120)) {
+                    ambientAnimTimer = 0;
+                    eastonium.nuicraft.client.animator.TuragaAnimator.sendWaveCommand(this);
+                }
+            } else {
+                ambientAnimTimer = 0;
+            }
+        }
     }
 }
