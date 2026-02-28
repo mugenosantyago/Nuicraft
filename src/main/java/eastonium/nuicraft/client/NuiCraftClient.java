@@ -7,7 +7,6 @@ import eastonium.nuicraft.client.screen.PurifierScreen;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.core.NuiCraftRegistration;
 import eastonium.nuicraft.entity.EntityThrownDisc;
-import eastonium.nuicraft.morph.PlayerMorphEventHandler;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.bus.api.IEventBus;
@@ -37,7 +36,7 @@ public class NuiCraftClient {
             MaskArmorRendererRegistry.registerAll();
             NeoForge.EVENT_BUS.register(GukkoInputSender.class);
             NeoForge.EVENT_BUS.register(PlayerMorphKeyHandler.class);
-            NeoForge.EVENT_BUS.register(PlayerMorphEventHandler.class);
+            NeoForge.EVENT_BUS.register(PlayerMorphClientEvents.class);
         });
     }
 
