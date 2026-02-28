@@ -169,6 +169,60 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> MASK_MATA_RURU = ITEMS.registerItem("mask_mata_ruru",
             props -> new Item(maskProps(withItemId("mask_mata_ruru", props))));
 
+    // --- Koro-colored masks (mask + dye → colored variant; models/textures TBD) ---
+    // Ta-Koro (red)
+    public static final DeferredItem<Item> MASK_MATA_HAU_TA     = ITEMS.registerItem("mask_mata_hau_ta",     props -> new Item(maskProps(withItemId("mask_mata_hau_ta",     props))));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU_TA  = ITEMS.registerItem("mask_mata_kaukau_ta",  props -> new Item(maskProps(withItemId("mask_mata_kaukau_ta",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MIRU_TA    = ITEMS.registerItem("mask_mata_miru_ta",    props -> new Item(maskProps(withItemId("mask_mata_miru_ta",    props))));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA_TA  = ITEMS.registerItem("mask_mata_kakama_ta",  props -> new Item(maskProps(withItemId("mask_mata_kakama_ta",  props))));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI_TA  = ITEMS.registerItem("mask_mata_pakari_ta",  props -> new Item(maskProps(withItemId("mask_mata_pakari_ta",  props))));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU_TA   = ITEMS.registerItem("mask_mata_akaku_ta",   props -> new Item(maskProps(withItemId("mask_mata_akaku_ta",   props))));
+    public static final DeferredItem<Item> MASK_MATA_HUNA_TA    = ITEMS.registerItem("mask_mata_huna_ta",    props -> new Item(maskProps(withItemId("mask_mata_huna_ta",    props))));
+    public static final DeferredItem<Item> MASK_MATA_MAHIKI_TA  = ITEMS.registerItem("mask_mata_mahiki_ta",  props -> new Item(maskProps(withItemId("mask_mata_mahiki_ta",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MATATU_TA  = ITEMS.registerItem("mask_mata_matatu_ta",  props -> new Item(maskProps(withItemId("mask_mata_matatu_ta",  props))));
+    public static final DeferredItem<Item> MASK_MATA_KOMAU_TA   = ITEMS.registerItem("mask_mata_komau_ta",   props -> new Item(maskProps(withItemId("mask_mata_komau_ta",   props))));
+    public static final DeferredItem<Item> MASK_MATA_RARU_TA    = ITEMS.registerItem("mask_mata_raru_ta",    props -> new Item(maskProps(withItemId("mask_mata_raru_ta",    props))));
+    public static final DeferredItem<Item> MASK_MATA_RURU_TA    = ITEMS.registerItem("mask_mata_ruru_ta",    props -> new Item(maskProps(withItemId("mask_mata_ruru_ta",    props))));
+    // Ga-Koro (blue)
+    public static final DeferredItem<Item> MASK_MATA_HAU_GA     = ITEMS.registerItem("mask_mata_hau_ga",     props -> new Item(maskProps(withItemId("mask_mata_hau_ga",     props))));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU_GA  = ITEMS.registerItem("mask_mata_kaukau_ga",  props -> new Item(maskProps(withItemId("mask_mata_kaukau_ga",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MIRU_GA    = ITEMS.registerItem("mask_mata_miru_ga",    props -> new Item(maskProps(withItemId("mask_mata_miru_ga",    props))));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA_GA  = ITEMS.registerItem("mask_mata_kakama_ga",  props -> new Item(maskProps(withItemId("mask_mata_kakama_ga",  props))));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI_GA  = ITEMS.registerItem("mask_mata_pakari_ga",  props -> new Item(maskProps(withItemId("mask_mata_pakari_ga",  props))));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU_GA   = ITEMS.registerItem("mask_mata_akaku_ga",   props -> new Item(maskProps(withItemId("mask_mata_akaku_ga",   props))));
+    public static final DeferredItem<Item> MASK_MATA_HUNA_GA    = ITEMS.registerItem("mask_mata_huna_ga",    props -> new Item(maskProps(withItemId("mask_mata_huna_ga",    props))));
+    public static final DeferredItem<Item> MASK_MATA_MAHIKI_GA  = ITEMS.registerItem("mask_mata_mahiki_ga",  props -> new Item(maskProps(withItemId("mask_mata_mahiki_ga",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MATATU_GA  = ITEMS.registerItem("mask_mata_matatu_ga",  props -> new Item(maskProps(withItemId("mask_mata_matatu_ga",  props))));
+    public static final DeferredItem<Item> MASK_MATA_KOMAU_GA   = ITEMS.registerItem("mask_mata_komau_ga",   props -> new Item(maskProps(withItemId("mask_mata_komau_ga",   props))));
+    public static final DeferredItem<Item> MASK_MATA_RARU_GA    = ITEMS.registerItem("mask_mata_raru_ga",    props -> new Item(maskProps(withItemId("mask_mata_raru_ga",    props))));
+    public static final DeferredItem<Item> MASK_MATA_RURU_GA    = ITEMS.registerItem("mask_mata_ruru_ga",    props -> new Item(maskProps(withItemId("mask_mata_ruru_ga",    props))));
+    // Po-Koro (brown)
+    public static final DeferredItem<Item> MASK_MATA_HAU_PO     = ITEMS.registerItem("mask_mata_hau_po",     props -> new Item(maskProps(withItemId("mask_mata_hau_po",     props))));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU_PO  = ITEMS.registerItem("mask_mata_kaukau_po",  props -> new Item(maskProps(withItemId("mask_mata_kaukau_po",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MIRU_PO    = ITEMS.registerItem("mask_mata_miru_po",    props -> new Item(maskProps(withItemId("mask_mata_miru_po",    props))));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA_PO  = ITEMS.registerItem("mask_mata_kakama_po",  props -> new Item(maskProps(withItemId("mask_mata_kakama_po",  props))));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI_PO  = ITEMS.registerItem("mask_mata_pakari_po",  props -> new Item(maskProps(withItemId("mask_mata_pakari_po",  props))));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU_PO   = ITEMS.registerItem("mask_mata_akaku_po",   props -> new Item(maskProps(withItemId("mask_mata_akaku_po",   props))));
+    public static final DeferredItem<Item> MASK_MATA_HUNA_PO    = ITEMS.registerItem("mask_mata_huna_po",    props -> new Item(maskProps(withItemId("mask_mata_huna_po",    props))));
+    public static final DeferredItem<Item> MASK_MATA_MAHIKI_PO  = ITEMS.registerItem("mask_mata_mahiki_po",  props -> new Item(maskProps(withItemId("mask_mata_mahiki_po",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MATATU_PO  = ITEMS.registerItem("mask_mata_matatu_po",  props -> new Item(maskProps(withItemId("mask_mata_matatu_po",  props))));
+    public static final DeferredItem<Item> MASK_MATA_KOMAU_PO   = ITEMS.registerItem("mask_mata_komau_po",   props -> new Item(maskProps(withItemId("mask_mata_komau_po",   props))));
+    public static final DeferredItem<Item> MASK_MATA_RARU_PO    = ITEMS.registerItem("mask_mata_raru_po",    props -> new Item(maskProps(withItemId("mask_mata_raru_po",    props))));
+    public static final DeferredItem<Item> MASK_MATA_RURU_PO    = ITEMS.registerItem("mask_mata_ruru_po",    props -> new Item(maskProps(withItemId("mask_mata_ruru_po",    props))));
+    // Ko-Koro (light blue)
+    public static final DeferredItem<Item> MASK_MATA_HAU_KO     = ITEMS.registerItem("mask_mata_hau_ko",     props -> new Item(maskProps(withItemId("mask_mata_hau_ko",     props))));
+    public static final DeferredItem<Item> MASK_MATA_KAUKAU_KO  = ITEMS.registerItem("mask_mata_kaukau_ko",  props -> new Item(maskProps(withItemId("mask_mata_kaukau_ko",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MIRU_KO    = ITEMS.registerItem("mask_mata_miru_ko",    props -> new Item(maskProps(withItemId("mask_mata_miru_ko",    props))));
+    public static final DeferredItem<Item> MASK_MATA_KAKAMA_KO  = ITEMS.registerItem("mask_mata_kakama_ko",  props -> new Item(maskProps(withItemId("mask_mata_kakama_ko",  props))));
+    public static final DeferredItem<Item> MASK_MATA_PAKARI_KO  = ITEMS.registerItem("mask_mata_pakari_ko",  props -> new Item(maskProps(withItemId("mask_mata_pakari_ko",  props))));
+    public static final DeferredItem<Item> MASK_MATA_AKAKU_KO   = ITEMS.registerItem("mask_mata_akaku_ko",   props -> new Item(maskProps(withItemId("mask_mata_akaku_ko",   props))));
+    public static final DeferredItem<Item> MASK_MATA_HUNA_KO    = ITEMS.registerItem("mask_mata_huna_ko",    props -> new Item(maskProps(withItemId("mask_mata_huna_ko",    props))));
+    public static final DeferredItem<Item> MASK_MATA_MAHIKI_KO  = ITEMS.registerItem("mask_mata_mahiki_ko",  props -> new Item(maskProps(withItemId("mask_mata_mahiki_ko",  props))));
+    public static final DeferredItem<Item> MASK_MATA_MATATU_KO  = ITEMS.registerItem("mask_mata_matatu_ko",  props -> new Item(maskProps(withItemId("mask_mata_matatu_ko",  props))));
+    public static final DeferredItem<Item> MASK_MATA_KOMAU_KO   = ITEMS.registerItem("mask_mata_komau_ko",   props -> new Item(maskProps(withItemId("mask_mata_komau_ko",   props))));
+    public static final DeferredItem<Item> MASK_MATA_RARU_KO    = ITEMS.registerItem("mask_mata_raru_ko",    props -> new Item(maskProps(withItemId("mask_mata_raru_ko",    props))));
+    public static final DeferredItem<Item> MASK_MATA_RURU_KO    = ITEMS.registerItem("mask_mata_ruru_ko",    props -> new Item(maskProps(withItemId("mask_mata_ruru_ko",    props))));
+
 
     // =====================================================================
     // Spawn Eggs
