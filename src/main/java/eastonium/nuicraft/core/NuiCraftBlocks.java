@@ -99,8 +99,8 @@ public class NuiCraftBlocks {
             props -> new StairBlock(SEAWEED_WOOD_PLANKS.get().defaultBlockState(), props),
             withBlockId("seaweed_wood_stairs", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
     // ---- Ga-Koro cured wood (rope/platform frames) ----
-    public static final DeferredBlock<Block> CURED_WOOD_LOG = BLOCKS.registerSimpleBlock("cured_wood_log",
-            withBlockId("cured_wood_log", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<RotatedPillarBlock> CURED_WOOD_LOG = BLOCKS.registerBlock("cured_wood_log",
+            RotatedPillarBlock::new, withBlockId("cured_wood_log", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
     public static final DeferredBlock<FenceBlock> CURED_WOOD_FENCE = BLOCKS.registerBlock("cured_wood_fence",
             FenceBlock::new, withBlockId("cured_wood_fence", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
     // ---- Ga-Koro decorative blocks ----
