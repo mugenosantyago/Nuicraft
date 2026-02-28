@@ -5,6 +5,7 @@ import eastonium.nuicraft.core.NuiCraftBlocks;
 import eastonium.nuicraft.core.NuiCraftEntityAttributes;
 import eastonium.nuicraft.core.NuiCraftItems;
 import eastonium.nuicraft.core.NuiCraftRegistration;
+import eastonium.nuicraft.core.NuiCraftSpawnPlacements;
 import eastonium.nuicraft.config.NuiCraftConfig;
 import eastonium.nuicraft.event.DialogueEventHandler;
 import eastonium.nuicraft.morph.PlayerMorphEventHandler;
@@ -50,6 +51,7 @@ public class NuiCraft {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(NuiCraftEntityAttributes::registerEntityAttributes);
         modEventBus.addListener(NuiCraftPayloads::register);
+        modEventBus.addListener(NuiCraftSpawnPlacements::register);
         ModList.get().getModContainerById(MODID).ifPresent(c -> c.registerConfig(ModConfig.Type.COMMON, NuiCraftConfig.SPEC));
 
         // Game events

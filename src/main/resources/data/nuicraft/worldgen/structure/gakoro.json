@@ -33,7 +33,7 @@
   "start_height": {
     "absolute": 0
   },
-  "project_start_to_heightmap": "WORLD_SURFACE",
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
   "biomes": "#nuicraft:ga_koro",
   "use_expansion_hack": false
 }

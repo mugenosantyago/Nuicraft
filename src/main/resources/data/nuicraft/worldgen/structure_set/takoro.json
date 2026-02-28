@@ -1,1 +1,16 @@
-{"structures": [{"structure": "nuicraft:takoro", "weight": 1}], "placement": {"type": "minecraft:random_spread", "spacing": 32, "separation": 8, "salt": 101432296}}
+{
+  "structures": [{"structure": "nuicraft:takoro", "weight": 1}],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 32,
+    "separation": 10,
+    "salt": 101432296,
+    "exclusion_zones": [
+      {"other_set": "nuicraft:gakoro",  "chunk_count": 10},
+      {"other_set": "nuicraft:lekoro",  "chunk_count": 10},
+      {"other_set": "nuicraft:onukoro", "chunk_count": 10},
+      {"other_set": "nuicraft:pokoro",  "chunk_count": 10},
+      {"other_set": "nuicraft:kokoro",  "chunk_count": 10}
+    ]
+  }
+}
