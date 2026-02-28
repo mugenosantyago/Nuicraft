@@ -1,24 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    " c ",
-    " c "
+    "POP",
+    " S ",
+    " S "
   ],
   "key": {
-    "a": {
-      "tag": "minecraft:planks"
-    },
-    "b": {
-      "item": "bionicle_qfn:onu_wahi_stone"
-    },
-    "c": {
-      "item": "minecraft:stick"
-    }
+    "P": { "tag": "minecraft:planks" },
+    "O": { "item": "nuicraft:onu_wahi_stone" },
+    "S": { "item": "minecraft:stick" }
   },
   "result": {
-    "item": "bionicle_qfn:hammer",
+    "id": "nuicraft:hammer",
     "count": 1
   }
 }
