@@ -159,7 +159,10 @@ public class KoroSpawnHandler {
                     info.koro,
                     masks[level.getRandom().nextInt(masks.length)],
                     professions[level.getRandom().nextInt(professions.length)]);
-            place(level, mat, safePos(level, center.offset(ox, 0, oz)));
+            BlockPos spawnPos = safePos(level, center.offset(ox, 0, oz));
+            place(level, mat, spawnPos);
+            // Pin them to the structure so they wander back inside instead of scattering.
+            mat.setHomePos(safePos(level, center));
         }
     }
 

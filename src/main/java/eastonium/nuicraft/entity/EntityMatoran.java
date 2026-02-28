@@ -39,6 +39,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -173,6 +174,24 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     private boolean lastMoving = false;
     /** Counts idle ticks before firing the next ambient animation (wave / work). */
     private int ambientAnimTimer = 0;
+
+    /** Distance (blocks) from home at which ReturnToHomeGoal activates. */
+    private static final int HOME_RETURN_THRESHOLD = 14;
+    /** Distance at which ReturnToHomeGoal considers arrival. */
+    private static final int HOME_ARRIVE_THRESHOLD = 3;
+
+    /** Persisted home position set by KoroSpawnHandler; null until first assignment. */
+    @Nullable
+    private BlockPos homePos = null;
+
+    public void setHomePos(BlockPos pos) {
+        this.homePos = pos.immutable();
+    }
+
+    @Nullable
+    public BlockPos getHomePos() {
+        return homePos;
+    }
 
     @Nullable
     private Player tradingPlayer;
@@ -373,11 +392,54 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         this.goalSelector.addGoal(1, new TradingFreezeGoal());
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(3, new BedSleepGoal());
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new ReturnToHomeGoal());
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         // Fight back when hurt — peaceful until attacked
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+    }
+
+    /**
+     * Navigates the Matoran back toward their home position when they wander too
+     * far (beyond HOME_RETURN_THRESHOLD blocks). Takes lower priority than
+     * trading and combat so it doesn't interrupt interactions.
+     */
+    private class ReturnToHomeGoal extends Goal {
+
+        ReturnToHomeGoal() {
+            setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (homePos == null) return false;
+            if (tradingPlayer != null) return false;
+            double distSq = distanceToSqr(Vec3.atBottomCenterOf(homePos));
+            return distSq > HOME_RETURN_THRESHOLD * HOME_RETURN_THRESHOLD;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            if (homePos == null || tradingPlayer != null) return false;
+            double distSq = distanceToSqr(Vec3.atBottomCenterOf(homePos));
+            return distSq > HOME_ARRIVE_THRESHOLD * HOME_ARRIVE_THRESHOLD
+                    && getNavigation().isInProgress();
+        }
+
+        @Override
+        public void start() {
+            getNavigation().moveTo(
+                    homePos.getX() + 0.5,
+                    homePos.getY(),
+                    homePos.getZ() + 0.5,
+                    0.85);
+        }
+
+        @Override
+        public void stop() {
+            getNavigation().stop();
+        }
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -669,6 +731,11 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         output.putInt("Koro",       this.entityData.get(DATA_KORO));
         output.putInt("Mask",       this.entityData.get(DATA_MASK));
         output.putInt("Profession", this.entityData.get(DATA_PROFESSION));
+        if (homePos != null) {
+            output.putInt("HomePosX", homePos.getX());
+            output.putInt("HomePosY", homePos.getY());
+            output.putInt("HomePosZ", homePos.getZ());
+        }
         if (!this.level().isClientSide) {
             MerchantOffers offers = this.getOffers();
             if (!offers.isEmpty()) {
@@ -684,6 +751,14 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         this.entityData.set(DATA_MASK,       input.getIntOr("Mask",       Mask.PAKARI.ordinal()));
         this.entityData.set(DATA_PROFESSION, input.getIntOr("Profession", Profession.MERCHANT.ordinal()));
         this.offers = input.read("Offers", MerchantOffers.CODEC).orElse(null);
+        // Restore home pos after load (Y uses MIN_VALUE as "not saved" sentinel).
+        int savedY = input.getIntOr("HomePosY", Integer.MIN_VALUE);
+        if (savedY != Integer.MIN_VALUE) {
+            setHomePos(new BlockPos(
+                    input.getIntOr("HomePosX", 0),
+                    savedY,
+                    input.getIntOr("HomePosZ", 0)));
+        }
     }
 
     @Override
