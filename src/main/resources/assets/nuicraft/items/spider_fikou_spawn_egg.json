@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg"
+    "model": "nuicraft:item/spider_fikou_spawn_egg"
   }
 }
