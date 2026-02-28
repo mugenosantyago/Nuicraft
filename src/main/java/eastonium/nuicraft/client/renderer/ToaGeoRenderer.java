@@ -37,7 +37,8 @@ public class ToaGeoRenderer extends AzEntityRenderer<EntityToa> {
                         ToaGeoRenderer::textureFor
                 )
                 .setAnimatorProvider(ToaAnimator::new)
-                .setShadowRadius(0.5f)
+                .setShadowRadius(0.7f)
+                .setScale(1.5f)
                 .build(),
                 context
         );

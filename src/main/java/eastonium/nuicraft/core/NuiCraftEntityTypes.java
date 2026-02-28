@@ -105,53 +105,53 @@ public class NuiCraftEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA =
             ENTITY_TYPES.register("turaga", () -> EntityType.Builder.<EntityTuraga>of(EntityTuraga::new, MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA_VAKAMA =
             ENTITY_TYPES.register("turaga_vakama", () -> EntityType.Builder.<EntityTuraga>of(
                     (t, l) -> new EntityTuraga(t, l, EntityTuraga.TuragaType.VAKAMA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga_vakama")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga_vakama")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA_NOKAMA =
             ENTITY_TYPES.register("turaga_nokama", () -> EntityType.Builder.<EntityTuraga>of(
                     (t, l) -> new EntityTuraga(t, l, EntityTuraga.TuragaType.NOKAMA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga_nokama")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga_nokama")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA_MATAU =
             ENTITY_TYPES.register("turaga_matau", () -> EntityType.Builder.<EntityTuraga>of(
                     (t, l) -> new EntityTuraga(t, l, EntityTuraga.TuragaType.MATAU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga_matau")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga_matau")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA_ONEWA =
             ENTITY_TYPES.register("turaga_onewa", () -> EntityType.Builder.<EntityTuraga>of(
                     (t, l) -> new EntityTuraga(t, l, EntityTuraga.TuragaType.ONEWA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga_onewa")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga_onewa")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA_WHENUA =
             ENTITY_TYPES.register("turaga_whenua", () -> EntityType.Builder.<EntityTuraga>of(
                     (t, l) -> new EntityTuraga(t, l, EntityTuraga.TuragaType.WHENUA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga_whenua")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga_whenua")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA_NUJU =
             ENTITY_TYPES.register("turaga_nuju", () -> EntityType.Builder.<EntityTuraga>of(
                     (t, l) -> new EntityTuraga(t, l, EntityTuraga.TuragaType.NUJU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.6F).clientTrackingRange(64).build(key("turaga_nuju")));
+                    .sized(0.4F, 1.0F).clientTrackingRange(64).build(key("turaga_nuju")));
 
     // ---- Toa (one per Koro-themed biome) ----
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityToa>> TOA_TAHU =
             ENTITY_TYPES.register("toa_tahu", () -> EntityType.Builder.<EntityToa>of((t, l) -> new EntityToa(t, l, EntityToa.Variant.TAHU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("toa_tahu")));
+                    .sized(0.9F, 2.7F).clientTrackingRange(64).build(key("toa_tahu")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityToa>> TOA_GALI =
             ENTITY_TYPES.register("toa_gali", () -> EntityType.Builder.<EntityToa>of((t, l) -> new EntityToa(t, l, EntityToa.Variant.GALI), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("toa_gali")));
+                    .sized(0.9F, 2.7F).clientTrackingRange(64).build(key("toa_gali")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityToa>> TOA_LEWA =
             ENTITY_TYPES.register("toa_lewa", () -> EntityType.Builder.<EntityToa>of((t, l) -> new EntityToa(t, l, EntityToa.Variant.LEWA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("toa_lewa")));
+                    .sized(0.9F, 2.7F).clientTrackingRange(64).build(key("toa_lewa")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityToa>> TOA_ONUA =
             ENTITY_TYPES.register("toa_onua", () -> EntityType.Builder.<EntityToa>of((t, l) -> new EntityToa(t, l, EntityToa.Variant.ONUA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("toa_onua")));
+                    .sized(0.9F, 2.7F).clientTrackingRange(64).build(key("toa_onua")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityToa>> TOA_POHATU =
             ENTITY_TYPES.register("toa_pohatu", () -> EntityType.Builder.<EntityToa>of((t, l) -> new EntityToa(t, l, EntityToa.Variant.POHATU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("toa_pohatu")));
+                    .sized(0.9F, 2.7F).clientTrackingRange(64).build(key("toa_pohatu")));
     public static final DeferredHolder<EntityType<?>, EntityType<EntityToa>> TOA_KOPAKA =
             ENTITY_TYPES.register("toa_kopaka", () -> EntityType.Builder.<EntityToa>of((t, l) -> new EntityToa(t, l, EntityToa.Variant.KOPAKA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("toa_kopaka")));
+                    .sized(0.9F, 2.7F).clientTrackingRange(64).build(key("toa_kopaka")));
 
     // ---- Projectiles ----
 

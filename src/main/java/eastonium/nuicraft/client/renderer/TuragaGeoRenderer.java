@@ -23,7 +23,8 @@ public class TuragaGeoRenderer extends AzEntityRenderer<EntityTuraga> {
                         TuragaGeoRenderer::textureFor
                 )
                 .setAnimatorProvider(TuragaAnimator::new)
-                .setShadowRadius(0.4f)
+                .setShadowRadius(0.3f)
+                .setScale(0.65f)
                 .build(),
                 context
         );
