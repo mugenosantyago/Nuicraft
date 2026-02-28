@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.LadderBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
@@ -89,8 +90,8 @@ public class NuiCraftBlocks {
     // Used by gakoro structure templates — ported from QFN 1.20.1.
     public static final DeferredBlock<Block> SEAWEED_WOOD_PLANKS = BLOCKS.registerSimpleBlock("seaweed_wood_planks",
             withBlockId("seaweed_wood_planks", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
-    public static final DeferredBlock<Block> SEAWEED_WOOD_WOOD = BLOCKS.registerSimpleBlock("seaweed_wood_wood",
-            withBlockId("seaweed_wood_wood", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<RotatedPillarBlock> SEAWEED_WOOD_WOOD = BLOCKS.registerBlock("seaweed_wood_wood",
+            RotatedPillarBlock::new, withBlockId("seaweed_wood_wood", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
     public static final DeferredBlock<SlabBlock> SEAWEED_WOOD_SLAB = BLOCKS.registerBlock("seaweed_wood_slab",
             SlabBlock::new, withBlockId("seaweed_wood_slab", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
     public static final DeferredBlock<StairBlock> SEAWEED_WOOD_STAIRS = BLOCKS.registerBlock("seaweed_wood_stairs",
