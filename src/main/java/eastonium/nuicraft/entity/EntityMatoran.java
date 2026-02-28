@@ -553,7 +553,7 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
 
     @Override
     public boolean stillValid(Player player) {
-        return this.getTradingPlayer() == player && this.isAlive() && player.canInteractWithEntity(this, 8.0);
+        return this.isAlive() && player.canInteractWithEntity(this, 8.0);
     }
 
     private void updateTrades() {
