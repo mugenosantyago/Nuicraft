@@ -1,12 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "III",
-    "III",
-    "III"
+    "BB",
+    "BB"
   ],
   "key": {
-    "I": { "item": "nuicraft:ingot_protosteel" }
+    "B": { "item": "nuicraft:pure_molten_protodermis_bucket" }
   },
   "result": {
     "id": "nuicraft:block_protosteel",

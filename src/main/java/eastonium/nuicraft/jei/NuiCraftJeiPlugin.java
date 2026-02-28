@@ -64,6 +64,11 @@ public class NuiCraftJeiPlugin implements IModPlugin {
                 ),
                 Component.translatable("jei.nuicraft.disc.info"));
 
+        // Heatstone Lighter
+        registration.addItemStackInfo(
+                List.of(new ItemStack(NuiCraftItems.HEATSTONE_LIGHTER.get())),
+                Component.translatable("jei.nuicraft.heatstone_lighter.info"));
+
         // Koro-specific Kanoka disks
         List<ItemStack> koroDiscs = Stream.of(
                 NuiCraftItems.KANOKA_DISK_TA,
@@ -76,9 +81,5 @@ public class NuiCraftJeiPlugin implements IModPlugin {
         ).map(d -> new ItemStack(d.get())).toList();
         registration.addItemStackInfo(koroDiscs, Component.translatable("jei.nuicraft.disc.koro.info"));
 
-        // Disc Launcher
-        registration.addItemStackInfo(
-                List.of(new ItemStack(NuiCraftItems.DISC_LAUNCHER.get())),
-                Component.translatable("jei.nuicraft.disc_launcher.info"));
     }
 }

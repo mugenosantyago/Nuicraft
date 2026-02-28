@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I",
+    "HI",
+    " I"
+  ],
+  "key": {
+    "I": { "item": "nuicraft:ingot_protosteel" },
+    "H": { "item": "nuicraft:heatstone_ore" }
+  },
+  "result": {
+    "id": "nuicraft:heatstone_lighter",
+    "count": 1
+  }
+}

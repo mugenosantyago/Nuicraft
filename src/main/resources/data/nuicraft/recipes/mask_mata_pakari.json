@@ -1,1 +1,23 @@
-{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:onu_koro_stone"},{"item":"minecraft:diamond_block"},{"item":"minecraft:brick"}],"result":{"item":"nuicraft:mask_mata_pakari","count":1}}
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "K K",
+    "AS ",
+    "K K"
+  ],
+  "key": {
+    "K": {
+      "item": "nuicraft:onu_koro_stone"
+    },
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "nuicraft:protodermis_solid"
+    }
+  },
+  "result": {
+    "id": "nuicraft:mask_mata_pakari",
+    "count": 1
+  }
+}

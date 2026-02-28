@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "nuicraft:generic_item",
+                    "name": "minecraft:leather",
                     "weight": 1,
                     "functions": [
                         {

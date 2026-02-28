@@ -44,7 +44,7 @@ public class BlockProtodermisDeposit extends BlockOre {
                 Vec3 hitVec = hitResult.getLocation();
                 for (int i = 0; i < 5; ++i) {
                     level.addParticle(
-                        new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(NuiCraftItems.GENERIC_ITEM.get())),
+                        new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(NuiCraftItems.INGOT_PROTODERMIS.get())),
                         hitVec.x, hitVec.y, hitVec.z,
                         (level.random.nextFloat() - 0.5D) * 0.2D,
                         level.random.nextFloat() * 0.2D,
@@ -57,7 +57,7 @@ public class BlockProtodermisDeposit extends BlockOre {
                 
                 // Drop item at hit location
                 Vec3 hitVec = hitResult.getLocation();
-                ItemStack dropStack = new ItemStack(NuiCraftItems.GENERIC_ITEM.get(), 1); // TODO: Get proto blob item
+                ItemStack dropStack = new ItemStack(NuiCraftItems.INGOT_PROTODERMIS.get(), 1);
                 ItemEntity itemEntity = new ItemEntity(level, hitVec.x, hitVec.y, hitVec.z, dropStack);
                 itemEntity.setDeltaMovement(
                     level.random.nextGaussian() * 0.06D,

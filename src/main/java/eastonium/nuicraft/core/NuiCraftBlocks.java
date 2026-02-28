@@ -72,8 +72,6 @@ public class NuiCraftBlocks {
             BlockOre::new, withBlockId("onu_wahi_stone_ore", BlockOre.createProperties()));
 
     // Plants
-    public static final DeferredBlock<BlockBamboo> BAMBOO = BLOCKS.registerBlock("bamboo",
-            BlockBamboo::new, withBlockId("bamboo", BlockBamboo.createProperties()));
 
     // Metal blocks
     public static final DeferredBlock<BlockProtodermis> BLOCK_PROTODERMIS = BLOCKS.registerBlock("block_protodermis",

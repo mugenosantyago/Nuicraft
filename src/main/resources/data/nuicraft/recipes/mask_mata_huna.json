@@ -1,1 +1,23 @@
-{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ta_koro_stone"},{"item":"minecraft:ender_pearl"},{"item":"minecraft:amethyst_shard"}],"result":{"item":"nuicraft:mask_mata_huna","count":1}}
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "K K",
+    "AS ",
+    "K K"
+  ],
+  "key": {
+    "K": {
+      "item": "nuicraft:ga_koro_stone"
+    },
+    "A": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "S": {
+      "item": "nuicraft:protodermis_solid"
+    }
+  },
+  "result": {
+    "id": "nuicraft:mask_mata_huna",
+    "count": 1
+  }
+}

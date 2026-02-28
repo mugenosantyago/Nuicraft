@@ -1,54 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
-      "item": "nuicraft:ingot_protodermis"
-    },
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "K K",
+    "AS ",
+    "K K"
+  ],
+  "key": {
+    "K": {
       "item": "nuicraft:le_koro_stone"
     },
-    {
+    "A": {
       "item": "minecraft:feather"
     },
-    {
-      "item": "minecraft:phantom_membrane"
+    "S": {
+      "item": "nuicraft:protodermis_solid"
     }
-  ],
+  },
   "result": {
-    "item": "nuicraft:mask_mata_miru",
+    "id": "nuicraft:mask_mata_miru",
     "count": 1
   }
 }

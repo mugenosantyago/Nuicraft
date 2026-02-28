@@ -1,1 +1,23 @@
-{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"nuicraft:ingot_protodermis"},{"item":"minecraft:feather"},{"item":"minecraft:honey_block"},{"item":"nuicraft:po_koro_stone"}],"result":{"item":"nuicraft:mask_mata_kakama","count":1}}
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "K K",
+    "AS ",
+    "K K"
+  ],
+  "key": {
+    "K": {
+      "item": "nuicraft:po_koro_stone"
+    },
+    "A": {
+      "item": "nuicraft:stone_hammer"
+    },
+    "S": {
+      "item": "nuicraft:protodermis_solid"
+    }
+  },
+  "result": {
+    "id": "nuicraft:mask_mata_kakama",
+    "count": 1
+  }
+}
