@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "nuicraft:onu_wahi_stone"
+    },
+    "c": {
+      "item": "nuicraft:gear"
+    },
+    "d": {
+      "item": "nuicraft:ice_toa_stone"
+    }
+  },
+  "result": {
+    "item": "nuicraft:chestplate_ice",
+    "count": 1
+  }
+}

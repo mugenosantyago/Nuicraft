@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "nuicraft:air_toa_stone"
+    },
+    "c": {
+      "item": "nuicraft:onu_wahi_stone"
+    }
+  },
+  "result": {
+    "item": "nuicraft:leggings_air",
+    "count": 1
+  }
+}
