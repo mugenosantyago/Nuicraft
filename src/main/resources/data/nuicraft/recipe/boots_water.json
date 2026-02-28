@@ -7,7 +7,7 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:iron_ingot"
+      "item": "nuicraft:ingot_protosteel"
     },
     "b": {
       "item": "nuicraft:water_toa_stone"

@@ -1,9 +1,7 @@
 {
-  "parent": "nuicraft:custom/lightstone",
+  "parent": "block/cube_all",
   "textures": {
-    "all": "nuicraft:block/glowstone",
-    "particle": "nuicraft:block/glowstone",
-    "0": "nuicraft:block/glowstone"
-  },
-  "render_type": "solid"
+    "all": "nuicraft:block/lightstones_block",
+    "particle": "nuicraft:block/lightstones_block"
+  }
 }

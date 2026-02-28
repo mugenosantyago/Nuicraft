@@ -8,10 +8,10 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:iron_ingot"
+      "item": "nuicraft:ingot_protosteel"
     },
     "b": {
-      "item": "minecraft:iron_nugget"
+      "item": "nuicraft:nugget_protosteel"
     },
     "c": {
       "item": "nuicraft:rock_toa_stone"
