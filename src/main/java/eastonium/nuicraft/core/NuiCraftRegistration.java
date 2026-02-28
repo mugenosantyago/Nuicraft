@@ -7,6 +7,7 @@ import eastonium.nuicraft.menu.PurifierMenu;
 import eastonium.nuicraft.morph.NuiCraftAttachments;
 import eastonium.nuicraft.recipe.PurifyingRecipe;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -29,17 +30,14 @@ public class NuiCraftRegistration {
     public static final DeferredRegister<MenuType<?>>        MENU_TYPES         = DeferredRegister.create(Registries.MENU, NuiCraft.MODID);
 
     /** Recipe type for the Purifier — processed only by the Purifier, not vanilla furnaces. */
-    @SuppressWarnings("unchecked")
     public static final DeferredHolder<RecipeType<?>, RecipeType<PurifyingRecipe>> PURIFYING_TYPE =
-            (DeferredHolder<RecipeType<?>, RecipeType<PurifyingRecipe>>)(DeferredHolder<?, ?>)
-            RECIPE_TYPES.register("purifying", RecipeType::simple);
+            RECIPE_TYPES.register("purifying",
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, "purifying")));
 
-    /** Serializer for purifying recipes — mirrors the smelting serializer pattern. */
-    @SuppressWarnings("unchecked")
+    /** Serializer for purifying recipes — mirrors the smelting serializer pattern, default 200 ticks. */
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PurifyingRecipe>> PURIFYING_SERIALIZER =
-            (DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PurifyingRecipe>>)(DeferredHolder<?, ?>)
             RECIPE_SERIALIZERS.register("purifying",
-                    () -> new AbstractCookingRecipe.Serializer<>(PurifyingRecipe::new));
+                    () -> new AbstractCookingRecipe.Serializer<>(PurifyingRecipe::new, 200));
 
     /** Purifier block entity type — referenced by BlockPurifier and PurifierBlockEntity. */
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PurifierBlockEntity>> PURIFIER_BE =

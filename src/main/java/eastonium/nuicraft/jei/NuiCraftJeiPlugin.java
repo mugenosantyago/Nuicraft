@@ -7,14 +7,14 @@ import eastonium.nuicraft.recipe.PurifyingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CookingBookCategory;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -46,16 +46,16 @@ public class NuiCraftJeiPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        // Collect all purifying recipes from the current world's recipe manager
-        if (Minecraft.getInstance().level != null) {
-            List<PurifyingRecipe> purifyingRecipes = Minecraft.getInstance().level
-                    .getRecipeManager()
-                    .getAllRecipesFor(eastonium.nuicraft.core.NuiCraftRegistration.PURIFYING_TYPE.get())
-                    .stream()
-                    .map(holder -> holder.value())
-                    .toList();
-            registration.addRecipes(PurifierRecipeCategory.TYPE, purifyingRecipes);
-        }
+        // Purifier recipes — built inline to match the data-pack JSON recipes
+        registration.addRecipes(PurifierRecipeCategory.TYPE, List.of(
+                new PurifyingRecipe(
+                        "",
+                        CookingBookCategory.MISC,
+                        Ingredient.of(NuiCraftItems.MOLTEN_PROTODERMIS_BUCKET.get()),
+                        new ItemStack(NuiCraftItems.PURE_MOLTEN_PROTODERMIS_BUCKET.get()),
+                        1.0f,
+                        200)
+        ));
 
         // ---- Mata masks ----
         List<ItemStack> masks = Stream.of(
