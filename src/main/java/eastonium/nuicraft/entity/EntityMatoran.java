@@ -645,8 +645,8 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(NuiCraftItems.HEATSTONE_LIGHTER.get(), 1), 4, 2, 0.05F));
         // Gears — crafting component
         offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 2), new ItemStack(NuiCraftItems.GEAR.get(), 4), 16, 1, 0.05F));
-        // Stone Hammer
-        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(NuiCraftItems.STONE_HAMMER.get(), 1), 12, 1, 0.05F));
+        // Hammer
+        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 1), new ItemStack(NuiCraftItems.HAMMER.get(), 1), 12, 1, 0.05F));
         // Sell gears back for emeralds
         offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.GEAR.get(), 3), new ItemStack(Items.EMERALD, 1), 16, 1, 0.1F));
         // Koro's extra item — themed goods
