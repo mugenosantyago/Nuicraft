@@ -2,6 +2,7 @@ package eastonium.nuicraft.core;
 
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.blockentity.PurifierBlockEntity;
+import eastonium.nuicraft.menu.ElementSwiperMenu;
 import eastonium.nuicraft.menu.PurifierMenu;
 import eastonium.nuicraft.morph.NuiCraftAttachments;
 import net.minecraft.core.registries.Registries;
@@ -32,6 +33,11 @@ public class NuiCraftRegistration {
     public static final DeferredHolder<MenuType<?>, MenuType<PurifierMenu>> PURIFIER_MENU =
             MENU_TYPES.register("purifier", () ->
                     IMenuTypeExtension.create((windowId, inv, buf) -> new PurifierMenu(windowId, inv)));
+
+    /** Element Swiper menu type. */
+    public static final DeferredHolder<MenuType<?>, MenuType<ElementSwiperMenu>> ELEMENT_SWIPER_MENU =
+            MENU_TYPES.register("element_swiper", () ->
+                    IMenuTypeExtension.create((windowId, inv, buf) -> new ElementSwiperMenu(windowId, inv)));
 
     public static void register(IEventBus modEventBus) {
         NuiCraftAttachments.register(modEventBus);

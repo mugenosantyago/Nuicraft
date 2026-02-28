@@ -2,6 +2,7 @@ package eastonium.nuicraft.client;
 
 import eastonium.nuicraft.client.model.*;
 import eastonium.nuicraft.client.renderer.*;
+import eastonium.nuicraft.client.screen.ElementSwiperScreen;
 import eastonium.nuicraft.client.screen.PurifierScreen;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.core.NuiCraftRegistration;
@@ -28,6 +29,7 @@ public class NuiCraftClient {
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(NuiCraftRegistration.PURIFIER_MENU.get(), PurifierScreen::new);
+        event.register(NuiCraftRegistration.ELEMENT_SWIPER_MENU.get(), ElementSwiperScreen::new);
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {

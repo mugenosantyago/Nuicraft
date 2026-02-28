@@ -67,7 +67,8 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> GEAR = ITEMS.registerSimpleItem("gear");
     public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer");
     public static final DeferredItem<Item> STONE_HAMMER = ITEMS.registerSimpleItem("stone_hammer");
-    public static final DeferredItem<Item> ELEMENT_SWIPER = ITEMS.registerSimpleItem("element_swiper");
+    public static final DeferredItem<Item> ELEMENT_SWIPER = ITEMS.registerItem("element_swiper",
+            props -> new eastonium.nuicraft.item.ItemElementSwiper(withItemId("element_swiper", props)));
 
     // Toa stones (from bionicle_qfn)
     public static final DeferredItem<Item> WATER_TOA_STONE = ITEMS.registerSimpleItem("water_toa_stone");
