@@ -27,8 +27,8 @@
 					"name": "body",
 					"pivot": [
 						0,
-						0,
-						0
+						18,
+						1.25
 					],
 					"parent": "MATATU_turaga",
 					"cubes": [
