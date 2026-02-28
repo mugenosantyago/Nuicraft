@@ -35,4 +35,16 @@ public class PurifierScreen extends AbstractFurnaceScreen<PurifierMenu> {
         super(menu, playerInventory, title, FILTER_NAME,
                 TEXTURE, LIT_PROGRESS_SPRITE, BURN_PROGRESS_SPRITE, TABS);
     }
+
+    @Override
+    public void init() {
+        super.init();
+        // Left-align the title so it doesn't overlap the centered fuel slot.
+        // inventoryLabelY sits in the separator strip between the purifier slots
+        // and the player inventory grid (imageHeight=166, inventory starts at ~81).
+        this.titleLabelX = 8;
+        this.titleLabelY = 6;
+        this.inventoryLabelX = 8;
+        this.inventoryLabelY = 68;
+    }
 }
