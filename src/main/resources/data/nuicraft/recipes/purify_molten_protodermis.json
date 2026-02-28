@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smelting",
+  "type": "nuicraft:purifying",
   "ingredient": "nuicraft:molten_protodermis_bucket",
   "result": {
     "id": "nuicraft:pure_molten_protodermis_bucket"

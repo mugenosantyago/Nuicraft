@@ -6,14 +6,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PurifierBlockEntity extends AbstractFurnaceBlockEntity {
 
     public PurifierBlockEntity(BlockPos pos, BlockState state) {
-        super(NuiCraftRegistration.PURIFIER_BE.get(), pos, state, RecipeType.SMELTING);
+        super(NuiCraftRegistration.PURIFIER_BE.get(), pos, state, NuiCraftRegistration.PURIFYING_TYPE.get());
     }
 
     @Override

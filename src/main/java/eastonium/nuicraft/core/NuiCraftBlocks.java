@@ -20,8 +20,9 @@ public class NuiCraftBlocks {
         return props.setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, name)));
     }
 
-    // Fluid blocks - placeholder
-    public static final DeferredBlock<Block> FLUID_PROTODERMIS = BLOCKS.registerSimpleBlock("fluid_protodermis",
+    // Fluid blocks - placeholder (liquid protodermis is sluiceable for nuggets)
+    public static final DeferredBlock<BlockLiquidProtodermis> FLUID_PROTODERMIS = BLOCKS.registerBlock("fluid_protodermis",
+            BlockLiquidProtodermis::new,
             withBlockId("fluid_protodermis", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
     
     public static final DeferredBlock<Block> FLUID_PROTODERMIS_PURE = BLOCKS.registerSimpleBlock("fluid_protodermis_pure",

@@ -5,9 +5,12 @@ import eastonium.nuicraft.blockentity.PurifierBlockEntity;
 import eastonium.nuicraft.menu.ElementSwiperMenu;
 import eastonium.nuicraft.menu.PurifierMenu;
 import eastonium.nuicraft.morph.NuiCraftAttachments;
+import eastonium.nuicraft.recipe.PurifyingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
@@ -22,7 +25,21 @@ public class NuiCraftRegistration {
     public static final DeferredRegister<FluidType>          FLUID_TYPES        = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, NuiCraft.MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, NuiCraft.MODID);
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, NuiCraft.MODID);
+    public static final DeferredRegister<RecipeType<?>>      RECIPE_TYPES       = DeferredRegister.create(Registries.RECIPE_TYPE, NuiCraft.MODID);
     public static final DeferredRegister<MenuType<?>>        MENU_TYPES         = DeferredRegister.create(Registries.MENU, NuiCraft.MODID);
+
+    /** Recipe type for the Purifier — processed only by the Purifier, not vanilla furnaces. */
+    @SuppressWarnings("unchecked")
+    public static final DeferredHolder<RecipeType<?>, RecipeType<PurifyingRecipe>> PURIFYING_TYPE =
+            (DeferredHolder<RecipeType<?>, RecipeType<PurifyingRecipe>>)(DeferredHolder<?, ?>)
+            RECIPE_TYPES.register("purifying", RecipeType::simple);
+
+    /** Serializer for purifying recipes — mirrors the smelting serializer pattern. */
+    @SuppressWarnings("unchecked")
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PurifyingRecipe>> PURIFYING_SERIALIZER =
+            (DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PurifyingRecipe>>)(DeferredHolder<?, ?>)
+            RECIPE_SERIALIZERS.register("purifying",
+                    () -> new AbstractCookingRecipe.Serializer<>(PurifyingRecipe::new));
 
     /** Purifier block entity type — referenced by BlockPurifier and PurifierBlockEntity. */
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PurifierBlockEntity>> PURIFIER_BE =
@@ -47,6 +64,7 @@ public class NuiCraftRegistration {
         FLUIDS.register(modEventBus);
         FLUID_TYPES.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
+        RECIPE_TYPES.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
         MENU_TYPES.register(modEventBus);
     }
