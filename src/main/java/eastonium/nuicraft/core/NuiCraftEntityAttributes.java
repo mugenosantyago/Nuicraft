@@ -11,6 +11,7 @@ public class NuiCraftEntityAttributes {
         // Passive Rahi
         event.put(NuiCraftEntityTypes.MAHI.get(), EntityMahi.createAttributes().build());
         event.put(NuiCraftEntityTypes.FIKOU.get(), EntityFikou.createAttributes().build());
+        event.put(NuiCraftEntityTypes.SPIDER_FIKOU.get(), EntitySpiderFikou.createAttributes().build());
         event.put(NuiCraftEntityTypes.HOI.get(), EntityHoi.createAttributes().build());
 
         // Hostile Rahi

@@ -1,5 +1,6 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.client.animator.FikouAnimator;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -9,7 +10,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class EntityFikou extends Animal {
-    
+
+    private boolean lastMoving = false;
+
     public EntityFikou(EntityType<? extends EntityFikou> type, Level level) {
         super(type, level);
     }
@@ -27,6 +30,23 @@ public class EntityFikou extends Animal {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 8.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                dispatchMovementAnimation(moving);
+            }
+        }
+    }
+
+    /** Override in subclasses to route the movement event to a different animator. */
+    protected void dispatchMovementAnimation(boolean moving) {
+        FikouAnimator.sendMovementCommand(this);
     }
 
     @Override

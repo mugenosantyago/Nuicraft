@@ -29,6 +29,10 @@ public class NuiCraftEntityTypes {
             ENTITY_TYPES.register("fikou", () -> EntityType.Builder.of(EntityFikou::new, MobCategory.CREATURE)
                     .sized(0.7F, 0.5F).clientTrackingRange(64).build(key("fikou")));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<EntitySpiderFikou>> SPIDER_FIKOU =
+            ENTITY_TYPES.register("spider_fikou", () -> EntityType.Builder.of(EntitySpiderFikou::new, MobCategory.CREATURE)
+                    .sized(0.7F, 0.5F).clientTrackingRange(64).build(key("spider_fikou")));
+
     public static final DeferredHolder<EntityType<?>, EntityType<EntityHoi>> HOI =
             ENTITY_TYPES.register("hoi", () -> EntityType.Builder.of(EntityHoi::new, MobCategory.CREATURE)
                     .sized(0.6F, 0.4F).clientTrackingRange(64).build(key("hoi")));

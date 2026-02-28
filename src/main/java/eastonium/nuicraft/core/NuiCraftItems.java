@@ -232,6 +232,8 @@ public class NuiCraftItems {
             props -> new SpawnEggItem(NuiCraftEntityTypes.MAHI.get(), withItemId("mahi_spawn_egg", props)));
     public static final DeferredItem<Item> FIKOU_SPAWN_EGG = ITEMS.registerItem("fikou_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.FIKOU.get(), withItemId("fikou_spawn_egg", props)));
+    public static final DeferredItem<Item> SPIDER_FIKOU_SPAWN_EGG = ITEMS.registerItem("spider_fikou_spawn_egg",
+            props -> new SpawnEggItem(NuiCraftEntityTypes.SPIDER_FIKOU.get(), withItemId("spider_fikou_spawn_egg", props)));
     public static final DeferredItem<Item> HOI_SPAWN_EGG = ITEMS.registerItem("hoi_spawn_egg",
             props -> new SpawnEggItem(NuiCraftEntityTypes.HOI.get(), withItemId("hoi_spawn_egg", props)));
     public static final DeferredItem<Item> KOFO_JAGA_SPAWN_EGG = ITEMS.registerItem("kofo_jaga_spawn_egg",

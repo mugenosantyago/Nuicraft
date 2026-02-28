@@ -57,6 +57,7 @@ public class NuiCraftClient {
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(NuiCraftEntityTypes.MAHI.get(), MahiRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.FIKOU.get(), FikouGeoRenderer::new);
+        event.registerEntityRenderer(NuiCraftEntityTypes.SPIDER_FIKOU.get(), SpiderFikouGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.HOI.get(), HoiRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.KOFO_JAGA.get(), KofoJagaRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.NUI_JAGA.get(), NuiJagaRenderer::new);
