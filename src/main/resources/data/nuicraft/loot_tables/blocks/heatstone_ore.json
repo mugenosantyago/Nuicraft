@@ -28,7 +28,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "nuicraft:heatstone_ore",
+              "name": "nuicraft:heatstone",
               "functions": [
                 {
                   "function": "minecraft:set_count",

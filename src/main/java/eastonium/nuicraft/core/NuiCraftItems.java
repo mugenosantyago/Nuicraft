@@ -66,7 +66,7 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> NUGGET_PROTOSTEEL = ITEMS.registerSimpleItem("nugget_protosteel");
     public static final DeferredItem<Item> GEAR = ITEMS.registerSimpleItem("gear");
     public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer");
-    public static final DeferredItem<Item> STONE_HAMMER = ITEMS.registerSimpleItem("stone_hammer");
+    public static final DeferredItem<Item> HEATSTONE = ITEMS.registerSimpleItem("heatstone");
     public static final DeferredItem<Item> ELEMENT_SWIPER = ITEMS.registerItem("element_swiper",
             props -> new eastonium.nuicraft.item.ItemElementSwiper(withItemId("element_swiper", props)));
 

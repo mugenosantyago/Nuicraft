@@ -115,7 +115,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nuicraft:stone_hammer",
+          "name": "nuicraft:hammer",
           "weight": 3,
           "functions": [
             {

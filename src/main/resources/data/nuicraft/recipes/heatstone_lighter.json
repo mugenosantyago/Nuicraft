@@ -7,7 +7,7 @@
   ],
   "key": {
     "I": { "item": "nuicraft:ingot_protosteel" },
-    "H": { "item": "nuicraft:heatstone_ore" }
+    "H": { "item": "nuicraft:heatstone" }
   },
   "result": {
     "id": "nuicraft:heatstone_lighter",
