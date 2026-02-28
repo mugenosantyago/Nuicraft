@@ -1,17 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PPP",
-    "PPP",
-    "PPP"
+    "II",
+    "II"
   ],
   "key": {
-    "P": {
-      "item": "nuicraft:ingot_protodermis"
-    }
+    "I": { "item": "nuicraft:ingot_protodermis" }
   },
   "result": {
-    "item": "nuicraft:protodermis_solid",
+    "id": "nuicraft:protodermis_solid",
     "count": 1
   }
 }

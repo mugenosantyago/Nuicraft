@@ -1,14 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "POP",
-    " S ",
-    " S "
+    "KKK",
+    " B ",
+    " B "
   ],
   "key": {
-    "P": { "tag": "minecraft:planks" },
-    "O": { "item": "nuicraft:onu_wahi_stone" },
-    "S": { "item": "minecraft:stick" }
+    "K": { "tag": "nuicraft:koro_stones" },
+    "B": { "item": "minecraft:bamboo" }
   },
   "result": {
     "id": "nuicraft:hammer",

@@ -6,11 +6,10 @@
     "III"
   ],
   "key": {
-    "I": {
-      "item": "nuicraft:ingot_protodermis"
-    }
+    "I": { "item": "nuicraft:ingot_protodermis" }
   },
   "result": {
-    "item": "nuicraft:block_protodermis"
+    "id": "nuicraft:block_protodermis",
+    "count": 1
   }
 }
