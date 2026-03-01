@@ -15,10 +15,12 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -48,7 +50,7 @@ import org.jetbrains.annotations.Nullable;
  * Each Matoran also has a profession (Maskmaker, Smith, Miner, etc.) that adds
  * additional specialised trades on top of their koro-specific base trades.
  */
-public class EntityMatoran extends PathfinderMob implements Merchant {
+public class EntityMatoran extends Animal implements Merchant {
 
     /** Kanohi Mata mask variant. Model/texture path uses getId() (e.g. pakari, hau). */
     public enum Mask {
@@ -198,19 +200,19 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     @Nullable
     private MerchantOffers offers;
 
-    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level) {
+    public EntityMatoran(EntityType<? extends Animal> type, Level level) {
         this(type, level, Koro.TA);
     }
 
-    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro) {
+    public EntityMatoran(EntityType<? extends Animal> type, Level level, Koro koro) {
         this(type, level, koro, Mask.PAKARI);
     }
 
-    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro, Mask mask) {
+    public EntityMatoran(EntityType<? extends Animal> type, Level level, Koro koro, Mask mask) {
         this(type, level, koro, mask, Profession.MERCHANT);
     }
 
-    public EntityMatoran(EntityType<? extends PathfinderMob> type, Level level, Koro koro, Mask mask, Profession profession) {
+    public EntityMatoran(EntityType<? extends Animal> type, Level level, Koro koro, Mask mask, Profession profession) {
         super(type, level);
         this.entityData.set(DATA_KORO,       koro.ordinal());
         this.entityData.set(DATA_MASK,       mask.ordinal());
@@ -390,12 +392,13 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new TradingFreezeGoal());
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(3, new BedSleepGoal());
-        this.goalSelector.addGoal(4, new ReturnToHomeGoal());
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new BedSleepGoal());
+        this.goalSelector.addGoal(5, new ReturnToHomeGoal());
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         // Fight back when hurt — peaceful until attacked
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
@@ -496,6 +499,30 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
         Mask.HAU, Mask.HUNA, Mask.KAKAMA, Mask.KAUKAU, Mask.MIRU, Mask.PAKARI
     };
 
+    /** Food items that trigger breeding (and speed up baby growth when fed to a child). */
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return stack.is(Items.BREAD)
+            || stack.is(Items.WHEAT)
+            || stack.is(Items.CARROT)
+            || stack.is(Items.POTATO)
+            || stack.is(Items.APPLE);
+    }
+
+    /**
+     * Produces a baby Matoran when two adults breed. The child inherits this
+     * parent's Koro and receives a randomly chosen mask and profession.
+     */
+    @Override
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+        EntityMatoran child = new EntityMatoran(
+                eastonium.nuicraft.core.NuiCraftEntityTypes.MATORAN.get(), level, this.getKoro());
+        child.setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
+        Profession[] professions = Profession.values();
+        child.setProfession(professions[level.getRandom().nextInt(professions.length)]);
+        return child;
+    }
+
     @Override
     public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(ServerLevelAccessor level, net.minecraft.world.DifficultyInstance difficulty, net.minecraft.world.entity.EntitySpawnReason reason, @Nullable net.minecraft.world.entity.SpawnGroupData spawnData) {
         if (reason == net.minecraft.world.entity.EntitySpawnReason.NATURAL) {
@@ -529,13 +556,34 @@ public class EntityMatoran extends PathfinderMob implements Merchant {
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        if (!this.level().isClientSide && !this.getOffers().isEmpty()) {
+        ItemStack stack = player.getItemInHand(hand);
+
+        // Adult fed with food → enter love mode for breeding.
+        if (!this.isBaby() && this.isFood(stack) && this.canFallInLove()) {
+            if (!this.level().isClientSide) {
+                this.usePlayerItem(player, hand, stack);
+                this.setInLove(player);
+            }
+            return this.level().isClientSide ? InteractionResult.CONSUME : InteractionResult.SUCCESS;
+        }
+
+        // Baby fed with food → accelerate growth (same mechanic as vanilla animals).
+        if (this.isBaby() && this.isFood(stack)) {
+            if (!this.level().isClientSide) {
+                this.usePlayerItem(player, hand, stack);
+                this.ageUp(AgeableMob.getSpeedUpSecondsWhenFeeding(-this.getAge()), true);
+            }
+            return this.level().isClientSide ? InteractionResult.CONSUME : InteractionResult.SUCCESS;
+        }
+
+        // Otherwise open the trading screen as normal.
+        if (!this.level().isClientSide && !this.isBaby() && !this.getOffers().isEmpty()) {
             player.awardStat(Stats.TALKED_TO_VILLAGER);
             this.setTradingPlayer(player);
             this.openTradingScreen(player, this.getDisplayName(), this.getVillagerXp());
             return InteractionResult.SUCCESS;
         }
-        return super.mobInteract(player, hand);
+        return InteractionResult.PASS;
     }
 
     // ---- Merchant implementation ----

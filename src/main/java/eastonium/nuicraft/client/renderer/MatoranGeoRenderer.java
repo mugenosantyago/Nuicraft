@@ -3,8 +3,11 @@ package eastonium.nuicraft.client.renderer;
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.client.animator.MatoranAnimator;
 import eastonium.nuicraft.entity.EntityMatoran;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mod.azure.azurelib.common.render.entity.AzEntityRenderer;
 import mod.azure.azurelib.common.render.entity.AzEntityRendererConfig;
+import mod.azure.azurelib.common.render.entity.state.AzEntityRenderState;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
@@ -37,6 +40,23 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
                 .build(),
                 context
         );
+    }
+
+    /** Scale factor applied to baby Matoran — half the adult size. */
+    private static final float BABY_SCALE = 0.5f;
+
+    @Override
+    public void render(AzEntityRenderState renderState,
+                       PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        EntityMatoran entity = (EntityMatoran) renderState.entity;
+        if (entity != null && entity.isBaby()) {
+            poseStack.pushPose();
+            poseStack.scale(BABY_SCALE, BABY_SCALE, BABY_SCALE);
+            super.render(renderState, poseStack, bufferSource, packedLight);
+            poseStack.popPose();
+        } else {
+            super.render(renderState, poseStack, bufferSource, packedLight);
+        }
     }
 
     private static String maskId(EntityMatoran matoran) {
