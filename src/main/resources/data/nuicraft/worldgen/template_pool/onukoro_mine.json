@@ -9,7 +9,31 @@
         "location": "nuicraft:onukoro_ravin",
         "projection": "rigid",
         "processors": {
-          "processors": []
+          "processors": [
+            {
+              "processor_type": "minecraft:rule",
+              "rules": [
+                {
+                  "input_predicate": {
+                    "predicate_type": "minecraft:block_match",
+                    "block": "minecraft:water"
+                  },
+                  "output_state": {
+                    "Name": "nuicraft:fluid_protodermis"
+                  }
+                },
+                {
+                  "input_predicate": {
+                    "predicate_type": "minecraft:block_match",
+                    "block": "minecraft:lava"
+                  },
+                  "output_state": {
+                    "Name": "nuicraft:fluid_protodermis_molten"
+                  }
+                }
+              ]
+            }
+          ]
         }
       }
     }
