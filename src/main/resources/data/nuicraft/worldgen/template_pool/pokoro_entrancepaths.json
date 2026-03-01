@@ -20,6 +20,9 @@
                   },
                   "output_state": {
                     "Name": "nuicraft:fluid_protodermis"
+                  },
+                  "location_predicate": {
+                    "predicate_type": "minecraft:always_true"
                   }
                 },
                 {
@@ -29,6 +32,9 @@
                   },
                   "output_state": {
                     "Name": "nuicraft:fluid_protodermis_molten"
+                  },
+                  "location_predicate": {
+                    "predicate_type": "minecraft:always_true"
                   }
                 }
               ]
