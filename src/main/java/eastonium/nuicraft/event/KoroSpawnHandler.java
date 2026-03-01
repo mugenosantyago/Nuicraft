@@ -15,6 +15,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
@@ -47,21 +48,35 @@ public class KoroSpawnHandler {
     private static final int MATORAN_MIN = 2;
     private static final int MATORAN_MAX = 5;
 
+    /**
+     * Controls how the spawn position Y is determined for a koro.
+     * <ul>
+     *   <li>{@code SURFACE}     – heightmap surface (open-air villages)</li>
+     *   <li>{@code TOWER_FLOOR} – one block above the structure bounding-box floor
+     *                             (tower structures like Ko-Koro)</li>
+     *   <li>{@code UNDERGROUND} – scan downward from the bounding-box centre Y to
+     *                             find the first walkable floor inside the underground
+     *                             chamber (Onu-Koro)</li>
+     *   <li>{@code TREEHOUSE}   – scan upward from the terrain surface to find the
+     *                             first elevated platform above the ground
+     *                             (Le-Koro treehouse)</li>
+     * </ul>
+     */
+    private enum SpawnMode { SURFACE, TOWER_FLOOR, UNDERGROUND, TREEHOUSE }
+
     private record KoroInfo(
             EntityToa.Variant toaVariant,
             EntityType<EntityToa> toaType,
             EntityTuraga.TuragaType turagaType,
             EntityType<EntityTuraga> turagaEntityType,
             EntityMatoran.Koro koro,
-            /** When true, spawn at the structure bounding-box floor instead of the heightmap surface.
-             *  Used for tower structures (e.g. Ko-Koro) where the heightmap lands on the roof. */
-            boolean spawnAtInteriorFloor) {
+            SpawnMode spawnMode) {
 
         /** Convenience constructor for open-air koros (heightmap surface). */
         KoroInfo(EntityToa.Variant toaVariant, EntityType<EntityToa> toaType,
                  EntityTuraga.TuragaType turagaType, EntityType<EntityTuraga> turagaEntityType,
                  EntityMatoran.Koro koro) {
-            this(toaVariant, toaType, turagaType, turagaEntityType, koro, false);
+            this(toaVariant, toaType, turagaType, turagaEntityType, koro, SpawnMode.SURFACE);
         }
     }
 
@@ -81,11 +96,11 @@ public class KoroSpawnHandler {
             KORO_INFO.put("lekoro",  new KoroInfo(
                     EntityToa.Variant.LEWA,   NuiCraftEntityTypes.TOA_LEWA.get(),
                     EntityTuraga.TuragaType.MATAU,  NuiCraftEntityTypes.TURAGA_MATAU.get(),
-                    EntityMatoran.Koro.LE));
+                    EntityMatoran.Koro.LE, SpawnMode.TREEHOUSE));
             KORO_INFO.put("onukoro", new KoroInfo(
                     EntityToa.Variant.ONUA,   NuiCraftEntityTypes.TOA_ONUA.get(),
                     EntityTuraga.TuragaType.WHENUA, NuiCraftEntityTypes.TURAGA_WHENUA.get(),
-                    EntityMatoran.Koro.ONU));
+                    EntityMatoran.Koro.ONU, SpawnMode.UNDERGROUND));
             KORO_INFO.put("pokoro",  new KoroInfo(
                     EntityToa.Variant.POHATU, NuiCraftEntityTypes.TOA_POHATU.get(),
                     EntityTuraga.TuragaType.ONEWA,  NuiCraftEntityTypes.TURAGA_ONEWA.get(),
@@ -93,7 +108,7 @@ public class KoroSpawnHandler {
             KORO_INFO.put("kokoro",  new KoroInfo(
                     EntityToa.Variant.KOPAKA, NuiCraftEntityTypes.TOA_KOPAKA.get(),
                     EntityTuraga.TuragaType.NUJU,   NuiCraftEntityTypes.TURAGA_NUJU.get(),
-                    EntityMatoran.Koro.KO, true));
+                    EntityMatoran.Koro.KO, SpawnMode.TOWER_FLOOR));
         }
         return KORO_INFO;
     }
@@ -186,17 +201,75 @@ public class KoroSpawnHandler {
     }
 
     /**
-     * Returns a safe spawn position. For tower structures that set
-     * {@code spawnAtInteriorFloor}, this is one block above the structure's
-     * bounding-box floor so entities land inside rather than on the roof.
-     * All other koros use the normal surface heightmap.
+     * Returns a safe spawn position based on the koro's {@link SpawnMode}:
+     * <ul>
+     *   <li>{@code SURFACE}     – heightmap surface (open-air koros)</li>
+     *   <li>{@code TOWER_FLOOR} – one block above the structure bounding-box floor</li>
+     *   <li>{@code UNDERGROUND} – scans downward from the bounding-box centre Y to
+     *       find the first position where the block below is solid and there are
+     *       two air blocks above — i.e. the floor of the underground chamber.</li>
+     * </ul>
      */
     private static BlockPos spawnPos(ServerLevel level, StructureStart start, KoroInfo info, BlockPos near) {
-        if (info.spawnAtInteriorFloor()) {
-            int floorY = start.getBoundingBox().minY() + 1;
-            return new BlockPos(near.getX(), floorY, near.getZ());
+        return switch (info.spawnMode()) {
+            case TOWER_FLOOR -> new BlockPos(near.getX(), start.getBoundingBox().minY() + 1, near.getZ());
+            case UNDERGROUND -> findUndergroundFloor(level, start, near);
+            case TREEHOUSE   -> findTreehouseFloor(level, start, near);
+            default -> level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, near);
+        };
+    }
+
+    /**
+     * Scans downward from the structure's bounding-box centre Y to find the
+     * first walkable position (solid floor, two air blocks above) inside the
+     * underground chamber. Falls back to the centre Y if nothing is found.
+     */
+    private static BlockPos findUndergroundFloor(ServerLevel level, StructureStart start, BlockPos near) {
+        int startY  = start.getBoundingBox().getCenter().getY();
+        int minY    = start.getBoundingBox().minY() + 1;
+        int x = near.getX(), z = near.getZ();
+
+        for (int y = startY; y > minY; y--) {
+            BlockPos candidate = new BlockPos(x, y, z);
+            if (!level.isLoaded(candidate)) break;
+
+            BlockState floor = level.getBlockState(candidate.below());
+            BlockState feet  = level.getBlockState(candidate);
+            BlockState head  = level.getBlockState(candidate.above());
+
+            if (floor.isSolid() && !feet.isSolid() && !head.isSolid()) {
+                return candidate;
+            }
         }
-        return level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, near);
+        // Fallback: centre Y (entity will drop to the floor on spawn)
+        return new BlockPos(x, startY, z);
+    }
+
+    /**
+     * Scans upward from the terrain surface to find the first elevated platform
+     * inside the structure bounding box — i.e. the treehouse floor.
+     * This avoids entities spawning in water or on the ground far below the platforms.
+     */
+    private static BlockPos findTreehouseFloor(ServerLevel level, StructureStart start, BlockPos near) {
+        int surfaceY = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, near).getY();
+        int maxY = start.getBoundingBox().maxY() - 1;
+        int x = near.getX(), z = near.getZ();
+
+        for (int y = surfaceY + 1; y <= maxY; y++) {
+            BlockPos candidate = new BlockPos(x, y, z);
+            if (!level.isLoaded(candidate)) break;
+
+            BlockState floor = level.getBlockState(candidate.below());
+            BlockState feet  = level.getBlockState(candidate);
+            BlockState head  = level.getBlockState(candidate.above());
+
+            if (floor.isSolid() && !feet.isSolid() && !head.isSolid()) {
+                return candidate;
+            }
+        }
+        // Fallback: bounding-box centre Y so the entity at least lands somewhere
+        // inside the structure rather than in the water below
+        return new BlockPos(x, start.getBoundingBox().getCenter().getY(), z);
     }
 
     private static void place(ServerLevel level, PathfinderMob mob, BlockPos pos) {
