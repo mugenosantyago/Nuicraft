@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "nuicraft:block/ice_wood"
+    },
+    "axis=z": {
+      "model": "nuicraft:block/ice_wood",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "nuicraft:block/ice_wood",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

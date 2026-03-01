@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "minecraft:block/blue_ice",
+    "particle": "minecraft:block/blue_ice"
+  }
+}

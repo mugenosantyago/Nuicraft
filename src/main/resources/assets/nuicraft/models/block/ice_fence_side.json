@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "minecraft:block/blue_ice",
+    "particle": "minecraft:block/blue_ice"
+  }
+}

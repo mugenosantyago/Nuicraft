@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "nuicraft:block/cured_wood_planks",
+    "particle": "nuicraft:block/cured_wood_planks"
+  }
+}

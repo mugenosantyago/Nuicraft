@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "nuicraft:block/cured_wood_planks",
+    "particle": "nuicraft:block/cured_wood_planks"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "nuicraft:block/ice_pressure_plate"
+    },
+    "powered=true": {
+      "model": "nuicraft:block/ice_pressure_plate_down"
+    }
+  }
+}
