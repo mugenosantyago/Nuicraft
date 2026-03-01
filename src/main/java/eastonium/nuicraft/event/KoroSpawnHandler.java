@@ -160,15 +160,23 @@ public class KoroSpawnHandler {
         }
 
         int target = MATORAN_MIN + level.getRandom().nextInt(MATORAN_MAX - MATORAN_MIN + 1);
-        EntityMatoran.Mask[] masks = EntityMatoran.IMPLEMENTED_MASKS;
         EntityMatoran.Profession[] professions = EntityMatoran.Profession.values();
+
+        // Shuffle the mask pool so each Matoran in this batch gets a distinct mask.
+        // We cycle through the shuffled list rather than picking independently,
+        // which prevents two Matoran from wearing the same mask in the same koro.
+        java.util.List<EntityMatoran.Mask> maskPool =
+                new java.util.ArrayList<>(java.util.Arrays.asList(EntityMatoran.IMPLEMENTED_MASKS));
+        java.util.Collections.shuffle(maskPool, new java.util.Random(level.getRandom().nextLong()));
+
         for (long i = matoranCount; i < target; i++) {
             int ox = level.getRandom().nextIntBetweenInclusive(-8, 8);
             int oz = level.getRandom().nextIntBetweenInclusive(-8, 8);
+            EntityMatoran.Mask mask = maskPool.get((int)(i % maskPool.size()));
             EntityMatoran mat = new EntityMatoran(
                     NuiCraftEntityTypes.MATORAN.get(), level,
                     info.koro,
-                    masks[level.getRandom().nextInt(masks.length)],
+                    mask,
                     professions[level.getRandom().nextInt(professions.length)]);
             BlockPos pos = spawnPos(level, start, info, center.offset(ox, 0, oz));
             place(level, mat, pos);
