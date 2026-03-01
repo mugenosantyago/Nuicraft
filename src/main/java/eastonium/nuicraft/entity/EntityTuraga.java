@@ -64,6 +64,8 @@ public class EntityTuraga extends PathfinderMob {
     /** Counts idle ticks before firing the next ambient animation. */
     private int ambientAnimTimer = 0;
     private boolean lastMoving = false;
+    /** Tracks whether the initial pose command has been sent to the client. */
+    private boolean poseSent = false;
 
     public EntityTuraga(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
@@ -159,12 +161,17 @@ public class EntityTuraga extends PathfinderMob {
     public void readAdditionalSaveData(ValueInput input) {
         super.readAdditionalSaveData(input);
         this.entityData.set(DATA_TYPE, input.getIntOr("TuragaType", TuragaType.NUJU.ordinal()));
+        poseSent = false; // re-send pose after loading so the controller re-initialises
     }
 
     @Override
     public void tick() {
         super.tick();
         if (!this.level().isClientSide) {
+            if (!poseSent) {
+                poseSent = true;
+                eastonium.nuicraft.client.animator.TuragaAnimator.sendPoseCommand(this);
+            }
             boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
             if (moving != lastMoving) {
                 lastMoving = moving;

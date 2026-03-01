@@ -23,6 +23,9 @@ public class TuragaAnimator extends AzEntityAnimator<EntityTuraga> {
     @Override
     public void registerControllers(AzAnimationControllerContainer<EntityTuraga> container) {
         container.add(AzAnimationController.builder(this, "base_controller").build());
+        // pose_controller sits between base and ambient so it overrides idle/walk arm positions
+        // but the wave (ambient_controller, registered last) can still override it.
+        container.add(AzAnimationController.builder(this, "pose_controller").build());
         container.add(AzAnimationController.builder(this, "ambient_controller").build());
     }
 
@@ -42,6 +45,18 @@ public class TuragaAnimator extends AzEntityAnimator<EntityTuraga> {
         boolean moving = entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
         String anim = moving ? "walk" : "idle";
         AzCommand.create("base_controller", anim, AzPlayBehaviors.LOOP)
+                .sendForEntity(entity);
+    }
+
+    /**
+     * Called once from EntityTuraga.tick() to start the holding-staff pose loop.
+     * The pose_controller runs between base and ambient so it overrides idle/walk
+     * arm positions while still being overridden by the wave animation.
+     * Only models that have a "pose" animation (matatu_turaga) are affected;
+     * models without one (rau_turaga) will silently ignore the missing animation.
+     */
+    public static void sendPoseCommand(EntityTuraga entity) {
+        AzCommand.create("pose_controller", "pose", AzPlayBehaviors.LOOP)
                 .sendForEntity(entity);
     }
 
