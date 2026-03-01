@@ -70,15 +70,11 @@ public class KoroSpawnHandler {
             EntityTuraga.TuragaType turagaType,
             EntityType<EntityTuraga> turagaEntityType,
             EntityMatoran.Koro koro,
-            SpawnMode spawnMode) {
+            /** Koro-specific Matoran entity type — its factory hard-codes the correct koro so
+             *  the entity is created with the right tribe even before readAdditionalSaveData runs. */
+            EntityType<EntityMatoran> matoranEntityType,
+            SpawnMode spawnMode) {}
 
-        /** Convenience constructor for open-air koros (heightmap surface). */
-        KoroInfo(EntityToa.Variant toaVariant, EntityType<EntityToa> toaType,
-                 EntityTuraga.TuragaType turagaType, EntityType<EntityTuraga> turagaEntityType,
-                 EntityMatoran.Koro koro) {
-            this(toaVariant, toaType, turagaType, turagaEntityType, koro, SpawnMode.SURFACE);
-        }
-    }
 
     private static Map<String, KoroInfo> KORO_INFO = null;
 
@@ -88,27 +84,27 @@ public class KoroSpawnHandler {
             KORO_INFO.put("gakoro",  new KoroInfo(
                     EntityToa.Variant.GALI,   NuiCraftEntityTypes.TOA_GALI.get(),
                     EntityTuraga.TuragaType.NOKAMA, NuiCraftEntityTypes.TURAGA_NOKAMA.get(),
-                    EntityMatoran.Koro.GA));
+                    EntityMatoran.Koro.GA,  NuiCraftEntityTypes.MATORAN_GA.get(),  SpawnMode.SURFACE));
             KORO_INFO.put("takoro",  new KoroInfo(
                     EntityToa.Variant.TAHU,   NuiCraftEntityTypes.TOA_TAHU.get(),
                     EntityTuraga.TuragaType.VAKAMA, NuiCraftEntityTypes.TURAGA_VAKAMA.get(),
-                    EntityMatoran.Koro.TA));
+                    EntityMatoran.Koro.TA,  NuiCraftEntityTypes.MATORAN_TA.get(),  SpawnMode.SURFACE));
             KORO_INFO.put("lekoro",  new KoroInfo(
                     EntityToa.Variant.LEWA,   NuiCraftEntityTypes.TOA_LEWA.get(),
                     EntityTuraga.TuragaType.MATAU,  NuiCraftEntityTypes.TURAGA_MATAU.get(),
-                    EntityMatoran.Koro.LE, SpawnMode.TREEHOUSE));
+                    EntityMatoran.Koro.LE,  NuiCraftEntityTypes.MATORAN_LE.get(),  SpawnMode.TREEHOUSE));
             KORO_INFO.put("onukoro", new KoroInfo(
                     EntityToa.Variant.ONUA,   NuiCraftEntityTypes.TOA_ONUA.get(),
                     EntityTuraga.TuragaType.WHENUA, NuiCraftEntityTypes.TURAGA_WHENUA.get(),
-                    EntityMatoran.Koro.ONU, SpawnMode.UNDERGROUND));
+                    EntityMatoran.Koro.ONU, NuiCraftEntityTypes.MATORAN_ONU.get(), SpawnMode.UNDERGROUND));
             KORO_INFO.put("pokoro",  new KoroInfo(
                     EntityToa.Variant.POHATU, NuiCraftEntityTypes.TOA_POHATU.get(),
                     EntityTuraga.TuragaType.ONEWA,  NuiCraftEntityTypes.TURAGA_ONEWA.get(),
-                    EntityMatoran.Koro.PO));
+                    EntityMatoran.Koro.PO,  NuiCraftEntityTypes.MATORAN_PO.get(),  SpawnMode.SURFACE));
             KORO_INFO.put("kokoro",  new KoroInfo(
                     EntityToa.Variant.KOPAKA, NuiCraftEntityTypes.TOA_KOPAKA.get(),
                     EntityTuraga.TuragaType.NUJU,   NuiCraftEntityTypes.TURAGA_NUJU.get(),
-                    EntityMatoran.Koro.KO, SpawnMode.TOWER_FLOOR));
+                    EntityMatoran.Koro.KO,  NuiCraftEntityTypes.MATORAN_KO.get(),  SpawnMode.TOWER_FLOOR));
         }
         return KORO_INFO;
     }
@@ -189,8 +185,8 @@ public class KoroSpawnHandler {
             int oz = level.getRandom().nextIntBetweenInclusive(-8, 8);
             EntityMatoran.Mask mask = maskPool.get((int)(i % maskPool.size()));
             EntityMatoran mat = new EntityMatoran(
-                    NuiCraftEntityTypes.MATORAN.get(), level,
-                    info.koro,
+                    info.matoranEntityType(), level,
+                    info.koro(),
                     mask,
                     professions[level.getRandom().nextInt(professions.length)]);
             BlockPos pos = spawnPos(level, start, info, center.offset(ox, 0, oz));
