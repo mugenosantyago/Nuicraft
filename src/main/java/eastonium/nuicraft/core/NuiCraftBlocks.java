@@ -9,11 +9,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.LadderBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -120,6 +122,68 @@ public class NuiCraftBlocks {
             withBlockId("path", BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> PATH2 = BLOCKS.registerSimpleBlock("path2",
             withBlockId("path2", BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.WOOD)));
+
+    // ---- Black stone set (Ta-Koro walls, Onu-Koro, Ko-Koro) ----
+    public static final DeferredBlock<Block> BLACK_STONE_BRICK = BLOCKS.registerSimpleBlock("black_stone_brick",
+            withBlockId("black_stone_brick", BlockBehaviour.Properties.of().strength(2.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<SlabBlock> BLACK_STONE_SLAB = BLOCKS.registerBlock("black_stone_slab",
+            SlabBlock::new, withBlockId("black_stone_slab", BlockBehaviour.Properties.of().strength(2.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<StairBlock> BLACK_STONE_STAIRS = BLOCKS.registerBlock("black_stone_stairs",
+            props -> new StairBlock(BLACK_STONE_BRICK.get().defaultBlockState(), props),
+            withBlockId("black_stone_stairs", BlockBehaviour.Properties.of().strength(2.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<FenceBlock> BLACK_STONE_FENCE = BLOCKS.registerBlock("black_stone_fence",
+            FenceBlock::new, withBlockId("black_stone_fence", BlockBehaviour.Properties.of().strength(2.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> BLACK_STONE_LAMP = BLOCKS.registerSimpleBlock("black_stone_lamp",
+            withBlockId("black_stone_lamp", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.STONE).lightLevel(state -> 12)));
+    public static final DeferredBlock<PressurePlateBlock> BLACK_STONE_PRESSURE_PLATE = BLOCKS.registerBlock("black_stone_pressure_plate",
+            props -> new PressurePlateBlock(BlockSetType.STONE, props),
+            withBlockId("black_stone_pressure_plate", BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE).noCollission()));
+
+    // ---- Cured wood missing variants (Le-Koro, Po-Koro) ----
+    public static final DeferredBlock<Block> CURED_WOOD_PLANKS = BLOCKS.registerSimpleBlock("cured_wood_planks",
+            withBlockId("cured_wood_planks", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<RotatedPillarBlock> CURED_WOOD_WOOD = BLOCKS.registerBlock("cured_wood_wood",
+            RotatedPillarBlock::new, withBlockId("cured_wood_wood", BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<PressurePlateBlock> CURED_WOOD_PRESSURE_PLATE = BLOCKS.registerBlock("cured_wood_pressure_plate",
+            props -> new PressurePlateBlock(BlockSetType.OAK, props),
+            withBlockId("cured_wood_pressure_plate", BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noCollission()));
+
+    // ---- Ice wood set (Ko-Koro bridge & interior) ----
+    public static final DeferredBlock<Block> ICE_PLANKS = BLOCKS.registerSimpleBlock("ice_planks",
+            withBlockId("ice_planks", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.GLASS).friction(0.98F)));
+    public static final DeferredBlock<RotatedPillarBlock> ICE_WOOD = BLOCKS.registerBlock("ice_wood",
+            RotatedPillarBlock::new, withBlockId("ice_wood", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.GLASS).friction(0.98F)));
+    public static final DeferredBlock<SlabBlock> ICE_SLAB = BLOCKS.registerBlock("ice_slab",
+            SlabBlock::new, withBlockId("ice_slab", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.GLASS).friction(0.98F)));
+    public static final DeferredBlock<StairBlock> ICE_STAIRS = BLOCKS.registerBlock("ice_stairs",
+            props -> new StairBlock(ICE_PLANKS.get().defaultBlockState(), props),
+            withBlockId("ice_stairs", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.GLASS).friction(0.98F)));
+    public static final DeferredBlock<FenceBlock> ICE_FENCE = BLOCKS.registerBlock("ice_fence",
+            FenceBlock::new, withBlockId("ice_fence", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.GLASS).friction(0.98F)));
+    public static final DeferredBlock<PressurePlateBlock> ICE_PRESSURE_PLATE = BLOCKS.registerBlock("ice_pressure_plate",
+            props -> new PressurePlateBlock(BlockSetType.STONE, props),
+            withBlockId("ice_pressure_plate", BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GLASS).noCollission()));
+
+    // ---- Light gray stone variants (Onu-Koro, Ko-Koro, Po-Koro) ----
+    public static final DeferredBlock<Block> LIGHT_GRAY_STONE_BRICK = BLOCKS.registerSimpleBlock("light_gray_stone_brick",
+            withBlockId("light_gray_stone_brick", BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<SlabBlock> LIGHT_GRAY_TOA_STONE_SLAB = BLOCKS.registerBlock("light_gray_toa_stone_slab",
+            SlabBlock::new, withBlockId("light_gray_toa_stone_slab", BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<StairBlock> LIGHT_GRAY_TOA_STONE_STAIRS = BLOCKS.registerBlock("light_gray_toa_stone_stairs",
+            props -> new StairBlock(LIGHT_GRAY_STONE.get().defaultBlockState(), props),
+            withBlockId("light_gray_toa_stone_stairs", BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    public static final DeferredBlock<FenceBlock> LIGHTGRAYSTONE_FENCE = BLOCKS.registerBlock("lightgraystone_fence",
+            FenceBlock::new, withBlockId("lightgraystone_fence", BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
+    // ---- Ko-Koro decorative text blocks ----
+    public static final DeferredBlock<Block> SNOW_WALL_TEXT_BLOCK = BLOCKS.registerSimpleBlock("snow_wall_text_block",
+            withBlockId("snow_wall_text_block", BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.SNOW)));
+    public static final DeferredBlock<Block> SNOW_WALL_TEXT_BLOCK_2 = BLOCKS.registerSimpleBlock("snow_wall_text_block_2",
+            withBlockId("snow_wall_text_block_2", BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.SNOW)));
+
+    // ---- Onu-Koro ore ----
+    public static final DeferredBlock<BlockOre> LIGHTSTONES_ORE = BLOCKS.registerBlock("lightstones_ore",
+            BlockOre::new, withBlockId("lightstones_ore", BlockOre.createProperties().lightLevel(state -> 8)));
 
     // Koro stones (for structures / decoration) - each region has unique properties
     // Ta Koro - Dark lava-themed stone, harder and hotter
