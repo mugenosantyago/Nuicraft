@@ -52,7 +52,18 @@ public class KoroSpawnHandler {
             EntityType<EntityToa> toaType,
             EntityTuraga.TuragaType turagaType,
             EntityType<EntityTuraga> turagaEntityType,
-            EntityMatoran.Koro koro) {}
+            EntityMatoran.Koro koro,
+            /** When true, spawn at the structure bounding-box floor instead of the heightmap surface.
+             *  Used for tower structures (e.g. Ko-Koro) where the heightmap lands on the roof. */
+            boolean spawnAtInteriorFloor) {
+
+        /** Convenience constructor for open-air koros (heightmap surface). */
+        KoroInfo(EntityToa.Variant toaVariant, EntityType<EntityToa> toaType,
+                 EntityTuraga.TuragaType turagaType, EntityType<EntityTuraga> turagaEntityType,
+                 EntityMatoran.Koro koro) {
+            this(toaVariant, toaType, turagaType, turagaEntityType, koro, false);
+        }
+    }
 
     private static Map<String, KoroInfo> KORO_INFO = null;
 
@@ -82,7 +93,7 @@ public class KoroSpawnHandler {
             KORO_INFO.put("kokoro",  new KoroInfo(
                     EntityToa.Variant.KOPAKA, NuiCraftEntityTypes.TOA_KOPAKA.get(),
                     EntityTuraga.TuragaType.NUJU,   NuiCraftEntityTypes.TURAGA_NUJU.get(),
-                    EntityMatoran.Koro.KO));
+                    EntityMatoran.Koro.KO, true));
         }
         return KORO_INFO;
     }
@@ -141,11 +152,11 @@ public class KoroSpawnHandler {
 
         if (toaCount == 0) {
             EntityToa toa = new EntityToa(info.toaType, level, info.toaVariant);
-            place(level, toa, safePos(level, center));
+            place(level, toa, spawnPos(level, start, info, center));
         }
         if (turagaCount == 0) {
             EntityTuraga turaga = new EntityTuraga(info.turagaEntityType, level, info.turagaType);
-            place(level, turaga, safePos(level, center.offset(3, 0, 0)));
+            place(level, turaga, spawnPos(level, start, info, center.offset(3, 0, 0)));
         }
 
         int target = MATORAN_MIN + level.getRandom().nextInt(MATORAN_MAX - MATORAN_MIN + 1);
@@ -159,14 +170,24 @@ public class KoroSpawnHandler {
                     info.koro,
                     masks[level.getRandom().nextInt(masks.length)],
                     professions[level.getRandom().nextInt(professions.length)]);
-            BlockPos spawnPos = safePos(level, center.offset(ox, 0, oz));
-            place(level, mat, spawnPos);
+            BlockPos pos = spawnPos(level, start, info, center.offset(ox, 0, oz));
+            place(level, mat, pos);
             // Pin them to the structure so they wander back inside instead of scattering.
-            mat.setHomePos(safePos(level, center));
+            mat.setHomePos(spawnPos(level, start, info, center));
         }
     }
 
-    private static BlockPos safePos(ServerLevel level, BlockPos near) {
+    /**
+     * Returns a safe spawn position. For tower structures that set
+     * {@code spawnAtInteriorFloor}, this is one block above the structure's
+     * bounding-box floor so entities land inside rather than on the roof.
+     * All other koros use the normal surface heightmap.
+     */
+    private static BlockPos spawnPos(ServerLevel level, StructureStart start, KoroInfo info, BlockPos near) {
+        if (info.spawnAtInteriorFloor()) {
+            int floorY = start.getBoundingBox().minY() + 1;
+            return new BlockPos(near.getX(), floorY, near.getZ());
+        }
         return level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, near);
     }
 
