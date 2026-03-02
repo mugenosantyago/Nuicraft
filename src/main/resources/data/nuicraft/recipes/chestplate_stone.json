@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PEP",
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "nuicraft:ingot_protosteel"
+    },
+    "E": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "nuicraft:chestplate_stone"
+  }
+}

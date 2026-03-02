@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PE",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "nuicraft:ingot_protosteel"
+    },
+    "E": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "result": {
+    "item": "nuicraft:boots_fire"
+  }
+}

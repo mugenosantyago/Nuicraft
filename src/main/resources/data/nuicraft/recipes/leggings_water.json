@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PEP",
+    "PEP"
+  ],
+  "key": {
+    "P": {
+      "item": "nuicraft:ingot_protosteel"
+    },
+    "E": {
+      "item": "minecraft:prismarine_shard"
+    }
+  },
+  "result": {
+    "item": "nuicraft:leggings_water"
+  }
+}

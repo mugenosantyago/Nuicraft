@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CPC",
+    " P ",
+    " S "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:coal"
+    },
+    "P": {
+      "item": "nuicraft:ingot_protosteel"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "nuicraft:onua_drill"
+  }
+}
