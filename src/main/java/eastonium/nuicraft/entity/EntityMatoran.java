@@ -450,7 +450,7 @@ public class EntityMatoran extends Animal implements Merchant {
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.ATTACK_DAMAGE, 2.0D);   // 1 heart — small but feisty
+                .add(Attributes.ATTACK_DAMAGE, 5.0D);   // Piglin-level — 2.5 hearts
     }
 
     /** Prevent natural despawn — matoran are persistent NPCs. */
