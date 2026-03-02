@@ -35,9 +35,9 @@ public class NuiCraftBlocks {
             props -> new BlockLiquidProtodermis(NuiCraftRegistration.SOURCE_PROTODERMIS, props),
             fluidBlockProps("fluid_protodermis", SoundType.EMPTY));
 
-    public static final DeferredBlock<ProtodermisFluidBlock> FLUID_PROTODERMIS_PURE =
+    public static final DeferredBlock<BlockPureProtodermis> FLUID_PROTODERMIS_PURE =
         BLOCKS.registerBlock("fluid_protodermis_pure",
-            props -> new ProtodermisFluidBlock(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE, props),
+            props -> new BlockPureProtodermis(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE, props),
             fluidBlockProps("fluid_protodermis_pure", SoundType.EMPTY));
 
     public static final DeferredBlock<BlockMoltenProtodermis> FLUID_PROTODERMIS_MOLTEN =
