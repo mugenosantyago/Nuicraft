@@ -32,8 +32,14 @@ public class ProtodermisFluidBlock extends LiquidBlock {
     @Override
     public FluidState getFluidState(BlockState state) {
         FlowingFluid fluid = fluidSupplier.get();
-        int level = state.getValue(LEVEL);
-        return level == 0 ? fluid.getSource(false) : fluid.getFlowing(15 - level, level == 8);
+        // Mirror vanilla LiquidBlock.stateCache logic:
+        //   level 0       → source
+        //   level 1–7     → getFlowing(8 - level, false)  [amounts 7..1]
+        //   level 8+      → getFlowing(8, true)           [falling]
+        int level = Math.min(state.getValue(LEVEL), 8);
+        if (level == 0) return fluid.getSource(false);
+        if (level == 8) return fluid.getFlowing(8, true);
+        return fluid.getFlowing(8 - level, false);
     }
 
     @Override
