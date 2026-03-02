@@ -2,6 +2,8 @@ modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 showAsResourcePack = false
+[[mixins]]
+config = "mixins.nuicraft.json"
 
 [[mods]]
 modId = "${mod_id}"
