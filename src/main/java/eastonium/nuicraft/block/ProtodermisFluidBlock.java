@@ -44,12 +44,7 @@ public class ProtodermisFluidBlock extends LiquidBlock {
         }
     }
 
-    @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos,
-                                Block block, BlockPos fromPos, boolean isMoving) {
-        if (state.getFluidState().isSource()) {
-            FlowingFluid fluid = fluidSupplier.get();
-            level.scheduleTick(pos, fluid, fluid.getTickDelay(level));
-        }
-    }
+    // neighborChanged is intentionally not overridden: its signature changed in MC 1.21.4
+    // (added BlockChangedPayload). The initial flow tick is scheduled via onPlace; subsequent
+    // propagation is driven by the FlowingFluid tick system itself.
 }

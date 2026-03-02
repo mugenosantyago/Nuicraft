@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -34,12 +33,12 @@ public class NuiCraftBlocks {
     public static final DeferredBlock<BlockLiquidProtodermis> FLUID_PROTODERMIS =
         BLOCKS.registerBlock("fluid_protodermis",
             props -> new BlockLiquidProtodermis(NuiCraftRegistration.SOURCE_PROTODERMIS, props),
-            fluidBlockProps("fluid_protodermis", SoundType.WATER));
+            fluidBlockProps("fluid_protodermis", SoundType.EMPTY));
 
     public static final DeferredBlock<ProtodermisFluidBlock> FLUID_PROTODERMIS_PURE =
         BLOCKS.registerBlock("fluid_protodermis_pure",
             props -> new ProtodermisFluidBlock(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE, props),
-            fluidBlockProps("fluid_protodermis_pure", SoundType.WATER));
+            fluidBlockProps("fluid_protodermis_pure", SoundType.EMPTY));
 
     public static final DeferredBlock<BlockMoltenProtodermis> FLUID_PROTODERMIS_MOLTEN =
         BLOCKS.registerBlock("fluid_protodermis_molten",
@@ -54,7 +53,7 @@ public class NuiCraftBlocks {
     private static BlockBehaviour.Properties fluidBlockProps(String name, SoundType sound) {
         return withBlockId(name, BlockBehaviour.Properties.of()
             .noCollission().replaceable().strength(100.0F).noLootTable()
-            .pushReaction(PushReaction.DESTROY).sound(sound));
+            .sound(sound));
     }
 
     // Machines

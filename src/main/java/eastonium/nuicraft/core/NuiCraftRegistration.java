@@ -17,15 +17,12 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-
-import java.util.function.Consumer;
 
 public class NuiCraftRegistration {
     public static final DeferredRegister<Fluid>              FLUIDS             = DeferredRegister.create(Registries.FLUID, NuiCraft.MODID);
@@ -37,18 +34,8 @@ public class NuiCraftRegistration {
 
     // ---- Regular liquid protodermis (silver) ----
     public static final DeferredHolder<FluidType, FluidType> TYPE_PROTODERMIS =
-        FLUID_TYPES.register("protodermis", () -> new FluidType(
-            FluidType.Properties.create().density(1000).viscosity(1000)) {
-            @Override public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                consumer.accept(new IClientFluidTypeExtensions() {
-                    private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_still");
-                    private static final ResourceLocation FLOW  = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_flow");
-                    @Override public ResourceLocation getStillTexture() { return STILL; }
-                    @Override public ResourceLocation getFlowingTexture() { return FLOW; }
-                    @Override public int getTintColor() { return 0xFFC4D8E0; } // silver-blue
-                });
-            }
-        });
+        FLUID_TYPES.register("protodermis",
+            () -> new FluidType(FluidType.Properties.create().density(1000).viscosity(1000)));
 
     public static final DeferredHolder<Fluid, FlowingFluid> SOURCE_PROTODERMIS =
         FLUIDS.register("protodermis", () -> new BaseFlowingFluid.Source(protoProps()));
@@ -63,18 +50,8 @@ public class NuiCraftRegistration {
 
     // ---- Pure liquid protodermis (gold shimmer) ----
     public static final DeferredHolder<FluidType, FluidType> TYPE_PROTODERMIS_PURE =
-        FLUID_TYPES.register("protodermis_pure", () -> new FluidType(
-            FluidType.Properties.create().density(1100).viscosity(1100)) {
-            @Override public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                consumer.accept(new IClientFluidTypeExtensions() {
-                    private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_still");
-                    private static final ResourceLocation FLOW  = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_flow");
-                    @Override public ResourceLocation getStillTexture() { return STILL; }
-                    @Override public ResourceLocation getFlowingTexture() { return FLOW; }
-                    @Override public int getTintColor() { return 0xFFE8D880; } // golden
-                });
-            }
-        });
+        FLUID_TYPES.register("protodermis_pure",
+            () -> new FluidType(FluidType.Properties.create().density(1100).viscosity(1100)));
 
     public static final DeferredHolder<Fluid, FlowingFluid> SOURCE_PROTODERMIS_PURE =
         FLUIDS.register("protodermis_pure", () -> new BaseFlowingFluid.Source(protoPureProps()));
@@ -89,18 +66,8 @@ public class NuiCraftRegistration {
 
     // ---- Molten protodermis (orange glow) ----
     public static final DeferredHolder<FluidType, FluidType> TYPE_PROTODERMIS_MOLTEN =
-        FLUID_TYPES.register("protodermis_molten", () -> new FluidType(
-            FluidType.Properties.create().density(3000).viscosity(6000).temperature(1200)) {
-            @Override public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                consumer.accept(new IClientFluidTypeExtensions() {
-                    private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath("minecraft", "block/lava_still");
-                    private static final ResourceLocation FLOW  = ResourceLocation.fromNamespaceAndPath("minecraft", "block/lava_flow");
-                    @Override public ResourceLocation getStillTexture() { return STILL; }
-                    @Override public ResourceLocation getFlowingTexture() { return FLOW; }
-                    @Override public int getTintColor() { return 0xFFE05020; } // deep orange-red
-                });
-            }
-        });
+        FLUID_TYPES.register("protodermis_molten",
+            () -> new FluidType(FluidType.Properties.create().density(3000).viscosity(6000).temperature(1200)));
 
     public static final DeferredHolder<Fluid, FlowingFluid> SOURCE_PROTODERMIS_MOLTEN =
         FLUIDS.register("protodermis_molten", () -> new BaseFlowingFluid.Source(protoMoltenProps()));
@@ -116,18 +83,8 @@ public class NuiCraftRegistration {
 
     // ---- Pure molten protodermis (bright gold) ----
     public static final DeferredHolder<FluidType, FluidType> TYPE_PROTODERMIS_PURE_MOLTEN =
-        FLUID_TYPES.register("protodermis_pure_molten", () -> new FluidType(
-            FluidType.Properties.create().density(3500).viscosity(7000).temperature(1400)) {
-            @Override public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                consumer.accept(new IClientFluidTypeExtensions() {
-                    private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath("minecraft", "block/lava_still");
-                    private static final ResourceLocation FLOW  = ResourceLocation.fromNamespaceAndPath("minecraft", "block/lava_flow");
-                    @Override public ResourceLocation getStillTexture() { return STILL; }
-                    @Override public ResourceLocation getFlowingTexture() { return FLOW; }
-                    @Override public int getTintColor() { return 0xFFFFCC00; } // bright gold
-                });
-            }
-        });
+        FLUID_TYPES.register("protodermis_pure_molten",
+            () -> new FluidType(FluidType.Properties.create().density(3500).viscosity(7000).temperature(1400)));
 
     public static final DeferredHolder<Fluid, FlowingFluid> SOURCE_PROTODERMIS_PURE_MOLTEN =
         FLUIDS.register("protodermis_pure_molten", () -> new BaseFlowingFluid.Source(protoPureMoltenProps()));
