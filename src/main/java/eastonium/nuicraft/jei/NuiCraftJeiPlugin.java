@@ -110,5 +110,79 @@ public class NuiCraftJeiPlugin implements IModPlugin {
         ).map(d -> new ItemStack(d.get())).toList();
         registration.addItemStackInfo(koroDiscs, Component.translatable("jei.nuicraft.disc.koro.info"));
 
+        // ---- Toa Mata weapons ----
+        List<ItemStack> toaWeapons = Stream.of(
+                NuiCraftItems.FIRE_STAFF,
+                NuiCraftItems.FIRE_SWORD,
+                NuiCraftItems.KAUKAU_STAFF,
+                NuiCraftItems.WATER_HOOKS,
+                NuiCraftItems.AIR_AXE,
+                NuiCraftItems.ONUA_CLAWS,
+                NuiCraftItems.ONUA_DRILL,
+                NuiCraftItems.POHATU_HANDS,
+                NuiCraftItems.ICE_SWORD,
+                NuiCraftItems.ICE_PICKAXE,
+                NuiCraftItems.ICE_SHIELD,
+                NuiCraftItems.TOA_TRIDENT
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(toaWeapons, Component.translatable("jei.nuicraft.toa_weapons.info"));
+
+        // ---- Protodermis tools ----
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.PROTODERMIS_SWORD.get()),
+                        new ItemStack(NuiCraftItems.PROTODERMIS_PICK.get()),
+                        new ItemStack(NuiCraftItems.PROTODERMIS_AXE.get())
+                ),
+                Component.translatable("jei.nuicraft.protodermis_tools.info"));
+
+        // ---- Toa Mata armour sets ----
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.BOOTS_FIRE.get()),
+                        new ItemStack(NuiCraftItems.CHESTPLATE_FIRE.get()),
+                        new ItemStack(NuiCraftItems.LEGGINGS_FIRE.get())
+                ),
+                Component.translatable("jei.nuicraft.armor.fire.info"));
+
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.BOOTS_WATER.get()),
+                        new ItemStack(NuiCraftItems.CHESTPLATE_WATER.get()),
+                        new ItemStack(NuiCraftItems.LEGGINGS_WATER.get())
+                ),
+                Component.translatable("jei.nuicraft.armor.water.info"));
+
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.BOOTS_AIR.get()),
+                        new ItemStack(NuiCraftItems.CHESTPLATE_AIR.get()),
+                        new ItemStack(NuiCraftItems.LEGGINGS_AIR.get())
+                ),
+                Component.translatable("jei.nuicraft.armor.air.info"));
+
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.BOOTS_EARTH.get()),
+                        new ItemStack(NuiCraftItems.CHESTPLATE_EARTH.get()),
+                        new ItemStack(NuiCraftItems.LEGGINGS_EARTH.get())
+                ),
+                Component.translatable("jei.nuicraft.armor.earth.info"));
+
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.BOOTS_ICE.get()),
+                        new ItemStack(NuiCraftItems.CHESTPLATE_ICE.get()),
+                        new ItemStack(NuiCraftItems.LEGGINGS_ICE.get())
+                ),
+                Component.translatable("jei.nuicraft.armor.ice.info"));
+
+        registration.addItemStackInfo(
+                List.of(
+                        new ItemStack(NuiCraftItems.BOOTS_STONE.get()),
+                        new ItemStack(NuiCraftItems.CHESTPLATE_STONE.get()),
+                        new ItemStack(NuiCraftItems.LEGGINGS_STONE.get())
+                ),
+                Component.translatable("jei.nuicraft.armor.stone.info"));
     }
 }
