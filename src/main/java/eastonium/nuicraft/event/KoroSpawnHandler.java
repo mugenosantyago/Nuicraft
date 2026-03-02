@@ -163,7 +163,9 @@ public class KoroSpawnHandler {
 
         if (toaCount == 0) {
             EntityToa toa = new EntityToa(info.toaType, level, info.toaVariant);
-            place(level, toa, spawnPos(level, start, info, center));
+            int toaOx = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
+            int toaOz = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
+            place(level, toa, spawnPos(level, start, info, center.offset(toaOx, 0, toaOz)));
         }
         if (turagaCount == 0) {
             EntityTuraga turaga = new EntityTuraga(info.turagaEntityType, level, info.turagaType);
@@ -181,8 +183,8 @@ public class KoroSpawnHandler {
         java.util.Collections.shuffle(maskPool, new java.util.Random(level.getRandom().nextLong()));
 
         for (long i = matoranCount; i < target; i++) {
-            int ox = level.getRandom().nextIntBetweenInclusive(-8, 8);
-            int oz = level.getRandom().nextIntBetweenInclusive(-8, 8);
+            int ox = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
+            int oz = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
             EntityMatoran.Mask mask = maskPool.get((int)(i % maskPool.size()));
             EntityMatoran mat = new EntityMatoran(
                     info.matoranEntityType(), level,
