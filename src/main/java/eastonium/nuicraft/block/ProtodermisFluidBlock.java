@@ -2,11 +2,16 @@ package eastonium.nuicraft.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
@@ -16,6 +21,7 @@ import net.minecraft.world.level.redstone.Orientation;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -47,6 +53,23 @@ public class ProtodermisFluidBlock extends LiquidBlock {
         if (level == 0) return fluid.getSource(false);
         if (level == 8) return fluid.getFlowing(8, true);
         return fluid.getFlowing(8 - level, false);
+    }
+
+    // ---- BucketPickup — use the supplier so the correct filled bucket is returned ----
+
+    @Override
+    public ItemStack pickupBlock(@Nullable LivingEntity entity, LevelAccessor level,
+                                 BlockPos pos, BlockState state) {
+        if (state.getValue(LEVEL) == 0) {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+            return new ItemStack(fluidSupplier.get().getBucket());
+        }
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public Optional<SoundEvent> getPickupSound() {
+        return fluidSupplier.get().getPickupSound();
     }
 
     // ---- Tick scheduling — mirrors LiquidBlock but uses the supplier for correct tick rates ----
