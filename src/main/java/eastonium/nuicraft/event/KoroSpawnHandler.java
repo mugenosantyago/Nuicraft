@@ -84,7 +84,7 @@ public class KoroSpawnHandler {
             KORO_INFO.put("gakoro",  new KoroInfo(
                     EntityToa.Variant.GALI,   NuiCraftEntityTypes.TOA_GALI.get(),
                     EntityTuraga.TuragaType.NOKAMA, NuiCraftEntityTypes.TURAGA_NOKAMA.get(),
-                    EntityMatoran.Koro.GA,  NuiCraftEntityTypes.MATORAN_GA.get(),  SpawnMode.SURFACE));
+                    EntityMatoran.Koro.GA,  NuiCraftEntityTypes.MATORAN_GA.get(),  SpawnMode.TREEHOUSE));
             KORO_INFO.put("takoro",  new KoroInfo(
                     EntityToa.Variant.TAHU,   NuiCraftEntityTypes.TOA_TAHU.get(),
                     EntityTuraga.TuragaType.VAKAMA, NuiCraftEntityTypes.TURAGA_VAKAMA.get(),
