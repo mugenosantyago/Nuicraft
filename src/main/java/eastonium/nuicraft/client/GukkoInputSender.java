@@ -1,6 +1,7 @@
 package eastonium.nuicraft.client;
 
 import eastonium.nuicraft.entity.EntityGukko;
+import eastonium.nuicraft.entity.EntityNuiRama;
 import eastonium.nuicraft.network.GukkoInputPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -20,7 +21,7 @@ public class GukkoInputSender {
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
         if (!event.getEntity().level().isClientSide()) return;
         Entity vehicle = event.getEntity().getVehicle();
-        if (!(vehicle instanceof EntityGukko gukko)) {
+        if (!(vehicle instanceof EntityGukko) && !(vehicle instanceof EntityNuiRama)) {
             lastEntityId = -1;
             return;
         }
@@ -33,7 +34,7 @@ public class GukkoInputSender {
         boolean right   = opts.keyRight.isDown();
         boolean up      = opts.keyJump.isDown();
         boolean down    = opts.keyShift.isDown();
-        int entityId    = gukko.getId();
+        int entityId    = vehicle.getId();
 
         if (entityId == lastEntityId
                 && forward == lastForward && back == lastBack
