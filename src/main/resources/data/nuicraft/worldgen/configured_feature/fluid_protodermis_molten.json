@@ -1,27 +1,29 @@
 {
-  "type": "minecraft:ore",
+  "type": "minecraft:spring_feature",
   "config": {
-    "size": 4,
-    "discard_chance_on_air_exposure": 0.0,
-    "targets": [
-      {
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:stone_ore_replaceables"
-        },
-        "state": {
-          "Name": "nuicraft:fluid_protodermis_molten"
-        }
-      },
-      {
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:deepslate_ore_replaceables"
-        },
-        "state": {
-          "Name": "nuicraft:fluid_protodermis_molten"
-        }
-      }
+    "state": {
+      "Name": "nuicraft:fluid_protodermis_molten"
+    },
+    "requires_block_below": true,
+    "rock_count": 4,
+    "hole_count": 1,
+    "valid_blocks": [
+      "minecraft:stone",
+      "minecraft:granite",
+      "minecraft:diorite",
+      "minecraft:andesite",
+      "minecraft:deepslate",
+      "minecraft:tuff",
+      "minecraft:calcite",
+      "minecraft:dirt",
+      "nuicraft:matanui_stone",
+      "nuicraft:makuta_stone",
+      "nuicraft:ta_koro_stone",
+      "nuicraft:onu_koro_stone",
+      "nuicraft:ga_koro_stone",
+      "nuicraft:ko_koro_stone",
+      "nuicraft:le_koro_stone",
+      "nuicraft:po_koro_stone"
     ]
   }
 }
