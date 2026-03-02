@@ -6,7 +6,9 @@
   "mixins": [
     "MixinMappedRegistry"
   ],
-  "client": [],
+  "client": [
+    "MixinEntityModelSet"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
