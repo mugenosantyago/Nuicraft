@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -27,20 +28,34 @@ public class NuiCraftBlocks {
         return props.setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(NuiCraft.MODID, name)));
     }
 
-    // Fluid blocks - placeholder (liquid protodermis is sluiceable for nuggets)
-    public static final DeferredBlock<BlockLiquidProtodermis> FLUID_PROTODERMIS = BLOCKS.registerBlock("fluid_protodermis",
-            BlockLiquidProtodermis::new,
-            withBlockId("fluid_protodermis", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
-    
-    public static final DeferredBlock<Block> FLUID_PROTODERMIS_PURE = BLOCKS.registerSimpleBlock("fluid_protodermis_pure",
-            withBlockId("fluid_protodermis_pure", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
-    
-    public static final DeferredBlock<BlockMoltenProtodermis> FLUID_PROTODERMIS_MOLTEN = BLOCKS.registerBlock("fluid_protodermis_molten",
-            BlockMoltenProtodermis::new,
-            withBlockId("fluid_protodermis_molten", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
-    
-    public static final DeferredBlock<Block> FLUID_PROTODERMIS_PURE_MOLTEN = BLOCKS.registerSimpleBlock("fluid_protodermis_pure_molten",
-            withBlockId("fluid_protodermis_pure_molten", BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable()));
+    // Flowing fluid blocks — backed by real FlowingFluid instances registered in NuiCraftRegistration.
+    // The DeferredHolder for each fluid is passed as a lazy Supplier so block registration
+    // can complete before the fluid registry event fires (registration order is block → fluid).
+    public static final DeferredBlock<BlockLiquidProtodermis> FLUID_PROTODERMIS =
+        BLOCKS.registerBlock("fluid_protodermis",
+            props -> new BlockLiquidProtodermis(NuiCraftRegistration.SOURCE_PROTODERMIS, props),
+            fluidBlockProps("fluid_protodermis", SoundType.WATER));
+
+    public static final DeferredBlock<ProtodermisFluidBlock> FLUID_PROTODERMIS_PURE =
+        BLOCKS.registerBlock("fluid_protodermis_pure",
+            props -> new ProtodermisFluidBlock(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE, props),
+            fluidBlockProps("fluid_protodermis_pure", SoundType.WATER));
+
+    public static final DeferredBlock<BlockMoltenProtodermis> FLUID_PROTODERMIS_MOLTEN =
+        BLOCKS.registerBlock("fluid_protodermis_molten",
+            props -> new BlockMoltenProtodermis(NuiCraftRegistration.SOURCE_PROTODERMIS_MOLTEN, props),
+            fluidBlockProps("fluid_protodermis_molten", SoundType.EMPTY));
+
+    public static final DeferredBlock<ProtodermisFluidBlock> FLUID_PROTODERMIS_PURE_MOLTEN =
+        BLOCKS.registerBlock("fluid_protodermis_pure_molten",
+            props -> new ProtodermisFluidBlock(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE_MOLTEN, props),
+            fluidBlockProps("fluid_protodermis_pure_molten", SoundType.EMPTY));
+
+    private static BlockBehaviour.Properties fluidBlockProps(String name, SoundType sound) {
+        return withBlockId(name, BlockBehaviour.Properties.of()
+            .noCollission().replaceable().strength(100.0F).noLootTable()
+            .pushReaction(PushReaction.DESTROY).sound(sound));
+    }
 
     // Machines
     public static final DeferredBlock<Block> MASK_FORGE = BLOCKS.registerSimpleBlock("mask_forge",

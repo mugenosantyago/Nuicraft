@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "#nuicraft:all_koro",
+  "biomes": "#minecraft:is_overworld",
   "features": "nuicraft:fluid_protodermis",
   "step": "underground_ores"
 }

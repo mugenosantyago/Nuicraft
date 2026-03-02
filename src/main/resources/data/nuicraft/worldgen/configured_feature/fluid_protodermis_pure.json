@@ -2,7 +2,10 @@
   "type": "minecraft:spring_feature",
   "config": {
     "state": {
-      "Name": "nuicraft:fluid_protodermis_pure"
+      "Name": "nuicraft:fluid_protodermis_pure",
+      "Properties": {
+        "level": "0"
+      }
     },
     "requires_block_below": true,
     "rock_count": 4,

@@ -10,33 +10,32 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.function.Supplier;
+
 /**
- * Placeholder liquid protodermis block that can be sluiced to yield protodermis nuggets.
- * Each use of the sluice drops 1 nugget and decrements USES; the block disappears after 20 uses.
+ * Flowing liquid protodermis. Sluicing the source block (level=0) yields one
+ * protodermis nugget and removes the source, causing the pool to drain naturally.
  */
-public class BlockLiquidProtodermis extends Block {
+public class BlockLiquidProtodermis extends ProtodermisFluidBlock {
 
-    public static final int MAX_USES = 20;
-    public static final IntegerProperty USES = IntegerProperty.create("uses", 0, MAX_USES);
-
-    public BlockLiquidProtodermis(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(USES, MAX_USES));
+    public BlockLiquidProtodermis(Supplier<FlowingFluid> fluidSupplier, Properties props) {
+        super(fluidSupplier, props);
     }
 
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                           Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!stack.is(NuiCraftItems.SLUICE.get())) {
+            return InteractionResult.PASS;
+        }
+        // Only sluiceable on source blocks
+        if (state.getValue(LEVEL) != 0) {
             return InteractionResult.PASS;
         }
 
@@ -53,28 +52,17 @@ public class BlockLiquidProtodermis extends Block {
                 );
             }
         } else {
-            ItemStack dropStack = new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get(), 1);
-            ItemEntity itemEntity = new ItemEntity(level, hitVec.x, hitVec.y, hitVec.z, dropStack);
-            itemEntity.setDeltaMovement(
+            ItemStack drop = new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get(), 1);
+            ItemEntity item = new ItemEntity(level, hitVec.x, hitVec.y, hitVec.z, drop);
+            item.setDeltaMovement(
                 level.random.nextGaussian() * 0.06D,
                 level.random.nextGaussian() * 0.06D + 0.2D,
                 level.random.nextGaussian() * 0.06D
             );
-            level.addFreshEntity(itemEntity);
-
-            int uses = state.getValue(USES);
-            if (uses <= 1) {
-                level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-            } else {
-                level.setBlock(pos, state.setValue(USES, uses - 1), 3);
-            }
+            level.addFreshEntity(item);
+            level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
         }
 
         return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(USES);
     }
 }

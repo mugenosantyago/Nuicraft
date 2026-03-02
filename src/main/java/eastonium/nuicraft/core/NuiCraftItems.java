@@ -66,10 +66,23 @@ public class NuiCraftItems {
     public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerItem("kanoka_bamboo",
             props -> new eastonium.nuicraft.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));
 
-    // Protodermis fluid buckets (plain items — fluids not yet full Fluid instances)
-    public static final DeferredItem<Item> PROTODERMIS_BUCKET          = ITEMS.registerSimpleItem("protodermis_bucket");
-    public static final DeferredItem<Item> MOLTEN_PROTODERMIS_BUCKET   = ITEMS.registerSimpleItem("molten_protodermis_bucket");
-    public static final DeferredItem<Item> PURE_MOLTEN_PROTODERMIS_BUCKET = ITEMS.registerSimpleItem("pure_molten_protodermis_bucket");
+    // Protodermis fluid buckets — proper BucketItem instances backed by the registered fluids
+    public static final DeferredItem<Item> PROTODERMIS_BUCKET =
+        ITEMS.registerItem("protodermis_bucket", props ->
+            new BucketItem(NuiCraftRegistration.SOURCE_PROTODERMIS.get(),
+                withItemId("protodermis_bucket", props).stacksTo(1).craftRemainder(Items.BUCKET)));
+    public static final DeferredItem<Item> PURE_PROTODERMIS_BUCKET =
+        ITEMS.registerItem("pure_protodermis_bucket", props ->
+            new BucketItem(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE.get(),
+                withItemId("pure_protodermis_bucket", props).stacksTo(1).craftRemainder(Items.BUCKET)));
+    public static final DeferredItem<Item> MOLTEN_PROTODERMIS_BUCKET =
+        ITEMS.registerItem("molten_protodermis_bucket", props ->
+            new BucketItem(NuiCraftRegistration.SOURCE_PROTODERMIS_MOLTEN.get(),
+                withItemId("molten_protodermis_bucket", props).stacksTo(1).craftRemainder(Items.BUCKET)));
+    public static final DeferredItem<Item> PURE_MOLTEN_PROTODERMIS_BUCKET =
+        ITEMS.registerItem("pure_molten_protodermis_bucket", props ->
+            new BucketItem(NuiCraftRegistration.SOURCE_PROTODERMIS_PURE_MOLTEN.get(),
+                withItemId("pure_molten_protodermis_bucket", props).stacksTo(1).craftRemainder(Items.BUCKET)));
 
     // Materials (from bionicle_qfn)
     public static final DeferredItem<Item> PROTODERMIS_SOLID = ITEMS.registerSimpleItem("protodermis_solid");
