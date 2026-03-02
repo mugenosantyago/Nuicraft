@@ -7,12 +7,14 @@ import eastonium.nuicraft.client.screen.PurifierScreen;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import eastonium.nuicraft.core.NuiCraftRegistration;
 import eastonium.nuicraft.entity.EntityThrownDisc;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class NuiCraftClient {
@@ -23,6 +25,7 @@ public class NuiCraftClient {
         modEventBus.addListener(NuiCraftClient::registerAddLayers);
         modEventBus.addListener(NuiCraftClient::clientSetup);
         modEventBus.addListener(NuiCraftClient::registerScreens);
+        modEventBus.addListener(NuiCraftClient::registerClientExtensions);
         modEventBus.addListener(NuiCraftKeys::register);
     }
 
@@ -85,5 +88,38 @@ public class NuiCraftClient {
         event.registerEntityRenderer(NuiCraftEntityTypes.TOA_POHATU.get(), ToaGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.TOA_KOPAKA.get(), ToaGeoRenderer::new);
         event.registerEntityRenderer(NuiCraftEntityTypes.THROWN_DISC.get(), ThrownItemRenderer::new);
+    }
+
+    private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        // Regular liquid protodermis — silver-blue
+        event.registerFluidType(fluidExt(
+                "minecraft:block/water_still", "minecraft:block/water_flow", 0xFFC4D8E0),
+                NuiCraftRegistration.TYPE_PROTODERMIS.get());
+
+        // Pure liquid protodermis — warm gold
+        event.registerFluidType(fluidExt(
+                "minecraft:block/water_still", "minecraft:block/water_flow", 0xFFE8D880),
+                NuiCraftRegistration.TYPE_PROTODERMIS_PURE.get());
+
+        // Molten protodermis — deep orange-red (lava-like)
+        event.registerFluidType(fluidExt(
+                "minecraft:block/lava_still", "minecraft:block/lava_flow", 0xFFE05020),
+                NuiCraftRegistration.TYPE_PROTODERMIS_MOLTEN.get());
+
+        // Pure molten protodermis — bright gold
+        event.registerFluidType(fluidExt(
+                "minecraft:block/lava_still", "minecraft:block/lava_flow", 0xFFFFCC00),
+                NuiCraftRegistration.TYPE_PROTODERMIS_PURE_MOLTEN.get());
+    }
+
+    /** Builds a simple {@link IClientFluidTypeExtensions} for the given still/flow textures and tint. */
+    private static IClientFluidTypeExtensions fluidExt(String still, String flow, int tintColor) {
+        ResourceLocation stillLoc = ResourceLocation.parse(still);
+        ResourceLocation flowLoc  = ResourceLocation.parse(flow);
+        return new IClientFluidTypeExtensions() {
+            @Override public ResourceLocation getStillTexture()   { return stillLoc; }
+            @Override public ResourceLocation getFlowingTexture() { return flowLoc;  }
+            @Override public int getTintColor()                    { return tintColor; }
+        };
     }
 }
