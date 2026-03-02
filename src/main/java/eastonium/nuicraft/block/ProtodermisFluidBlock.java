@@ -1,13 +1,20 @@
 package eastonium.nuicraft.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.redstone.Orientation;
+import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -42,15 +49,34 @@ public class ProtodermisFluidBlock extends LiquidBlock {
         return fluid.getFlowing(8 - level, false);
     }
 
+    // ---- Tick scheduling — mirrors LiquidBlock but uses the supplier for correct tick rates ----
+
     @Override
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        if (state.getFluidState().isSource()) {
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        if (!FluidInteractionRegistry.canInteract(level, pos)) {
             FlowingFluid fluid = fluidSupplier.get();
-            level.scheduleTick(pos, fluid, fluid.getTickDelay(level));
+            level.scheduleTick(pos, state.getFluidState().getType(), fluid.getTickDelay(level));
         }
     }
 
-    // neighborChanged is intentionally not overridden: its signature changed in MC 1.21.4
-    // (added BlockChangedPayload). The initial flow tick is scheduled via onPlace; subsequent
-    // propagation is driven by the FlowingFluid tick system itself.
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block,
+                                   @Nullable Orientation orientation, boolean isMoving) {
+        if (!FluidInteractionRegistry.canInteract(level, pos)) {
+            FlowingFluid fluid = fluidSupplier.get();
+            level.scheduleTick(pos, state.getFluidState().getType(), fluid.getTickDelay(level));
+        }
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState state, LevelReader levelReader,
+                                     ScheduledTickAccess tickAccess, BlockPos pos,
+                                     Direction direction, BlockPos neighborPos,
+                                     BlockState neighborState, RandomSource random) {
+        if (state.getFluidState().isSource() || neighborState.getFluidState().isSource()) {
+            FlowingFluid fluid = fluidSupplier.get();
+            tickAccess.scheduleTick(pos, state.getFluidState().getType(), fluid.getTickDelay(levelReader));
+        }
+        return super.updateShape(state, levelReader, tickAccess, pos, direction, neighborPos, neighborState, random);
+    }
 }
