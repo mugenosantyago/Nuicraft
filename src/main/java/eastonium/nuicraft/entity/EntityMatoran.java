@@ -510,13 +510,17 @@ public class EntityMatoran extends Animal implements Merchant {
     }
 
     /**
-     * Produces a baby Matoran when two adults breed. The child inherits this
-     * parent's Koro and receives a randomly chosen mask and profession.
+     * Produces a baby Matoran when two adults breed. The child inherits its Koro
+     * from one of the two parents chosen at random, and receives a randomly chosen
+     * mask and profession.
      */
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+        Koro childKoro = (otherParent instanceof EntityMatoran other && level.getRandom().nextBoolean())
+                ? other.getKoro()
+                : this.getKoro();
         EntityMatoran child = new EntityMatoran(
-                eastonium.nuicraft.core.NuiCraftEntityTypes.MATORAN.get(), level, this.getKoro());
+                eastonium.nuicraft.core.NuiCraftEntityTypes.MATORAN.get(), level, childKoro);
         child.setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
         Profession[] professions = Profession.values();
         child.setProfession(professions[level.getRandom().nextInt(professions.length)]);
