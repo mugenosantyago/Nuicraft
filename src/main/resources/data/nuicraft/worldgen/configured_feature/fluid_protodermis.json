@@ -2,9 +2,9 @@
   "type": "minecraft:spring_feature",
   "config": {
     "state": {
-      "Name": "nuicraft:fluid_protodermis",
+      "Name": "nuicraft:protodermis",
       "Properties": {
-        "level": "0"
+        "falling": "false"
       }
     },
     "requires_block_below": true,
