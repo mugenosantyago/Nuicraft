@@ -62,7 +62,7 @@ public class KoroSpawnHandler {
      *                             (Le-Koro treehouse)</li>
      * </ul>
      */
-    private enum SpawnMode { SURFACE, TOWER_FLOOR, UNDERGROUND, TREEHOUSE }
+    private enum SpawnMode { SURFACE, TOWER_FLOOR, TOWER_TOP, UNDERGROUND, TREEHOUSE }
 
     private record KoroInfo(
             EntityToa.Variant toaVariant,
@@ -73,7 +73,17 @@ public class KoroSpawnHandler {
             /** Koro-specific Matoran entity type — its factory hard-codes the correct koro so
              *  the entity is created with the right tribe even before readAdditionalSaveData runs. */
             EntityType<EntityMatoran> matoranEntityType,
-            SpawnMode spawnMode) {}
+            SpawnMode spawnMode,
+            /** Override spawn mode used only for the Toa. Defaults to spawnMode when not overridden. */
+            SpawnMode toaSpawnMode) {
+
+        KoroInfo(EntityToa.Variant toaVariant, EntityType<EntityToa> toaType,
+                 EntityTuraga.TuragaType turagaType, EntityType<EntityTuraga> turagaEntityType,
+                 EntityMatoran.Koro koro, EntityType<EntityMatoran> matoranEntityType,
+                 SpawnMode spawnMode) {
+            this(toaVariant, toaType, turagaType, turagaEntityType, koro, matoranEntityType, spawnMode, spawnMode);
+        }
+    }
 
 
     private static Map<String, KoroInfo> KORO_INFO = null;
@@ -104,7 +114,7 @@ public class KoroSpawnHandler {
             KORO_INFO.put("kokoro",  new KoroInfo(
                     EntityToa.Variant.KOPAKA, NuiCraftEntityTypes.TOA_KOPAKA.get(),
                     EntityTuraga.TuragaType.NUJU,   NuiCraftEntityTypes.TURAGA_NUJU.get(),
-                    EntityMatoran.Koro.KO,  NuiCraftEntityTypes.MATORAN_KO.get(),  SpawnMode.TOWER_FLOOR));
+                    EntityMatoran.Koro.KO,  NuiCraftEntityTypes.MATORAN_KO.get(),  SpawnMode.TOWER_FLOOR, SpawnMode.TOWER_TOP));
         }
         return KORO_INFO;
     }
@@ -165,7 +175,7 @@ public class KoroSpawnHandler {
             EntityToa toa = new EntityToa(info.toaType, level, info.toaVariant);
             int toaOx = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
             int toaOz = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
-            place(level, toa, spawnPos(level, start, info, center.offset(toaOx, 0, toaOz)));
+            place(level, toa, spawnPosWithMode(level, start, info.toaSpawnMode(), center.offset(toaOx, 0, toaOz)));
         }
         if (turagaCount == 0) {
             EntityTuraga turaga = new EntityTuraga(info.turagaEntityType, level, info.turagaType);
@@ -209,11 +219,16 @@ public class KoroSpawnHandler {
      * </ul>
      */
     private static BlockPos spawnPos(ServerLevel level, StructureStart start, KoroInfo info, BlockPos near) {
-        return switch (info.spawnMode()) {
+        return spawnPosWithMode(level, start, info.spawnMode(), near);
+    }
+
+    private static BlockPos spawnPosWithMode(ServerLevel level, StructureStart start, SpawnMode mode, BlockPos near) {
+        return switch (mode) {
             case TOWER_FLOOR -> new BlockPos(near.getX(), start.getBoundingBox().minY() + 1, near.getZ());
+            case TOWER_TOP   -> new BlockPos(near.getX(), start.getBoundingBox().maxY() + 1, near.getZ());
             case UNDERGROUND -> findUndergroundFloor(level, start, near);
             case TREEHOUSE   -> findTreehouseFloor(level, start, near);
-            default -> level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, near);
+            default          -> level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, near);
         };
     }
 
