@@ -52,7 +52,8 @@ public class BlockLiquidProtodermis extends ProtodermisFluidBlock {
                 );
             }
         } else {
-            ItemStack drop = new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get(), 1);
+            int nuggets = 3 + level.random.nextInt(5); // 3–7 nuggets
+            ItemStack drop = new ItemStack(NuiCraftItems.NUGGET_PROTODERMIS.get(), nuggets);
             ItemEntity item = new ItemEntity(level, hitVec.x, hitVec.y, hitVec.z, drop);
             item.setDeltaMovement(
                 level.random.nextGaussian() * 0.06D,
