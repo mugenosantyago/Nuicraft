@@ -15,6 +15,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -489,6 +490,16 @@ public class EntityMatoran extends Animal implements Merchant {
         if (target != null) {
             this.setTradingPlayer(null);
         }
+    }
+
+    @Override
+    public boolean hurtServer(ServerLevel serverLevel, DamageSource source, float amount) {
+        boolean hurt = super.hurtServer(serverLevel, source, amount);
+        if (hurt && source.getEntity() instanceof LivingEntity attacker
+                && serverLevel.getDifficulty() != Difficulty.PEACEFUL) {
+            this.setTarget(attacker);
+        }
+        return hurt;
     }
 
     @Override
