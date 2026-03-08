@@ -33,6 +33,7 @@ public class MatoranAnimator extends AzEntityAnimator<EntityMatoran> {
     public void registerControllers(AzAnimationControllerContainer<EntityMatoran> container) {
         container.add(AzAnimationController.builder(this, "base_controller").build());
         container.add(AzAnimationController.builder(this, "ambient_controller").build());
+        container.add(AzAnimationController.builder(this, "attack_controller").build());
     }
 
     @Override
@@ -63,6 +64,15 @@ public class MatoranAnimator extends AzEntityAnimator<EntityMatoran> {
     public static void sendAmbientCommand(EntityMatoran entity) {
         String anim = AMBIENT_ANIMS[entity.getRandom().nextInt(AMBIENT_ANIMS.length)];
         AzCommand.create("ambient_controller", anim, AzPlayBehaviors.PLAY_ONCE)
+                .sendForEntity(entity);
+    }
+
+    /**
+     * Called from EntityMatoran.doHurtTarget() when the Matoran lands a melee hit.
+     * Plays a one-shot punch animation on the dedicated attack controller.
+     */
+    public static void sendAttackCommand(EntityMatoran entity) {
+        AzCommand.create("attack_controller", "attack", AzPlayBehaviors.PLAY_ONCE)
                 .sendForEntity(entity);
     }
 }

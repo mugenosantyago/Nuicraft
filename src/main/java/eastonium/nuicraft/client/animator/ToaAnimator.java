@@ -15,6 +15,7 @@ public class ToaAnimator extends AzEntityAnimator<EntityToa> {
     @Override
     public void registerControllers(AzAnimationControllerContainer<EntityToa> container) {
         container.add(AzAnimationController.builder(this, "base_controller").build());
+        container.add(AzAnimationController.builder(this, "attack_controller").build());
     }
 
     @Override
@@ -29,6 +30,11 @@ public class ToaAnimator extends AzEntityAnimator<EntityToa> {
         boolean moving = entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
         String anim = moving ? "walk" : "idle";
         AzCommand.create("base_controller", anim, AzPlayBehaviors.LOOP)
+                .sendForEntity(entity);
+    }
+
+    public static void sendAttackCommand(EntityToa entity) {
+        AzCommand.create("attack_controller", "attack", AzPlayBehaviors.PLAY_ONCE)
                 .sendForEntity(entity);
     }
 }
