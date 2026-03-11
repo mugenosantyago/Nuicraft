@@ -70,38 +70,38 @@ public class MnogiiEntityTypes {
     /** Generic Matoran - koro determined by biome at spawn, used by structure spawn_overrides. */
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN =
             ENTITY_TYPES.register("matoran", () -> EntityType.Builder.<EntityMatoran>of((type, level) -> new EntityMatoran(type, level), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran")));
 
     // Koro-specific Matoran - koro + canonical mask locked in; used for spawn eggs.
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_TA =
             ENTITY_TYPES.register("matoran_ta", () -> EntityType.Builder.<EntityMatoran>of(
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.TA, EntityMatoran.Mask.HAU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran_ta")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_ta")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_GA =
             ENTITY_TYPES.register("matoran_ga", () -> EntityType.Builder.<EntityMatoran>of(
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.GA, EntityMatoran.Mask.HUNA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran_ga")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_ga")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_LE =
             ENTITY_TYPES.register("matoran_le", () -> EntityType.Builder.<EntityMatoran>of(
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.LE, EntityMatoran.Mask.MIRU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran_le")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_le")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_ONU =
             ENTITY_TYPES.register("matoran_onu", () -> EntityType.Builder.<EntityMatoran>of(
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.ONU, EntityMatoran.Mask.PAKARI), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran_onu")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_onu")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_KO =
             ENTITY_TYPES.register("matoran_ko", () -> EntityType.Builder.<EntityMatoran>of(
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.KO, EntityMatoran.Mask.KAUKAU), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran_ko")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_ko")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_PO =
             ENTITY_TYPES.register("matoran_po", () -> EntityType.Builder.<EntityMatoran>of(
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.PO, EntityMatoran.Mask.KAKAMA), MobCategory.CREATURE)
-                    .sized(0.6F, 1.8F).clientTrackingRange(64).build(key("matoran_po")));
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_po")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA =
             ENTITY_TYPES.register("turaga", () -> EntityType.Builder.<EntityTuraga>of(EntityTuraga::new, MobCategory.CREATURE)

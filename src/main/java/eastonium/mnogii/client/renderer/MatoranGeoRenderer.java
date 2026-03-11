@@ -36,8 +36,12 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
     /** Set immediately before rendering each entity; read by boneTextureFor(). */
     private static EntityMatoran currentMatoran = null;
 
-    /** Fraction of normal size for adult Matoran (they are short, compact beings). */
-    private static final float ADULT_SCALE = 0.55f;
+    /**
+     * Renderer scale for adult Matoran. The Matoran model has a 0.5 bone scale baked into
+     * every animation, so the effective visual scale = ADULT_SCALE × 0.5.
+     * At 1.7 → effective 0.85, slightly larger than Turaga (renderer scale 0.8, no bone scale).
+     */
+    private static final float ADULT_SCALE = 1.7f;
     /** Baby Matoran are half the size of adults. */
     private static final float BABY_SCALE  = 0.5f;
 
@@ -48,7 +52,7 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
                         MatoranGeoRenderer::bodyTextureFor
                 )
                 .setAnimatorProvider(MatoranAnimator::new)
-                .setShadowRadius(0.4f)
+                .setShadowRadius(0.5f)
                 .setScale(ADULT_SCALE)
                 .setBoneTextureOverrideProvider(MatoranGeoRenderer::boneTextureFor)
                 .build(),

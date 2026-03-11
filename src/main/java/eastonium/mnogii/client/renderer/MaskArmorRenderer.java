@@ -105,9 +105,44 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     }
 
     /**
-     * Creates a renderer for a colored variant of a base mask type.
-     * Uses the same geo model as the base mask, and the base mask's armor texture
-     * (colored variants share the same 3D shape; tinting comes from the item texture).
+     * Maps Koro village names to the color prefix used in mask texture filenames.
+     * e.g. "ta" → "RED", "ga" → "BLUE"
+     */
+    private static String koroToColor(String koro) {
+        return switch (koro) {
+            case "ta"     -> "RED";
+            case "ga"     -> "BLUE";
+            case "po"     -> "BROWN";
+            case "ko"     -> "WHITE";
+            case "le"     -> "GREEN";
+            case "onu"    -> "BLACK";
+            case "purple" -> "PURPLE";
+            case "yellow" -> "YELLOW";
+            default       -> null;
+        };
+    }
+
+    /**
+     * Creates a renderer for a koro-colored variant.
+     * Picks the colored texture ({COLOR}_{MASK}_mask.png) when available,
+     * falling back to the base mask_mata_{maskType}.png otherwise.
+     */
+    public static MaskArmorRenderer ofTypeAndKoro(String maskType, String koro) {
+        String color = koroToColor(koro);
+        // Build the colored texture name, e.g. "RED_HAU_mask.png"
+        // Note: maskType is lowercase (e.g. "hau"), texture uses UPPERCASE
+        String upperMask = maskType.toUpperCase();
+        String coloredTexture = color != null
+            ? "textures/armor/" + color + "_" + upperMask + "_mask.png"
+            : "textures/armor/mask_mata_" + maskType + ".png";
+        return new MaskArmorRenderer(
+            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/" + maskType + ".geo.json"),
+            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, coloredTexture)
+        );
+    }
+
+    /**
+     * Creates a renderer for a colored variant (legacy — uses base texture).
      */
     public static MaskArmorRenderer ofType(String maskType) {
         return new MaskArmorRenderer(

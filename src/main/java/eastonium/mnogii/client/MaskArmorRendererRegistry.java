@@ -84,9 +84,17 @@ public class MaskArmorRendererRegistry {
             MnogiiItems.MASK_MATA_RURU_PURPLE.get(), MnogiiItems.MASK_MATA_RURU_YELLOW.get());
     }
 
+    /** Koro names in the fixed registration order: ta, ga, po, ko, le, onu, purple, yellow */
+    private static final String[] KORO_ORDER = {"ta", "ga", "po", "ko", "le", "onu", "purple", "yellow"};
+
+    /**
+     * Registers 8 colored variants of a mask type, one per koro.
+     * Items must be passed in the order: ta, ga, po, ko, le, onu, purple, yellow.
+     */
     private static void registerColoredVariants(String maskType, Item... items) {
-        for (Item item : items) {
-            AzArmorRendererRegistry.register(item, () -> MaskArmorRenderer.ofType(maskType));
+        for (int i = 0; i < items.length; i++) {
+            final String koro = i < KORO_ORDER.length ? KORO_ORDER[i] : "ta";
+            AzArmorRendererRegistry.register(items[i], () -> MaskArmorRenderer.ofTypeAndKoro(maskType, koro));
         }
     }
 }
