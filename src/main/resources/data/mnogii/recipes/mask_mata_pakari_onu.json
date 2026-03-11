@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mnogii:mask_mata_pakari"
+    },
+    {
+      "item": "mnogii:onu_koro_stone"
+    }
+  ],
+  "result": {
+    "id": "mnogii:mask_mata_pakari_onu",
+    "count": 1
+  }
+}

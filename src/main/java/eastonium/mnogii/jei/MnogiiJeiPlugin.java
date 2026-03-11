@@ -57,22 +57,80 @@ public class MnogiiJeiPlugin implements IModPlugin {
                         200)
         ));
 
-        // ---- Mata masks ----
+        // ---- Mata masks — base 12 ----
         List<ItemStack> masks = Stream.of(
-                MnogiiItems.MASK_MATA_HAU,
-                MnogiiItems.MASK_MATA_KAUKAU,
-                MnogiiItems.MASK_MATA_MIRU,
-                MnogiiItems.MASK_MATA_KAKAMA,
-                MnogiiItems.MASK_MATA_PAKARI,
-                MnogiiItems.MASK_MATA_AKAKU,
-                MnogiiItems.MASK_MATA_HUNA,
-                MnogiiItems.MASK_MATA_MAHIKI,
-                MnogiiItems.MASK_MATA_MATATU,
-                MnogiiItems.MASK_MATA_KOMAU,
-                MnogiiItems.MASK_MATA_RARU,
-                MnogiiItems.MASK_MATA_RURU
+                MnogiiItems.MASK_MATA_HAU,    MnogiiItems.MASK_MATA_KAUKAU,
+                MnogiiItems.MASK_MATA_MIRU,   MnogiiItems.MASK_MATA_KAKAMA,
+                MnogiiItems.MASK_MATA_PAKARI, MnogiiItems.MASK_MATA_AKAKU,
+                MnogiiItems.MASK_MATA_HUNA,   MnogiiItems.MASK_MATA_MAHIKI,
+                MnogiiItems.MASK_MATA_MATATU, MnogiiItems.MASK_MATA_KOMAU,
+                MnogiiItems.MASK_MATA_RARU,   MnogiiItems.MASK_MATA_RURU
         ).map(d -> new ItemStack(d.get())).toList();
         registration.addItemStackInfo(masks, Component.translatable("jei.mnogii.mask.info"));
+
+        // ---- Koro-colored masks (ta/ga/po/ko via dye, le/onu via koro stone) ----
+        List<ItemStack> koroMasks = Stream.of(
+                // Ta (red)
+                MnogiiItems.MASK_MATA_HAU_TA,     MnogiiItems.MASK_MATA_KAUKAU_TA,
+                MnogiiItems.MASK_MATA_MIRU_TA,    MnogiiItems.MASK_MATA_KAKAMA_TA,
+                MnogiiItems.MASK_MATA_PAKARI_TA,  MnogiiItems.MASK_MATA_AKAKU_TA,
+                MnogiiItems.MASK_MATA_HUNA_TA,    MnogiiItems.MASK_MATA_MAHIKI_TA,
+                MnogiiItems.MASK_MATA_MATATU_TA,  MnogiiItems.MASK_MATA_KOMAU_TA,
+                MnogiiItems.MASK_MATA_RARU_TA,    MnogiiItems.MASK_MATA_RURU_TA,
+                // Ga (blue)
+                MnogiiItems.MASK_MATA_HAU_GA,     MnogiiItems.MASK_MATA_KAUKAU_GA,
+                MnogiiItems.MASK_MATA_MIRU_GA,    MnogiiItems.MASK_MATA_KAKAMA_GA,
+                MnogiiItems.MASK_MATA_PAKARI_GA,  MnogiiItems.MASK_MATA_AKAKU_GA,
+                MnogiiItems.MASK_MATA_HUNA_GA,    MnogiiItems.MASK_MATA_MAHIKI_GA,
+                MnogiiItems.MASK_MATA_MATATU_GA,  MnogiiItems.MASK_MATA_KOMAU_GA,
+                MnogiiItems.MASK_MATA_RARU_GA,    MnogiiItems.MASK_MATA_RURU_GA,
+                // Po (brown)
+                MnogiiItems.MASK_MATA_HAU_PO,     MnogiiItems.MASK_MATA_KAUKAU_PO,
+                MnogiiItems.MASK_MATA_MIRU_PO,    MnogiiItems.MASK_MATA_KAKAMA_PO,
+                MnogiiItems.MASK_MATA_PAKARI_PO,  MnogiiItems.MASK_MATA_AKAKU_PO,
+                MnogiiItems.MASK_MATA_HUNA_PO,    MnogiiItems.MASK_MATA_MAHIKI_PO,
+                MnogiiItems.MASK_MATA_MATATU_PO,  MnogiiItems.MASK_MATA_KOMAU_PO,
+                MnogiiItems.MASK_MATA_RARU_PO,    MnogiiItems.MASK_MATA_RURU_PO,
+                // Ko (white)
+                MnogiiItems.MASK_MATA_HAU_KO,     MnogiiItems.MASK_MATA_KAUKAU_KO,
+                MnogiiItems.MASK_MATA_MIRU_KO,    MnogiiItems.MASK_MATA_KAKAMA_KO,
+                MnogiiItems.MASK_MATA_PAKARI_KO,  MnogiiItems.MASK_MATA_AKAKU_KO,
+                MnogiiItems.MASK_MATA_HUNA_KO,    MnogiiItems.MASK_MATA_MAHIKI_KO,
+                MnogiiItems.MASK_MATA_MATATU_KO,  MnogiiItems.MASK_MATA_KOMAU_KO,
+                MnogiiItems.MASK_MATA_RARU_KO,    MnogiiItems.MASK_MATA_RURU_KO,
+                // Le (green) — use le_koro_stone
+                MnogiiItems.MASK_MATA_HAU_LE,     MnogiiItems.MASK_MATA_KAUKAU_LE,
+                MnogiiItems.MASK_MATA_MIRU_LE,    MnogiiItems.MASK_MATA_KAKAMA_LE,
+                MnogiiItems.MASK_MATA_PAKARI_LE,  MnogiiItems.MASK_MATA_AKAKU_LE,
+                MnogiiItems.MASK_MATA_HUNA_LE,    MnogiiItems.MASK_MATA_MAHIKI_LE,
+                MnogiiItems.MASK_MATA_MATATU_LE,  MnogiiItems.MASK_MATA_KOMAU_LE,
+                MnogiiItems.MASK_MATA_RARU_LE,    MnogiiItems.MASK_MATA_RURU_LE,
+                // Onu (black) — use onu_koro_stone
+                MnogiiItems.MASK_MATA_HAU_ONU,    MnogiiItems.MASK_MATA_KAUKAU_ONU,
+                MnogiiItems.MASK_MATA_MIRU_ONU,   MnogiiItems.MASK_MATA_KAKAMA_ONU,
+                MnogiiItems.MASK_MATA_PAKARI_ONU, MnogiiItems.MASK_MATA_AKAKU_ONU,
+                MnogiiItems.MASK_MATA_HUNA_ONU,   MnogiiItems.MASK_MATA_MAHIKI_ONU,
+                MnogiiItems.MASK_MATA_MATATU_ONU, MnogiiItems.MASK_MATA_KOMAU_ONU,
+                MnogiiItems.MASK_MATA_RARU_ONU,   MnogiiItems.MASK_MATA_RURU_ONU
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(koroMasks, Component.translatable("jei.mnogii.mask.koro_colored.info"));
+
+        // ---- Accent-colored masks (purple / yellow) ----
+        List<ItemStack> accentMasks = Stream.of(
+                MnogiiItems.MASK_MATA_HAU_PURPLE,     MnogiiItems.MASK_MATA_KAUKAU_PURPLE,
+                MnogiiItems.MASK_MATA_MIRU_PURPLE,    MnogiiItems.MASK_MATA_KAKAMA_PURPLE,
+                MnogiiItems.MASK_MATA_PAKARI_PURPLE,  MnogiiItems.MASK_MATA_AKAKU_PURPLE,
+                MnogiiItems.MASK_MATA_HUNA_PURPLE,    MnogiiItems.MASK_MATA_MAHIKI_PURPLE,
+                MnogiiItems.MASK_MATA_MATATU_PURPLE,  MnogiiItems.MASK_MATA_KOMAU_PURPLE,
+                MnogiiItems.MASK_MATA_RARU_PURPLE,    MnogiiItems.MASK_MATA_RURU_PURPLE,
+                MnogiiItems.MASK_MATA_HAU_YELLOW,     MnogiiItems.MASK_MATA_KAUKAU_YELLOW,
+                MnogiiItems.MASK_MATA_MIRU_YELLOW,    MnogiiItems.MASK_MATA_KAKAMA_YELLOW,
+                MnogiiItems.MASK_MATA_PAKARI_YELLOW,  MnogiiItems.MASK_MATA_AKAKU_YELLOW,
+                MnogiiItems.MASK_MATA_HUNA_YELLOW,    MnogiiItems.MASK_MATA_MAHIKI_YELLOW,
+                MnogiiItems.MASK_MATA_MATATU_YELLOW,  MnogiiItems.MASK_MATA_KOMAU_YELLOW,
+                MnogiiItems.MASK_MATA_RARU_YELLOW,    MnogiiItems.MASK_MATA_RURU_YELLOW
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(accentMasks, Component.translatable("jei.mnogii.mask.accent_colored.info"));
 
         // Mask Forge
         registration.addItemStackInfo(
