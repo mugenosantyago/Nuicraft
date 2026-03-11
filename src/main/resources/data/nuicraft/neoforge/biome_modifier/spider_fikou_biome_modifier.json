@@ -1,0 +1,17 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "minecraft:dripstone_caves", "minecraft:lush_caves", "minecraft:deep_dark",
+    "minecraft:dark_forest",
+    "minecraft:forest", "minecraft:birch_forest",
+    "minecraft:jungle", "minecraft:sparse_jungle", "minecraft:bamboo_jungle",
+    "minecraft:swamp", "minecraft:mangrove_swamp",
+    "minecraft:old_growth_pine_taiga", "minecraft:old_growth_spruce_taiga"
+  ],
+  "spawners": {
+    "type": "nuicraft:spider_fikou",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

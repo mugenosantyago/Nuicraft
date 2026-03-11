@@ -194,6 +194,8 @@ public class NuiCraftItems {
             props -> new Item(withItemId("protodermis_scythe", props).hoe(NuiCraftTiers.PROTODERMIS, -2, -1.0F)));
 
     // Special items
+    public static final DeferredItem<Item> KOHLII_STICK = ITEMS.registerItem("kohlii_stick",
+            props -> new Item(withItemId("kohlii_stick", props).sword(Tiers.IRON, 2, -3.0F)));
     public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.registerItem("heatstone_lighter",
             props -> new eastonium.nuicraft.item.ItemHeatstoneLighter(withItemId("heatstone_lighter", props).stacksTo(1).durability(128)));
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",

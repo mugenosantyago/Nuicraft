@@ -45,8 +45,8 @@ public class KoroSpawnHandler {
     /** Extra blocks beyond the structure bounding box when counting existing entities. */
     private static final int ENTITY_BUFFER = 24;
     /** Target matoran count range [min, max]. */
-    private static final int MATORAN_MIN = 2;
-    private static final int MATORAN_MAX = 5;
+    private static final int MATORAN_MIN = 5;
+    private static final int MATORAN_MAX = 10;
 
     /**
      * Controls how the spawn position Y is determined for a koro.
