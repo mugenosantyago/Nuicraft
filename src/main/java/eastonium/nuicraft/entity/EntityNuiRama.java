@@ -21,20 +21,17 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Nui-Rama - flying insectoid Rahi. Wild: hostile, as dangerous as a Wither Skeleton.
- * Tame by feeding spider eyes (1-in-3 chance per feeding). Once tamed, becomes a
- * rideable flying mount with the same controls as the Gukko.
+ * Nui-Rama — flying insectoid Rahi. Wild: hostile. Tamed with spider eyes (1-in-3 chance).
+ * Once tamed, becomes a rideable flying mount (Happy Ghast style — no saddle needed).
+ * WASD steers; look up/down to ascend/descend; Space for extra upward boost.
  */
 public class EntityNuiRama extends TamableAnimal {
 
-    /** Movement input from the controlling player (set by server from GukkoInputPayload). */
-    private boolean inputForward, inputBack, inputLeft, inputRight, inputUp, inputDown;
+    private static final float FLY_SPEED    = 0.15f;
+    private static final float FLY_DRAG     = 0.9f;
+    private static final float HEIGHT_OFFSET = 0.4f;
 
     private boolean lastMoving = false;
-
-    private static final double FLY_SPEED       = 0.12;
-    private static final double VERTICAL_SPEED  = 0.12;
-    private static final float  HEIGHT_OFFSET   = 0.3f;
 
     public EntityNuiRama(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
@@ -80,16 +77,21 @@ public class EntityNuiRama extends TamableAnimal {
                 .add(Attributes.FOLLOW_RANGE, 100.0);
     }
 
-    /** Spider eyes are the taming item (thematic for an insectoid predator). */
     @Override
     public boolean isFood(ItemStack stack) {
         return stack.is(Items.SPIDER_EYE);
     }
 
-    /** Nui-Ramas do not breed. */
     @Override
     public @Nullable AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, AgeableMob otherParent) {
         return null;
+    }
+
+    @Override
+    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity target) {
+        boolean hit = super.doHurtTarget(level, target);
+        if (hit) NuiRamaAnimator.sendAttackCommand(this);
+        return hit;
     }
 
     @Override
@@ -102,9 +104,9 @@ public class EntityNuiRama extends TamableAnimal {
                 usePlayerItem(player, hand, stack);
                 if (random.nextInt(3) == 0) {
                     tame(player);
-                    level().broadcastEntityEvent(this, (byte) 7); // heart particles
+                    level().broadcastEntityEvent(this, (byte) 7);
                 } else {
-                    level().broadcastEntityEvent(this, (byte) 6); // smoke particles
+                    level().broadcastEntityEvent(this, (byte) 6);
                 }
             }
             return level().isClientSide ? InteractionResult.CONSUME : InteractionResult.SUCCESS;
@@ -112,32 +114,48 @@ public class EntityNuiRama extends TamableAnimal {
 
         // Tamed + no rider: mount on right-click (not sneaking)
         if (isTame() && getPassengers().isEmpty() && !player.isSecondaryUseActive()) {
-            if (!level().isClientSide) {
-                player.startRiding(this);
-            }
+            if (!level().isClientSide) player.startRiding(this);
             return InteractionResult.SUCCESS;
         }
 
         return super.mobInteract(player, hand);
     }
 
-    // ---- Flying mount (mirrors EntityGukko) ----
-
-    /** Called from the server payload handler to relay rider input from the client. */
-    public void setMovementInput(boolean forward, boolean back, boolean left, boolean right, boolean up, boolean down) {
-        this.inputForward = forward;
-        this.inputBack    = back;
-        this.inputLeft    = left;
-        this.inputRight   = right;
-        this.inputUp      = up;
-        this.inputDown    = down;
-    }
+    // ---- Riding (Happy Ghast style) ----
 
     @Override
-    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity target) {
-        boolean hit = super.doHurtTarget(level, target);
-        if (hit) NuiRamaAnimator.sendAttackCommand(this);
-        return hit;
+    public void travel(Vec3 travelVector) {
+        if (isVehicle() && getControllingPassenger() instanceof LivingEntity driver) {
+            // Sync orientation from the rider
+            setYRot(driver.getYRot());
+            yRotO = getYRot();
+            setXRot(driver.getXRot() * 0.5f);
+            yBodyRot = getYRot();
+            yHeadRot = getYRot();
+
+            float yaw   = getYRot()       * (float) (Math.PI / 180.0);
+            float pitch = driver.getXRot() * (float) (Math.PI / 180.0);
+
+            float fwd    = driver.zza;  // W = +1, S = −1
+            float strafe = driver.xxa;  // D = +1, A = −1
+
+            double dx = (strafe * Mth.cos(yaw) - fwd * Mth.sin(yaw)) * FLY_SPEED;
+            double dz = (fwd * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
+
+            double dy = fwd * -Mth.sin(pitch) * FLY_SPEED;
+            if (driver.jumping) dy += FLY_SPEED;
+
+            Vec3 motion = getDeltaMovement();
+            setDeltaMovement(
+                Mth.clamp(motion.x + dx, -0.5, 0.5),
+                Mth.clamp(motion.y + dy, -0.5, 0.5),
+                Mth.clamp(motion.z + dz, -0.5, 0.5)
+            );
+            move(MoverType.SELF, getDeltaMovement());
+            setDeltaMovement(getDeltaMovement().scale(FLY_DRAG));
+        } else {
+            super.travel(travelVector);
+        }
     }
 
     @Override
@@ -150,39 +168,6 @@ public class EntityNuiRama extends TamableAnimal {
                 NuiRamaAnimator.sendMovementCommand(this);
             }
         }
-        if (isVehicle()) {
-            Entity passenger = getControllingPassenger();
-            if (passenger instanceof Player) {
-                setYRot(passenger.getYRot());
-                yRotO = getYRot();
-                setXRot(passenger.getXRot() * 0.5f);
-                applyRiderMovement();
-            }
-        } else {
-            inputForward = inputBack = inputLeft = inputRight = inputUp = inputDown = false;
-        }
-    }
-
-    private void applyRiderMovement() {
-        Vec3 motion = getDeltaMovement();
-        double x = motion.x, y = motion.y, z = motion.z;
-
-        float yaw      = getYRot() * ((float) Math.PI / 180f);
-        double forward  = (inputForward ? 1 : 0) - (inputBack  ? 1 : 0);
-        double strafe   = (inputRight   ? 1 : 0) - (inputLeft  ? 1 : 0);
-        double vertical = (inputUp      ? 1 : 0) - (inputDown  ? 1 : 0);
-
-        double sin = Mth.sin(yaw), cos = Mth.cos(yaw);
-        x += (strafe * cos - forward * sin) * FLY_SPEED;
-        z += (forward * cos + strafe * sin) * FLY_SPEED;
-        y += vertical * VERTICAL_SPEED;
-
-        if (!inputForward && !inputBack && !inputLeft && !inputRight) { x *= 0.9; z *= 0.9; }
-        if (!inputUp && !inputDown) y *= 0.9;
-
-        setDeltaMovement(Mth.clamp(x, -2.5, 2.5), Mth.clamp(y, -1.5, 1.5), Mth.clamp(z, -2.5, 2.5));
-        move(MoverType.SELF, getDeltaMovement());
-        setDeltaMovement(getDeltaMovement().scale(0.91));
     }
 
     @Override
@@ -200,8 +185,9 @@ public class EntityNuiRama extends TamableAnimal {
     @Override
     public void positionRider(Entity passenger, Entity.MoveFunction callback) {
         if (!hasPassenger(passenger)) return;
-        Vec3 pos    = new Vec3(0, HEIGHT_OFFSET, 0).yRot(-getYRot() * ((float) Math.PI / 180f));
-        Vec3 attach = getPassengerAttachmentPoint(passenger, getDimensions(Pose.STANDING), 1.0f);
-        callback.accept(passenger, getX() + pos.x, getY() + pos.y + attach.y, getZ() + pos.z);
+        callback.accept(passenger,
+                getX(),
+                getY() + getDimensions(Pose.STANDING).height() + HEIGHT_OFFSET,
+                getZ());
     }
 }

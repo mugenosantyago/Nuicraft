@@ -2,8 +2,6 @@ package eastonium.nuicraft.network;
 
 import eastonium.nuicraft.NuiCraft;
 import eastonium.nuicraft.client.ClientPayloadHandlers;
-import eastonium.nuicraft.entity.EntityGukko;
-import eastonium.nuicraft.entity.EntityNuiRama;
 import eastonium.nuicraft.morph.PlayerMorphEventHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,19 +24,6 @@ public class NuiCraftPayloads {
                 (payload, context) -> context.enqueueWork(() -> {
                     if (FMLEnvironment.dist.isClient()) {
                         ClientPayloadHandlers.handleOpenDialogue(payload);
-                    }
-                })
-        );
-
-        registrar.playToServer(
-                GukkoInputPayload.TYPE,
-                GukkoInputPayload.STREAM_CODEC,
-                (payload, context) -> context.enqueueWork(() -> {
-                    var vehicle = context.player().getVehicle();
-                    if (vehicle instanceof EntityGukko gukko && gukko.getId() == payload.entityId()) {
-                        gukko.setMovementInput(payload.forward(), payload.back(), payload.left(), payload.right(), payload.up(), payload.down());
-                    } else if (vehicle instanceof EntityNuiRama rama && rama.getId() == payload.entityId()) {
-                        rama.setMovementInput(payload.forward(), payload.back(), payload.left(), payload.right(), payload.up(), payload.down());
                     }
                 })
         );

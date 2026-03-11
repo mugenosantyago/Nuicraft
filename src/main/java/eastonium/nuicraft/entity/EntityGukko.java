@@ -20,24 +20,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Gukko - large flying Rahi, acts like a friendly Happy Ghast. Rideable (no saddle required).
- * Right-click to mount; WASD to move, Jump to ascend, Shift to descend.
- * Breed with feathers. Floats and bobs when not ridden.
+ * Gukko — large flying Rahi, rideable without a saddle (Happy Ghast style).
+ * Right-click to mount. WASD steers horizontally; look up/down to ascend/descend.
+ * Space provides an extra upward boost. Breed with feathers.
  */
 public class EntityGukko extends Animal {
 
-    /** Movement input from the controlling player (set by server from GukkoInputPayload). */
-    private boolean inputForward;
-    private boolean inputBack;
-    private boolean inputLeft;
-    private boolean inputRight;
-    private boolean inputUp;
-    private boolean inputDown;
-
-    /** Elytra-like flight: ~22+ blocks/sec level, build-up when diving. */
-    private static final double FLY_SPEED = 0.12;
-    private static final double VERTICAL_SPEED = 0.12;
-    private static final float RIDEABLE_HEIGHT_OFFSET = 0.5f;
+    private static final float FLY_SPEED    = 0.15f;
+    private static final float FLY_DRAG     = 0.9f;
+    private static final float HEIGHT_OFFSET = 0.6f;
 
     private boolean lastMoving = false;
 
@@ -63,8 +54,7 @@ public class EntityGukko extends Animal {
         this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
         this.goalSelector.addGoal(4, new Ghast.RandomFloatAroundGoal(this, 16));
         this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.5, 20) {
-            @Override
-            public boolean canUse() {
+            @Override public boolean canUse() {
                 return !EntityGukko.this.isVehicle() && super.canUse();
             }
         });
@@ -86,25 +76,55 @@ public class EntityGukko extends Animal {
     }
 
     @Override
+    public AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, AgeableMob otherParent) {
+        return new EntityGukko(NuiCraftEntityTypes.GUKKO.get(), level);
+    }
+
+    @Override
     public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity target) {
         boolean hit = super.doHurtTarget(level, target);
         if (hit) GukkoAnimator.sendAttackCommand(this);
         return hit;
     }
 
-    @Override
-    public AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, AgeableMob otherParent) {
-        return new EntityGukko(NuiCraftEntityTypes.GUKKO.get(), level);
-    }
+    // ---- Riding ----
 
-    /** Called from server payload handler to set movement input from the rider. */
-    public void setMovementInput(boolean forward, boolean back, boolean left, boolean right, boolean up, boolean down) {
-        this.inputForward = forward;
-        this.inputBack = back;
-        this.inputLeft = left;
-        this.inputRight = right;
-        this.inputUp = up;
-        this.inputDown = down;
+    @Override
+    public void travel(Vec3 travelVector) {
+        if (isVehicle() && getControllingPassenger() instanceof LivingEntity driver) {
+            // Sync orientation from the rider
+            setYRot(driver.getYRot());
+            yRotO = getYRot();
+            setXRot(driver.getXRot() * 0.5f);
+            yBodyRot = getYRot();
+            yHeadRot = getYRot();
+
+            float yaw   = getYRot()      * (float) (Math.PI / 180.0);
+            float pitch = driver.getXRot() * (float) (Math.PI / 180.0);
+
+            // Native player input (synced client→server by Minecraft automatically)
+            float fwd    = driver.zza;  // W = +1, S = −1
+            float strafe = driver.xxa;  // D = +1, A = −1
+
+            // Horizontal movement rotated to face yaw
+            double dx = (strafe * Mth.cos(yaw) - fwd * Mth.sin(yaw)) * FLY_SPEED;
+            double dz = (fwd * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
+
+            // Vertical: look up while pressing W to rise; Space for explicit boost
+            double dy = fwd * -Mth.sin(pitch) * FLY_SPEED;
+            if (driver.jumping) dy += FLY_SPEED;
+
+            Vec3 motion = getDeltaMovement();
+            setDeltaMovement(
+                Mth.clamp(motion.x + dx, -0.5, 0.5),
+                Mth.clamp(motion.y + dy, -0.5, 0.5),
+                Mth.clamp(motion.z + dz, -0.5, 0.5)
+            );
+            move(MoverType.SELF, getDeltaMovement());
+            setDeltaMovement(getDeltaMovement().scale(FLY_DRAG));
+        } else {
+            super.travel(travelVector);
+        }
     }
 
     @Override
@@ -117,53 +137,6 @@ public class EntityGukko extends Animal {
                 GukkoAnimator.sendMovementCommand(this);
             }
         }
-        if (this.isVehicle()) {
-            Entity passenger = getControllingPassenger();
-            if (passenger instanceof Player) {
-                this.setYRot(passenger.getYRot());
-                this.yRotO = this.getYRot();
-                this.setXRot(passenger.getXRot() * 0.5f);
-                this.applyRiderMovement();
-            }
-        } else {
-            this.inputForward = false;
-            this.inputBack = false;
-            this.inputLeft = false;
-            this.inputRight = false;
-            this.inputUp = false;
-            this.inputDown = false;
-        }
-    }
-
-    private void applyRiderMovement() {
-        Vec3 motion = this.getDeltaMovement();
-        double x = motion.x;
-        double y = motion.y;
-        double z = motion.z;
-
-        float yaw = this.getYRot() * ((float) Math.PI / 180f);
-        double forward = (inputForward ? 1 : 0) - (inputBack ? 1 : 0);
-        double strafe = (inputRight ? 1 : 0) - (inputLeft ? 1 : 0);
-        double vertical = (inputUp ? 1 : 0) - (inputDown ? 1 : 0);
-
-        double sin = Mth.sin(yaw);
-        double cos = Mth.cos(yaw);
-        x += (strafe * cos - forward * sin) * FLY_SPEED;
-        z += (forward * cos + strafe * sin) * FLY_SPEED;
-        y += vertical * VERTICAL_SPEED;
-
-        // Slight deceleration when no input
-        if (!inputForward && !inputBack && !inputLeft && !inputRight) {
-            x *= 0.9;
-            z *= 0.9;
-        }
-        if (!inputUp && !inputDown) {
-            y *= 0.9;
-        }
-
-        this.setDeltaMovement(Mth.clamp(x, -2.5, 2.5), Mth.clamp(y, -1.5, 1.5), Mth.clamp(z, -2.5, 2.5));
-        this.move(net.minecraft.world.entity.MoverType.SELF, this.getDeltaMovement());
-        this.setDeltaMovement(this.getDeltaMovement().scale(0.91));
     }
 
     @Override
@@ -180,28 +153,26 @@ public class EntityGukko extends Animal {
     @Override
     public void positionRider(Entity passenger, Entity.MoveFunction callback) {
         if (!this.hasPassenger(passenger)) return;
-        float yOffset = RIDEABLE_HEIGHT_OFFSET;
-        Vec3 pos = new Vec3(0, yOffset, 0)
-                .yRot(-this.getYRot() * ((float) Math.PI / 180f));
-        Vec3 attach = this.getPassengerAttachmentPoint(passenger, this.getDimensions(net.minecraft.world.entity.Pose.STANDING), 1.0f);
-        callback.accept(passenger, this.getX() + pos.x, this.getY() + pos.y + attach.y, this.getZ() + pos.z);
+        // Sit centered on top — no forward lean, matches Happy Ghast style
+        callback.accept(passenger,
+                getX(),
+                getY() + getDimensions(Pose.STANDING).height() + HEIGHT_OFFSET,
+                getZ());
     }
 
     @Override
     public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        // Breeding: feed with feather when not mounted
         if (this.getPassengers().isEmpty() && this.isFood(stack)) {
             net.minecraft.world.InteractionResult result = super.mobInteract(player, hand);
             if (result.consumesAction()) return result;
         }
-        // No harness or saddle required - right-click (not sneaking) to mount
         if (this.getPassengers().isEmpty() && !player.isSecondaryUseActive()) {
-            if (!this.level().isClientSide) {
-                player.startRiding(this);
-            }
+            if (!this.level().isClientSide) player.startRiding(this);
             return net.minecraft.world.InteractionResult.SUCCESS;
         }
-        return this.level().isClientSide ? net.minecraft.world.InteractionResult.SUCCESS : net.minecraft.world.InteractionResult.CONSUME;
+        return this.level().isClientSide
+                ? net.minecraft.world.InteractionResult.SUCCESS
+                : net.minecraft.world.InteractionResult.CONSUME;
     }
 }

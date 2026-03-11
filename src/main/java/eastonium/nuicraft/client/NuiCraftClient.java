@@ -37,7 +37,6 @@ public class NuiCraftClient {
     private static void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MaskArmorRendererRegistry.registerAll();
-            NeoForge.EVENT_BUS.register(GukkoInputSender.class);
             NeoForge.EVENT_BUS.register(PlayerMorphKeyHandler.class);
             NeoForge.EVENT_BUS.register(PlayerMorphClientEvents.class);
         });

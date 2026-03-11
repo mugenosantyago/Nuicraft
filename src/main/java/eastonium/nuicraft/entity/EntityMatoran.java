@@ -122,6 +122,21 @@ public class EntityMatoran extends Animal implements Merchant {
             };
         }
 
+        /**
+         * The Matoran mask variant the dedicated Maskmaker NPC wears.
+         * Uses only implemented masks (geo + textures exist).
+         */
+        public Mask getMaskmakerMask() {
+            return switch (this) {
+                case TA  -> Mask.HAU;
+                case GA  -> Mask.KAUKAU;
+                case LE  -> Mask.MIRU;
+                case ONU -> Mask.PAKARI;
+                case PO  -> Mask.KAKAMA;
+                case KO  -> Mask.HAU; // AKAKU model not yet implemented; Toa Kopaka's mask sold but Hau worn
+            };
+        }
+
         /** A secondary Kanohi associated with this Koro's culture. */
         public Item getSecondaryMask() {
             return switch (this) {
@@ -598,6 +613,16 @@ public class EntityMatoran extends Animal implements Merchant {
         Mask.HAU, Mask.HUNA, Mask.KAKAMA, Mask.KAUKAU, Mask.MIRU, Mask.PAKARI
     };
 
+    /**
+     * Professions available to naturally-spawned / bred Matoran.
+     * MASKMAKER is intentionally excluded — it is reserved for the one
+     * dedicated mask-seller spawned by KoroSpawnHandler in each koro.
+     */
+    public static final Profession[] RANDOM_PROFESSIONS = {
+        Profession.SMITH, Profession.MINER, Profession.DISC_CRAFTER,
+        Profession.SCHOLAR, Profession.MERCHANT
+    };
+
     /** Food items that trigger breeding (and speed up baby growth when fed to a child). */
     @Override
     public boolean isFood(ItemStack stack) {
@@ -621,8 +646,7 @@ public class EntityMatoran extends Animal implements Merchant {
         EntityMatoran child = new EntityMatoran(
                 eastonium.nuicraft.core.NuiCraftEntityTypes.MATORAN.get(), level, childKoro);
         child.setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
-        Profession[] professions = Profession.values();
-        child.setProfession(professions[level.getRandom().nextInt(professions.length)]);
+        child.setProfession(RANDOM_PROFESSIONS[level.getRandom().nextInt(RANDOM_PROFESSIONS.length)]);
 
         // Blend accent colors from both parents — child gets the color "between" them.
         if (otherParent instanceof EntityMatoran other) {
@@ -652,9 +676,8 @@ public class EntityMatoran extends Animal implements Merchant {
             // Pick a random mask from only the implemented set (geo + textures exist).
             setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
 
-            // Assign a random profession.
-            Profession[] professions = Profession.values();
-            setProfession(professions[level.getRandom().nextInt(professions.length)]);
+            // Assign a random profession from the non-maskmaker pool.
+            setProfession(RANDOM_PROFESSIONS[level.getRandom().nextInt(RANDOM_PROFESSIONS.length)]);
         }
         // Randomize mask and feet accent colors for every newly spawned Matoran
         // regardless of spawn reason — structure, natural, or otherwise.
@@ -809,16 +832,17 @@ public class EntityMatoran extends Animal implements Merchant {
     }
 
     /**
-     * Maskmaker: sells the koro's signature Toa mask and a secondary cultural mask.
-     * Also buys protodermis ingots.
+     * Maskmaker: sells only the koro's signature Toa mask at a premium price.
+     * Exactly one Maskmaker is guaranteed per koro structure.
      */
     private void addMaskmakerTrades(MerchantOffers offers, Koro koro) {
-        // Toa's signature mask — premium item
-        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(koro.getToaMask(), 1), 6, 2, 0.05F));
-        // Secondary cultural mask
-        offers.add(new MerchantOffer(new ItemCost(Items.EMERALD, 3), new ItemStack(koro.getSecondaryMask(), 1), 8, 1, 0.05F));
-        // Buy protodermis ingots (raw material for masks)
-        offers.add(new MerchantOffer(new ItemCost(NuiCraftItems.INGOT_PROTODERMIS.get(), 4), new ItemStack(Items.EMERALD, 1), 16, 1, 0.1F));
+        offers.add(new MerchantOffer(
+                new ItemCost(Items.EMERALD, 12),
+                new ItemStack(koro.getToaMask(), 1),
+                4,    // limited stock
+                2,    // villager XP per sale
+                0.02F // minimal price inflation
+        ));
     }
 
     /**

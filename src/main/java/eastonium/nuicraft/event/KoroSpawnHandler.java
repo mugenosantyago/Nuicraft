@@ -168,8 +168,14 @@ public class KoroSpawnHandler {
                 e -> e.getVariant() == info.toaVariant).size();
         long turagaCount = level.getEntitiesOfClass(EntityTuraga.class, bounds,
                 e -> e.getTuragaType() == info.turagaType).size();
+        // Count maskmakers and regular Matoran separately so the maskmaker doesn't
+        // consume a regular-villager slot.
+        long maskmakerCount = level.getEntitiesOfClass(EntityMatoran.class, bounds,
+                e -> e.getKoro() == info.koro
+                  && e.getProfession() == EntityMatoran.Profession.MASKMAKER).size();
         long matoranCount = level.getEntitiesOfClass(EntityMatoran.class, bounds,
-                e -> e.getKoro() == info.koro).size();
+                e -> e.getKoro() == info.koro
+                  && e.getProfession() != EntityMatoran.Profession.MASKMAKER).size();
 
         if (toaCount == 0) {
             EntityToa toa = new EntityToa(info.toaType, level, info.toaVariant);
@@ -182,8 +188,19 @@ public class KoroSpawnHandler {
             place(level, turaga, spawnPos(level, start, info, center.offset(3, 0, 0)));
         }
 
+        // Exactly one dedicated Maskmaker per koro — wears and sells the koro's signature mask.
+        if (maskmakerCount == 0) {
+            EntityMatoran maskmaker = new EntityMatoran(
+                    info.matoranEntityType(), level,
+                    info.koro(),
+                    info.koro().getMaskmakerMask(),
+                    EntityMatoran.Profession.MASKMAKER);
+            BlockPos pos = spawnPos(level, start, info, center.offset(2, 0, -2));
+            place(level, maskmaker, pos);
+            maskmaker.setHomePos(spawnPos(level, start, info, center));
+        }
+
         int target = MATORAN_MIN + level.getRandom().nextInt(MATORAN_MAX - MATORAN_MIN + 1);
-        EntityMatoran.Profession[] professions = EntityMatoran.Profession.values();
 
         // Shuffle the mask pool so each Matoran in this batch gets a distinct mask.
         // We cycle through the shuffled list rather than picking independently,
@@ -200,7 +217,7 @@ public class KoroSpawnHandler {
                     info.matoranEntityType(), level,
                     info.koro(),
                     mask,
-                    professions[level.getRandom().nextInt(professions.length)]);
+                    EntityMatoran.RANDOM_PROFESSIONS[level.getRandom().nextInt(EntityMatoran.RANDOM_PROFESSIONS.length)]);
             BlockPos pos = spawnPos(level, start, info, center.offset(ox, 0, oz));
             place(level, mat, pos);
             // Pin them to the structure so they wander back inside instead of scattering.
