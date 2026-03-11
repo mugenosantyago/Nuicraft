@@ -57,8 +57,8 @@ public class MnogiiBlocks {
     }
 
     // Machines
-    public static final DeferredBlock<Block> MASK_FORGE = BLOCKS.registerSimpleBlock("mask_forge",
-            withBlockId("mask_forge", BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
+    public static final DeferredBlock<BlockMaskForge> MASK_FORGE = BLOCKS.registerBlock("mask_forge",
+            BlockMaskForge::new, withBlockId("mask_forge", BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
     
     public static final DeferredBlock<BlockPurifier> PURIFIER = BLOCKS.registerBlock("purifier",
             BlockPurifier::new, withBlockId("purifier", BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL)));
