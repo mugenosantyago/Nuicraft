@@ -2,7 +2,6 @@ package eastonium.nuicraft.entity;
 
 import eastonium.nuicraft.client.animator.MuakaAnimator;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
