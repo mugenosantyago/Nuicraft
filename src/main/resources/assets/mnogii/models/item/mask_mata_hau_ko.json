@@ -1,6 +1,6 @@
 {
-  "parent": "item/handheld",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "mnogii:item/mask_mata_hau"
+    "layer0": "mnogii:item/mask_mata_hau_ko"
   }
 }
