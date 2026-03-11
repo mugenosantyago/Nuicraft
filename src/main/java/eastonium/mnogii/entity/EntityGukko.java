@@ -19,15 +19,32 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Gukko — large flying Rahi, rideable without a saddle (Happy Ghast style).
- * Right-click to mount. WASD steers horizontally; look up/down to ascend/descend.
- * Space provides an extra upward boost. Breed with feathers.
+ * Gukko — large flying Rahi, rideable without a saddle.
+ * Right-click to mount. WASD steers horizontally; Space ascends; Shift descends.
+ * Breed with feathers.
  */
 public class EntityGukko extends Animal {
 
-    private static final float FLY_SPEED    = 0.15f;
-    private static final float FLY_DRAG     = 0.9f;
-    private static final float HEIGHT_OFFSET = 0.6f;
+    private static final float FLY_SPEED     = 0.15f;
+    private static final float FLY_DRAG      = 0.9f;
+    /** How far above the entity's bounding-box top the rider sits. */
+    private static final float HEIGHT_OFFSET = 2.0f;
+
+    // Cache the protected LivingEntity.jumping field for reading rider space-bar input.
+    private static final java.lang.reflect.Field JUMPING_FIELD;
+    static {
+        java.lang.reflect.Field f = null;
+        try {
+            f = LivingEntity.class.getDeclaredField("jumping");
+            f.setAccessible(true);
+        } catch (Exception ignored) {}
+        JUMPING_FIELD = f;
+    }
+
+    private static boolean isJumping(LivingEntity entity) {
+        if (JUMPING_FIELD == null) return false;
+        try { return JUMPING_FIELD.getBoolean(entity); } catch (Exception e) { return false; }
+    }
 
     private boolean lastMoving = false;
 
@@ -86,26 +103,26 @@ public class EntityGukko extends Animal {
     @Override
     public void travel(Vec3 travelVector) {
         if (isVehicle() && getControllingPassenger() instanceof LivingEntity driver) {
-            // Sync orientation from the rider
+            // Face where the rider faces; no pitch-tilt on the Gukko body.
             setYRot(driver.getYRot());
-            yRotO = getYRot();
-            setXRot(driver.getXRot() * 0.5f);
+            yRotO  = getYRot();
+            setXRot(0f);
             yBodyRot = getYRot();
             yHeadRot = getYRot();
 
-            float yaw   = getYRot()      * (float) (Math.PI / 180.0);
-            float pitch = driver.getXRot() * (float) (Math.PI / 180.0);
+            float yaw = getYRot() * (float) (Math.PI / 180.0);
 
-            // Native player input (synced client→server by Minecraft automatically)
             float fwd    = driver.zza;  // W = +1, S = −1
-            float strafe = driver.xxa;  // D = +1, A = −1
+            float strafe = driver.xxa;  // A = +1, D = −1
 
-            // Horizontal movement rotated to face yaw
+            // WASD = purely horizontal movement
             double dx = (strafe * Mth.cos(yaw) - fwd * Mth.sin(yaw)) * FLY_SPEED;
-            double dz = (fwd * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
+            double dz = (fwd   * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
 
-            // Vertical: look up while pressing W to rise (pitch-based, Happy Ghast style)
-            double dy = fwd * -Mth.sin(pitch) * FLY_SPEED;
+            // Space = ascend, Shift = descend
+            double dy = 0;
+            if (isJumping(driver))          dy += FLY_SPEED;
+            if (driver.isShiftKeyDown())    dy -= FLY_SPEED;
 
             Vec3 motion = getDeltaMovement();
             setDeltaMovement(
