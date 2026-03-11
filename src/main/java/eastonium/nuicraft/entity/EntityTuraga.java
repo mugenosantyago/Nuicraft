@@ -39,9 +39,9 @@ public class EntityTuraga extends PathfinderMob {
     public enum TuragaType {
         VAKAMA("matatu_turaga", "matatu_turaga/ta"),
         NOKAMA("rau_turaga",    "rau_turaga/default"),
-        MATAU("matatu_turaga",  "matatu_turaga/le"),
+        MATAU("mahiki_turaga",  "mahiki_turaga/le"),
         ONEWA("matatu_turaga",  "matatu_turaga/po"),
-        WHENUA("matatu_turaga", "matatu_turaga/onu"),
+        WHENUA("ruru_turaga",   "ruru_turaga/onu"),
         NUJU("matatu_turaga",   "matatu_turaga/ko");
 
         private final String geoId;

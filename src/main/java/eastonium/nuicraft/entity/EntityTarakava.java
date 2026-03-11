@@ -1,5 +1,6 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.client.animator.TarakavaAnimator;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.Level;
  */
 public class EntityTarakava extends Monster {
 
+    private boolean lastMoving = false;
+
     public EntityTarakava(EntityType<? extends EntityTarakava> type, Level level) {
         super(type, level);
     }
@@ -29,6 +32,25 @@ public class EntityTarakava extends Monster {
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                TarakavaAnimator.sendMovementCommand(this);
+            }
+        }
+    }
+
+    @Override
+    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity target) {
+        boolean hit = super.doHurtTarget(level, target);
+        if (hit) TarakavaAnimator.sendAttackCommand(this);
+        return hit;
     }
 
     public static AttributeSupplier.Builder createAttributes() {

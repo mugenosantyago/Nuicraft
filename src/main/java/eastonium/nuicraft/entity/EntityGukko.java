@@ -1,5 +1,6 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.client.animator.GukkoAnimator;
 import eastonium.nuicraft.core.NuiCraftEntityTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
@@ -39,6 +40,8 @@ public class EntityGukko extends Animal {
     private static final double FLY_SPEED = 0.12;
     private static final double VERTICAL_SPEED = 0.12;
     private static final float RIDEABLE_HEIGHT_OFFSET = 0.5f;
+
+    private boolean lastMoving = false;
 
     public EntityGukko(EntityType<? extends EntityGukko> type, Level level) {
         super(type, level);
@@ -100,6 +103,13 @@ public class EntityGukko extends Animal {
     @Override
     public void tick() {
         super.tick();
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().lengthSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                GukkoAnimator.sendMovementCommand(this);
+            }
+        }
         if (this.isVehicle()) {
             Entity passenger = getControllingPassenger();
             if (passenger instanceof Player) {

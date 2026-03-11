@@ -1,5 +1,6 @@
 package eastonium.nuicraft.entity;
 
+import eastonium.nuicraft.client.animator.NuiRamaAnimator;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -28,6 +29,8 @@ public class EntityNuiRama extends TamableAnimal {
 
     /** Movement input from the controlling player (set by server from GukkoInputPayload). */
     private boolean inputForward, inputBack, inputLeft, inputRight, inputUp, inputDown;
+
+    private boolean lastMoving = false;
 
     private static final double FLY_SPEED       = 0.12;
     private static final double VERTICAL_SPEED  = 0.12;
@@ -131,8 +134,22 @@ public class EntityNuiRama extends TamableAnimal {
     }
 
     @Override
+    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity target) {
+        boolean hit = super.doHurtTarget(level, target);
+        if (hit) NuiRamaAnimator.sendAttackCommand(this);
+        return hit;
+    }
+
+    @Override
     public void tick() {
         super.tick();
+        if (!this.level().isClientSide) {
+            boolean moving = this.getDeltaMovement().lengthSqr() > 1.0E-5;
+            if (moving != lastMoving) {
+                lastMoving = moving;
+                NuiRamaAnimator.sendMovementCommand(this);
+            }
+        }
         if (isVehicle()) {
             Entity passenger = getControllingPassenger();
             if (passenger instanceof Player) {
