@@ -2,6 +2,7 @@ package eastonium.mnogii.entity;
 
 import eastonium.mnogii.client.animator.GukkoAnimator;
 import eastonium.mnogii.core.MnogiiEntityTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -16,7 +17,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.EnumSet;
 
 /**
  * Gukko — large flying Rahi, rideable without a saddle.
@@ -64,11 +68,13 @@ public class EntityGukko extends Animal {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(1, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
-        this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 1.0));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new FlyHighGoal(this, 18, 38));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
+        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 1.0));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
@@ -184,5 +190,45 @@ public class EntityGukko extends Animal {
         return this.level().isClientSide
                 ? net.minecraft.world.InteractionResult.SUCCESS
                 : net.minecraft.world.InteractionResult.CONSUME;
+    }
+
+    /**
+     * Keeps the Gukko flying high above the terrain. Triggers whenever the entity
+     * dips below the minimum altitude and picks a random high target to navigate toward.
+     */
+    static class FlyHighGoal extends Goal {
+        private final PathfinderMob mob;
+        private final int minAlt;
+        private final int maxAlt;
+
+        FlyHighGoal(PathfinderMob mob, int minAlt, int maxAlt) {
+            this.mob = mob;
+            this.minAlt = minAlt;
+            this.maxAlt = maxAlt;
+            setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (mob.getRandom().nextInt(15) != 0) return false;
+            BlockPos surface = mob.level().getHeightmapPos(
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
+            return mob.getY() < surface.getY() + minAlt;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return mob.getNavigation().isInProgress();
+        }
+
+        @Override
+        public void start() {
+            BlockPos surface = mob.level().getHeightmapPos(
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
+            double targetY = surface.getY() + minAlt + mob.getRandom().nextInt(maxAlt - minAlt);
+            double dx = (mob.getRandom().nextDouble() - 0.5) * 24;
+            double dz = (mob.getRandom().nextDouble() - 0.5) * 24;
+            mob.getNavigation().moveTo(mob.getX() + dx, targetY, mob.getZ() + dz, 1.2);
+        }
     }
 }

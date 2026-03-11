@@ -1,6 +1,7 @@
 package eastonium.mnogii.entity;
 
 import eastonium.mnogii.client.animator.NuiRamaAnimator;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -17,8 +18,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.EnumSet;
 
 /**
  * Nui-Rama — flying insectoid Rahi. Wild: hostile. Tamed with spider eyes (1-in-3 chance).
@@ -62,8 +66,10 @@ public class EntityNuiRama extends TamableAnimal {
             @Override public boolean canUse() { return !EntityNuiRama.this.isTame() && super.canUse(); }
         });
 
+        // Rise to altitude when too close to ground
+        this.goalSelector.addGoal(3, new FlyHighGoal(this, 12, 28));
         // Idle wandering (both states, suppressed while carrying a rider)
-        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.6, 20) {
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 0.8) {
             @Override public boolean canUse() { return !EntityNuiRama.this.isVehicle() && super.canUse(); }
         });
     }
@@ -189,5 +195,45 @@ public class EntityNuiRama extends TamableAnimal {
                 getX(),
                 getY() + getDimensions(Pose.STANDING).height() + HEIGHT_OFFSET,
                 getZ());
+    }
+
+    /**
+     * Keeps the Nui-Rama flying above the terrain. Activates when the entity
+     * dips below the minimum altitude and navigates it back up.
+     */
+    static class FlyHighGoal extends Goal {
+        private final PathfinderMob mob;
+        private final int minAlt;
+        private final int maxAlt;
+
+        FlyHighGoal(PathfinderMob mob, int minAlt, int maxAlt) {
+            this.mob = mob;
+            this.minAlt = minAlt;
+            this.maxAlt = maxAlt;
+            setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (mob.getRandom().nextInt(15) != 0) return false;
+            BlockPos surface = mob.level().getHeightmapPos(
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
+            return mob.getY() < surface.getY() + minAlt;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return mob.getNavigation().isInProgress();
+        }
+
+        @Override
+        public void start() {
+            BlockPos surface = mob.level().getHeightmapPos(
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
+            double targetY = surface.getY() + minAlt + mob.getRandom().nextInt(maxAlt - minAlt);
+            double dx = (mob.getRandom().nextDouble() - 0.5) * 20;
+            double dz = (mob.getRandom().nextDouble() - 0.5) * 20;
+            mob.getNavigation().moveTo(mob.getX() + dx, targetY, mob.getZ() + dz, 1.0);
+        }
     }
 }
