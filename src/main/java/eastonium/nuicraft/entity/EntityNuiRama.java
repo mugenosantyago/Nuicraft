@@ -73,11 +73,11 @@ public class EntityNuiRama extends TamableAnimal {
 
     public static AttributeSupplier.Builder createAttributes() {
         return TamableAnimal.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 35.0)       // wither skeleton HP
-                .add(Attributes.ATTACK_DAMAGE, 7.0)     // wither skeleton attack
-                .add(Attributes.FLYING_SPEED, 0.35)
-                .add(Attributes.MOVEMENT_SPEED, 0.35)
-                .add(Attributes.FOLLOW_RANGE, 24.0);
+                .add(Attributes.MAX_HEALTH, 10.0)
+                .add(Attributes.ATTACK_DAMAGE, 6.0)
+                .add(Attributes.FLYING_SPEED, 0.17)
+                .add(Attributes.MOVEMENT_SPEED, 0.17)
+                .add(Attributes.FOLLOW_RANGE, 100.0);
     }
 
     /** Spider eyes are the taming item (thematic for an insectoid predator). */

@@ -170,9 +170,67 @@ public class EntityMatoran extends Animal implements Merchant {
         public String getId() { return id; }
     }
 
-    private static final EntityDataAccessor<Integer> DATA_KORO       = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> DATA_MASK       = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> DATA_PROFESSION = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    /**
+     * The eight accent colors a Matoran's mask and feet can be painted.
+     * Body color is always the canonical koro color; mask and feet are randomized.
+     */
+    public enum MatoranColor {
+        RED   (0xCC2200),   // Ta-Koro canonical
+        BLUE  (0x0044AA),   // Ga-Koro canonical
+        GREEN (0x006600),   // Le-Koro canonical
+        BLACK (0x111111),   // Onu-Koro canonical
+        BROWN (0x886633),   // Po-Koro canonical
+        WHITE (0xCCDDEE),   // Ko-Koro canonical
+        PURPLE(0x660099),   // extra accent
+        YELLOW(0xEECC00);   // extra accent
+
+        public final int rgb;
+        MatoranColor(int rgb) { this.rgb = rgb; }
+        public String getId()  { return name().toLowerCase(); }
+
+        /** The canonical koro body color. */
+        public static MatoranColor forKoro(Koro koro) {
+            return switch (koro) {
+                case TA  -> RED;
+                case GA  -> BLUE;
+                case LE  -> GREEN;
+                case ONU -> BLACK;
+                case PO  -> BROWN;
+                case KO  -> WHITE;
+            };
+        }
+
+        /** Pick any of the 8 colors at random. */
+        public static MatoranColor random(net.minecraft.util.RandomSource rand) {
+            return values()[rand.nextInt(values().length)];
+        }
+
+        /**
+         * Blend two parent colors by averaging their RGB, then snapping to the
+         * nearest enum value. Gives natural-looking offspring accent colors.
+         */
+        public static MatoranColor blend(MatoranColor a, MatoranColor b) {
+            int r  = (((a.rgb >> 16) & 0xFF) + ((b.rgb >> 16) & 0xFF)) / 2;
+            int g  = (((a.rgb >>  8) & 0xFF) + ((b.rgb >>  8) & 0xFF)) / 2;
+            int bl = ((a.rgb         & 0xFF) + (b.rgb         & 0xFF)) / 2;
+            int minDist = Integer.MAX_VALUE;
+            MatoranColor nearest = a;
+            for (MatoranColor c : values()) {
+                int dr = ((c.rgb >> 16) & 0xFF) - r;
+                int dg = ((c.rgb >>  8) & 0xFF) - g;
+                int db = ( c.rgb        & 0xFF) - bl;
+                int dist = dr * dr + dg * dg + db * db;
+                if (dist < minDist) { minDist = dist; nearest = c; }
+            }
+            return nearest;
+        }
+    }
+
+    private static final EntityDataAccessor<Integer> DATA_KORO        = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_MASK        = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_PROFESSION  = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_MASK_COLOR  = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_FEET_COLOR  = SynchedEntityData.defineId(EntityMatoran.class, EntityDataSerializers.INT);
 
     /** Tracks the last animation dispatched so we only send on state transitions. */
     private boolean lastMoving = false;
@@ -253,6 +311,26 @@ public class EntityMatoran extends Animal implements Merchant {
         this.offers = null;
     }
 
+    public MatoranColor getMaskColor() {
+        int i = this.entityData.get(DATA_MASK_COLOR);
+        MatoranColor[] colors = MatoranColor.values();
+        return i >= 0 && i < colors.length ? colors[i] : MatoranColor.RED;
+    }
+
+    public void setMaskColor(MatoranColor color) {
+        this.entityData.set(DATA_MASK_COLOR, color.ordinal());
+    }
+
+    public MatoranColor getFeetColor() {
+        int i = this.entityData.get(DATA_FEET_COLOR);
+        MatoranColor[] colors = MatoranColor.values();
+        return i >= 0 && i < colors.length ? colors[i] : MatoranColor.RED;
+    }
+
+    public void setFeetColor(MatoranColor color) {
+        this.entityData.set(DATA_FEET_COLOR, color.ordinal());
+    }
+
     /** Variant key for model/texture: matoran_{koro}_{mask} (e.g. matoran_ta_pakari). */
     public String getVariantKey() {
         return getKoro().getTextureName() + "_" + getMask().getId();
@@ -264,6 +342,8 @@ public class EntityMatoran extends Animal implements Merchant {
         builder.define(DATA_KORO,       Koro.TA.ordinal());
         builder.define(DATA_MASK,       Mask.PAKARI.ordinal());
         builder.define(DATA_PROFESSION, Profession.MERCHANT.ordinal());
+        builder.define(DATA_MASK_COLOR, MatoranColor.RED.ordinal());
+        builder.define(DATA_FEET_COLOR, MatoranColor.RED.ordinal());
     }
 
     /**
@@ -543,6 +623,15 @@ public class EntityMatoran extends Animal implements Merchant {
         child.setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
         Profession[] professions = Profession.values();
         child.setProfession(professions[level.getRandom().nextInt(professions.length)]);
+
+        // Blend accent colors from both parents — child gets the color "between" them.
+        if (otherParent instanceof EntityMatoran other) {
+            child.setMaskColor(MatoranColor.blend(this.getMaskColor(), other.getMaskColor()));
+            child.setFeetColor(MatoranColor.blend(this.getFeetColor(), other.getFeetColor()));
+        } else {
+            child.setMaskColor(MatoranColor.random(level.getRandom()));
+            child.setFeetColor(MatoranColor.random(level.getRandom()));
+        }
         return child;
     }
 
@@ -567,6 +656,10 @@ public class EntityMatoran extends Animal implements Merchant {
             Profession[] professions = Profession.values();
             setProfession(professions[level.getRandom().nextInt(professions.length)]);
         }
+        // Randomize mask and feet accent colors for every newly spawned Matoran
+        // regardless of spawn reason — structure, natural, or otherwise.
+        setMaskColor(MatoranColor.random(level.getRandom()));
+        setFeetColor(MatoranColor.random(level.getRandom()));
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
@@ -802,6 +895,8 @@ public class EntityMatoran extends Animal implements Merchant {
         output.putInt("Koro",       this.entityData.get(DATA_KORO));
         output.putInt("Mask",       this.entityData.get(DATA_MASK));
         output.putInt("Profession", this.entityData.get(DATA_PROFESSION));
+        output.putInt("MaskColor",  this.entityData.get(DATA_MASK_COLOR));
+        output.putInt("FeetColor",  this.entityData.get(DATA_FEET_COLOR));
         if (homePos != null) {
             output.putInt("HomePosX", homePos.getX());
             output.putInt("HomePosY", homePos.getY());
@@ -821,6 +916,8 @@ public class EntityMatoran extends Animal implements Merchant {
         this.entityData.set(DATA_KORO,       input.getIntOr("Koro",       Koro.TA.ordinal()));
         this.entityData.set(DATA_MASK,       input.getIntOr("Mask",       Mask.PAKARI.ordinal()));
         this.entityData.set(DATA_PROFESSION, input.getIntOr("Profession", Profession.MERCHANT.ordinal()));
+        this.entityData.set(DATA_MASK_COLOR, input.getIntOr("MaskColor",  MatoranColor.RED.ordinal()));
+        this.entityData.set(DATA_FEET_COLOR, input.getIntOr("FeetColor",  MatoranColor.RED.ordinal()));
         this.offers = input.read("Offers", MerchantOffers.CODEC).orElse(null);
         // Restore home pos after load (Y uses MIN_VALUE as "not saved" sentinel).
         int savedY = input.getIntOr("HomePosY", Integer.MIN_VALUE);

@@ -73,10 +73,10 @@ public class EntityGukko extends Animal {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0)
-                .add(Attributes.FLYING_SPEED, 0.5)
-                .add(Attributes.MOVEMENT_SPEED, 0.2)
-                .add(Attributes.FOLLOW_RANGE, 24.0)
+                .add(Attributes.MAX_HEALTH, 10.0)
+                .add(Attributes.FLYING_SPEED, 0.17)
+                .add(Attributes.MOVEMENT_SPEED, 0.17)
+                .add(Attributes.FOLLOW_RANGE, 100.0)
                 .add(Attributes.TEMPT_RANGE, 16.0);
     }
 
