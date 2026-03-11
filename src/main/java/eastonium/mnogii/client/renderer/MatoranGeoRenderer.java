@@ -36,6 +36,11 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
     /** Set immediately before rendering each entity; read by boneTextureFor(). */
     private static EntityMatoran currentMatoran = null;
 
+    /** Fraction of normal size for adult Matoran (they are short, compact beings). */
+    private static final float ADULT_SCALE = 0.55f;
+    /** Baby Matoran are half the size of adults. */
+    private static final float BABY_SCALE  = 0.5f;
+
     public MatoranGeoRenderer(EntityRendererProvider.Context context) {
         super(
                 AzEntityRendererConfig.<EntityMatoran>builder(
@@ -44,13 +49,12 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
                 )
                 .setAnimatorProvider(MatoranAnimator::new)
                 .setShadowRadius(0.4f)
+                .setScale(ADULT_SCALE)
                 .setBoneTextureOverrideProvider(MatoranGeoRenderer::boneTextureFor)
                 .build(),
                 context
         );
     }
-
-    private static final float BABY_SCALE = 0.5f;
 
     @Override
     public void render(AzEntityRenderState renderState,
@@ -59,6 +63,7 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
         currentMatoran = entity;
         try {
             if (entity != null && entity.isBaby()) {
+                // Babies render at BABY_SCALE on top of the config's ADULT_SCALE
                 poseStack.pushPose();
                 poseStack.scale(BABY_SCALE, BABY_SCALE, BABY_SCALE);
                 super.render(renderState, poseStack, bufferSource, packedLight);
