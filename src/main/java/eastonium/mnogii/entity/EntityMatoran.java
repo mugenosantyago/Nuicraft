@@ -560,7 +560,7 @@ public class EntityMatoran extends Animal implements Merchant {
         super.tick();
         if (!this.level().isClientSide) {
             boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
-            if (moving != lastMoving || this.tickCount == 1) {
+            if (moving != lastMoving || this.tickCount % 20 == 1) {
                 lastMoving = moving;
                 MatoranAnimator.sendMovementCommand(this);
             }
