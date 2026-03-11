@@ -103,4 +103,16 @@ public class MaskArmorRenderer extends AzArmorRenderer {
             ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_ruru.png")
         );
     }
+
+    /**
+     * Creates a renderer for a colored variant of a base mask type.
+     * Uses the same geo model as the base mask, and the base mask's armor texture
+     * (colored variants share the same 3D shape; tinting comes from the item texture).
+     */
+    public static MaskArmorRenderer ofType(String maskType) {
+        return new MaskArmorRenderer(
+            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/" + maskType + ".geo.json"),
+            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_" + maskType + ".png")
+        );
+    }
 }
