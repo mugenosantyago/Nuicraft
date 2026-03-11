@@ -8,10 +8,8 @@ import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
@@ -59,6 +57,7 @@ public class EntityGukko extends Animal {
 
     @Override
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
         this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
@@ -69,6 +68,7 @@ public class EntityGukko extends Animal {
                 return !EntityGukko.this.isVehicle() && super.canUse();
             }
         });
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -83,6 +83,13 @@ public class EntityGukko extends Animal {
     @Override
     public boolean isFood(ItemStack stack) {
         return stack.is(Items.FEATHER);
+    }
+
+    @Override
+    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity target) {
+        boolean hit = super.doHurtTarget(level, target);
+        if (hit) GukkoAnimator.sendAttackCommand(this);
+        return hit;
     }
 
     @Override

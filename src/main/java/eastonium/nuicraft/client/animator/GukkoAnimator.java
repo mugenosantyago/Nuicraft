@@ -18,6 +18,7 @@ public class GukkoAnimator extends AzEntityAnimator<EntityGukko> {
     @Override
     public void registerControllers(AzAnimationControllerContainer<EntityGukko> container) {
         container.add(AzAnimationController.builder(this, "base_controller").build());
+        container.add(AzAnimationController.builder(this, "attack_controller").build());
     }
 
     @Override
@@ -28,6 +29,11 @@ public class GukkoAnimator extends AzEntityAnimator<EntityGukko> {
     public static void sendMovementCommand(EntityGukko entity) {
         boolean moving = entity.getDeltaMovement().lengthSqr() > 1.0E-5;
         AzCommand.create("base_controller", moving ? "walk" : "idle", AzPlayBehaviors.LOOP)
+                .sendForEntity(entity);
+    }
+
+    public static void sendAttackCommand(EntityGukko entity) {
+        AzCommand.create("attack_controller", "attack", AzPlayBehaviors.PLAY_ONCE)
                 .sendForEntity(entity);
     }
 }
