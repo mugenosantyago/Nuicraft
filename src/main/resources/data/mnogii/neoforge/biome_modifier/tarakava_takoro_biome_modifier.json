@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": ["#mnogii:ta_koro", "minecraft:river"],
+  "biomes": "#mnogii:ta_koro",
   "spawners": {
     "type": "mnogii:tarakava",
     "weight": 12,
