@@ -110,9 +110,8 @@ public class EntityGukko extends Animal {
             double dx = (strafe * Mth.cos(yaw) - fwd * Mth.sin(yaw)) * FLY_SPEED;
             double dz = (fwd * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
 
-            // Vertical: look up while pressing W to rise; Space for explicit boost
+            // Vertical: look up while pressing W to rise (pitch-based, Happy Ghast style)
             double dy = fwd * -Mth.sin(pitch) * FLY_SPEED;
-            if (driver.jumping) dy += FLY_SPEED;
 
             Vec3 motion = getDeltaMovement();
             setDeltaMovement(
