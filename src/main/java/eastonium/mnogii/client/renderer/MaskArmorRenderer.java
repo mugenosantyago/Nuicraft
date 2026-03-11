@@ -105,35 +105,35 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     }
 
     /**
-     * Maps Koro village names to the color prefix used in mask texture filenames.
-     * e.g. "ta" → "RED", "ga" → "BLUE"
+     * Maps Koro village names to the lowercase color prefix used in mask texture filenames.
+     * e.g. "ta" → "red", "ga" → "blue"
+     * ResourceLocation paths must be lowercase [a-z0-9/._-].
      */
     private static String koroToColor(String koro) {
         return switch (koro) {
-            case "ta"     -> "RED";
-            case "ga"     -> "BLUE";
-            case "po"     -> "BROWN";
-            case "ko"     -> "WHITE";
-            case "le"     -> "GREEN";
-            case "onu"    -> "BLACK";
-            case "purple" -> "PURPLE";
-            case "yellow" -> "YELLOW";
+            case "ta"     -> "red";
+            case "ga"     -> "blue";
+            case "po"     -> "brown";
+            case "ko"     -> "white";
+            case "le"     -> "green";
+            case "onu"    -> "black";
+            case "purple" -> "purple";
+            case "yellow" -> "yellow";
             default       -> null;
         };
     }
 
     /**
      * Creates a renderer for a koro-colored variant.
-     * Picks the colored texture ({COLOR}_{MASK}_mask.png) when available,
+     * Picks the colored texture ({color}_{mask}_mask.png) when available,
      * falling back to the base mask_mata_{maskType}.png otherwise.
+     * All paths are fully lowercase to satisfy ResourceLocation requirements.
      */
     public static MaskArmorRenderer ofTypeAndKoro(String maskType, String koro) {
         String color = koroToColor(koro);
-        // Build the colored texture name, e.g. "RED_HAU_mask.png"
-        // Note: maskType is lowercase (e.g. "hau"), texture uses UPPERCASE
-        String upperMask = maskType.toUpperCase();
+        // e.g. "red_kaukau_mask.png"
         String coloredTexture = color != null
-            ? "textures/armor/" + color + "_" + upperMask + "_mask.png"
+            ? "textures/armor/" + color + "_" + maskType + "_mask.png"
             : "textures/armor/mask_mata_" + maskType + ".png";
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/" + maskType + ".geo.json"),
