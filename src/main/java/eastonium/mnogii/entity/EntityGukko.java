@@ -4,7 +4,6 @@ import eastonium.mnogii.client.animator.GukkoAnimator;
 import eastonium.mnogii.core.MnogiiEntityTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
@@ -34,7 +33,7 @@ public class EntityGukko extends Animal {
 
     public EntityGukko(EntityType<? extends EntityGukko> type, Level level) {
         super(type, level);
-        this.moveControl = new FlyingMoveControl(this, 20, true);
+        this.moveControl = new FlyingMoveControl(this, 10, true);
         this.setNoGravity(true);
     }
 
@@ -52,20 +51,15 @@ public class EntityGukko extends Animal {
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
         this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new Ghast.RandomFloatAroundGoal(this, 16));
-        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.5, 20) {
-            @Override public boolean canUse() {
-                return !EntityGukko.this.isVehicle() && super.canUse();
-            }
-        });
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 1.0));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
-                .add(Attributes.FLYING_SPEED, 0.17)
-                .add(Attributes.MOVEMENT_SPEED, 0.17)
+                .add(Attributes.FLYING_SPEED, 0.12)
+                .add(Attributes.MOVEMENT_SPEED, 0.12)
                 .add(Attributes.FOLLOW_RANGE, 100.0)
                 .add(Attributes.TEMPT_RANGE, 16.0);
     }
