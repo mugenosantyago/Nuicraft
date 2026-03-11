@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "mnogii:block/mata_nui_stone",
+    "up": "mnogii:block/mata_nui_stone",
+    "north": "mnogii:block/mata_nui_stone",
+    "east": "mnogii:block/mata_nui_stone",
+    "south": "mnogii:block/mata_nui_stone",
+    "west": "mnogii:block/mata_nui_stone",
+    "particle": "mnogii:block/mata_nui_stone"
+  },
+  "render_type": "solid"
+}

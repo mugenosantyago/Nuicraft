@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "mnogii:koro_block",
+	"data": 2,
+	"count": 8
+  },
+  "pattern": [
+    "sss",
+    "sls",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "item": "mnogii:koro_block",
+	  "data": 1
+    },
+    "l": {
+	    "item": "mnogii:lightstone"
+	}
+  }
+}

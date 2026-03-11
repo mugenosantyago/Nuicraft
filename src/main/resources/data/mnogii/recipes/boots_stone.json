@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PE",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "E": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "mnogii:boots_stone"
+  }
+}

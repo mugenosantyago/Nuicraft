@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "mnogii:fluid_protodermis_pure_molten_deep",
+  "step": "underground_ores"
+}

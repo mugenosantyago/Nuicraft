@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "mnogii:block/seaweed_wood_log_side",
+    "particle": "mnogii:block/seaweed_wood_log_side"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "age=0": { "model": "mnogii:block/bamboo" },
+    "age=1": { "model": "mnogii:block/bamboo" },
+    "age=2": { "model": "mnogii:block/bamboo" },
+    "age=3": { "model": "mnogii:block/bamboo" },
+    "age=4": { "model": "mnogii:block/bamboo" },
+    "age=5": { "model": "mnogii:block/bamboo" },
+    "age=6": { "model": "mnogii:block/bamboo" },
+    "age=7": { "model": "mnogii:block/bamboo" },
+    "age=8": { "model": "mnogii:block/bamboo" },
+    "age=9": { "model": "mnogii:block/bamboo" },
+    "age=10": { "model": "mnogii:block/bamboo" },
+    "age=11": { "model": "mnogii:block/bamboo" },
+    "age=12": { "model": "mnogii:block/bamboo" },
+    "age=13": { "model": "mnogii:block/bamboo" },
+    "age=14": { "model": "mnogii:block/bamboo" },
+    "age=15": { "model": "mnogii:block/bamboo" }
+  }
+}

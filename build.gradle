@@ -7,10 +7,10 @@ plugins {
 }
 
 version = mod_version
-group = "com.eastonium.nuicraft"
+group = "com.eastonium.mnogii"
 
 base {
-    archivesName = "nuicraft"
+    archivesName = "mnogii"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PWP",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "P": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "W": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:toa_trident"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "mnogii:gakoro_rightsecondlilypad",
+  "fallback": "mnogii:gakoro_rightsecondlilypad",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mnogii:gakoro_rightsecondlilypad",
+        "projection": "rigid",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "minecraft:rule",
+              "rules": [
+                {
+                  "input_predicate": {
+                    "predicate_type": "minecraft:block_match",
+                    "block": "minecraft:water"
+                  },
+                  "output_state": {
+                    "Name": "mnogii:fluid_protodermis"
+                  },
+                  "location_predicate": {
+                    "predicate_type": "minecraft:always_true"
+                  }
+                },
+                {
+                  "input_predicate": {
+                    "predicate_type": "minecraft:block_match",
+                    "block": "minecraft:lava"
+                  },
+                  "output_state": {
+                    "Name": "mnogii:fluid_protodermis_molten"
+                  },
+                  "location_predicate": {
+                    "predicate_type": "minecraft:always_true"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,9 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "particle": "nuicraft:block/mata_nui_stone",
-    "bottom": "nuicraft:block/mata_nui_stone",
-    "top": "nuicraft:block/mata_nui_stone",
-    "side": "nuicraft:block/mata_nui_stone"
-  }
-}

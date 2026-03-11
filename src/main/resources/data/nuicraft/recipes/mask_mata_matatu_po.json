@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "nuicraft:mask_mata_matatu" },
-    { "item": "minecraft:brown_dye" }
-  ],
-  "result": { "id": "nuicraft:mask_mata_matatu_po", "count": 1 }
-}

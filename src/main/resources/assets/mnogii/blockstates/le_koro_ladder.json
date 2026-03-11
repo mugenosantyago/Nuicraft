@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mnogii:block/le_koro_ladder"
+    },
+    "facing=east": {
+      "model": "mnogii:block/le_koro_ladder",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "mnogii:block/le_koro_ladder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mnogii:block/le_koro_ladder",
+      "y": 270
+    }
+  }
+}

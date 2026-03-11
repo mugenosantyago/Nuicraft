@@ -1,0 +1,76 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "forge:item-layer",
+		"transform": "forge:default-item"
+	},
+    "variants": {
+        "name": {
+			"ingot_protodermis": {
+				"textures": {
+					"layer0": "mnogii:item/ingot_protodermis"
+				}
+			},
+			"ingot_protosteel": {
+				"textures": {
+					"layer0": "mnogii:item/ingot_protosteel"
+				}
+			},
+			"nugget_protodermis": {
+				"textures": {
+					"layer0": "mnogii:item/nugget_protodermis"
+				}
+			},
+			"nugget_protosteel": {
+				"textures": {
+					"layer0": "mnogii:item/nugget_protosteel"
+				}
+			},
+			"dust_protodermis": {
+				"textures": {
+					"layer0": "mnogii:item/dust_protodermis"
+				}
+			},
+			"dust_protosteel": {
+				"textures": {
+					"layer0": "mnogii:item/dust_protosteel"
+				}
+			},
+			"protodermis_blob": {
+				"textures": {
+					"layer0": "mnogii:item/protodermis_blob"
+				}
+			},
+			"heatstone": {
+				"textures": {
+					"layer0": "mnogii:item/heatstone"
+				}
+			},
+			"bamboo_stick": {
+				"textures": {
+					"layer0": "mnogii:item/bamboo_stick"
+				}
+			},
+			"kanoka_time": {
+				"textures": {
+					"layer0": "mnogii:item/kanoka_time"
+				}
+			},
+			"dye_mask": {
+				"textures": {
+					"layer0": "mnogii:item/dye_mask"
+				}
+			},
+			"kanoka_flying_black": {
+				"textures": {
+					"layer0": "mnogii:item/kanoka_flying_black"
+				}
+			},
+			"kanoka_flying_white": {
+				"textures": {
+					"layer0": "mnogii:item/kanoka_flying_white"
+				}
+			}
+		}
+    }
+}

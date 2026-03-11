@@ -1,7 +1,0 @@
-{
-  "parent": "nuicraft:custom/firestaff",
-  "textures": {
-    "0": "nuicraft:item/firestaff",
-    "particle": "nuicraft:item/firestaff"
-  }
-}

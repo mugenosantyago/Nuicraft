@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OSO",
+    "SHS",
+    "OSO"
+  ],
+  "key": {
+    "O": { "item": "mnogii:onu_wahi_stone" },
+    "S": { "item": "mnogii:ingot_protodermis" },
+    "H": { "item": "mnogii:heatstone" }
+  },
+  "result": {
+    "id": "mnogii:purifier",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "mnogii:block/nuva_cube_bottom",
+    "up": "mnogii:block/nuva_cube_top",
+    "north": "mnogii:block/nuva_cube_front",
+    "south": "mnogii:block/nuva_cube_back",
+    "west": "mnogii:block/nuva_cube_right",
+    "east": "mnogii:block/nuva_cube_left",
+    "particle": "mnogii:block/nuva_cube_front"
+  }
+}

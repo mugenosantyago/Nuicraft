@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=1": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=2": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=3": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=4": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=5": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=6": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=7": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=8": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=9": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=10": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=11": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=12": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=13": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=14": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    },
+    "level=15": {
+      "model": "mnogii:block/fluid_protodermis_molten"
+    }
+  }
+}

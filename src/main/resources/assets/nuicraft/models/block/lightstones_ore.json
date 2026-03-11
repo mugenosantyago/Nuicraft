@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "nuicraft:block/lightstones_block",
-    "particle": "nuicraft:block/lightstones_block"
-  }
-}

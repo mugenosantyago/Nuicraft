@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/pressure_plate_up",
-  "textures": {
-    "texture": "nuicraft:block/koro_block_proto_dark",
-    "particle": "nuicraft:block/koro_block_proto_dark"
-  }
-}

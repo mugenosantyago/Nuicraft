@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ioi",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "i": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "o": {
+      "item": "mnogii:earth_toa_stone"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:onua_drill",
+    "count": 1
+  }
+}

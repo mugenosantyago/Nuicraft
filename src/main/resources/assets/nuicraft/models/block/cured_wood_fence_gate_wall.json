@@ -1,8 +1,0 @@
-{
-  "parent": "block/template_fence_gate_wall",
-  "textures": {
-    "particle": "nuicraft:block/cured_wood_planks",
-    "texture": "nuicraft:block/cured_wood_planks"
-  },
-  "render_type": "solid"
-}

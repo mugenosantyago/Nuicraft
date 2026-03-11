@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "HGH",
+    "III"
+  ],
+  "key": {
+    "I": { "item": "mnogii:ingot_protosteel" },
+    "H": { "item": "mnogii:hammer" },
+    "G": { "item": "mnogii:gear" }
+  },
+  "result": {
+    "id": "mnogii:mask_forge",
+    "count": 1
+  }
+}

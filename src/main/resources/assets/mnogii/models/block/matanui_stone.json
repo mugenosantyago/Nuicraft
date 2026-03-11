@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "mnogii:block/matanui_stone",
+    "front": "mnogii:block/matanui_stone_face",
+    "side": "mnogii:block/matanui_stone"
+  }
+}

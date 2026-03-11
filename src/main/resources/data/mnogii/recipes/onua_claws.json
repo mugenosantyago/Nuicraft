@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C C",
+    "CPC",
+    " P "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:coal"
+    },
+    "P": {
+      "item": "mnogii:ingot_protosteel"
+    }
+  },
+  "result": {
+    "item": "mnogii:onua_claws"
+  }
+}

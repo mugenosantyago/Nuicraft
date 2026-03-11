@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "nuicraft:item/matoran_ga_miru_spawn_egg"
-  }
-}

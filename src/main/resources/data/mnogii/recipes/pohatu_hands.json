@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PRP",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "R": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "mnogii:pohatu_hands"
+  }
+}

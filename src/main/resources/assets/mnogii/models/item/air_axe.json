@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/airaxe",
+  "textures": {
+    "0": "mnogii:item/airaxetexture",
+    "particle": "mnogii:item/airaxetexture"
+  }
+}

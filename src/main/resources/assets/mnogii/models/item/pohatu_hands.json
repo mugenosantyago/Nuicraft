@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/pohatuhands",
+  "textures": {
+    "0": "mnogii:item/pohatuhands",
+    "particle": "mnogii:item/pohatuhands"
+  }
+}

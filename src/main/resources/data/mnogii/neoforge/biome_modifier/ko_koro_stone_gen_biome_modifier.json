@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#mnogii:ko_koro",
+  "features": "mnogii:ko_koro_stone_gen",
+  "step": "underground_ores"
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "b": {
+      "item": "mnogii:nugget_protodermis"
+    },
+    "c": {
+      "item": "mnogii:rock_toa_stone"
+    }
+  },
+  "result": {
+    "item": "mnogii:pohatu_hands",
+    "count": 1
+  }
+}

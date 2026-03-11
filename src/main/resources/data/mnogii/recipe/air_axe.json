@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abb",
+    " c ",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:onu_wahi_stone"
+    },
+    "b": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "c": {
+      "item": "mnogii:air_toa_stone"
+    },
+    "d": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:air_axe",
+    "count": 1
+  }
+}

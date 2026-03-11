@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "b": {
+      "item": "minecraft:ice"
+    }
+  },
+  "result": {
+    "item": "mnogii:ice_shield",
+    "count": 1
+  }
+}

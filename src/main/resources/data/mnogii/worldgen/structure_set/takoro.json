@@ -1,0 +1,36 @@
+{
+  "structures": [
+    {
+      "structure": "mnogii:takoro",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 72,
+    "separation": 26,
+    "salt": 101432296,
+    "exclusion_zones": [
+      {
+        "other_set": "mnogii:gakoro",
+        "chunk_count": 60
+      },
+      {
+        "other_set": "mnogii:lekoro",
+        "chunk_count": 60
+      },
+      {
+        "other_set": "mnogii:onukoro",
+        "chunk_count": 60
+      },
+      {
+        "other_set": "mnogii:pokoro",
+        "chunk_count": 60
+      },
+      {
+        "other_set": "mnogii:kokoro",
+        "chunk_count": 60
+      }
+    ]
+  }
+}

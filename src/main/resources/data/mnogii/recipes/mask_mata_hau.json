@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "K K",
+    "ASH",
+    "K K"
+  ],
+  "key": {
+    "K": {
+      "item": "mnogii:ta_koro_stone"
+    },
+    "A": {
+      "item": "mnogii:heatstone_lighter"
+    },
+    "S": {
+      "item": "mnogii:protodermis_solid"
+    },
+    "H": {
+      "item": "mnogii:hammer"
+    }
+  },
+  "result": {
+    "id": "mnogii:mask_mata_hau",
+    "count": 1
+  }
+}

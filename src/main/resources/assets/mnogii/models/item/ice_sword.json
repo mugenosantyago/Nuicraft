@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/icesword",
+  "textures": {
+    "0": "mnogii:item/iceswordtexture",
+    "particle": "mnogii:item/iceswordtexture"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "mnogii:block/koro_block_proto_dark",
+    "particle": "mnogii:block/koro_block_proto_dark"
+  }
+}

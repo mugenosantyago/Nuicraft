@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PF",
+    "PS",
+    " S"
+  ],
+  "key": {
+    "P": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:air_axe"
+  }
+}

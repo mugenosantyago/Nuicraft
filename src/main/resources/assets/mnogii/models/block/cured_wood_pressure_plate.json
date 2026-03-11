@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "mnogii:block/cured_wood_planks",
+    "particle": "mnogii:block/cured_wood_planks"
+  }
+}

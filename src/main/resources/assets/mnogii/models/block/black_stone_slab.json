@@ -1,0 +1,9 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "particle": "mnogii:block/koro_block_proto_dark_brick",
+    "bottom": "mnogii:block/koro_block_proto_dark_brick",
+    "top": "mnogii:block/koro_block_proto_dark_brick",
+    "side": "mnogii:block/koro_block_proto_dark_brick"
+  }
+}

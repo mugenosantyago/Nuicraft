@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "nuicraft:mask_mata_ruru" },
-    { "item": "minecraft:blue_dye" }
-  ],
-  "result": { "id": "nuicraft:mask_mata_ruru_ga", "count": 1 }
-}

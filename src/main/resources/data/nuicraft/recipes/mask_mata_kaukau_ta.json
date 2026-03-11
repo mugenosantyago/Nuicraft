@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "nuicraft:mask_mata_kaukau" },
-    { "item": "minecraft:red_dye" }
-  ],
-  "result": { "id": "nuicraft:mask_mata_kaukau_ta", "count": 1 }
-}

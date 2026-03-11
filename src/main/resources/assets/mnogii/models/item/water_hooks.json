@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/waterhooks",
+  "textures": {
+    "0": "mnogii:item/waterhookstexture",
+    "particle": "mnogii:item/waterhookstexture"
+  }
+}

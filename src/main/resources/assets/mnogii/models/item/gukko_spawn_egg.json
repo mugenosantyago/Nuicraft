@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mnogii:item/gukko_spawn_egg"
+  }
+}

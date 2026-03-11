@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_fence_gate",
+  "textures": {
+    "particle": "mnogii:block/cured_wood_planks",
+    "texture": "mnogii:block/cured_wood_planks"
+  },
+  "render_type": "solid"
+}

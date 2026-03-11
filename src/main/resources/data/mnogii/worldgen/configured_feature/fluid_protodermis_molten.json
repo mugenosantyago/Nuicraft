@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:spring_feature",
+  "config": {
+    "state": {
+      "Name": "mnogii:protodermis_molten",
+      "Properties": {
+        "falling": "false"
+      }
+    },
+    "requires_block_below": true,
+    "rock_count": 4,
+    "hole_count": 1,
+    "valid_blocks": [
+      "minecraft:stone",
+      "minecraft:granite",
+      "minecraft:diorite",
+      "minecraft:andesite",
+      "minecraft:deepslate",
+      "minecraft:tuff",
+      "minecraft:calcite",
+      "minecraft:dirt",
+      "mnogii:matanui_stone",
+      "mnogii:makuta_stone",
+      "mnogii:ta_koro_stone",
+      "mnogii:onu_koro_stone",
+      "mnogii:ga_koro_stone",
+      "mnogii:ko_koro_stone",
+      "mnogii:le_koro_stone",
+      "mnogii:po_koro_stone"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=1": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=2": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=3": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=4": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=5": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=6": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=7": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=8": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=9": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=10": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=11": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=12": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=13": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=14": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    },
+    "level=15": {
+      "model": "mnogii:block/fluid_protodermis_pure"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mnogii:fire_toa"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mnogii:fire_toa"
+      }
+    ]
+  }
+}

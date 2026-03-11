@@ -1,0 +1,9 @@
+{
+  "type": "mnogii:purifying",
+  "ingredient": "mnogii:molten_protodermis_bucket",
+  "result": {
+    "id": "mnogii:pure_molten_protodermis_bucket"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

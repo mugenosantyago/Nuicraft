@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": {"item": "mnogii:mask_forge"},
+    "title": {"translate": "advancement.mnogii.quest_5.title"},
+    "description": {"translate": "advancement.mnogii.quest_5.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_5_0": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {"block": "mnogii:mask_forge"}
+    }
+  },
+  "parent": "mnogii:quest_1"
+}

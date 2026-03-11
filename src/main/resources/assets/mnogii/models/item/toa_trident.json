@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/trident",
+  "textures": {
+    "0": "mnogii:item/trident",
+    "particle": "mnogii:item/trident"
+  }
+}

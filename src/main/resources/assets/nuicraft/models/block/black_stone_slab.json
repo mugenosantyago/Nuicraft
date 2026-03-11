@@ -1,9 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "particle": "nuicraft:block/koro_block_proto_dark_brick",
-    "bottom": "nuicraft:block/koro_block_proto_dark_brick",
-    "top": "nuicraft:block/koro_block_proto_dark_brick",
-    "side": "nuicraft:block/koro_block_proto_dark_brick"
-  }
-}

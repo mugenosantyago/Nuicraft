@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "mnogii:koro_block",
+	"data": 7,
+	"count": 4
+  },
+  "pattern": [
+    "ss",
+    "ss"
+  ],
+  "key": {
+    "s": [
+	  {
+        "item": "mnogii:koro_block",
+	    "data": 5
+      },{
+        "item": "mnogii:koro_block",
+	    "data": 6
+      }	  
+	]
+  }
+}

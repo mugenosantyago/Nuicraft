@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mnogii:stone_toa"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mnogii:stone_toa"
+      }
+    ]
+  }
+}

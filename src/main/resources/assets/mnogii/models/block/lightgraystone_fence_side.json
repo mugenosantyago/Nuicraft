@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "mnogii:block/mata_nui_stone",
+    "particle": "mnogii:block/mata_nui_stone"
+  }
+}

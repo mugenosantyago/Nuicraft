@@ -1,17 +1,17 @@
 {
   "replace": false,
   "values": [
-    "nuicraft:mask_mata_akaku",
-    "nuicraft:mask_mata_hau",
-    "nuicraft:mask_mata_huna",
-    "nuicraft:mask_mata_kakama",
-    "nuicraft:mask_mata_kaukau",
-    "nuicraft:mask_mata_komau",
-    "nuicraft:mask_mata_mahiki",
-    "nuicraft:mask_mata_matatu",
-    "nuicraft:mask_mata_miru",
-    "nuicraft:mask_mata_pakari",
-    "nuicraft:mask_mata_raru",
-    "nuicraft:mask_mata_ruru"
+    "mnogii:mask_mata_akaku",
+    "mnogii:mask_mata_hau",
+    "mnogii:mask_mata_huna",
+    "mnogii:mask_mata_kakama",
+    "mnogii:mask_mata_kaukau",
+    "mnogii:mask_mata_komau",
+    "mnogii:mask_mata_mahiki",
+    "mnogii:mask_mata_matatu",
+    "mnogii:mask_mata_miru",
+    "mnogii:mask_mata_pakari",
+    "mnogii:mask_mata_raru",
+    "mnogii:mask_mata_ruru"
   ]
 }

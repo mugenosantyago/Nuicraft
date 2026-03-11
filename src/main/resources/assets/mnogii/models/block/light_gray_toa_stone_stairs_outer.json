@@ -1,0 +1,9 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "particle": "mnogii:block/mata_nui_stone",
+    "bottom": "mnogii:block/mata_nui_stone",
+    "top": "mnogii:block/mata_nui_stone",
+    "side": "mnogii:block/mata_nui_stone"
+  }
+}

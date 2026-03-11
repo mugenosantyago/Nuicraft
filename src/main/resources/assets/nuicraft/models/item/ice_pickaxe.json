@@ -1,7 +1,0 @@
-{
-  "parent": "nuicraft:custom/icepickaxe",
-  "textures": {
-    "0": "nuicraft:item/icepickaxe",
-    "particle": "nuicraft:item/icepickaxe"
-  }
-}

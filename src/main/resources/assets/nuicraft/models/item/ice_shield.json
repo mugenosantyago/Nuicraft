@@ -1,7 +1,0 @@
-{
-  "parent": "nuicraft:custom/kopaka_shield",
-  "textures": {
-    "0": "nuicraft:item/iceshieldtexture",
-    "particle": "nuicraft:item/iceshieldtexture"
-  }
-}

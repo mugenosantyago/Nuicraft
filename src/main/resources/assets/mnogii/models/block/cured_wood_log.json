@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "mnogii:block/cured_wood_log_top",
+    "up": "mnogii:block/cured_wood_log_top",
+    "north": "mnogii:block/cured_wood_log_side",
+    "east": "mnogii:block/cured_wood_log_side",
+    "south": "mnogii:block/cured_wood_log_side",
+    "west": "mnogii:block/cured_wood_log_side",
+    "particle": "mnogii:block/cured_wood_log_top"
+  },
+  "render_type": "solid"
+}

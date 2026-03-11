@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["nnn", "nnn", "nnn"],
+  "key": {"n": {"item": "mnogii:nugget_protosteel"}},
+  "result": {"item": "mnogii:ingot_protosteel", "count": 1}
+}

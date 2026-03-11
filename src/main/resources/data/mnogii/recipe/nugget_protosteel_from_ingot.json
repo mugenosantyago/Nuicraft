@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [{"item": "mnogii:ingot_protosteel"}],
+  "result": {"item": "mnogii:nugget_protosteel", "count": 9}
+}

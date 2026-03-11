@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    " cb",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:onu_wahi_stone"
+    },
+    "b": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "c": {
+      "item": "mnogii:water_toa_stone"
+    },
+    "d": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:water_hooks",
+    "count": 1
+  }
+}

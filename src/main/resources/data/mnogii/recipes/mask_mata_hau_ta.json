@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "mnogii:mask_mata_hau" },
+    { "item": "minecraft:red_dye" }
+  ],
+  "result": { "id": "mnogii:mask_mata_hau_ta", "count": 1 }
+}

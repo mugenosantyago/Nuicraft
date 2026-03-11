@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "mnogii:block/light_gray_stone",
+    "particle": "mnogii:block/light_gray_stone"
+  }
+}

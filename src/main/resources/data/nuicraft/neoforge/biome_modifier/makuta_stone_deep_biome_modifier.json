@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "nuicraft:makuta_stone_deep",
-  "step": "underground_ores"
-}

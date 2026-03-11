@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/ladder",
+  "textures": {
+    "texture": "mnogii:block/le_koro_ladder",
+    "particle": "mnogii:block/le_koro_ladder"
+  }
+}

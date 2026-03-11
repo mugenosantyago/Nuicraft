@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mnogii:block/matanui_stone"
+    },
+    "facing=south": {
+      "model": "mnogii:block/matanui_stone",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "mnogii:block/matanui_stone",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "mnogii:block/matanui_stone",
+      "y": 270
+    }
+  }
+}

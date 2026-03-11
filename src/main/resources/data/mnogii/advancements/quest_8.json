@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": {"item": "mnogii:fluid_protodermis"},
+    "title": {"translate": "advancement.mnogii.quest_8.title"},
+    "description": {"translate": "advancement.mnogii.quest_8.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_8_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["mnogii:fluid_protodermis"], "count": {"min": 1}}]}
+    }
+  },
+  "parent": "mnogii:quest_7"
+}

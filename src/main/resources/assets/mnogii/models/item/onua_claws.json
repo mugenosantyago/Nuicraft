@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/onuaclaws",
+  "textures": {
+    "0": "mnogii:item/onuaclaws",
+    "particle": "mnogii:item/onuaclaws"
+  }
+}

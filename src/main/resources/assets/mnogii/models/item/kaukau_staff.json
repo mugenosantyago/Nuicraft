@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/kaukaustaff",
+  "textures": {
+    "0": "mnogii:item/kaukaustaff",
+    "particle": "mnogii:item/kaukaustaff"
+  }
+}

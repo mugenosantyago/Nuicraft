@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "mnogii:block/makuta_stone",
+    "front": "mnogii:block/makuta_stone_face",
+    "side": "mnogii:block/makuta_stone"
+  }
+}

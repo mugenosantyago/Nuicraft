@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "oio",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "o": {
+      "item": "mnogii:onu_wahi_stone"
+    },
+    "i": {
+      "item": "mnogii:ice_toa_stone"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:ice_pickaxe",
+    "count": 1
+  }
+}

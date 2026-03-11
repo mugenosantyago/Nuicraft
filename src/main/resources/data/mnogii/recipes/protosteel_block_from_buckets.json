@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB",
+    "BB"
+  ],
+  "key": {
+    "B": { "item": "mnogii:pure_molten_protodermis_bucket" }
+  },
+  "result": {
+    "id": "mnogii:block_protosteel",
+    "count": 1
+  }
+}

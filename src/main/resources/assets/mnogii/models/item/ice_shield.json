@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/kopaka_shield",
+  "textures": {
+    "0": "mnogii:item/iceshieldtexture",
+    "particle": "mnogii:item/iceshieldtexture"
+  }
+}

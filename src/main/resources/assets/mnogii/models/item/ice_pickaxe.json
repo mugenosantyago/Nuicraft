@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/icepickaxe",
+  "textures": {
+    "0": "mnogii:item/icepickaxe",
+    "particle": "mnogii:item/icepickaxe"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {"item": "mnogii:mask_mata_hau"},
+    "title": {"translate": "advancement.mnogii.quest_6.title"},
+    "description": {"translate": "advancement.mnogii.quest_6.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "quest_6_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["#mnogii:masks"],
+            "count": {"min": 1}
+          }
+        ]
+      }
+    }
+  },
+  "parent": "mnogii:quest_5"
+}

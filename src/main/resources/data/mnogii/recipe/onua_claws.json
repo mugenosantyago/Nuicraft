@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:nugget_protodermis"
+    },
+    "b": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "c": {
+      "item": "mnogii:earth_toa_stone"
+    },
+    "d": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "mnogii:onua_claws",
+    "count": 1
+  }
+}

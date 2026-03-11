@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "mnogii:block/seaweed_wood_planks",
+    "bottom": "mnogii:block/seaweed_wood_planks",
+    "top": "mnogii:block/seaweed_wood_planks",
+    "side": "mnogii:block/seaweed_wood_planks"
+  },
+  "render_type": "solid"
+}

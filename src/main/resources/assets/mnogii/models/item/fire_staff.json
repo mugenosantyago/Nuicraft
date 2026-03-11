@@ -1,0 +1,7 @@
+{
+  "parent": "mnogii:custom/firestaff",
+  "textures": {
+    "0": "mnogii:item/firestaff",
+    "particle": "mnogii:item/firestaff"
+  }
+}

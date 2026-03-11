@@ -1,7 +1,0 @@
-{
-  "parent": "nuicraft:custom/kaukaustaff",
-  "textures": {
-    "0": "nuicraft:item/kaukaustaff",
-    "particle": "nuicraft:item/kaukaustaff"
-  }
-}

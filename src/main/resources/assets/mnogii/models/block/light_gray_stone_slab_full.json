@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "mnogii:block/lightgraystonebrick",
+    "bottom": "mnogii:block/lightgraystonebrick",
+    "top": "mnogii:block/lightgraystonebrick",
+    "side": "mnogii:block/lightgraystonebrick"
+  },
+  "render_type": "solid"
+}

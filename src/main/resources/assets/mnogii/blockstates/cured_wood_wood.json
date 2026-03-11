@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "mnogii:block/cured_wood_wood"
+    },
+    "axis=z": {
+      "model": "mnogii:block/cured_wood_wood",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "mnogii:block/cured_wood_wood",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

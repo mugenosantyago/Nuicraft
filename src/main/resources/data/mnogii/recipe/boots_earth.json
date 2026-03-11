@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca"
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "b": {
+      "item": "mnogii:earth_toa_stone"
+    },
+    "c": {
+      "item": "mnogii:onu_wahi_stone"
+    }
+  },
+  "result": {
+    "item": "mnogii:boots_earth",
+    "count": 1
+  }
+}

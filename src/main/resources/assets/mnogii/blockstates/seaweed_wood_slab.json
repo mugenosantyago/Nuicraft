@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mnogii:block/seaweed_wood_slab"
+    },
+    "type=top": {
+      "model": "mnogii:block/seaweed_wood_slab_top"
+    },
+    "type=double": {
+      "model": "mnogii:block/seaweed_wood_slab_full"
+    }
+  }
+}

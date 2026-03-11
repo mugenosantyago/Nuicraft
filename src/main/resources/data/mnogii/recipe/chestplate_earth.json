@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "mnogii:ingot_protosteel"
+    },
+    "b": {
+      "item": "mnogii:onu_wahi_stone"
+    },
+    "c": {
+      "item": "mnogii:gear"
+    },
+    "d": {
+      "item": "mnogii:earth_toa_stone"
+    }
+  },
+  "result": {
+    "item": "mnogii:chestplate_earth",
+    "count": 1
+  }
+}

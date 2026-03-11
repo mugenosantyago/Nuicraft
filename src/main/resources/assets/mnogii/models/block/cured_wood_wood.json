@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "mnogii:block/cured_wood_log_side",
+    "end": "mnogii:block/cured_wood_log_top"
+  }
+}

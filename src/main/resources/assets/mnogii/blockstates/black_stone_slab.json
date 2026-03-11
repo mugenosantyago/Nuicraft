@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mnogii:block/black_stone_slab"
+    },
+    "type=top": {
+      "model": "mnogii:block/black_stone_slab_top"
+    },
+    "type=double": {
+      "model": "mnogii:block/black_stone_slab_full"
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": ["nnn", "nnn", "nnn"],
-  "key": {"n": {"item": "nuicraft:nugget_protosteel"}},
-  "result": {"item": "nuicraft:ingot_protosteel", "count": 1}
-}
