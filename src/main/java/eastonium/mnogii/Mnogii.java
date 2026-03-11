@@ -9,7 +9,6 @@ import eastonium.mnogii.core.MnogiiSpawnPlacements;
 import eastonium.mnogii.config.MnogiiConfig;
 import eastonium.mnogii.event.DialogueEventHandler;
 import eastonium.mnogii.event.KoroSpawnHandler;
-import eastonium.mnogii.morph.PlayerMorphEventHandler;
 import eastonium.mnogii.network.MnogiiPayloads;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -57,7 +56,6 @@ public class Mnogii {
 
         // Game events
         NeoForge.EVENT_BUS.register(DialogueEventHandler.class);
-        NeoForge.EVENT_BUS.register(PlayerMorphEventHandler.class);
         NeoForge.EVENT_BUS.register(KoroSpawnHandler.class);
         
         // Client-side (renderers, Gukko input when riding)

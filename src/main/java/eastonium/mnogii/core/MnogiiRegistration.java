@@ -4,7 +4,6 @@ import eastonium.mnogii.Mnogii;
 import eastonium.mnogii.blockentity.PurifierBlockEntity;
 import eastonium.mnogii.menu.ElementSwiperMenu;
 import eastonium.mnogii.menu.PurifierMenu;
-import eastonium.mnogii.morph.MnogiiAttachments;
 import eastonium.mnogii.recipe.PurifyingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -128,7 +127,6 @@ public class MnogiiRegistration {
                     IMenuTypeExtension.create((windowId, inv, buf) -> new ElementSwiperMenu(windowId, inv)));
 
     public static void register(IEventBus modEventBus) {
-        MnogiiAttachments.register(modEventBus);
         MnogiiBlocks.BLOCKS.register(modEventBus);
         MnogiiItems.ITEMS.register(modEventBus);
         MnogiiEntityTypes.ENTITY_TYPES.register(modEventBus);

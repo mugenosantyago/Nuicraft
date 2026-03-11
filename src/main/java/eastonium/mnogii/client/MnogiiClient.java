@@ -22,11 +22,9 @@ public class MnogiiClient {
     public static void registerModBusEvents(IEventBus modEventBus) {
         modEventBus.addListener(MnogiiClient::registerLayerDefinitions);
         modEventBus.addListener(MnogiiClient::registerRenderers);
-        modEventBus.addListener(MnogiiClient::registerAddLayers);
         modEventBus.addListener(MnogiiClient::clientSetup);
         modEventBus.addListener(MnogiiClient::registerScreens);
         modEventBus.addListener(MnogiiClient::registerClientExtensions);
-        modEventBus.addListener(MnogiiKeys::register);
     }
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
@@ -37,14 +35,7 @@ public class MnogiiClient {
     private static void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MaskArmorRendererRegistry.registerAll();
-            NeoForge.EVENT_BUS.register(PlayerMorphKeyHandler.class);
-            NeoForge.EVENT_BUS.register(PlayerMorphClientEvents.class);
         });
-    }
-
-    private static void registerAddLayers(EntityRenderersEvent.AddLayers event) {
-        // Grab the renderer context to build the morph renderer
-        PlayerMorphGeoRenderer.init(event.getContext());
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
