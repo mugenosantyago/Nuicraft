@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mnogii:le_koro",
+  "spawners": {
+    "type": "mnogii:gukko",
+    "weight": 20,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

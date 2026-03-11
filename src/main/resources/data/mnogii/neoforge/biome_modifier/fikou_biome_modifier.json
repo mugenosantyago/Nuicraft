@@ -13,8 +13,8 @@
   ],
   "spawners": {
     "type": "mnogii:fikou",
-    "weight": 12,
-    "minCount": 1,
-    "maxCount": 3
+    "weight": 15,
+    "minCount": 2,
+    "maxCount": 4
   }
 }

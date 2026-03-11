@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mnogii:le_koro",
+  "spawners": {
+    "type": "mnogii:nui_rama",
+    "weight": 18,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

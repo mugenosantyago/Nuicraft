@@ -10,8 +10,8 @@
   ],
   "spawners": {
     "type": "mnogii:spider_fikou",
-    "weight": 8,
-    "minCount": 1,
-    "maxCount": 3
+    "weight": 12,
+    "minCount": 2,
+    "maxCount": 4
   }
 }

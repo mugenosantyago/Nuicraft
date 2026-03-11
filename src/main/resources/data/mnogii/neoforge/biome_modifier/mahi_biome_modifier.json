@@ -12,8 +12,8 @@
   ],
   "spawners": {
     "type": "mnogii:mahi",
-    "weight": 15,
-    "minCount": 2,
-    "maxCount": 5
+    "weight": 20,
+    "minCount": 3,
+    "maxCount": 6
   }
 }

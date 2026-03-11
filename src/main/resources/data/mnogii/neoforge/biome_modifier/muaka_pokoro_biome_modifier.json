@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mnogii:po_koro",
+  "spawners": {
+    "type": "mnogii:muaka",
+    "weight": 15,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

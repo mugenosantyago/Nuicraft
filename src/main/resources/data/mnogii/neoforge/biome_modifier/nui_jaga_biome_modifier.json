@@ -9,8 +9,8 @@
   ],
   "spawners": {
     "type": "mnogii:nui_jaga",
-    "weight": 3,
+    "weight": 8,
     "minCount": 1,
-    "maxCount": 2
+    "maxCount": 3
   }
 }

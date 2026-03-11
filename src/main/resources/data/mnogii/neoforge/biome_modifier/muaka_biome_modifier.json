@@ -8,11 +8,12 @@
     "minecraft:taiga", "minecraft:old_growth_pine_taiga", "minecraft:old_growth_spruce_taiga",
     "minecraft:windswept_hills", "minecraft:windswept_gravelly_hills", "minecraft:windswept_forest",
     "minecraft:plains", "minecraft:meadow",
-    "minecraft:snowy_plains", "minecraft:snowy_taiga"
+    "minecraft:snowy_plains", "minecraft:snowy_taiga",
+    "minecraft:dripstone_caves", "minecraft:stony_shore"
   ],
   "spawners": {
     "type": "mnogii:muaka",
-    "weight": 6,
+    "weight": 8,
     "minCount": 1,
     "maxCount": 2
   }
