@@ -148,7 +148,7 @@ public class MnogiiBlocks {
     public static final DeferredBlock<FenceBlock> BLACK_STONE_FENCE = BLOCKS.registerBlock("black_stone_fence",
             FenceBlock::new, withBlockId("black_stone_fence", BlockBehaviour.Properties.of().strength(2.5F, 6.0F).sound(SoundType.STONE)));
     public static final DeferredBlock<Block> BLACK_STONE_LAMP = BLOCKS.registerSimpleBlock("black_stone_lamp",
-            withBlockId("black_stone_lamp", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.STONE).lightLevel(state -> 12)));
+            withBlockId("black_stone_lamp", BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.STONE).lightLevel(state -> 15)));
     public static final DeferredBlock<PressurePlateBlock> BLACK_STONE_PRESSURE_PLATE = BLOCKS.registerBlock("black_stone_pressure_plate",
             props -> new PressurePlateBlock(BlockSetType.STONE, props),
             withBlockId("black_stone_pressure_plate", BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE).noCollission()));
