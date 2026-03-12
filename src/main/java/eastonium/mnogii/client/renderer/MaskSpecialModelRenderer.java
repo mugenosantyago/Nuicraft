@@ -2,6 +2,7 @@ package eastonium.mnogii.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import eastonium.mnogii.Mnogii;
@@ -33,16 +34,24 @@ import java.util.Set;
  */
 public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
+    /** Default scale applied to all masks (fits the slot without zooming). */
+    private static final float DEFAULT_SCALE = 1.0f;
+    /** Y translation that centres the mask geometry within the item-display coordinate system. */
+    private static final float CENTER_TRANSLATE_Y = -2.8f;
+
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;
+    /** Per-model scale multiplier, applied on top of DEFAULT_SCALE. */
+    private final float scale;
 
     private final Matrix4f poseStateCache = new Matrix4f();
     private final Vector3f normalScratch  = new Vector3f();
     private final Vector4f quadPosition   = new Vector4f();
 
-    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath) {
+    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale) {
         this.geoPath     = geoPath;
         this.texturePath = texturePath;
+        this.scale       = scale;
     }
 
     @Override
@@ -62,13 +71,12 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
         VertexConsumer buffer = source.getBuffer(renderType);
 
         poseStack.pushPose();
-        // AzureLib's model factory already converts geo coordinates from pixels to blocks (÷16),
-        // so we must NOT apply an additional 0.0625 scale factor.
-        // Scale up slightly so the mask fills the inventory slot nicely.
-        poseStack.scale(1.6f, 1.6f, 1.6f);
-        // Shift down so the mask (whose geometry sits at y≈1.5–2.1 blocks above world origin
-        // due to the armorHead pivot at y=24px=1.5 blocks) is centred at the item origin.
-        poseStack.translate(0, -1.85f, 0);
+        // Apply base scale + centering translate, then the per-model scale multiplier.
+        // The extra scale is applied last (innermost) so it enlarges around the
+        // already-centred origin rather than shifting the mask off-screen.
+        float s = DEFAULT_SCALE * scale;
+        poseStack.scale(s, s, s);
+        poseStack.translate(0, CENTER_TRANSLATE_Y / scale, 0);
 
         for (AzBone bone : model.getTopLevelBones()) {
             renderBoneRecursively(poseStack, buffer, bone, light, overlay);
@@ -142,13 +150,14 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     // Unbaked — codec-driven registration for minecraft:special item models
     // -------------------------------------------------------------------------
 
-    public record Unbaked(ResourceLocation geo, ResourceLocation texture)
+    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale)
             implements SpecialModelRenderer.Unbaked {
 
         public static final MapCodec<Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
                 ResourceLocation.CODEC.fieldOf("geo").forGetter(Unbaked::geo),
-                ResourceLocation.CODEC.fieldOf("texture").forGetter(Unbaked::texture)
+                ResourceLocation.CODEC.fieldOf("texture").forGetter(Unbaked::texture),
+                Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(Unbaked::scale)
             ).apply(instance, Unbaked::new)
         );
 
@@ -158,7 +167,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         @Override
         public @Nullable SpecialModelRenderer<?> bake(EntityModelSet modelSet) {
-            return new MaskSpecialModelRenderer(geo, texture);
+            return new MaskSpecialModelRenderer(geo, texture, scale);
         }
 
         @Override
