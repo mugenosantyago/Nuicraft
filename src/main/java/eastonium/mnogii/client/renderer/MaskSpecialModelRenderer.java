@@ -36,11 +36,10 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
     /**
      * Base scale applied to all geo item models in GUI slots.
-     * After fixing the armor geo pivot to [0,0,0], mask cubes span
-     * Bedrock y=0 (chin) to ~y=9.5 (crown) = 0–0.594 block units.
-     * Scale 1.5 expands that to ~0.89 units, nearly filling a 1-unit slot.
+     * Mask cubes span ~0.6–1.0 block units in each dimension.
+     * Scale 1.0 keeps them at native size, fitting within a 1-unit slot.
      */
-    private static final float DEFAULT_SCALE = 1.5f;
+    private static final float DEFAULT_SCALE = 1.0f;
 
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;
@@ -48,7 +47,8 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     private final float scale;
     /**
      * Y translate (in pre-scale block units) that centres the model in the GUI slot.
-     * For masks: Mask Y centre ≈ 0.297 blocks → -0.3 shifts the mask centred to y=0.
+     * For masks: cubes are at Bedrock head height (y≈24–34 pixels = ~1.87 blocks),
+     * so -1.87 shifts the mask center to y=0.
      * For items already centred at the origin (e.g. kohlii_stick): pass 0.0.
      */
     private final float centerY;
@@ -168,7 +168,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
                 ResourceLocation.CODEC.fieldOf("geo").forGetter(Unbaked::geo),
                 ResourceLocation.CODEC.fieldOf("texture").forGetter(Unbaked::texture),
                 Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(Unbaked::scale),
-                Codec.FLOAT.optionalFieldOf("center_y", -0.3f).forGetter(Unbaked::centerY)
+                Codec.FLOAT.optionalFieldOf("center_y", -1.87f).forGetter(Unbaked::centerY)
             ).apply(instance, Unbaked::new)
         );
 

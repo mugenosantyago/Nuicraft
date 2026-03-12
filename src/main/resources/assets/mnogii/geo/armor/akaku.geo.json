@@ -19,7 +19,7 @@
           "name": "armorHead",
           "pivot": [
             0,
-            0,
+            24.0,
             0
           ],
           "cubes": [
