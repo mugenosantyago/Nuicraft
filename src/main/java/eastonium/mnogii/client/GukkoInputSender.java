@@ -4,8 +4,8 @@ import eastonium.mnogii.entity.EntityGukko;
 import eastonium.mnogii.network.GukkoDescentPayload;
 import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 /**
  * Runs every client tick while the local player is riding a Gukko.
@@ -23,22 +23,23 @@ public class GukkoInputSender {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null || mc.level == null) return;
+        var player = mc.player;
+        if (player == null || mc.level == null) return;
 
-        boolean onGukko = mc.player.getVehicle() instanceof EntityGukko;
+        boolean onGukko = player.getVehicle() instanceof EntityGukko;
 
         if (!onGukko) {
             if (lastDescend) {
                 lastDescend = false;
-                PacketDistributor.sendToServer(new GukkoDescentPayload(false));
+                ClientPacketDistributor.sendToServer(new GukkoDescentPayload(false));
             }
             return;
         }
 
-        boolean descend = mc.options.sneak.isDown();
+        boolean descend = mc.options.keyShift.isDown();
         if (descend != lastDescend) {
             lastDescend = descend;
-            PacketDistributor.sendToServer(new GukkoDescentPayload(descend));
+            ClientPacketDistributor.sendToServer(new GukkoDescentPayload(descend));
         }
     }
 }
