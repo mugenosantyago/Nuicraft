@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -45,7 +44,9 @@ public class BlockPurifier extends AbstractFurnaceBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
                                                                    BlockEntityType<T> type) {
-        return level.isClientSide ? null
-                : createFurnaceTicker(level, type, MnogiiRegistration.PURIFIER_BE.get());
+        return level instanceof net.minecraft.server.level.ServerLevel serverLevel
+                ? createTickerHelper(type, MnogiiRegistration.PURIFIER_BE.get(),
+                        (l, pos, s, be) -> PurifierBlockEntity.fuelFreeTick(serverLevel, pos, s, be))
+                : null;
     }
 }
