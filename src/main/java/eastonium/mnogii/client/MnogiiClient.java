@@ -6,12 +6,10 @@ import eastonium.mnogii.client.screen.ElementSwiperScreen;
 import eastonium.mnogii.client.screen.PurifierScreen;
 import eastonium.mnogii.core.MnogiiEntityTypes;
 import eastonium.mnogii.core.MnogiiRegistration;
-import eastonium.mnogii.entity.EntityGukko;
 import eastonium.mnogii.entity.EntityThrownDisc;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
@@ -19,7 +17,6 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.EntityMountEvent;
 
 public class MnogiiClient {
 
@@ -31,22 +28,12 @@ public class MnogiiClient {
         modEventBus.addListener(MnogiiClient::registerClientExtensions);
         modEventBus.addListener(MnogiiClient::registerSpecialModelRenderers);
         // NeoForge game-bus events (not mod-bus)
-        NeoForge.EVENT_BUS.addListener(MnogiiClient::onEntityMount);
+        // EntityMountEvent cancellation is registered in Mnogii (common/both sides).
+        NeoForge.EVENT_BUS.addListener(GukkoInputSender::onClientTick);
     }
 
     private static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {
         event.register(MaskSpecialModelRenderer.Unbaked.TYPE_ID, MaskSpecialModelRenderer.Unbaked.CODEC);
-    }
-
-    /**
-     * Cancel sneak-to-dismount when the vehicle is a Gukko so Shift can be used for descending.
-     * Players can dismount a Gukko by right-clicking with an empty hand (handled in EntityGukko.mobInteract).
-     */
-    @SubscribeEvent
-    public static void onEntityMount(EntityMountEvent event) {
-        if (event.isDismounting() && event.getEntityBeingMounted() instanceof EntityGukko) {
-            event.setCanceled(true);
-        }
     }
 
     private static void registerScreens(RegisterMenuScreensEvent event) {

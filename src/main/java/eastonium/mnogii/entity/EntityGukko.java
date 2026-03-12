@@ -52,6 +52,19 @@ public class EntityGukko extends Animal {
 
     private boolean lastMoving = false;
 
+    /** Set by GukkoInputSender via GukkoDescentPayload — true while the rider is holding Shift. */
+    private boolean wantsDescend = false;
+
+    /**
+     * Raised in mobInteract before calling player.stopRiding() for an explicit right-click
+     * dismount, so the EntityMountEvent listener knows to allow it through.
+     */
+    public static boolean EXPLICIT_DISMOUNT = false;
+
+    public void setWantsDescend(boolean value) {
+        this.wantsDescend = value;
+    }
+
     public EntityGukko(EntityType<? extends EntityGukko> type, Level level) {
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 10, true);
@@ -126,10 +139,10 @@ public class EntityGukko extends Animal {
             double dx = (strafe * Mth.cos(yaw) - fwd * Mth.sin(yaw)) * FLY_SPEED;
             double dz = (fwd   * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
 
-            // Space = ascend, Shift = descend
+            // Space = ascend, Shift = descend (wantsDescend set by GukkoInputSender via packet)
             double dy = 0;
-            if (isJumping(driver))          dy += FLY_SPEED;
-            if (driver.isShiftKeyDown())    dy -= FLY_SPEED;
+            if (isJumping(driver))  dy += FLY_SPEED;
+            if (wantsDescend)       dy -= FLY_SPEED;
 
             Vec3 motion = getDeltaMovement();
             setDeltaMovement(
@@ -140,6 +153,7 @@ public class EntityGukko extends Animal {
             move(MoverType.SELF, getDeltaMovement());
             setDeltaMovement(getDeltaMovement().scale(FLY_DRAG));
         } else {
+            wantsDescend = false;
             super.travel(travelVector);
         }
     }
@@ -183,7 +197,11 @@ public class EntityGukko extends Animal {
 
         // Right-click with empty hand while riding → dismount (Shift is reserved for descend)
         if (this.hasPassenger(player) && stack.isEmpty()) {
-            if (!this.level().isClientSide) player.stopRiding();
+            if (!this.level().isClientSide) {
+                EXPLICIT_DISMOUNT = true;
+                player.stopRiding();
+                EXPLICIT_DISMOUNT = false;
+            }
             return net.minecraft.world.InteractionResult.SUCCESS;
         }
         // Breeding
