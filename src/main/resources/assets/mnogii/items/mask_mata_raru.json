@@ -5,7 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/raru.geo.json",
-      "texture": "mnogii:textures/armor/red_raru_mask.png"
+      "texture": "mnogii:textures/armor/white_raru_mask.png"
     }
   }
 }

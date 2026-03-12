@@ -5,7 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/matatu.geo.json",
-      "texture": "mnogii:textures/armor/red_matatu_mask.png"
+      "texture": "mnogii:textures/armor/white_matatu_mask.png"
     }
   }
 }
