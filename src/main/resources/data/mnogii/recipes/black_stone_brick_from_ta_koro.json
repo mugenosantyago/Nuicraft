@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TT",
+    "TT"
+  ],
+  "key": {
+    "T": { "item": "mnogii:ta_koro_stone" }
+  },
+  "result": {
+    "id": "mnogii:black_stone_brick",
+    "count": 4
+  }
+}
