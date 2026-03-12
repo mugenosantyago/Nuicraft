@@ -69,12 +69,13 @@ public class EntityGukko extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new FlyHighGoal(this, 18, 38));
+        this.goalSelector.addGoal(1, new FlyHighGoal(this, 20, 45));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new LongRangeFlyGoal(this, 60, 200));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomFlyingGoal(this, 1.0));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
@@ -203,6 +204,7 @@ public class EntityGukko extends Animal {
     /**
      * Keeps the Gukko flying high above the terrain. Triggers whenever the entity
      * dips below the minimum altitude and picks a random high target to navigate toward.
+     * Horizontal scatter is wide so altitude-correction doubles as spreading.
      */
     static class FlyHighGoal extends Goal {
         private final PathfinderMob mob;
@@ -218,7 +220,7 @@ public class EntityGukko extends Animal {
 
         @Override
         public boolean canUse() {
-            if (mob.getRandom().nextInt(15) != 0) return false;
+            if (mob.getRandom().nextInt(12) != 0) return false;
             BlockPos surface = mob.level().getHeightmapPos(
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
             return mob.getY() < surface.getY() + minAlt;
@@ -234,9 +236,58 @@ public class EntityGukko extends Animal {
             BlockPos surface = mob.level().getHeightmapPos(
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
             double targetY = surface.getY() + minAlt + mob.getRandom().nextInt(maxAlt - minAlt);
-            double dx = (mob.getRandom().nextDouble() - 0.5) * 24;
-            double dz = (mob.getRandom().nextDouble() - 0.5) * 24;
-            mob.getNavigation().moveTo(mob.getX() + dx, targetY, mob.getZ() + dz, 1.2);
+            // Wide horizontal scatter: up to ±80 blocks while climbing
+            double dx = (mob.getRandom().nextDouble() - 0.5) * 160;
+            double dz = (mob.getRandom().nextDouble() - 0.5) * 160;
+            mob.getNavigation().moveTo(mob.getX() + dx, targetY, mob.getZ() + dz, 1.3);
+        }
+    }
+
+    /**
+     * Long-range wander: picks a destination 60–200 blocks away horizontally so Gukkos
+     * are seen flying across the sky in all directions rather than circling locally.
+     * Triggers rarely (1-in-20 chance per tick) to intersperse with short-range goals.
+     */
+    static class LongRangeFlyGoal extends Goal {
+        private final PathfinderMob mob;
+        private final int minDist;
+        private final int maxDist;
+
+        LongRangeFlyGoal(PathfinderMob mob, int minDist, int maxDist) {
+            this.mob = mob;
+            this.minDist = minDist;
+            this.maxDist = maxDist;
+            setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        @Override
+        public boolean canUse() {
+            // Trigger infrequently so short-range goals also get a chance
+            if (mob.getRandom().nextInt(20) != 0) return false;
+            return !mob.getNavigation().isInProgress();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return mob.getNavigation().isInProgress();
+        }
+
+        @Override
+        public void start() {
+            var rand = mob.getRandom();
+            // Random angle → direction
+            double angle = rand.nextDouble() * Math.PI * 2;
+            double dist  = minDist + rand.nextDouble() * (maxDist - minDist);
+            double dx = Math.sin(angle) * dist;
+            double dz = Math.cos(angle) * dist;
+
+            // Target altitude: surface + 20–45 blocks above terrain
+            BlockPos surface = mob.level().getHeightmapPos(
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    BlockPos.containing(mob.getX() + dx, mob.getY(), mob.getZ() + dz));
+            double targetY = surface.getY() + 20 + rand.nextInt(25);
+
+            mob.getNavigation().moveTo(mob.getX() + dx, targetY, mob.getZ() + dz, 1.4);
         }
     }
 }

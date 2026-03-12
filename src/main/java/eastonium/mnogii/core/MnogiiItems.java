@@ -63,6 +63,14 @@ public class MnogiiItems {
     public static final DeferredItem<BlockItem> PATH                = ITEMS.registerSimpleBlockItem(MnogiiBlocks.PATH);
     public static final DeferredItem<BlockItem> PATH2               = ITEMS.registerSimpleBlockItem(MnogiiBlocks.PATH2);
 
+    // Black stone set
+    public static final DeferredItem<BlockItem> BLACK_STONE_BRICK           = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_BRICK);
+    public static final DeferredItem<BlockItem> BLACK_STONE_SLAB            = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_SLAB);
+    public static final DeferredItem<BlockItem> BLACK_STONE_STAIRS          = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_STAIRS);
+    public static final DeferredItem<BlockItem> BLACK_STONE_FENCE           = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_FENCE);
+    public static final DeferredItem<BlockItem> BLACK_STONE_LAMP            = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_LAMP);
+    public static final DeferredItem<BlockItem> BLACK_STONE_PRESSURE_PLATE  = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_PRESSURE_PLATE);
+
     public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerItem("kanoka_bamboo",
             props -> new eastonium.mnogii.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));
 

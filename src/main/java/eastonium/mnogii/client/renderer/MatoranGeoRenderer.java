@@ -101,10 +101,16 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
     }
 
     /**
-     * Per-bone texture override:
-     *  "head"       → mask accent color
-     *  "left_foot" / "right_foot" → feet accent color
-     *  everything else → null (use base body texture)
+     * Per-bone texture override — must ALWAYS return a non-null texture.
+     *
+     * AzureLib's rendering pipeline does not reset the vertex consumer between sibling
+     * bones: if a bone returns a texture override, subsequent bones that return null
+     * inherit that override. Returning an explicit body texture for all "default" bones
+     * prevents accent textures from bleeding into the torso, arms, and legs.
+     *
+     *  "head"                    → mask accent color
+     *  "left_foot" / "right_foot"→ feet accent color
+     *  everything else           → canonical koro body color (explicit, not null)
      */
     private static ResourceLocation boneTextureFor(AzBone bone) {
         EntityMatoran mat = currentMatoran;
@@ -113,7 +119,7 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
             case "head"       -> colorTexture(maskId(mat), mat.getMaskColor());
             case "left_foot",
                  "right_foot" -> colorTexture(maskId(mat), mat.getFeetColor());
-            default           -> null;
+            default           -> bodyTextureFor(mat);
         };
     }
 
