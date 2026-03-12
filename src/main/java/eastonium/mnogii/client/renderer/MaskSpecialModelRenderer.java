@@ -86,7 +86,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
         // already-centred origin rather than shifting the mask off-screen.
         float s = DEFAULT_SCALE * scale;
         poseStack.scale(s, s, s);
-        poseStack.translate(0, CENTER_TRANSLATE_Y / scale, 0);
+        poseStack.translate(0, centerY / scale, 0);
 
         for (AzBone bone : model.getTopLevelBones()) {
             renderBoneRecursively(poseStack, buffer, bone, light, overlay);
@@ -160,14 +160,15 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     // Unbaked — codec-driven registration for minecraft:special item models
     // -------------------------------------------------------------------------
 
-    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale)
+    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale, float centerY)
             implements SpecialModelRenderer.Unbaked {
 
         public static final MapCodec<Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
                 ResourceLocation.CODEC.fieldOf("geo").forGetter(Unbaked::geo),
                 ResourceLocation.CODEC.fieldOf("texture").forGetter(Unbaked::texture),
-                Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(Unbaked::scale)
+                Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(Unbaked::scale),
+                Codec.FLOAT.optionalFieldOf("center_y", -0.3f).forGetter(Unbaked::centerY)
             ).apply(instance, Unbaked::new)
         );
 
@@ -177,7 +178,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         @Override
         public @Nullable SpecialModelRenderer<?> bake(EntityModelSet modelSet) {
-            return new MaskSpecialModelRenderer(geo, texture, scale);
+            return new MaskSpecialModelRenderer(geo, texture, scale, centerY);
         }
 
         @Override

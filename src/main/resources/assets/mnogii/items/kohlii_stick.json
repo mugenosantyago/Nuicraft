@@ -6,7 +6,8 @@
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/item/kohlii_stick.geo.json",
       "texture": "mnogii:textures/item/right_item.png",
-      "scale": 0.6
+      "scale": 0.4,
+      "center_y": 0.0
     }
   }
 }
