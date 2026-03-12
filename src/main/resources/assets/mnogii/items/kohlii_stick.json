@@ -1,6 +1,12 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "mnogii:item/kohlii_stick"
+    "type": "minecraft:special",
+    "base": "minecraft:item/template_skull",
+    "model": {
+      "type": "mnogii:mask_geo",
+      "geo": "mnogii:geo/item/kohlii_stick.geo.json",
+      "texture": "mnogii:textures/item/right_item.png",
+      "scale": 0.6
+    }
   }
 }

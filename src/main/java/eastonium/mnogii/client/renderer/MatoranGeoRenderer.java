@@ -37,11 +37,14 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
     private static EntityMatoran currentMatoran = null;
 
     /**
-     * Renderer scale for adult Matoran. The Matoran model has a 0.5 bone scale baked into
-     * every animation, so the effective visual scale = ADULT_SCALE × 0.5.
-     * At 1.7 → effective 0.85, slightly larger than Turaga (renderer scale 0.8, no bone scale).
+     * Renderer scale for adult Matoran.
+     * Previously the animations set the root bone scale to 0.5 (effective = 1.7 × 0.5 = 0.85),
+     * but that caused a one-frame "giant flash" when the entity first spawned because the
+     * default bone scale is 1.0 before any animation ticks.
+     * The 0.5 has been removed from all animation files and folded directly into this constant
+     * so the correct size is applied from the very first render frame.
      */
-    private static final float ADULT_SCALE = 1.7f;
+    private static final float ADULT_SCALE = 0.85f;
     /** Baby Matoran are half the size of adults. */
     private static final float BABY_SCALE  = 0.5f;
 

@@ -35,32 +35,33 @@ import java.util.Set;
 public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
     /**
-     * Base scale applied to all masks in GUI slots.
-     * After fixing the armor geo pivot to [0,0,0], the mask cubes span
+     * Base scale applied to all geo item models in GUI slots.
+     * After fixing the armor geo pivot to [0,0,0], mask cubes span
      * Bedrock y=0 (chin) to ~y=9.5 (crown) = 0–0.594 block units.
      * Scale 1.5 expands that to ~0.89 units, nearly filling a 1-unit slot.
      */
     private static final float DEFAULT_SCALE = 1.5f;
-    /**
-     * Y translate (in pre-scale block units) that centres the mask in the GUI slot.
-     * Mask Y centre = (0 + 9.5/2) / 16 ≈ 0.297 blocks.
-     * Negating that value shifts the model so its centre lands at y=0 of the slot.
-     */
-    private static final float CENTER_TRANSLATE_Y = -0.3f;
 
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;
     /** Per-model scale multiplier, applied on top of DEFAULT_SCALE. */
     private final float scale;
+    /**
+     * Y translate (in pre-scale block units) that centres the model in the GUI slot.
+     * For masks: Mask Y centre ≈ 0.297 blocks → -0.3 shifts the mask centred to y=0.
+     * For items already centred at the origin (e.g. kohlii_stick): pass 0.0.
+     */
+    private final float centerY;
 
     private final Matrix4f poseStateCache = new Matrix4f();
     private final Vector3f normalScratch  = new Vector3f();
     private final Vector4f quadPosition   = new Vector4f();
 
-    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale) {
+    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale, float centerY) {
         this.geoPath     = geoPath;
         this.texturePath = texturePath;
         this.scale       = scale;
+        this.centerY     = centerY;
     }
 
     @Override

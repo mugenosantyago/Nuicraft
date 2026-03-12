@@ -6,7 +6,7 @@
       "animation_length": 4.5,
       "bones": {
         "KAKAMA_matoran": {
-          "scale": 0.5
+          "scale": 1.0
         },
         "body": {
           "rotation": {
@@ -451,7 +451,7 @@
       "animation_length": 1.25,
       "bones": {
         "KAKAMA_matoran": {
-          "scale": 0.5
+          "scale": 1.0
         },
         "right_leg1": {
           "rotation": {
@@ -798,14 +798,14 @@
           },
           "scale": {
             "0.0": [
-              0.5,
-              0.5,
-              0.5
+              1.0,
+              1.0,
+              1.0
             ],
             "1.25": [
-              0.5,
-              0.5,
-              0.5
+              1.0,
+              1.0,
+              1.0
             ]
           }
         },
@@ -1206,7 +1206,7 @@
       "animation_length": 3.5,
       "bones": {
         "KAKAMA_matoran": {
-          "scale": 0.5
+          "scale": 1.0
         },
         "left_arm1": {
           "rotation": {
@@ -1435,7 +1435,7 @@
       "loop": true,
       "bones": {
         "KAKAMA_matoran": {
-          "scale": 0.5
+          "scale": 1.0
         },
         "body": {
           "rotation": {
