@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "mnogii:block/mask_forge_main"
+    "particle": "mnogii:block/mask_forge_main",
+    "up":    "mnogii:block/mask_forge_main",
+    "down":  "mnogii:block/mask_forge_bottom",
+    "north": "mnogii:block/mask_forge_main",
+    "south": "mnogii:block/mask_forge_main",
+    "east":  "mnogii:block/mask_forge_inside",
+    "west":  "mnogii:block/mask_forge_inside"
   }
 }
