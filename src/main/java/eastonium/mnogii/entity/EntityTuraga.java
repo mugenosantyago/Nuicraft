@@ -37,7 +37,7 @@ import org.jetbrains.annotations.Nullable;
 public class EntityTuraga extends PathfinderMob {
 
     public enum TuragaType {
-        VAKAMA("matatu_turaga", "matatu_turaga/ta"),
+        VAKAMA("huna_turaga",   "huna_turaga/ta"),
         NOKAMA("rau_turaga",    "rau_turaga/default"),
         MATAU("mahiki_turaga",  "mahiki_turaga/le"),
         ONEWA("matatu_turaga",  "matatu_turaga/po"),
