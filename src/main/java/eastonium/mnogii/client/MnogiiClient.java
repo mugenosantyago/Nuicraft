@@ -64,6 +64,8 @@ public class MnogiiClient {
         event.registerEntityRenderer(MnogiiEntityTypes.MATORAN_ONU.get(), MatoranGeoRenderer::new);
         event.registerEntityRenderer(MnogiiEntityTypes.MATORAN_KO.get(), MatoranGeoRenderer::new);
         event.registerEntityRenderer(MnogiiEntityTypes.MATORAN_PO.get(), MatoranGeoRenderer::new);
+        event.registerEntityRenderer(MnogiiEntityTypes.MATORAN_PURPLE.get(), MatoranGeoRenderer::new);
+        event.registerEntityRenderer(MnogiiEntityTypes.MATORAN_YELLOW.get(), MatoranGeoRenderer::new);
         event.registerEntityRenderer(MnogiiEntityTypes.TURAGA.get(),        TuragaGeoRenderer::new);
         event.registerEntityRenderer(MnogiiEntityTypes.TURAGA_VAKAMA.get(), TuragaGeoRenderer::new);
         event.registerEntityRenderer(MnogiiEntityTypes.TURAGA_NOKAMA.get(), TuragaGeoRenderer::new);

@@ -401,8 +401,12 @@ public class MnogiiItems {
             props -> new SpawnEggItem(MnogiiEntityTypes.MATORAN_KO.get(), withItemId("matoran_ko_spawn_egg", props)));
     public static final DeferredItem<Item> MATORAN_PO_SPAWN_EGG = ITEMS.registerItem("matoran_po_spawn_egg",
             props -> new SpawnEggItem(MnogiiEntityTypes.MATORAN_PO.get(), withItemId("matoran_po_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_PURPLE_SPAWN_EGG = ITEMS.registerItem("matoran_purple_spawn_egg",
+            props -> new SpawnEggItem(MnogiiEntityTypes.MATORAN_PURPLE.get(), withItemId("matoran_purple_spawn_egg", props)));
+    public static final DeferredItem<Item> MATORAN_YELLOW_SPAWN_EGG = ITEMS.registerItem("matoran_yellow_spawn_egg",
+            props -> new SpawnEggItem(MnogiiEntityTypes.MATORAN_YELLOW.get(), withItemId("matoran_yellow_spawn_egg", props)));
 
-    // ---- Koro × Mask Matoran spawn eggs (36 variants: 6 koros × 6 implemented masks) ----
+    // ---- Koro × Mask Matoran spawn eggs (48 variants: 8 koros × 6 implemented masks) ----
     // TA koro
     public static final DeferredItem<Item> MATORAN_TA_HAU_EGG   = ITEMS.registerItem("matoran_ta_hau_spawn_egg",   p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.TA,  eastonium.mnogii.entity.EntityMatoran.Mask.HAU,    withItemId("matoran_ta_hau_spawn_egg", p)));
     public static final DeferredItem<Item> MATORAN_TA_HUNA_EGG  = ITEMS.registerItem("matoran_ta_huna_spawn_egg",  p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.TA,  eastonium.mnogii.entity.EntityMatoran.Mask.HUNA,   withItemId("matoran_ta_huna_spawn_egg", p)));
@@ -445,6 +449,20 @@ public class MnogiiItems {
     public static final DeferredItem<Item> MATORAN_KO_KAUKAU_EGG= ITEMS.registerItem("matoran_ko_kaukau_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.KO,  eastonium.mnogii.entity.EntityMatoran.Mask.KAUKAU, withItemId("matoran_ko_kaukau_spawn_egg", p)));
     public static final DeferredItem<Item> MATORAN_KO_MIRU_EGG  = ITEMS.registerItem("matoran_ko_miru_spawn_egg",  p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.KO,  eastonium.mnogii.entity.EntityMatoran.Mask.MIRU,   withItemId("matoran_ko_miru_spawn_egg", p)));
     public static final DeferredItem<Item> MATORAN_KO_PAKARI_EGG= ITEMS.registerItem("matoran_ko_pakari_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.KO,  eastonium.mnogii.entity.EntityMatoran.Mask.PAKARI, withItemId("matoran_ko_pakari_spawn_egg", p)));
+    // PURPLE koro
+    public static final DeferredItem<Item> MATORAN_PURPLE_HAU_EGG   = ITEMS.registerItem("matoran_purple_hau_spawn_egg",   p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.PURPLE, eastonium.mnogii.entity.EntityMatoran.Mask.HAU,    withItemId("matoran_purple_hau_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_PURPLE_HUNA_EGG  = ITEMS.registerItem("matoran_purple_huna_spawn_egg",  p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.PURPLE, eastonium.mnogii.entity.EntityMatoran.Mask.HUNA,   withItemId("matoran_purple_huna_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_PURPLE_KAKAMA_EGG= ITEMS.registerItem("matoran_purple_kakama_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.PURPLE, eastonium.mnogii.entity.EntityMatoran.Mask.KAKAMA, withItemId("matoran_purple_kakama_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_PURPLE_KAUKAU_EGG= ITEMS.registerItem("matoran_purple_kaukau_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.PURPLE, eastonium.mnogii.entity.EntityMatoran.Mask.KAUKAU, withItemId("matoran_purple_kaukau_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_PURPLE_MIRU_EGG  = ITEMS.registerItem("matoran_purple_miru_spawn_egg",  p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.PURPLE, eastonium.mnogii.entity.EntityMatoran.Mask.MIRU,   withItemId("matoran_purple_miru_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_PURPLE_PAKARI_EGG= ITEMS.registerItem("matoran_purple_pakari_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.PURPLE, eastonium.mnogii.entity.EntityMatoran.Mask.PAKARI, withItemId("matoran_purple_pakari_spawn_egg", p)));
+    // YELLOW koro
+    public static final DeferredItem<Item> MATORAN_YELLOW_HAU_EGG   = ITEMS.registerItem("matoran_yellow_hau_spawn_egg",   p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.YELLOW, eastonium.mnogii.entity.EntityMatoran.Mask.HAU,    withItemId("matoran_yellow_hau_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_YELLOW_HUNA_EGG  = ITEMS.registerItem("matoran_yellow_huna_spawn_egg",  p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.YELLOW, eastonium.mnogii.entity.EntityMatoran.Mask.HUNA,   withItemId("matoran_yellow_huna_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_YELLOW_KAKAMA_EGG= ITEMS.registerItem("matoran_yellow_kakama_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.YELLOW, eastonium.mnogii.entity.EntityMatoran.Mask.KAKAMA, withItemId("matoran_yellow_kakama_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_YELLOW_KAUKAU_EGG= ITEMS.registerItem("matoran_yellow_kaukau_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.YELLOW, eastonium.mnogii.entity.EntityMatoran.Mask.KAUKAU, withItemId("matoran_yellow_kaukau_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_YELLOW_MIRU_EGG  = ITEMS.registerItem("matoran_yellow_miru_spawn_egg",  p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.YELLOW, eastonium.mnogii.entity.EntityMatoran.Mask.MIRU,   withItemId("matoran_yellow_miru_spawn_egg", p)));
+    public static final DeferredItem<Item> MATORAN_YELLOW_PAKARI_EGG= ITEMS.registerItem("matoran_yellow_pakari_spawn_egg",p -> new eastonium.mnogii.item.MatoranSpawnEggItem(eastonium.mnogii.entity.EntityMatoran.Koro.YELLOW, eastonium.mnogii.entity.EntityMatoran.Mask.PAKARI, withItemId("matoran_yellow_pakari_spawn_egg", p)));
 
     // Per-character Turaga spawn eggs (Mata series)
     public static final DeferredItem<Item> TURAGA_VAKAMA_SPAWN_EGG = ITEMS.registerItem("turaga_vakama_spawn_egg",

@@ -43,7 +43,7 @@ public class MatoranRenderer extends MobRenderer<EntityMatoran, MatoranRenderSta
     }
 
     private static String entityKoroName(int ordinal) {
-        String[] names = { "ta", "ga", "po", "onu", "le", "ko" };
+        String[] names = { "ta", "ga", "po", "onu", "le", "ko", "purple", "yellow" };
         return ordinal >= 0 && ordinal < names.length ? names[ordinal] : "ta";
     }
 

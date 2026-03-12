@@ -103,6 +103,16 @@ public class MnogiiEntityTypes {
                     (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.PO, EntityMatoran.Mask.KAKAMA), MobCategory.CREATURE)
                     .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_po")));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_PURPLE =
+            ENTITY_TYPES.register("matoran_purple", () -> EntityType.Builder.<EntityMatoran>of(
+                    (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.PURPLE, EntityMatoran.Mask.HUNA), MobCategory.CREATURE)
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_purple")));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityMatoran>> MATORAN_YELLOW =
+            ENTITY_TYPES.register("matoran_yellow", () -> EntityType.Builder.<EntityMatoran>of(
+                    (type, level) -> new EntityMatoran(type, level, EntityMatoran.Koro.YELLOW, EntityMatoran.Mask.KAKAMA), MobCategory.CREATURE)
+                    .sized(0.55F, 1.35F).clientTrackingRange(64).build(key("matoran_yellow")));
+
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTuraga>> TURAGA =
             ENTITY_TYPES.register("turaga", () -> EntityType.Builder.<EntityTuraga>of(EntityTuraga::new, MobCategory.CREATURE)
                     .sized(0.5F, 1.25F).clientTrackingRange(64).build(key("turaga")));

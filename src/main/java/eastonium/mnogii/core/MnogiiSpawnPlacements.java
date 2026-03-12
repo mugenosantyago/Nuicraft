@@ -59,6 +59,8 @@ public class MnogiiSpawnPlacements {
         event.register(MnogiiEntityTypes.MATORAN_ONU.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
         event.register(MnogiiEntityTypes.MATORAN_KO.get(),  SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
         event.register(MnogiiEntityTypes.MATORAN_PO.get(),  SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
+        event.register(MnogiiEntityTypes.MATORAN_PURPLE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
+        event.register(MnogiiEntityTypes.MATORAN_YELLOW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PathfinderMob::checkMobSpawnRules, npcRule);
 
         // Toa (all 6 variants) — limited to one per 160-block radius via custom spawn check
         event.register(MnogiiEntityTypes.TOA_TAHU.get(),   SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityToa::checkToaSpawnRules, npcRule);

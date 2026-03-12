@@ -87,7 +87,11 @@ public class EntityMatoran extends Animal implements Merchant {
         /** Le-Koro (green) - air */
         LE("matoran_le", MnogiiBlocks.LE_KORO_STONE.get(), MnogiiItems.INGOT_PROTODERMIS.get(), MnogiiItems.AIR_TOA_STONE.get(), Items.FEATHER),
         /** Ko-Koro (white) - ice */
-        KO("matoran_ko", MnogiiBlocks.KO_KORO_STONE.get(), MnogiiItems.INGOT_PROTODERMIS.get(), MnogiiItems.ICE_TOA_STONE.get(), Items.SNOWBALL);
+        KO("matoran_ko", MnogiiBlocks.KO_KORO_STONE.get(), MnogiiItems.INGOT_PROTODERMIS.get(), MnogiiItems.ICE_TOA_STONE.get(), Items.SNOWBALL),
+        /** Purple visitor Matoran — not bound to a specific village. */
+        PURPLE("matoran_purple", MnogiiBlocks.TA_KORO_STONE.get(), MnogiiItems.INGOT_PROTODERMIS.get(), MnogiiItems.FIRE_TOA_STONE.get(), Items.AMETHYST_SHARD),
+        /** Yellow visitor Matoran — not bound to a specific village. */
+        YELLOW("matoran_yellow", MnogiiBlocks.PO_KORO_STONE.get(), MnogiiItems.INGOT_PROTODERMIS.get(), MnogiiItems.ROCK_TOA_STONE.get(), Items.GOLD_NUGGET);
 
         private final String textureName;
         private final net.minecraft.world.level.ItemLike koroStone;
@@ -112,12 +116,14 @@ public class EntityMatoran extends Animal implements Merchant {
         /** The Toa's signature Kanohi mask associated with this Koro. */
         public Item getToaMask() {
             return switch (this) {
-                case TA  -> MnogiiItems.MASK_MATA_HAU.get();
-                case GA  -> MnogiiItems.MASK_MATA_KAUKAU.get();
-                case LE  -> MnogiiItems.MASK_MATA_MIRU.get();
-                case ONU -> MnogiiItems.MASK_MATA_PAKARI.get();
-                case PO  -> MnogiiItems.MASK_MATA_KAKAMA.get();
-                case KO  -> MnogiiItems.MASK_MATA_AKAKU.get();
+                case TA     -> MnogiiItems.MASK_MATA_HAU.get();
+                case GA     -> MnogiiItems.MASK_MATA_KAUKAU.get();
+                case LE     -> MnogiiItems.MASK_MATA_MIRU.get();
+                case ONU    -> MnogiiItems.MASK_MATA_PAKARI.get();
+                case PO     -> MnogiiItems.MASK_MATA_KAKAMA.get();
+                case KO     -> MnogiiItems.MASK_MATA_AKAKU.get();
+                case PURPLE -> MnogiiItems.MASK_MATA_HUNA.get();
+                case YELLOW -> MnogiiItems.MASK_MATA_KAKAMA.get();
             };
         }
 
@@ -127,36 +133,42 @@ public class EntityMatoran extends Animal implements Merchant {
          */
         public Mask getMaskmakerMask() {
             return switch (this) {
-                case TA  -> Mask.HAU;
-                case GA  -> Mask.KAUKAU;
-                case LE  -> Mask.MIRU;
-                case ONU -> Mask.PAKARI;
-                case PO  -> Mask.KAKAMA;
-                case KO  -> Mask.HAU; // AKAKU model not yet implemented; Toa Kopaka's mask sold but Hau worn
+                case TA     -> Mask.HAU;
+                case GA     -> Mask.KAUKAU;
+                case LE     -> Mask.MIRU;
+                case ONU    -> Mask.PAKARI;
+                case PO     -> Mask.KAKAMA;
+                case KO     -> Mask.HAU;
+                case PURPLE -> Mask.HUNA;
+                case YELLOW -> Mask.KAKAMA;
             };
         }
 
         /** A secondary Kanohi associated with this Koro's culture. */
         public Item getSecondaryMask() {
             return switch (this) {
-                case TA  -> MnogiiItems.MASK_MATA_RURU.get();
-                case GA  -> MnogiiItems.MASK_MATA_HUNA.get();
-                case LE  -> MnogiiItems.MASK_MATA_MATATU.get();
-                case ONU -> MnogiiItems.MASK_MATA_KOMAU.get();
-                case PO  -> MnogiiItems.MASK_MATA_MAHIKI.get();
-                case KO  -> MnogiiItems.MASK_MATA_RARU.get();
+                case TA     -> MnogiiItems.MASK_MATA_RURU.get();
+                case GA     -> MnogiiItems.MASK_MATA_HUNA.get();
+                case LE     -> MnogiiItems.MASK_MATA_MATATU.get();
+                case ONU    -> MnogiiItems.MASK_MATA_KOMAU.get();
+                case PO     -> MnogiiItems.MASK_MATA_MAHIKI.get();
+                case KO     -> MnogiiItems.MASK_MATA_RARU.get();
+                case PURPLE -> MnogiiItems.MASK_MATA_RARU.get();
+                case YELLOW -> MnogiiItems.MASK_MATA_MAHIKI.get();
             };
         }
 
         /** Koro-specific Kanoka disk. */
         public Item getKoroDisk() {
             return switch (this) {
-                case TA  -> MnogiiItems.KANOKA_DISK_TA.get();
-                case GA  -> MnogiiItems.KANOKA_DISK_GA.get();
-                case LE  -> MnogiiItems.KANOKA_DISK_LE.get();
-                case ONU -> MnogiiItems.KANOKA_DISK_ONU.get();
-                case PO  -> MnogiiItems.KANOKA_DISK_PO.get();
-                case KO  -> MnogiiItems.KANOKA_DISK_KO.get();
+                case TA     -> MnogiiItems.KANOKA_DISK_TA.get();
+                case GA     -> MnogiiItems.KANOKA_DISK_GA.get();
+                case LE     -> MnogiiItems.KANOKA_DISK_LE.get();
+                case ONU    -> MnogiiItems.KANOKA_DISK_ONU.get();
+                case PO     -> MnogiiItems.KANOKA_DISK_PO.get();
+                case KO     -> MnogiiItems.KANOKA_DISK_KO.get();
+                case PURPLE -> MnogiiItems.KANOKA_DISK_TA.get();
+                case YELLOW -> MnogiiItems.KANOKA_DISK_PO.get();
             };
         }
     }
@@ -205,12 +217,14 @@ public class EntityMatoran extends Animal implements Merchant {
         /** The canonical koro body color. */
         public static MatoranColor forKoro(Koro koro) {
             return switch (koro) {
-                case TA  -> RED;
-                case GA  -> BLUE;
-                case LE  -> GREEN;
-                case ONU -> BLACK;
-                case PO  -> BROWN;
-                case KO  -> WHITE;
+                case TA     -> RED;
+                case GA     -> BLUE;
+                case LE     -> GREEN;
+                case ONU    -> BLACK;
+                case PO     -> BROWN;
+                case KO     -> WHITE;
+                case PURPLE -> PURPLE;
+                case YELLOW -> YELLOW;
             };
         }
 

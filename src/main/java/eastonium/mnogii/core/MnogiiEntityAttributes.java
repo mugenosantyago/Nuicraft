@@ -33,6 +33,8 @@ public class MnogiiEntityAttributes {
         event.put(MnogiiEntityTypes.MATORAN_ONU.get(), matoranAttrs);
         event.put(MnogiiEntityTypes.MATORAN_KO.get(), matoranAttrs);
         event.put(MnogiiEntityTypes.MATORAN_PO.get(), matoranAttrs);
+        event.put(MnogiiEntityTypes.MATORAN_PURPLE.get(), matoranAttrs);
+        event.put(MnogiiEntityTypes.MATORAN_YELLOW.get(), matoranAttrs);
         var turagaAttrs = EntityTuraga.createAttributes().build();
         event.put(MnogiiEntityTypes.TURAGA.get(),        turagaAttrs);
         event.put(MnogiiEntityTypes.TURAGA_VAKAMA.get(), turagaAttrs);
