@@ -2,11 +2,8 @@
   "values": [
     "minecraft:desert",
     "minecraft:savanna",
-    "minecraft:savanna_plateau",
-    "minecraft:windswept_savanna",
-    { "id": "biomesoplenty:dryland",        "required": false },
-    { "id": "biomesoplenty:scrubland",      "required": false },
-    { "id": "biomesoplenty:rocky_shrubland","required": false },
-    { "id": "biomesoplenty:lush_savanna",   "required": false }
+    { "id": "biomesoplenty:dryland",     "required": false },
+    { "id": "biomesoplenty:scrubland",   "required": false },
+    { "id": "biomesoplenty:lush_savanna","required": false }
   ]
 }
