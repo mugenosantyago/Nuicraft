@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
  */
 public class MaskArmorRenderer extends AzArmorRenderer {
 
-    private static final float SCALE_HAU     = 1.0f;
+    private static final float SCALE_HAU     = 1.05f;
     private static final float SCALE_KAKAMA  = 1.0f;
     private static final float SCALE_KAUKAU  = 1.0f;
     private static final float SCALE_PAKARI  = 0.92f;
@@ -20,7 +20,7 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     private static final float SCALE_HUNA    = 0.90f;
     private static final float SCALE_MATATU  = 0.90f;
     private static final float SCALE_RURU    = 0.88f;
-    private static final float SCALE_MIRU    = 0.92f;
+    private static final float SCALE_MIRU    = 1.0f;
 
     public MaskArmorRenderer(ResourceLocation modelPath, ResourceLocation texturePath, float scale) {
         super(createConfig(modelPath, texturePath, scale));
