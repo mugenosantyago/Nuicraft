@@ -1,6 +1,13 @@
 package eastonium.mnogii.entity;
 
+import eastonium.mnogii.Mnogii;
 import eastonium.mnogii.client.animator.TarakavaAnimator;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -10,6 +17,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.levelgen.structure.Structure;
 
 /**
  * Tarakava: large lizard Rahi. Strength comparable to a wither skeleton.
@@ -51,6 +60,19 @@ public class EntityTarakava extends Monster {
         boolean hit = super.doHurtTarget(level, target);
         if (hit) TarakavaAnimator.sendAttackCommand(this);
         return hit;
+    }
+
+    private static final TagKey<Structure> KORO_STRUCTURES =
+        TagKey.create(net.minecraft.core.registries.Registries.STRUCTURE,
+            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "koro"));
+
+    public static boolean checkKoroSpawnRules(EntityType<? extends Monster> type,
+            ServerLevelAccessor level, EntitySpawnReason reason, BlockPos pos, RandomSource random) {
+        if (!Monster.checkMonsterSpawnRules(type, level, reason, pos, random)) return false;
+        if (level instanceof ServerLevel serverLevel) {
+            return serverLevel.structureManager().getStructureWithPieceAt(pos, KORO_STRUCTURES).isValid() == false;
+        }
+        return true;
     }
 
     public static AttributeSupplier.Builder createAttributes() {

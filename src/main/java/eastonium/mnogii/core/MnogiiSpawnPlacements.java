@@ -37,10 +37,10 @@ public class MnogiiSpawnPlacements {
                 PathfinderMob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(MnogiiEntityTypes.MUAKA.get(),
                 SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                PathfinderMob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+                EntityMuaka::checkKoroSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(MnogiiEntityTypes.TARAKAVA.get(),
                 SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                PathfinderMob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+                EntityTarakava::checkKoroSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         // Flying Rahi (no heightmap - they fly)
         event.register(MnogiiEntityTypes.GUKKO.get(),
                 SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
