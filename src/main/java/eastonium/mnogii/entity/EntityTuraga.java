@@ -173,7 +173,7 @@ public class EntityTuraga extends PathfinderMob {
                 eastonium.mnogii.client.animator.TuragaAnimator.sendPoseCommand(this);
             }
             boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
-            if (moving != lastMoving || this.tickCount % 20 == 1) {
+            if (moving != lastMoving || this.tickCount == 1) {
                 lastMoving = moving;
                 eastonium.mnogii.client.animator.TuragaAnimator.sendMovementCommand(this);
             }

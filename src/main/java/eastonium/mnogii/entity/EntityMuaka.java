@@ -38,7 +38,7 @@ public class EntityMuaka extends Monster {
         super.tick();
         if (!this.level().isClientSide) {
             boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
-            if (moving != lastMoving || this.tickCount % 20 == 1) {
+            if (moving != lastMoving || this.tickCount == 1) {
                 lastMoving = moving;
                 MuakaAnimator.sendMovementCommand(this);
             }
