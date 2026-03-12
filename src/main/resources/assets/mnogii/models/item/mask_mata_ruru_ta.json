@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mnogii:item/mask_mata_ruru_ta"
+    "layer0": "mnogii:item/mask_mata_ruru"
   }
 }
