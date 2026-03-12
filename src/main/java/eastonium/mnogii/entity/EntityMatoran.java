@@ -60,11 +60,9 @@ public class EntityMatoran extends Animal implements Merchant {
         MIRU("miru")    { @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_MIRU.get(); } },
         KAKAMA("kakama"){ @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_KAKAMA.get(); } },
         PAKARI("pakari"){ @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_PAKARI.get(); } },
-        AKAKU("akaku")  { @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_AKAKU.get(); } },
         HUNA("huna")    { @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_HUNA.get(); } },
         MAHIKI("mahiki"){ @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_MAHIKI.get(); } },
         MATATU("matatu"){ @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_MATATU.get(); } },
-        KOMAU("komau")  { @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_KOMAU.get(); } },
         RARU("raru")    { @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_RARU.get(); } },
         RURU("ruru")    { @Override public Item getDropItem() { return MnogiiItems.MASK_MATA_RURU.get(); } };
 
@@ -121,7 +119,7 @@ public class EntityMatoran extends Animal implements Merchant {
                 case LE     -> MnogiiItems.MASK_MATA_MIRU.get();
                 case ONU    -> MnogiiItems.MASK_MATA_PAKARI.get();
                 case PO     -> MnogiiItems.MASK_MATA_KAKAMA.get();
-                case KO     -> MnogiiItems.MASK_MATA_AKAKU.get();
+                case KO     -> MnogiiItems.MASK_MATA_RURU.get();
                 case PURPLE -> MnogiiItems.MASK_MATA_HUNA.get();
                 case YELLOW -> MnogiiItems.MASK_MATA_KAKAMA.get();
             };
@@ -150,7 +148,7 @@ public class EntityMatoran extends Animal implements Merchant {
                 case TA     -> MnogiiItems.MASK_MATA_RURU.get();
                 case GA     -> MnogiiItems.MASK_MATA_HUNA.get();
                 case LE     -> MnogiiItems.MASK_MATA_MATATU.get();
-                case ONU    -> MnogiiItems.MASK_MATA_KOMAU.get();
+                case ONU    -> MnogiiItems.MASK_MATA_MAHIKI.get();
                 case PO     -> MnogiiItems.MASK_MATA_MAHIKI.get();
                 case KO     -> MnogiiItems.MASK_MATA_RARU.get();
                 case PURPLE -> MnogiiItems.MASK_MATA_RARU.get();

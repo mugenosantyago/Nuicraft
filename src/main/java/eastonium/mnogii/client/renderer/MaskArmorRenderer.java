@@ -11,28 +11,43 @@ import net.minecraft.resources.ResourceLocation;
  */
 public class MaskArmorRenderer extends AzArmorRenderer {
 
+    private static final float SCALE_HAU     = 1.0f;
+    private static final float SCALE_KAKAMA  = 1.0f;
+    private static final float SCALE_KAUKAU  = 1.0f;
+    private static final float SCALE_PAKARI  = 0.78f;
+    private static final float SCALE_RARU    = 0.78f;
+    private static final float SCALE_MAHIKI  = 0.78f;
+    private static final float SCALE_HUNA    = 0.76f;
+    private static final float SCALE_MATATU  = 0.74f;
+    private static final float SCALE_RURU    = 0.68f;
+    private static final float SCALE_MIRU    = 1.0f;
+
+    public MaskArmorRenderer(ResourceLocation modelPath, ResourceLocation texturePath, float scale) {
+        super(createConfig(modelPath, texturePath, scale));
+    }
+
     public MaskArmorRenderer(ResourceLocation modelPath, ResourceLocation texturePath) {
-        super(createConfig(modelPath, texturePath));
+        this(modelPath, texturePath, 1.0f);
     }
 
-    private static AzArmorRendererConfig createConfig(ResourceLocation modelLocation, ResourceLocation textureLocation) {
-        return AzArmorRendererConfig.builder(modelLocation, textureLocation).build();
+    private static AzArmorRendererConfig createConfig(ResourceLocation modelLocation, ResourceLocation textureLocation, float scale) {
+        var builder = AzArmorRendererConfig.builder(modelLocation, textureLocation);
+        if (scale != 1.0f) {
+            builder.setScale(scale);
+        }
+        return builder.build();
     }
 
-    // Factory methods for each mask — use the Ta (red) 64x64 texture as the default
-    // since mask_mata_*.png are 16x16 item icons, not 3D UV maps.
-    public static MaskArmorRenderer mataAkaku()  { return ofTypeAndKoro("akaku",  "ta"); }
-    public static MaskArmorRenderer mataHau()     { return ofTypeAndKoro("hau",    "ta"); }
-    public static MaskArmorRenderer mataHuna()    { return ofTypeAndKoro("huna",   "ta"); }
-    public static MaskArmorRenderer mataKakama()  { return ofTypeAndKoro("kakama", "ta"); }
-    public static MaskArmorRenderer mataKaukau()   { return ofTypeAndKoro("kaukau", "ta"); }
-    public static MaskArmorRenderer mataKomau()   { return ofTypeAndKoro("komau",  "ta"); }
-    public static MaskArmorRenderer mataMahiki()  { return ofTypeAndKoro("mahiki", "ta"); }
-    public static MaskArmorRenderer mataMatatu()  { return ofTypeAndKoro("matatu", "ta"); }
-    public static MaskArmorRenderer mataMiru()    { return ofTypeAndKoro("miru",   "ta"); }
-    public static MaskArmorRenderer mataPakari()  { return ofTypeAndKoro("pakari", "ta"); }
-    public static MaskArmorRenderer mataRaru()    { return ofTypeAndKoro("raru",   "ta"); }
-    public static MaskArmorRenderer mataRuru()    { return ofTypeAndKoro("ruru",   "ta"); }
+    public static MaskArmorRenderer mataHau()     { return ofTypeKoroScale("hau",    "ta", SCALE_HAU); }
+    public static MaskArmorRenderer mataHuna()    { return ofTypeKoroScale("huna",   "ta", SCALE_HUNA); }
+    public static MaskArmorRenderer mataKakama()  { return ofTypeKoroScale("kakama", "ta", SCALE_KAKAMA); }
+    public static MaskArmorRenderer mataKaukau()   { return ofTypeKoroScale("kaukau", "ta", SCALE_KAUKAU); }
+    public static MaskArmorRenderer mataMahiki()  { return ofTypeKoroScale("mahiki", "ta", SCALE_MAHIKI); }
+    public static MaskArmorRenderer mataMatatu()  { return ofTypeKoroScale("matatu", "ta", SCALE_MATATU); }
+    public static MaskArmorRenderer mataMiru()    { return ofTypeKoroScale("miru",   "ta", SCALE_MIRU); }
+    public static MaskArmorRenderer mataPakari()  { return ofTypeKoroScale("pakari", "ta", SCALE_PAKARI); }
+    public static MaskArmorRenderer mataRaru()    { return ofTypeKoroScale("raru",   "ta", SCALE_RARU); }
+    public static MaskArmorRenderer mataRuru()    { return ofTypeKoroScale("ruru",   "ta", SCALE_RURU); }
 
     /**
      * Maps Koro village names to the lowercase color prefix used in mask texture filenames.
@@ -53,21 +68,41 @@ public class MaskArmorRenderer extends AzArmorRenderer {
         };
     }
 
+    private static float scaleForMask(String maskType) {
+        return switch (maskType) {
+            case "pakari" -> SCALE_PAKARI;
+            case "raru"   -> SCALE_RARU;
+            case "mahiki" -> SCALE_MAHIKI;
+            case "huna"   -> SCALE_HUNA;
+            case "matatu" -> SCALE_MATATU;
+            case "ruru"   -> SCALE_RURU;
+            case "miru"   -> SCALE_MIRU;
+            case "kakama" -> SCALE_KAKAMA;
+            case "kaukau" -> SCALE_KAUKAU;
+            case "hau"    -> SCALE_HAU;
+            default       -> 1.0f;
+        };
+    }
+
     /**
-     * Creates a renderer for a koro-colored variant.
-     * Picks the colored texture ({color}_{mask}_mask.png) when available,
-     * falling back to the base mask_mata_{maskType}.png otherwise.
-     * All paths are fully lowercase to satisfy ResourceLocation requirements.
+     * Creates a renderer for a koro-colored variant with auto-detected scale.
      */
     public static MaskArmorRenderer ofTypeAndKoro(String maskType, String koro) {
+        return ofTypeKoroScale(maskType, koro, scaleForMask(maskType));
+    }
+
+    /**
+     * Creates a renderer for a koro-colored variant with an explicit scale.
+     */
+    public static MaskArmorRenderer ofTypeKoroScale(String maskType, String koro, float scale) {
         String color = koroToColor(koro);
-        // e.g. "red_kaukau_mask.png"
         String coloredTexture = color != null
             ? "textures/armor/" + color + "_" + maskType + "_mask.png"
             : "textures/armor/mask_mata_" + maskType + ".png";
         return new MaskArmorRenderer(
             ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/" + maskType + ".geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, coloredTexture)
+            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, coloredTexture),
+            scale
         );
     }
 
