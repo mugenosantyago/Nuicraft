@@ -40,7 +40,7 @@ public class EntityTuraga extends PathfinderMob {
         VAKAMA("huna_turaga",   "huna_turaga/ta"),
         NOKAMA("rau_turaga",    "rau_turaga/default"),
         MATAU("mahiki_turaga",  "mahiki_turaga/le"),
-        ONEWA("matatu_turaga",  "matatu_turaga/po"),
+        ONEWA("komau_turaga",   "komau_turaga/po"),
         WHENUA("ruru_turaga",   "ruru_turaga/onu"),
         NUJU("matatu_turaga",   "matatu_turaga/ko");
 
