@@ -62,11 +62,13 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
         VertexConsumer buffer = source.getBuffer(renderType);
 
         poseStack.pushPose();
-        // Scale down: armor geo is designed for head-on-entity scale.
-        // 0.625 makes one Minecraft pixel ≈ one item pixel.
-        poseStack.scale(0.0625f, 0.0625f, 0.0625f);
-        // Center vertically: root bone pivot is at y=24 (1.5 blocks up in armor space).
-        poseStack.translate(0, -24, 0);
+        // AzureLib's model factory already converts geo coordinates from pixels to blocks (÷16),
+        // so we must NOT apply an additional 0.0625 scale factor.
+        // Scale up slightly so the mask fills the inventory slot nicely.
+        poseStack.scale(1.6f, 1.6f, 1.6f);
+        // Shift down so the mask (whose geometry sits at y≈1.5–2.1 blocks above world origin
+        // due to the armorHead pivot at y=24px=1.5 blocks) is centred at the item origin.
+        poseStack.translate(0, -1.85f, 0);
 
         for (AzBone bone : model.getTopLevelBones()) {
             renderBoneRecursively(poseStack, buffer, bone, light, overlay);
