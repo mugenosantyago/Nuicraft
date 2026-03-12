@@ -1,19 +1,29 @@
 {
   "type": "neoforge:add_spawns",
   "biomes": [
-    "minecraft:plains", "minecraft:sunflower_plains",
-    "minecraft:meadow", "minecraft:flower_forest",
-    "minecraft:savanna", "minecraft:savanna_plateau",
-    "minecraft:taiga", "minecraft:snowy_taiga",
-    "minecraft:snowy_plains", "minecraft:ice_spikes",
-    "minecraft:windswept_hills", "minecraft:windswept_gravelly_hills", "minecraft:windswept_forest",
-    "minecraft:stony_peaks", "minecraft:snowy_slopes", "minecraft:jagged_peaks", "minecraft:frozen_peaks",
+    "minecraft:plains",
+    "minecraft:sunflower_plains",
+    "minecraft:meadow",
+    "minecraft:flower_forest",
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:taiga",
+    "minecraft:snowy_taiga",
+    "minecraft:snowy_plains",
+    "minecraft:ice_spikes",
+    "minecraft:windswept_hills",
+    "minecraft:windswept_gravelly_hills",
+    "minecraft:windswept_forest",
+    "minecraft:stony_peaks",
+    "minecraft:snowy_slopes",
+    "minecraft:jagged_peaks",
+    "minecraft:frozen_peaks",
     "minecraft:cherry_grove"
   ],
   "spawners": {
     "type": "mnogii:mahi",
-    "weight": 20,
-    "minCount": 3,
-    "maxCount": 6
+    "weight": 28,
+    "minCount": 6,
+    "maxCount": 14
   }
 }

@@ -37,7 +37,8 @@
               "uv": [
                 0,
                 0
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -63,7 +64,8 @@
               "uv": [
                 0,
                 82
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -89,7 +91,8 @@
               "uv": [
                 74,
                 80
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -105,7 +108,8 @@
               "uv": [
                 26,
                 88
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -121,7 +125,8 @@
               "uv": [
                 78,
                 27
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -137,7 +142,8 @@
               "uv": [
                 52,
                 80
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -153,7 +159,8 @@
               "uv": [
                 14,
                 82
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -169,7 +176,8 @@
               "uv": [
                 34,
                 82
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -185,7 +193,8 @@
               "uv": [
                 88,
                 80
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -211,7 +220,8 @@
               "uv": [
                 0,
                 66
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -237,7 +247,8 @@
               "uv": [
                 26,
                 66
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -250,7 +261,7 @@
                 2,
                 11.5
               ],
-              "inflate": 0.01,
+              "inflate": 0.16,
               "pivot": [
                 2,
                 10.4,
@@ -277,7 +288,7 @@
                 2,
                 11.5
               ],
-              "inflate": 0.01,
+              "inflate": 0.16,
               "pivot": [
                 -2,
                 10.4,
@@ -308,7 +319,8 @@
               "uv": [
                 68,
                 0
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -389,7 +401,8 @@
               "uv": [
                 48,
                 19
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -415,7 +428,8 @@
               "uv": [
                 38,
                 95
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -441,7 +455,8 @@
               "uv": [
                 38,
                 97
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -467,7 +482,8 @@
               "uv": [
                 98,
                 10
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -493,7 +509,8 @@
               "uv": [
                 78,
                 34
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -519,7 +536,8 @@
               "uv": [
                 84,
                 34
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -545,7 +563,8 @@
               "uv": [
                 90,
                 34
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -571,7 +590,8 @@
               "uv": [
                 94,
                 76
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -587,7 +607,8 @@
               "uv": [
                 74,
                 64
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -603,7 +624,8 @@
               "uv": [
                 78,
                 11
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -619,7 +641,8 @@
               "uv": [
                 0,
                 95
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -635,7 +658,8 @@
               "uv": [
                 26,
                 95
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -651,7 +675,8 @@
               "uv": [
                 74,
                 93
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -667,7 +692,8 @@
               "uv": [
                 14,
                 88
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -684,7 +710,8 @@
                 74,
                 93
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -701,7 +728,8 @@
                 14,
                 88
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -718,7 +746,8 @@
                 26,
                 95
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -735,7 +764,8 @@
                 0,
                 95
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -751,7 +781,8 @@
               "uv": [
                 52,
                 59
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -768,7 +799,8 @@
                 52,
                 59
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -784,7 +816,8 @@
               "uv": [
                 98,
                 0
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -800,7 +833,8 @@
               "uv": [
                 98,
                 5
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -816,7 +850,8 @@
               "uv": [
                 86,
                 95
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -832,7 +867,8 @@
               "uv": [
                 42,
                 88
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -849,7 +885,8 @@
                 86,
                 95
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -866,7 +903,8 @@
                 98,
                 0
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -883,7 +921,8 @@
                 42,
                 88
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -900,7 +939,8 @@
                 98,
                 5
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -926,7 +966,8 @@
               "uv": [
                 26,
                 47
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -942,7 +983,8 @@
               "uv": [
                 26,
                 22
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -959,7 +1001,8 @@
                 26,
                 22
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -985,7 +1028,8 @@
               "uv": [
                 52,
                 19
-              ]
+              ],
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -1012,7 +1056,8 @@
                 52,
                 19
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             },
             {
               "origin": [
@@ -1039,7 +1084,8 @@
                 26,
                 47
               ],
-              "mirror": true
+              "mirror": true,
+              "inflate": 0.15
             }
           ]
         }
