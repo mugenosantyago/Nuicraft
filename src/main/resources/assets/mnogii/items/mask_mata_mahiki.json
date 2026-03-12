@@ -5,7 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/mahiki.geo.json",
-      "texture": "mnogii:textures/armor/mask_mata_mahiki.png"
+      "texture": "mnogii:textures/armor/red_mahiki_mask.png"
     }
   }
 }

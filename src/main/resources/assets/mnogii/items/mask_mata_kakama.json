@@ -5,7 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/kakama.geo.json",
-      "texture": "mnogii:textures/armor/mask_mata_kakama.png"
+      "texture": "mnogii:textures/armor/red_kakama_mask.png"
     }
   }
 }

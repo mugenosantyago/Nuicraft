@@ -5,7 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/hau.geo.json",
-      "texture": "mnogii:textures/armor/mask_mata_hau.png"
+      "texture": "mnogii:textures/armor/red_hau_mask.png"
     }
   }
 }

@@ -5,8 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/miru.geo.json",
-      "texture": "mnogii:textures/armor/mask_mata_miru.png",
-      "scale": 1.2
+      "texture": "mnogii:textures/armor/red_miru_mask.png",
     }
   }
 }

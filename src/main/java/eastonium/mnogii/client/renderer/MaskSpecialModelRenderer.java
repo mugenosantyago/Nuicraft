@@ -72,7 +72,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         poseStack.pushPose();
         float s = DEFAULT_SCALE * scale;
-        poseStack.translate(0.3, 0, 0);
+        poseStack.translate(0.5, 0, 0);
         poseStack.scale(s, s, s);
         poseStack.translate(centerX / scale, centerY / scale, 0);
 

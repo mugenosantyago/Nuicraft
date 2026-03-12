@@ -5,7 +5,7 @@
     "model": {
       "type": "mnogii:mask_geo",
       "geo": "mnogii:geo/armor/pakari.geo.json",
-      "texture": "mnogii:textures/armor/mask_mata_pakari.png"
+      "texture": "mnogii:textures/armor/red_pakari_mask.png"
     }
   }
 }
