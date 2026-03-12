@@ -16,7 +16,7 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     private static final float SCALE_KAUKAU  = 1.0f;
     private static final float SCALE_PAKARI  = 0.92f;
     private static final float SCALE_RARU    = 0.92f;
-    private static final float SCALE_MAHIKI  = 0.92f;
+    private static final float SCALE_MAHIKI  = 0.85f;
     private static final float SCALE_HUNA    = 0.90f;
     private static final float SCALE_MATATU  = 0.90f;
     private static final float SCALE_RURU    = 0.88f;
