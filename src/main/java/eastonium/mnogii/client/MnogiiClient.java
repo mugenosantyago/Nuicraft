@@ -16,8 +16,6 @@ import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.common.NeoForge;
-
 public class MnogiiClient {
 
     public static void registerModBusEvents(IEventBus modEventBus) {
@@ -27,9 +25,6 @@ public class MnogiiClient {
         modEventBus.addListener(MnogiiClient::registerScreens);
         modEventBus.addListener(MnogiiClient::registerClientExtensions);
         modEventBus.addListener(MnogiiClient::registerSpecialModelRenderers);
-        // NeoForge game-bus events (not mod-bus)
-        // EntityMountEvent cancellation is registered in Mnogii (common/both sides).
-        NeoForge.EVENT_BUS.addListener(GukkoInputSender::onClientTick);
     }
 
     private static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {

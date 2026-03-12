@@ -34,10 +34,15 @@ import java.util.Set;
  */
 public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
-    /** Default scale applied to all masks (fits the slot without zooming). */
-    private static final float DEFAULT_SCALE = 1.0f;
-    /** Y translation that centres the mask geometry within the item-display coordinate system. */
-    private static final float CENTER_TRANSLATE_Y = -2.8f;
+    /** Base scale applied to all masks. 1.6 fills the slot but is "zoomed in"; 1.3 gives a better fit. */
+    private static final float DEFAULT_SCALE = 1.3f;
+    /**
+     * Y translate that empirically centres the mask in the GUI slot.
+     * Divided by the per-model scale multiplier at render time so that scaling
+     * up a smaller mask (e.g. Miru) keeps its translate value in the same
+     * working range.
+     */
+    private static final float CENTER_TRANSLATE_Y = -1.85f;
 
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;

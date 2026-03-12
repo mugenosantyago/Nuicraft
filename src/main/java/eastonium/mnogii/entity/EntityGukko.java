@@ -24,8 +24,8 @@ import java.util.EnumSet;
 
 /**
  * Gukko — large flying Rahi, rideable without a saddle.
- * Right-click to mount. WASD steers horizontally; Space ascends; Shift descends.
- * Breed with feathers.
+ * Right-click to mount. WASD + camera pitch steers in 3D (look up to ascend, look down to descend).
+ * Shift dismounts normally. Breed with feathers.
  */
 public class EntityGukko extends Animal {
 
@@ -34,36 +34,7 @@ public class EntityGukko extends Animal {
     /** How far above the entity's bounding-box top the rider sits. */
     private static final float HEIGHT_OFFSET = 2.0f;
 
-    // Cache the protected LivingEntity.jumping field for reading rider space-bar input.
-    private static final java.lang.reflect.Field JUMPING_FIELD;
-    static {
-        java.lang.reflect.Field f = null;
-        try {
-            f = LivingEntity.class.getDeclaredField("jumping");
-            f.setAccessible(true);
-        } catch (Exception ignored) {}
-        JUMPING_FIELD = f;
-    }
-
-    private static boolean isJumping(LivingEntity entity) {
-        if (JUMPING_FIELD == null) return false;
-        try { return JUMPING_FIELD.getBoolean(entity); } catch (Exception e) { return false; }
-    }
-
     private boolean lastMoving = false;
-
-    /** Set by GukkoInputSender via GukkoDescentPayload — true while the rider is holding Shift. */
-    private boolean wantsDescend = false;
-
-    /**
-     * Raised in mobInteract before calling player.stopRiding() for an explicit right-click
-     * dismount, so the EntityMountEvent listener knows to allow it through.
-     */
-    public static boolean EXPLICIT_DISMOUNT = false;
-
-    public void setWantsDescend(boolean value) {
-        this.wantsDescend = value;
-    }
 
     public EntityGukko(EntityType<? extends EntityGukko> type, Level level) {
         super(type, level);
@@ -123,26 +94,28 @@ public class EntityGukko extends Animal {
     @Override
     public void travel(Vec3 travelVector) {
         if (isVehicle() && getControllingPassenger() instanceof LivingEntity driver) {
-            // Face where the rider faces; no pitch-tilt on the Gukko body.
+            // Body yaw tracks the rider; body stays level (no pitch tilt).
             setYRot(driver.getYRot());
-            yRotO  = getYRot();
+            yRotO    = getYRot();
             setXRot(0f);
             yBodyRot = getYRot();
             yHeadRot = getYRot();
 
-            float yaw = getYRot() * (float) (Math.PI / 180.0);
+            float yawRad   = getYRot()       * (float)(Math.PI / 180.0);
+            float pitchRad = driver.getXRot() * (float)(Math.PI / 180.0);
 
             float fwd    = driver.zza;  // W = +1, S = −1
             float strafe = driver.xxa;  // A = +1, D = −1
 
-            // WASD = purely horizontal movement
-            double dx = (strafe * Mth.cos(yaw) - fwd * Mth.sin(yaw)) * FLY_SPEED;
-            double dz = (fwd   * Mth.cos(yaw) + strafe * Mth.sin(yaw)) * FLY_SPEED;
+            // W/S follows the camera pitch — looking up ascends, looking down descends.
+            // A/D always strafes horizontally regardless of pitch.
+            float cosPitch = Mth.cos(pitchRad);
+            float sinYaw   = Mth.sin(yawRad);
+            float cosYaw   = Mth.cos(yawRad);
 
-            // Space = ascend, Shift = descend (wantsDescend set by GukkoInputSender via packet)
-            double dy = 0;
-            if (isJumping(driver))  dy += FLY_SPEED;
-            if (wantsDescend)       dy -= FLY_SPEED;
+            double dx = (fwd * -sinYaw * cosPitch + strafe * cosYaw)  * FLY_SPEED;
+            double dy =  fwd * -Mth.sin(pitchRad)                     * FLY_SPEED;
+            double dz = (fwd *  cosYaw * cosPitch + strafe * sinYaw)  * FLY_SPEED;
 
             Vec3 motion = getDeltaMovement();
             setDeltaMovement(
@@ -153,7 +126,6 @@ public class EntityGukko extends Animal {
             move(MoverType.SELF, getDeltaMovement());
             setDeltaMovement(getDeltaMovement().scale(FLY_DRAG));
         } else {
-            wantsDescend = false;
             super.travel(travelVector);
         }
     }
@@ -195,15 +167,6 @@ public class EntityGukko extends Animal {
     public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
-        // Right-click with empty hand while riding → dismount (Shift is reserved for descend)
-        if (this.hasPassenger(player) && stack.isEmpty()) {
-            if (!this.level().isClientSide) {
-                EXPLICIT_DISMOUNT = true;
-                player.stopRiding();
-                EXPLICIT_DISMOUNT = false;
-            }
-            return net.minecraft.world.InteractionResult.SUCCESS;
-        }
         // Breeding
         if (this.getPassengers().isEmpty() && this.isFood(stack)) {
             net.minecraft.world.InteractionResult result = super.mobInteract(player, hand);
