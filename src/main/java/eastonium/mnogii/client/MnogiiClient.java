@@ -35,6 +35,7 @@ public class MnogiiClient {
     private static void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MaskArmorRendererRegistry.registerAll();
+            MaskItemRendererRegistry.registerAll();
         });
     }
 
