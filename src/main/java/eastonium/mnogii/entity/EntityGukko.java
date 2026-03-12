@@ -32,7 +32,7 @@ public class EntityGukko extends Animal {
     private static final float FLY_SPEED     = 0.15f;
     private static final float FLY_DRAG      = 0.9f;
     /** How far above the entity's bounding-box top the rider sits. */
-    private static final float HEIGHT_OFFSET = 2.0f;
+    private static final float HEIGHT_OFFSET = 0.15f;
 
     private boolean lastMoving = false;
 
