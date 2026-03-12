@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
@@ -72,9 +73,11 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         poseStack.pushPose();
         float s = DEFAULT_SCALE * scale;
-        poseStack.translate(0.5, 0, 0);
+        poseStack.translate(0.65, 0, 0);
         poseStack.scale(s, s, s);
         poseStack.translate(centerX / scale, centerY / scale, 0);
+        // Rotate 180° around Y so masks face the camera (front face visible)
+        poseStack.mulPose(new Quaternionf().rotationY((float) Math.PI));
 
         for (AzBone bone : model.getTopLevelBones()) {
             renderBoneRecursively(poseStack, buffer, bone, light, overlay);
