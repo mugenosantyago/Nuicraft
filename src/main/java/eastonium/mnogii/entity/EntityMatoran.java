@@ -222,8 +222,11 @@ public class EntityMatoran extends Animal implements Merchant {
         /**
          * Blend two parent colors by averaging their RGB, then snapping to the
          * nearest enum value. Gives natural-looking offspring accent colors.
+         * If both parents share the same color the result equals that color,
+         * preserving strong family traits through many generations.
          */
         public static MatoranColor blend(MatoranColor a, MatoranColor b) {
+            if (a == b) return a;
             int r  = (((a.rgb >> 16) & 0xFF) + ((b.rgb >> 16) & 0xFF)) / 2;
             int g  = (((a.rgb >>  8) & 0xFF) + ((b.rgb >>  8) & 0xFF)) / 2;
             int bl = ((a.rgb         & 0xFF) + (b.rgb         & 0xFF)) / 2;
@@ -237,6 +240,19 @@ public class EntityMatoran extends Animal implements Merchant {
                 if (dist < minDist) { minDist = dist; nearest = c; }
             }
             return nearest;
+        }
+
+        /**
+         * Pick a random accent color that is guaranteed to be different from the
+         * given koro's canonical body color.  This ensures newly-spawned Matoran
+         * always have at least one visually distinct accent.
+         */
+        public static MatoranColor randomAccent(Koro koro, net.minecraft.util.RandomSource rand) {
+            MatoranColor body = forKoro(koro);
+            MatoranColor[] others = java.util.Arrays.stream(values())
+                    .filter(c -> c != body)
+                    .toArray(MatoranColor[]::new);
+            return others[rand.nextInt(others.length)];
         }
     }
 
@@ -637,27 +653,47 @@ public class EntityMatoran extends Animal implements Merchant {
     }
 
     /**
-     * Produces a baby Matoran when two adults breed. The child inherits its Koro
-     * from one of the two parents chosen at random, and receives a randomly chosen
-     * mask and profession.
+     * Produces a baby Matoran when two adults breed.
+     *
+     * Koro: randomly inherited from one parent.
+     * Mask: blended from both parents' mask colors — cross-koro breeding produces
+     *       unique intermediate hues.  If the blended result matches the child's
+     *       body color, one of the parents' original accent colors is used instead
+     *       so the mask is always visually distinct.
+     * Feet: same logic applied independently to feet colors.
+     * Profession/Mask: random from the implemented pool.
+     *
+     * NOTE: finalizeSpawn is called after this by vanilla, but it is told NOT to
+     * overwrite these accent colors when the spawn reason is BREEDING.
      */
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-        Koro childKoro = (otherParent instanceof EntityMatoran other && level.getRandom().nextBoolean())
+        var rand = level.getRandom();
+        Koro childKoro = (otherParent instanceof EntityMatoran other && rand.nextBoolean())
                 ? other.getKoro()
                 : this.getKoro();
+        MatoranColor bodyColor = MatoranColor.forKoro(childKoro);
+
         EntityMatoran child = new EntityMatoran(
                 eastonium.mnogii.core.MnogiiEntityTypes.MATORAN.get(), level, childKoro);
-        child.setMask(IMPLEMENTED_MASKS[level.getRandom().nextInt(IMPLEMENTED_MASKS.length)]);
-        child.setProfession(RANDOM_PROFESSIONS[level.getRandom().nextInt(RANDOM_PROFESSIONS.length)]);
+        child.setMask(IMPLEMENTED_MASKS[rand.nextInt(IMPLEMENTED_MASKS.length)]);
+        child.setProfession(RANDOM_PROFESSIONS[rand.nextInt(RANDOM_PROFESSIONS.length)]);
 
-        // Blend accent colors from both parents — child gets the color "between" them.
         if (otherParent instanceof EntityMatoran other) {
-            child.setMaskColor(MatoranColor.blend(this.getMaskColor(), other.getMaskColor()));
-            child.setFeetColor(MatoranColor.blend(this.getFeetColor(), other.getFeetColor()));
+            // Blend accent colors — if blend collapses to body color, fall back to
+            // the other parent's distinct accent to keep visuals interesting.
+            MatoranColor maskBlend = MatoranColor.blend(this.getMaskColor(), other.getMaskColor());
+            if (maskBlend == bodyColor) maskBlend = other.getMaskColor() != bodyColor
+                    ? other.getMaskColor() : MatoranColor.randomAccent(childKoro, rand);
+            child.setMaskColor(maskBlend);
+
+            MatoranColor feetBlend = MatoranColor.blend(this.getFeetColor(), other.getFeetColor());
+            if (feetBlend == bodyColor) feetBlend = other.getFeetColor() != bodyColor
+                    ? other.getFeetColor() : MatoranColor.randomAccent(childKoro, rand);
+            child.setFeetColor(feetBlend);
         } else {
-            child.setMaskColor(MatoranColor.random(level.getRandom()));
-            child.setFeetColor(MatoranColor.random(level.getRandom()));
+            child.setMaskColor(MatoranColor.randomAccent(childKoro, rand));
+            child.setFeetColor(MatoranColor.randomAccent(childKoro, rand));
         }
         return child;
     }
@@ -682,10 +718,13 @@ public class EntityMatoran extends Animal implements Merchant {
             // Assign a random profession from the non-maskmaker pool.
             setProfession(RANDOM_PROFESSIONS[level.getRandom().nextInt(RANDOM_PROFESSIONS.length)]);
         }
-        // Randomize mask and feet accent colors for every newly spawned Matoran
-        // regardless of spawn reason — structure, natural, or otherwise.
-        setMaskColor(MatoranColor.random(level.getRandom()));
-        setFeetColor(MatoranColor.random(level.getRandom()));
+        // BREEDING: getBreedOffspring() already set blended accent colors — preserve them.
+        // All other spawn reasons get distinct accent colors guaranteed different from body.
+        if (reason != net.minecraft.world.entity.EntitySpawnReason.BREEDING) {
+            var rand = level.getRandom();
+            setMaskColor(MatoranColor.randomAccent(getKoro(), rand));
+            setFeetColor(MatoranColor.randomAccent(getKoro(), rand));
+        }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
