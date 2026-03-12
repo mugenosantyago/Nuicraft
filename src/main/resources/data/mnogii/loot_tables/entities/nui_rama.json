@@ -65,7 +65,7 @@
       "entries": [
         { "type": "minecraft:item", "name": "mnogii:mask_mata_miru_le",   "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_kakama_le", "weight": 2 },
-        { "type": "minecraft:item", "name": "mnogii:mask_mata_akaku_le",  "weight": 2 },
+        { "type": "minecraft:item", "name": "mnogii:mask_mata_ruru_le",  "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_matatu_le", "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_huna_le",   "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_miru",      "weight": 1 },

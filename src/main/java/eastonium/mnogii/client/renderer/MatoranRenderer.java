@@ -48,7 +48,7 @@ public class MatoranRenderer extends MobRenderer<EntityMatoran, MatoranRenderSta
     }
 
     private static String entityMaskName(int ordinal) {
-        String[] names = { "hau", "kaukau", "miru", "kakama", "pakari", "akaku", "huna", "mahiki", "matatu", "komau", "raru", "ruru" };
+        String[] names = { "hau", "kaukau", "miru", "kakama", "pakari", "huna", "mahiki", "matatu", "raru", "ruru" };
         return ordinal >= 0 && ordinal < names.length ? names[ordinal] : "pakari";
     }
 }

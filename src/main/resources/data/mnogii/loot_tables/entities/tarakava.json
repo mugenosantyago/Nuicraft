@@ -65,7 +65,7 @@
         { "type": "minecraft:item", "name": "mnogii:mask_mata_kaukau_ga", "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_hau_ga",    "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_miru_ga",   "weight": 2 },
-        { "type": "minecraft:item", "name": "mnogii:mask_mata_komau_ga",  "weight": 2 },
+        { "type": "minecraft:item", "name": "mnogii:mask_mata_mahiki_ga",  "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_raru_ga",   "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_kaukau",    "weight": 1 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_miru",      "weight": 1 }

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "mnogii:mask_mata_akaku" },
-    { "item": "minecraft:light_blue_dye" }
-  ],
-  "result": { "id": "mnogii:mask_mata_akaku_ko", "count": 1 }
-}
