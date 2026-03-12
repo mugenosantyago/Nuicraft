@@ -73,7 +73,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         poseStack.pushPose();
         float s = DEFAULT_SCALE * scale;
-        poseStack.translate(0.65, 0, 0);
+        poseStack.translate(0.80, 0, 0);
         poseStack.scale(s, s, s);
         poseStack.translate(centerX / scale, centerY / scale, 0);
         // Rotate 180° around Y so masks face the camera (front face visible)
