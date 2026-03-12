@@ -1,6 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "mnogii:item/kohlii_stick"
-    }
-}
