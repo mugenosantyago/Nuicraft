@@ -1,3 +1,6 @@
 {
-  "parent": "builtin/entity"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mnogii:item/mask_mata_raru_po"
+  }
 }

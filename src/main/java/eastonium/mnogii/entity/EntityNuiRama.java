@@ -169,7 +169,7 @@ public class EntityNuiRama extends TamableAnimal {
         super.tick();
         if (!this.level().isClientSide) {
             boolean moving = this.getDeltaMovement().lengthSqr() > 1.0E-5;
-            if (moving != lastMoving || this.tickCount == 1) {
+            if (moving != lastMoving || this.tickCount % 40 == 1) {
                 lastMoving = moving;
                 NuiRamaAnimator.sendMovementCommand(this);
             }

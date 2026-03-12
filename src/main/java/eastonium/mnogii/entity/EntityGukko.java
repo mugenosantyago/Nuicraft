@@ -148,7 +148,7 @@ public class EntityGukko extends Animal {
         super.tick();
         if (!this.level().isClientSide) {
             boolean moving = this.getDeltaMovement().lengthSqr() > 1.0E-5;
-            if (moving != lastMoving || this.tickCount == 1) {
+            if (moving != lastMoving || this.tickCount % 40 == 1) {
                 lastMoving = moving;
                 GukkoAnimator.sendMovementCommand(this);
             }
@@ -179,10 +179,18 @@ public class EntityGukko extends Animal {
     @Override
     public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+
+        // Right-click with empty hand while riding → dismount (Shift is reserved for descend)
+        if (this.hasPassenger(player) && stack.isEmpty()) {
+            if (!this.level().isClientSide) player.stopRiding();
+            return net.minecraft.world.InteractionResult.SUCCESS;
+        }
+        // Breeding
         if (this.getPassengers().isEmpty() && this.isFood(stack)) {
             net.minecraft.world.InteractionResult result = super.mobInteract(player, hand);
             if (result.consumesAction()) return result;
         }
+        // Mount
         if (this.getPassengers().isEmpty() && !player.isSecondaryUseActive()) {
             if (!this.level().isClientSide) player.startRiding(this);
             return net.minecraft.world.InteractionResult.SUCCESS;

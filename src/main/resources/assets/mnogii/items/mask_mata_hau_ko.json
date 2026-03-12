@@ -1,13 +1,11 @@
 {
   "model": {
-    "type": "minecraft:select",
-    "property": "minecraft:display_context",
-    "cases": [
-      {
-        "when": "head",
-        "model": { "type": "minecraft:empty" }
-      }
-    ],
-    "fallback": { "type": "minecraft:model", "model": "mnogii:item/mask_mata_hau_ko" }
+    "type": "minecraft:special",
+    "base": "minecraft:item/template_skull",
+    "model": {
+      "type": "mnogii:mask_geo",
+      "geo": "mnogii:geo/armor/hau.geo.json",
+      "texture": "mnogii:textures/armor/white_hau_mask.png"
+    }
   }
 }

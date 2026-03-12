@@ -12,12 +12,11 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 /**
  * Syncs the current animation state of Mnogii entities to a player when they
- * first start tracking that entity (e.g. entering render distance or loading a chunk).
+ * first start tracking that entity (i.e. entering render distance).
  *
- * This removes the need for entities to re-broadcast their state on a fixed timer
- * (the old tickCount % 20 pattern), which caused unnecessary network traffic.
- * Entities now only send animation commands when their state actually changes,
- * and this handler covers the "late joiner" case.
+ * Note: commands sent here may arrive before the client animator is ready.
+ * Entities also periodically re-broadcast every 40 ticks as a fallback, so any
+ * dropped commands are recovered within ~2 seconds.
  */
 public class MnogiiAnimationSyncHandler {
 
@@ -26,7 +25,6 @@ public class MnogiiAnimationSyncHandler {
         Entity entity = event.getTarget();
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-        // Only handle our animatable entities that use a base_controller with idle/walk
         if (!isAnimatableEntity(entity)) return;
 
         boolean moving = entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
@@ -35,6 +33,13 @@ public class MnogiiAnimationSyncHandler {
         AzCommand cmd = AzCommand.create("base_controller", anim, AzPlayBehaviors.LOOP);
         var packet = new AzEntityDispatchCommandPacket(entity.getId(), cmd);
         Services.NETWORK.sendToPlayer(packet, player);
+
+        // For Turaga, also sync the pose controller so the correct stance is shown
+        if (entity instanceof EntityTuraga) {
+            AzCommand poseCmd = AzCommand.create("pose_controller", "pose", AzPlayBehaviors.LOOP);
+            Services.NETWORK.sendToPlayer(
+                new AzEntityDispatchCommandPacket(entity.getId(), poseCmd), player);
+        }
     }
 
     private static boolean isAnimatableEntity(Entity entity) {
