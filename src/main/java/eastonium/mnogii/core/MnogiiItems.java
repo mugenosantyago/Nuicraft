@@ -203,7 +203,7 @@ public class MnogiiItems {
 
     // Special items
     public static final DeferredItem<Item> KOHLII_STICK = ITEMS.registerItem("kohlii_stick",
-            props -> new Item(withItemId("kohlii_stick", props).sword(MnogiiTiers.PROTODERMIS, 2, -3.0F)));
+            props -> new Item(withItemId("kohlii_stick", props).stacksTo(1).sword(MnogiiTiers.PROTODERMIS, 2, -3.0F)));
     public static final DeferredItem<Item> HEATSTONE_LIGHTER = ITEMS.registerItem("heatstone_lighter",
             props -> new eastonium.mnogii.item.ItemHeatstoneLighter(withItemId("heatstone_lighter", props).stacksTo(1).durability(128)));
     public static final DeferredItem<Item> SLUICE = ITEMS.registerItem("sluice",
