@@ -34,33 +34,23 @@ import java.util.Set;
  */
 public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
-    /**
-     * Base scale applied to all geo item models in GUI slots.
-     * Mask cubes span ~0.6–1.0 block units in each dimension.
-     * Scale 1.0 keeps them at native size, fitting within a 1-unit slot.
-     */
-    private static final float DEFAULT_SCALE = 1.0f;
+    private static final float DEFAULT_SCALE = 0.4f;
 
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;
-    /** Per-model scale multiplier, applied on top of DEFAULT_SCALE. */
     private final float scale;
-    /**
-     * Y translate (in pre-scale block units) that centres the model in the GUI slot.
-     * For masks: cubes are at Bedrock head height (y≈24–34 pixels = ~1.87 blocks),
-     * so -1.87 shifts the mask center to y=0.
-     * For items already centred at the origin (e.g. kohlii_stick): pass 0.0.
-     */
+    private final float centerX;
     private final float centerY;
 
     private final Matrix4f poseStateCache = new Matrix4f();
     private final Vector3f normalScratch  = new Vector3f();
     private final Vector4f quadPosition   = new Vector4f();
 
-    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale, float centerY) {
+    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale, float centerX, float centerY) {
         this.geoPath     = geoPath;
         this.texturePath = texturePath;
         this.scale       = scale;
+        this.centerX     = centerX;
         this.centerY     = centerY;
     }
 
@@ -81,12 +71,10 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
         VertexConsumer buffer = source.getBuffer(renderType);
 
         poseStack.pushPose();
-        // Apply base scale + centering translate, then the per-model scale multiplier.
-        // The extra scale is applied last (innermost) so it enlarges around the
-        // already-centred origin rather than shifting the mask off-screen.
         float s = DEFAULT_SCALE * scale;
+        poseStack.translate(0.5, 0.5, 0);
         poseStack.scale(s, s, s);
-        poseStack.translate(0, centerY / scale, 0);
+        poseStack.translate(centerX / scale, centerY / scale, 0);
 
         for (AzBone bone : model.getTopLevelBones()) {
             renderBoneRecursively(poseStack, buffer, bone, light, overlay);
@@ -160,7 +148,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     // Unbaked — codec-driven registration for minecraft:special item models
     // -------------------------------------------------------------------------
 
-    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale, float centerY)
+    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale, float centerX, float centerY)
             implements SpecialModelRenderer.Unbaked {
 
         public static final MapCodec<Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance ->
@@ -168,6 +156,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
                 ResourceLocation.CODEC.fieldOf("geo").forGetter(Unbaked::geo),
                 ResourceLocation.CODEC.fieldOf("texture").forGetter(Unbaked::texture),
                 Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(Unbaked::scale),
+                Codec.FLOAT.optionalFieldOf("center_x", 0.0f).forGetter(Unbaked::centerX),
                 Codec.FLOAT.optionalFieldOf("center_y", -1.87f).forGetter(Unbaked::centerY)
             ).apply(instance, Unbaked::new)
         );
@@ -178,7 +167,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         @Override
         public @Nullable SpecialModelRenderer<?> bake(EntityModelSet modelSet) {
-            return new MaskSpecialModelRenderer(geo, texture, scale, centerY);
+            return new MaskSpecialModelRenderer(geo, texture, scale, centerX, centerY);
         }
 
         @Override
