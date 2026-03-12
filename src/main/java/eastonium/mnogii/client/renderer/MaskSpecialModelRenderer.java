@@ -34,17 +34,19 @@ import java.util.Set;
  */
 public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
-    /** Base scale applied to all masks. 1.6 fills the slot but is "zoomed in"; 1.0 gives a good fit. */
-    private static final float DEFAULT_SCALE = 1.0f;
     /**
-     * Y translate that empirically centres the mask in the GUI slot.
-     * Divided by the per-model scale multiplier at render time so that scaling
-     * up a smaller mask (e.g. Miru) keeps its translate value in the same
-     * working range.
-     * Value = old_CTY * old_DEFAULT / new_DEFAULT = -1.85 * 1.3 / 1.0 ≈ -2.4
-     * to maintain the same visual centre after the scale reduction.
+     * Base scale applied to all masks in GUI slots.
+     * After fixing the armor geo pivot to [0,0,0], the mask cubes span
+     * Bedrock y=0 (chin) to ~y=9.5 (crown) = 0–0.594 block units.
+     * Scale 1.5 expands that to ~0.89 units, nearly filling a 1-unit slot.
      */
-    private static final float CENTER_TRANSLATE_Y = -2.4f;
+    private static final float DEFAULT_SCALE = 1.5f;
+    /**
+     * Y translate (in pre-scale block units) that centres the mask in the GUI slot.
+     * Mask Y centre = (0 + 9.5/2) / 16 ≈ 0.297 blocks.
+     * Negating that value shifts the model so its centre lands at y=0 of the slot.
+     */
+    private static final float CENTER_TRANSLATE_Y = -0.3f;
 
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;
