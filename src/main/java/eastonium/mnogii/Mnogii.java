@@ -36,8 +36,12 @@ public class Mnogii {
             .title(Component.translatable("itemGroup.mnogii_tab"))
             .icon(() -> new ItemStack(MnogiiBlocks.NUVA_CUBE.get()))
             .displayItems((parameters, output) -> {
-                // Add all items from the mod to the creative tab
-                MnogiiItems.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
+                MnogiiItems.ITEMS.getEntries().stream()
+                    .filter(item -> {
+                        String id = item.getId().getPath();
+                        return !id.contains("akaku") && !id.contains("komau");
+                    })
+                    .forEach(item -> output.accept(item.get()));
             })
             .build());
     
