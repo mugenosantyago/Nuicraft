@@ -34,7 +34,7 @@ import java.util.Set;
  */
 public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
-    private static final float DEFAULT_SCALE = 0.4f;
+    private static final float DEFAULT_SCALE = 0.65f;
 
     private final ResourceLocation geoPath;
     private final ResourceLocation texturePath;
@@ -72,7 +72,6 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         poseStack.pushPose();
         float s = DEFAULT_SCALE * scale;
-        poseStack.translate(0.5, 0.5, 0);
         poseStack.scale(s, s, s);
         poseStack.translate(centerX / scale, centerY / scale, 0);
 
