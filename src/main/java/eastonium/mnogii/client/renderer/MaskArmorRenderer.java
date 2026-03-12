@@ -19,90 +19,20 @@ public class MaskArmorRenderer extends AzArmorRenderer {
         return AzArmorRendererConfig.builder(modelLocation, textureLocation).build();
     }
 
-    // Factory methods for each mask
-    public static MaskArmorRenderer mataAkaku() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/akaku.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_akaku.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataHau() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/hau.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_hau.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataHuna() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/huna.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_huna.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataKakama() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/kakama.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_kakama.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataKaukau() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/kaukau.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_kaukau.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataKomau() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/komau.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_komau.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataMahiki() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/mahiki.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_mahiki.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataMatatu() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/matatu.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_matatu.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataMiru() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/miru.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_miru.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataPakari() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/pakari.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_pakari.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataRaru() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/raru.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_raru.png")
-        );
-    }
-
-    public static MaskArmorRenderer mataRuru() {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/ruru.geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_ruru.png")
-        );
-    }
+    // Factory methods for each mask — use the Ta (red) 64x64 texture as the default
+    // since mask_mata_*.png are 16x16 item icons, not 3D UV maps.
+    public static MaskArmorRenderer mataAkaku()  { return ofTypeAndKoro("akaku",  "ta"); }
+    public static MaskArmorRenderer mataHau()     { return ofTypeAndKoro("hau",    "ta"); }
+    public static MaskArmorRenderer mataHuna()    { return ofTypeAndKoro("huna",   "ta"); }
+    public static MaskArmorRenderer mataKakama()  { return ofTypeAndKoro("kakama", "ta"); }
+    public static MaskArmorRenderer mataKaukau()   { return ofTypeAndKoro("kaukau", "ta"); }
+    public static MaskArmorRenderer mataKomau()   { return ofTypeAndKoro("komau",  "ta"); }
+    public static MaskArmorRenderer mataMahiki()  { return ofTypeAndKoro("mahiki", "ta"); }
+    public static MaskArmorRenderer mataMatatu()  { return ofTypeAndKoro("matatu", "ta"); }
+    public static MaskArmorRenderer mataMiru()    { return ofTypeAndKoro("miru",   "ta"); }
+    public static MaskArmorRenderer mataPakari()  { return ofTypeAndKoro("pakari", "ta"); }
+    public static MaskArmorRenderer mataRaru()    { return ofTypeAndKoro("raru",   "ta"); }
+    public static MaskArmorRenderer mataRuru()    { return ofTypeAndKoro("ruru",   "ta"); }
 
     /**
      * Maps Koro village names to the lowercase color prefix used in mask texture filenames.
@@ -142,12 +72,9 @@ public class MaskArmorRenderer extends AzArmorRenderer {
     }
 
     /**
-     * Creates a renderer for a colored variant (legacy — uses base texture).
+     * Creates a renderer for a mask type using the default (Ta/red) colored texture.
      */
     public static MaskArmorRenderer ofType(String maskType) {
-        return new MaskArmorRenderer(
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "geo/armor/" + maskType + ".geo.json"),
-            ResourceLocation.fromNamespaceAndPath(Mnogii.MODID, "textures/armor/mask_mata_" + maskType + ".png")
-        );
+        return ofTypeAndKoro(maskType, "ta");
     }
 }
