@@ -59,7 +59,7 @@ public class MnogiiEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityGukko>> GUKKO =
             ENTITY_TYPES.register("gukko", () -> EntityType.Builder.of(EntityGukko::new, MobCategory.CREATURE)
-                    .sized(1.2F, 0.9F).clientTrackingRange(64).build(key("gukko")));
+                    .sized(2.5F, 1.8F).clientTrackingRange(64).build(key("gukko")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityNuiRama>> NUI_RAMA =
             ENTITY_TYPES.register("nui_rama", () -> EntityType.Builder.of(EntityNuiRama::new, MobCategory.CREATURE)

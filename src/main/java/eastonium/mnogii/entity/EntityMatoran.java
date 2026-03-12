@@ -268,7 +268,7 @@ public class EntityMatoran extends Animal implements Merchant {
     private int ambientAnimTimer = 0;
 
     /** Distance (blocks) from home at which ReturnToHomeGoal activates. */
-    private static final int HOME_RETURN_THRESHOLD = 14;
+    private static final int HOME_RETURN_THRESHOLD = 22;
     /** Distance at which ReturnToHomeGoal considers arrival. */
     private static final int HOME_ARRIVE_THRESHOLD = 3;
 
@@ -508,7 +508,7 @@ public class EntityMatoran extends Animal implements Merchant {
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new BedSleepGoal());
         this.goalSelector.addGoal(5, new ReturnToHomeGoal());
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D, 60));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         // Fight back when hurt — peaceful until attacked

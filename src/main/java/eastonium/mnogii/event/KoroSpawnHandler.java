@@ -23,8 +23,10 @@ import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -85,6 +87,12 @@ public class KoroSpawnHandler {
         }
     }
 
+
+    /**
+     * Fraction of regular Matoran that are "visitors" from another koro,
+     * adding colour variety without overwhelming the home koro's presence.
+     */
+    private static final float VISITOR_CHANCE = 0.25f;
 
     private static Map<String, KoroInfo> KORO_INFO = null;
 
@@ -209,13 +217,32 @@ public class KoroSpawnHandler {
                 new java.util.ArrayList<>(java.util.Arrays.asList(EntityMatoran.IMPLEMENTED_MASKS));
         java.util.Collections.shuffle(maskPool, new java.util.Random(level.getRandom().nextLong()));
 
+        // Treehouse koros (Ga-Koro, Le-Koro) use a tighter random offset so that
+        // the position finder lands on the platform rather than in open water/air.
+        boolean treehouse = info.spawnMode() == SpawnMode.TREEHOUSE;
+        int minOff = treehouse ? 1 : 3;
+        int maxOff = treehouse ? 3 : 7;
+
         for (long i = matoranCount; i < target; i++) {
-            int ox = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
-            int oz = level.getRandom().nextIntBetweenInclusive(5, 8) * (level.getRandom().nextBoolean() ? 1 : -1);
+            int ox = level.getRandom().nextIntBetweenInclusive(minOff, maxOff) * (level.getRandom().nextBoolean() ? 1 : -1);
+            int oz = level.getRandom().nextIntBetweenInclusive(minOff, maxOff) * (level.getRandom().nextBoolean() ? 1 : -1);
             EntityMatoran.Mask mask = maskPool.get((int)(i % maskPool.size()));
+
+            // Visitor matoran: spawn with a random other-koro colour for visual variety.
+            // Majority are still home-koro, but ~25% come from elsewhere.
+            boolean isVisitor = level.getRandom().nextFloat() < VISITOR_CHANCE;
+            EntityMatoran.Koro spawnKoro = info.koro();
+            if (isVisitor) {
+                EntityMatoran.Koro[] allKoros = EntityMatoran.Koro.values();
+                EntityMatoran.Koro pick;
+                do { pick = allKoros[level.getRandom().nextInt(allKoros.length)]; }
+                while (pick == info.koro());
+                spawnKoro = pick;
+            }
+
             EntityMatoran mat = new EntityMatoran(
                     info.matoranEntityType(), level,
-                    info.koro(),
+                    spawnKoro,
                     mask,
                     EntityMatoran.RANDOM_PROFESSIONS[level.getRandom().nextInt(EntityMatoran.RANDOM_PROFESSIONS.length)]);
             BlockPos pos = spawnPos(level, start, info, center.offset(ox, 0, oz));
@@ -241,12 +268,42 @@ public class KoroSpawnHandler {
 
     private static BlockPos spawnPosWithMode(ServerLevel level, StructureStart start, SpawnMode mode, BlockPos near) {
         return switch (mode) {
-            case TOWER_FLOOR -> new BlockPos(near.getX(), start.getBoundingBox().minY() + 1, near.getZ());
+            case TOWER_FLOOR -> findRandomTowerFloor(level, start, near);
             case TOWER_TOP   -> new BlockPos(near.getX(), start.getBoundingBox().maxY() + 1, near.getZ());
             case UNDERGROUND -> findUndergroundFloor(level, start, near);
             case TREEHOUSE   -> findTreehouseFloor(level, start, near);
             default          -> level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, near);
         };
+    }
+
+    /**
+     * Scans all Y levels inside the tower (minY+1 to maxY-1) to collect every
+     * walkable floor position, then picks one at random so Matoran spread across
+     * all levels of the Ko-Koro tower rather than clustering at the ground floor.
+     */
+    private static BlockPos findRandomTowerFloor(ServerLevel level, StructureStart start, BlockPos near) {
+        int minY = start.getBoundingBox().minY() + 1;
+        int maxY = start.getBoundingBox().maxY() - 1;
+        int x = near.getX(), z = near.getZ();
+
+        List<BlockPos> floors = new ArrayList<>();
+        for (int y = minY; y <= maxY; y++) {
+            BlockPos candidate = new BlockPos(x, y, z);
+            if (!level.isLoaded(candidate)) break;
+
+            BlockState floor = level.getBlockState(candidate.below());
+            BlockState feet  = level.getBlockState(candidate);
+            BlockState head  = level.getBlockState(candidate.above());
+
+            if (floor.isSolid() && !feet.isSolid() && !head.isSolid()) {
+                floors.add(candidate.immutable());
+            }
+        }
+        if (!floors.isEmpty()) {
+            return floors.get(level.getRandom().nextInt(floors.size()));
+        }
+        // Fallback: bottom floor
+        return new BlockPos(x, minY, z);
     }
 
     /**
@@ -276,18 +333,44 @@ public class KoroSpawnHandler {
     }
 
     /**
-     * Scans upward from the terrain surface to find the first elevated platform
-     * inside the structure bounding box — i.e. the treehouse floor.
-     * This avoids entities spawning in water or on the ground far below the platforms.
+     * Scans upward from the structure's minimum Y (not the terrain surface) to
+     * find the first elevated platform inside the bounding box.
+     *
+     * Using the structure minY rather than the heightmap surface avoids the Ga-Koro
+     * water-spawn bug: MOTION_BLOCKING in a warm-ocean biome returns the water
+     * surface, and random X,Z offsets often land in open water where no platform
+     * is directly overhead.  Starting from minY, we walk up through the entire
+     * structure height and find the first solid-floor + 2-air-above position.
+     *
+     * If nothing is found at the exact X,Z, spiral inward toward the structure
+     * centre (up to 5 steps) to catch cases where the offset lands just outside
+     * the platform edge.
      */
     private static BlockPos findTreehouseFloor(ServerLevel level, StructureStart start, BlockPos near) {
-        int surfaceY = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, near).getY();
-        int maxY = start.getBoundingBox().maxY() - 1;
-        int x = near.getX(), z = near.getZ();
+        BlockPos result = scanUpForFloor(level, start, near.getX(), near.getZ());
+        if (result != null) return result;
 
-        for (int y = surfaceY + 1; y <= maxY; y++) {
+        // Walk step-by-step toward the BB centre until we hit a platform.
+        int cx = start.getBoundingBox().getCenter().getX();
+        int cz = start.getBoundingBox().getCenter().getZ();
+        int x = near.getX(), z = near.getZ();
+        for (int step = 1; step <= 5; step++) {
+            int nx = x + (int) Math.signum(cx - x) * step;
+            int nz = z + (int) Math.signum(cz - z) * step;
+            result = scanUpForFloor(level, start, nx, nz);
+            if (result != null) return result;
+        }
+
+        // Fallback: bounding-box centre Y so the entity at least lands inside
+        return new BlockPos(near.getX(), start.getBoundingBox().getCenter().getY(), near.getZ());
+    }
+
+    private static BlockPos scanUpForFloor(ServerLevel level, StructureStart start, int x, int z) {
+        int startY = start.getBoundingBox().minY();
+        int maxY   = start.getBoundingBox().maxY() - 1;
+        for (int y = startY; y <= maxY; y++) {
             BlockPos candidate = new BlockPos(x, y, z);
-            if (!level.isLoaded(candidate)) break;
+            if (!level.isLoaded(candidate)) return null;
 
             BlockState floor = level.getBlockState(candidate.below());
             BlockState feet  = level.getBlockState(candidate);
@@ -297,9 +380,7 @@ public class KoroSpawnHandler {
                 return candidate;
             }
         }
-        // Fallback: bounding-box centre Y so the entity at least lands somewhere
-        // inside the structure rather than in the water below
-        return new BlockPos(x, start.getBoundingBox().getCenter().getY(), z);
+        return null;
     }
 
     private static void place(ServerLevel level, PathfinderMob mob, BlockPos pos) {
