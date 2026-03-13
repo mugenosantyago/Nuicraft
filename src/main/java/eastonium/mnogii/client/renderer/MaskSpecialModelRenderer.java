@@ -42,6 +42,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     private final float scale;
     private final float centerX;
     private final float centerY;
+    private final float centerZ;
     private final float offsetX;
     private final boolean flipY;
 
@@ -49,12 +50,13 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     private final Vector3f normalScratch  = new Vector3f();
     private final Vector4f quadPosition   = new Vector4f();
 
-    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale, float centerX, float centerY, float offsetX, boolean flipY) {
+    public MaskSpecialModelRenderer(ResourceLocation geoPath, ResourceLocation texturePath, float scale, float centerX, float centerY, float centerZ, float offsetX, boolean flipY) {
         this.geoPath     = geoPath;
         this.texturePath = texturePath;
         this.scale       = scale;
         this.centerX     = centerX;
         this.centerY     = centerY;
+        this.centerZ     = centerZ;
         this.offsetX     = offsetX;
         this.flipY       = flipY;
     }
@@ -79,7 +81,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
         float s = DEFAULT_SCALE * scale;
         poseStack.translate(offsetX, 0, 0);
         poseStack.scale(s, s, s);
-        poseStack.translate(centerX / scale, centerY / scale, 0);
+        poseStack.translate(centerX / scale, centerY / scale, centerZ / scale);
         if (flipY) {
             poseStack.mulPose(new Quaternionf().rotationY((float) Math.PI));
         }
@@ -156,7 +158,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
     // Unbaked — codec-driven registration for minecraft:special item models
     // -------------------------------------------------------------------------
 
-    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale, float centerX, float centerY, float offsetX, boolean flipY)
+    public record Unbaked(ResourceLocation geo, ResourceLocation texture, float scale, float centerX, float centerY, float centerZ, float offsetX, boolean flipY)
             implements SpecialModelRenderer.Unbaked {
 
         public static final MapCodec<Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance ->
@@ -166,6 +168,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
                 Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(Unbaked::scale),
                 Codec.FLOAT.optionalFieldOf("center_x", 0.0f).forGetter(Unbaked::centerX),
                 Codec.FLOAT.optionalFieldOf("center_y", -1.87f).forGetter(Unbaked::centerY),
+                Codec.FLOAT.optionalFieldOf("center_z", 0.0f).forGetter(Unbaked::centerZ),
                 Codec.FLOAT.optionalFieldOf("offset_x", 0.80f).forGetter(Unbaked::offsetX),
                 Codec.BOOL.optionalFieldOf("flip_y", true).forGetter(Unbaked::flipY)
             ).apply(instance, Unbaked::new)
@@ -177,7 +180,7 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         @Override
         public @Nullable SpecialModelRenderer<?> bake(EntityModelSet modelSet) {
-            return new MaskSpecialModelRenderer(geo, texture, scale, centerX, centerY, offsetX, flipY);
+            return new MaskSpecialModelRenderer(geo, texture, scale, centerX, centerY, centerZ, offsetX, flipY);
         }
 
         @Override
