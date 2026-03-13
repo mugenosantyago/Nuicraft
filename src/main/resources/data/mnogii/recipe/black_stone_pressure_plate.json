@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "BB"
+  ],
+  "key": {
+    "B": { "item": "mnogii:black_stone_brick" }
+  },
+  "result": {
+    "item": "mnogii:black_stone_pressure_plate",
+    "count": 1
+  }
+}
