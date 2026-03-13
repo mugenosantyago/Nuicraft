@@ -145,8 +145,8 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
     @Override
     public void getExtents(Set<Vector3f> extents) {
-        extents.add(new Vector3f(-0.5f, -0.5f, -0.5f));
-        extents.add(new Vector3f( 0.5f,  0.5f,  0.5f));
+        extents.add(new Vector3f(-3.0f, -3.0f, -3.0f));
+        extents.add(new Vector3f( 3.0f,  3.0f,  3.0f));
     }
 
     @Override
