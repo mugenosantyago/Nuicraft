@@ -8,7 +8,7 @@
       "texture": "mnogii:textures/item/kohlii_stick.png",
       "scale": 2.5,
       "center_y": 0.0,
-      "offset_x": 0.45
+      "offset_x": 0.1
     }
   }
 }
