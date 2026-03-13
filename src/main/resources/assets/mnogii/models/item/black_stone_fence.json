@@ -1,3 +1,7 @@
 {
-  "parent": "mnogii:block/black_stone_fence_post"
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "mnogii:block/koro_block_proto_dark",
+    "particle": "mnogii:block/koro_block_proto_dark"
+  }
 }

@@ -38,16 +38,16 @@ public class MaskArmorRenderer extends AzArmorRenderer {
         return builder.build();
     }
 
-    public static MaskArmorRenderer mataHau()     { return ofTypeKoroScale("hau",    "ta", SCALE_HAU); }
-    public static MaskArmorRenderer mataHuna()    { return ofTypeKoroScale("huna",   "ta", SCALE_HUNA); }
-    public static MaskArmorRenderer mataKakama()  { return ofTypeKoroScale("kakama", "ta", SCALE_KAKAMA); }
-    public static MaskArmorRenderer mataKaukau()   { return ofTypeKoroScale("kaukau", "ta", SCALE_KAUKAU); }
-    public static MaskArmorRenderer mataMahiki()  { return ofTypeKoroScale("mahiki", "ta", SCALE_MAHIKI); }
-    public static MaskArmorRenderer mataMatatu()  { return ofTypeKoroScale("matatu", "ta", SCALE_MATATU); }
-    public static MaskArmorRenderer mataMiru()    { return ofTypeKoroScale("miru",   "ta", SCALE_MIRU); }
-    public static MaskArmorRenderer mataPakari()  { return ofTypeKoroScale("pakari", "ta", SCALE_PAKARI); }
-    public static MaskArmorRenderer mataRaru()    { return ofTypeKoroScale("raru",   "ta", SCALE_RARU); }
-    public static MaskArmorRenderer mataRuru()    { return ofTypeKoroScale("ruru",   "ta", SCALE_RURU); }
+    public static MaskArmorRenderer mataHau()     { return ofTypeKoroScale("hau",    "ko", SCALE_HAU); }
+    public static MaskArmorRenderer mataHuna()    { return ofTypeKoroScale("huna",   "ko", SCALE_HUNA); }
+    public static MaskArmorRenderer mataKakama()  { return ofTypeKoroScale("kakama", "ko", SCALE_KAKAMA); }
+    public static MaskArmorRenderer mataKaukau()   { return ofTypeKoroScale("kaukau", "ko", SCALE_KAUKAU); }
+    public static MaskArmorRenderer mataMahiki()  { return ofTypeKoroScale("mahiki", "ko", SCALE_MAHIKI); }
+    public static MaskArmorRenderer mataMatatu()  { return ofTypeKoroScale("matatu", "ko", SCALE_MATATU); }
+    public static MaskArmorRenderer mataMiru()    { return ofTypeKoroScale("miru",   "ko", SCALE_MIRU); }
+    public static MaskArmorRenderer mataPakari()  { return ofTypeKoroScale("pakari", "ko", SCALE_PAKARI); }
+    public static MaskArmorRenderer mataRaru()    { return ofTypeKoroScale("raru",   "ko", SCALE_RARU); }
+    public static MaskArmorRenderer mataRuru()    { return ofTypeKoroScale("ruru",   "ko", SCALE_RURU); }
 
     /**
      * Maps Koro village names to the lowercase color prefix used in mask texture filenames.
