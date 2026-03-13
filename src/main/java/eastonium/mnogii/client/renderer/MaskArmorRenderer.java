@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
  */
 public class MaskArmorRenderer extends AzArmorRenderer {
 
-    private static final float SCALE_HAU     = 1.05f;
+    private static final float SCALE_HAU     = 1.12f;
     private static final float SCALE_KAKAMA  = 1.0f;
     private static final float SCALE_KAUKAU  = 1.0f;
     private static final float SCALE_PAKARI  = 0.92f;
