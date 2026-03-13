@@ -79,11 +79,19 @@ public class MaskSpecialModelRenderer implements SpecialModelRenderer<Void> {
 
         poseStack.pushPose();
         float s = DEFAULT_SCALE * scale;
-        poseStack.translate(offsetX, 0, 0);
-        poseStack.scale(s, s, s);
-        poseStack.translate(centerX / scale, centerY / scale, centerZ / scale);
-        if (flipY) {
-            poseStack.mulPose(new Quaternionf().rotationY((float) Math.PI));
+        if (context == ItemDisplayContext.GUI) {
+            poseStack.translate(0.5, 0.0, 0);
+            poseStack.scale(s, s, s);
+            if (flipY) {
+                poseStack.mulPose(new Quaternionf().rotationY((float) Math.PI));
+            }
+        } else {
+            poseStack.translate(offsetX, 0, 0);
+            poseStack.scale(s, s, s);
+            poseStack.translate(centerX / scale, centerY / scale, centerZ / scale);
+            if (flipY) {
+                poseStack.mulPose(new Quaternionf().rotationY((float) Math.PI));
+            }
         }
 
         for (AzBone bone : model.getTopLevelBones()) {
