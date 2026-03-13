@@ -7,9 +7,9 @@
       "geo": "mnogii:geo/item/kohlii_stick.geo.json",
       "texture": "mnogii:textures/item/kohlii_stick.png",
       "scale": 2.5,
-      "center_x": 2.8,
+      "center_x": 2.2,
       "center_y": 3.0,
-      "center_z": 0.5,
+      "center_z": 1.0,
       "offset_x": 0.0,
       "flip_y": false
     }
