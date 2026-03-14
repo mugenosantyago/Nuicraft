@@ -7,6 +7,7 @@ import eastonium.mnogii.client.screen.PurifierScreen;
 import eastonium.mnogii.core.MnogiiEntityTypes;
 import eastonium.mnogii.core.MnogiiRegistration;
 import eastonium.mnogii.entity.EntityThrownDisc;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -21,6 +22,7 @@ public class MnogiiClient {
     public static void registerModBusEvents(IEventBus modEventBus) {
         modEventBus.addListener(MnogiiClient::registerLayerDefinitions);
         modEventBus.addListener(MnogiiClient::registerRenderers);
+        modEventBus.addListener(MnogiiClient::addPlayerLayers);
         modEventBus.addListener(MnogiiClient::clientSetup);
         modEventBus.addListener(MnogiiClient::registerScreens);
         modEventBus.addListener(MnogiiClient::registerClientExtensions);
@@ -40,6 +42,15 @@ public class MnogiiClient {
         event.enqueueWork(() -> {
             MaskArmorRendererRegistry.registerAll();
         });
+    }
+
+    private static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
+        for (var skin : event.getSkins()) {
+            var renderer = event.getSkin(skin);
+            if (renderer instanceof PlayerRenderer playerRenderer) {
+                playerRenderer.addLayer(new MaskRenderLayer(playerRenderer));
+            }
+        }
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
