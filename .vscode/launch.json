@@ -315,7 +315,7 @@
         "group": "NG - mnogii",
         "order": 0
       },
-      "projectName": "mnogii-Nuicraft",
+      "projectName": "mnogii",
       "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
       "args": [
         "--launchTarget",
@@ -371,7 +371,7 @@
         "group": "NG - mnogii",
         "order": 1
       },
-      "projectName": "mnogii-Nuicraft",
+      "projectName": "mnogii",
       "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
       "args": [
         "--launchTarget",
@@ -423,7 +423,7 @@
         "group": "NG - mnogii",
         "order": 2
       },
-      "projectName": "mnogii-Nuicraft",
+      "projectName": "mnogii",
       "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
       "args": [
         "--launchTarget",
@@ -471,7 +471,7 @@
         "group": "NG - mnogii",
         "order": 3
       },
-      "projectName": "mnogii-Nuicraft",
+      "projectName": "mnogii",
       "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
       "args": [
         "--launchTarget",
@@ -525,7 +525,7 @@
         "group": "NG - mnogii",
         "order": 4
       },
-      "projectName": "mnogii-Nuicraft",
+      "projectName": "mnogii",
       "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
       "args": [
         "--nogui",
@@ -574,7 +574,7 @@
         "group": "NG - mnogii",
         "order": 5
       },
-      "projectName": "mnogii-Nuicraft",
+      "projectName": "mnogii",
       "mainClass": "cpw.mods.bootstraplauncher.BootstrapLauncher",
       "args": [
         "--launchTarget",
