@@ -47,8 +47,8 @@ public class EntityNuiRama extends PathfinderMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new FlyingMeleeGoal(this, 0.18));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false));
+        this.goalSelector.addGoal(1, new FlyingMeleeGoal(this, 0.10));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 0.8));
     }
@@ -56,10 +56,10 @@ public class EntityNuiRama extends PathfinderMob {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
-                .add(Attributes.ATTACK_DAMAGE, 6.0)
+                .add(Attributes.ATTACK_DAMAGE, 3.0)
                 .add(Attributes.FLYING_SPEED, 0.17)
                 .add(Attributes.MOVEMENT_SPEED, 0.17)
-                .add(Attributes.FOLLOW_RANGE, 16.0);
+                .add(Attributes.FOLLOW_RANGE, 12.0);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class EntityNuiRama extends PathfinderMob {
      */
     static class FlyingMeleeGoal extends Goal {
         private static final double ATTACK_RANGE_SQ = 3.5 * 3.5;
-        private static final int BASE_ATTACK_INTERVAL = 20;
+        private static final int BASE_ATTACK_INTERVAL = 40;
 
         private final EntityNuiRama mob;
         private final double chaseSpeed;
@@ -156,7 +156,7 @@ public class EntityNuiRama extends PathfinderMob {
             if (dist > 0.5) {
                 Vec3 velocity = toTarget.normalize().scale(chaseSpeed);
                 // Blend existing momentum with new direction (0.7 carry = smooth steering)
-                mob.setDeltaMovement(mob.getDeltaMovement().scale(0.7).add(velocity));
+                mob.setDeltaMovement(mob.getDeltaMovement().scale(0.6).add(velocity));
             }
 
             if (--attackCooldown <= 0 && mob.distanceToSqr(target) <= ATTACK_RANGE_SQ) {
