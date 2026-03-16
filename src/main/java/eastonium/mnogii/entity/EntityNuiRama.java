@@ -2,6 +2,7 @@ package eastonium.mnogii.entity;
 
 import eastonium.mnogii.client.animator.NuiRamaAnimator;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -11,21 +12,26 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
 /**
  * Nui-Rama — flying insectoid Rahi. Always hostile to players.
- * Idles 3–6 blocks above terrain so it stays within player reach distance.
+ *
+ * Altitude is managed by AltitudeGoal (no flags, runs every tick) which directly
+ * sets deltaMovement.y — navigation-based altitude goals are too slow/intermittent
+ * to reliably keep the entity within the player's 3-block attack reach.
  */
-public class EntityNuiRama extends PathfinderMob {
+public class EntityNuiRama extends Monster {
 
     private String lastAnimState = "";
 
-    public EntityNuiRama(EntityType<? extends PathfinderMob> type, Level level) {
+    public EntityNuiRama(EntityType<? extends Monster> type, Level level) {
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.setNoGravity(true);
@@ -43,15 +49,15 @@ public class EntityNuiRama extends PathfinderMob {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FlyingMeleeGoal(this, 0.10));
+        // AltitudeGoal has NO flags — runs alongside any movement goal every single tick
+        this.goalSelector.addGoal(2, new AltitudeGoal(this, 2.5));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
-        // Keep entity 3–6 blocks above terrain — low enough to be within player attack reach
-        this.goalSelector.addGoal(2, new FlyLowGoal(this, 3, 6));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 0.6));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
                 .add(Attributes.ATTACK_DAMAGE, 3.0)
                 .add(Attributes.FLYING_SPEED, 0.17)
@@ -80,9 +86,49 @@ public class EntityNuiRama extends PathfinderMob {
     }
 
     /**
-     * Navigates to the target's eye height (an air block) rather than feet (ground block).
-     * FlyingPathNavigation fails to build paths into solid blocks, so navigating to eye
-     * height lets it descend to and hover near ground-level targets correctly.
+     * Directly sets deltaMovement.y every tick to hold the entity at a target altitude.
+     * Uses no Goal flags so it runs alongside MOVE goals without blocking them.
+     * Runs in aiStep() before travel(), so the Y value is applied by vanilla move().
+     *
+     * When no combat target: hovers at terrain surface + targetAlt blocks.
+     * When in combat: descends to target's body center so the player can reach it.
+     */
+    static class AltitudeGoal extends Goal {
+        private final EntityNuiRama mob;
+        private final double targetAlt;
+
+        AltitudeGoal(EntityNuiRama mob, double targetAlt) {
+            this.mob = mob;
+            this.targetAlt = targetAlt;
+            setFlags(EnumSet.noneOf(Flag.class)); // intentionally no flags
+        }
+
+        @Override public boolean canUse()            { return true; }
+        @Override public boolean canContinueToUse()  { return true; }
+
+        @Override
+        public void tick() {
+            LivingEntity target = mob.getTarget();
+            double wantedY;
+            if (target != null) {
+                // In combat: hover with entity center at target's body center
+                wantedY = target.getY() + target.getBbHeight() * 0.5 - mob.getBbHeight() * 0.5;
+            } else {
+                // Idle: stay targetAlt blocks above terrain surface
+                BlockPos surface = mob.level().getHeightmapPos(
+                        Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
+                wantedY = surface.getY() + targetAlt;
+            }
+            // Proportional Y controller — sets deltaMovement.y, preserved through vanilla travel()
+            double dy = Mth.clamp((wantedY - mob.getY()) * 0.3, -0.3, 0.3);
+            Vec3 vel = mob.getDeltaMovement();
+            mob.setDeltaMovement(vel.x, dy, vel.z);
+        }
+    }
+
+    /**
+     * Handles horizontal combat movement. AltitudeGoal (above) handles the Y axis
+     * independently, so this goal only needs to steer X/Z toward the target.
      */
     static class FlyingMeleeGoal extends Goal {
         private static final double HOVER_DIST        = 3.0;
@@ -119,66 +165,29 @@ public class EntityNuiRama extends PathfinderMob {
 
             mob.getLookControl().setLookAt(target, 30f, 30f);
 
-            double dist = mob.position().distanceTo(
-                    target.position().add(0, target.getBbHeight() * 0.5, 0));
+            double dx = target.getX() - mob.getX();
+            double dz = target.getZ() - mob.getZ();
+            double horizDist = Math.sqrt(dx * dx + dz * dz);
+            double fullDist  = mob.distanceTo(target);
 
-            if (dist > HOVER_DIST) {
-                mob.getNavigation().moveTo(
-                        target.getX(), target.getEyeY(), target.getZ(), chaseSpeed);
+            Vec3 vel = mob.getDeltaMovement();
+            if (horizDist > HOVER_DIST) {
+                // Steer X/Z directly — AltitudeGoal owns Y, so leave vel.y untouched
+                double scale = chaseSpeed / Math.max(horizDist, 0.01);
+                mob.setDeltaMovement(vel.x * 0.7 + dx * scale,
+                                     vel.y,
+                                     vel.z * 0.7 + dz * scale);
             } else {
-                mob.getNavigation().stop();
+                // Arrived — brake X/Z so the entity hovers in place (Y still by AltitudeGoal)
+                mob.setDeltaMovement(vel.x * 0.2, vel.y, vel.z * 0.2);
             }
 
-            if (--attackCooldown <= 0 && dist <= ATTACK_DIST) {
+            if (--attackCooldown <= 0 && fullDist <= ATTACK_DIST) {
                 attackCooldown = BASE_ATTACK_INTERVAL + mob.random.nextInt(10);
                 if (mob.level() instanceof net.minecraft.server.level.ServerLevel sl) {
                     mob.doHurtTarget(sl, target);
                 }
             }
-        }
-    }
-
-    /**
-     * Keeps the entity 3–6 blocks above terrain so it stays within player attack reach.
-     * Does not run during combat (FlyingMeleeGoal at priority 1 preempts this at priority 2).
-     */
-    static class FlyLowGoal extends Goal {
-        private final PathfinderMob mob;
-        private final int minAlt;
-        private final int maxAlt;
-
-        FlyLowGoal(PathfinderMob mob, int minAlt, int maxAlt) {
-            this.mob = mob;
-            this.minAlt = minAlt;
-            this.maxAlt = maxAlt;
-            setFlags(EnumSet.of(Flag.MOVE));
-        }
-
-        @Override
-        public boolean canUse() {
-            if (mob.getTarget() != null) return false;
-            if (mob.getRandom().nextInt(10) != 0) return false;
-            BlockPos surface = mob.level().getHeightmapPos(
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
-            int surfaceY = surface.getY();
-            // Trigger if too high OR too low relative to the target band
-            return mob.getY() > surfaceY + maxAlt || mob.getY() < surfaceY + minAlt;
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return mob.getTarget() == null && mob.getNavigation().isInProgress();
-        }
-
-        @Override
-        public void start() {
-            BlockPos surface = mob.level().getHeightmapPos(
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
-            double targetY = surface.getY() + minAlt
-                    + mob.getRandom().nextInt(Math.max(1, maxAlt - minAlt));
-            double dx = (mob.getRandom().nextDouble() - 0.5) * 8;
-            double dz = (mob.getRandom().nextDouble() - 0.5) * 8;
-            mob.getNavigation().moveTo(mob.getX() + dx, targetY, mob.getZ() + dz, 0.8);
         }
     }
 }
