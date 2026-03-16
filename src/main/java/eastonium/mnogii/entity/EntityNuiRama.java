@@ -12,7 +12,6 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
@@ -69,22 +68,6 @@ public class EntityNuiRama extends PathfinderMob {
         return hit;
     }
 
-    /**
-     * When chasing a target, deltaMovement is owned entirely by FlyingMeleeGoal —
-     * just apply it and drag. FlyingMoveControl's zza-based horizontal-only steering
-     * is intentionally bypassed so the entity can actually descend to ground-level targets.
-     * Wandering uses standard super.travel() with FlyingPathNavigation as normal.
-     */
-    @Override
-    public void travel(Vec3 travelVector) {
-        if (this.getTarget() != null) {
-            this.move(MoverType.SELF, this.getDeltaMovement());
-            this.setDeltaMovement(this.getDeltaMovement().scale(0.85));
-        } else {
-            super.travel(travelVector);
-        }
-    }
-
     @Override
     public void tick() {
         super.tick();
@@ -105,7 +88,8 @@ public class EntityNuiRama extends PathfinderMob {
      * travel() only converts zza into horizontal movement and ignores pitch entirely.
      */
     static class FlyingMeleeGoal extends Goal {
-        private static final double ATTACK_RANGE_SQ = 3.5 * 3.5;
+        private static final double HOVER_DIST    = 3.0;
+        private static final double ATTACK_DIST   = 2.5;
         private static final int BASE_ATTACK_INTERVAL = 40;
 
         private final EntityNuiRama mob;
@@ -133,7 +117,6 @@ public class EntityNuiRama extends PathfinderMob {
         @Override
         public void start() {
             attackCooldown = BASE_ATTACK_INTERVAL;
-            mob.getNavigation().stop();
         }
 
         @Override
@@ -148,18 +131,22 @@ public class EntityNuiRama extends PathfinderMob {
 
             mob.getLookControl().setLookAt(target, 30f, 30f);
 
-            // Aim at the target's center mass (mid-body, not feet or head)
-            Vec3 targetCenter = target.position().add(0, target.getBbHeight() * 0.5, 0);
-            Vec3 toTarget = targetCenter.subtract(mob.position());
-            double dist = toTarget.length();
+            // Measure distance to target's center
+            double dist = mob.position().distanceTo(
+                    target.position().add(0, target.getBbHeight() * 0.5, 0));
 
-            if (dist > 0.5) {
-                Vec3 velocity = toTarget.normalize().scale(chaseSpeed);
-                // Blend existing momentum with new direction (0.7 carry = smooth steering)
-                mob.setDeltaMovement(mob.getDeltaMovement().scale(0.6).add(velocity));
+            if (dist > HOVER_DIST) {
+                // Navigate to the target's eye height — this is an air block, so
+                // FlyingPathNavigation can actually build the path and descend to it.
+                // Navigating to the feet (ground) breaks path-building for flying mobs.
+                mob.getNavigation().moveTo(
+                        target.getX(), target.getEyeY(), target.getZ(), chaseSpeed);
+            } else {
+                // Close enough — stop navigating so the entity holds position
+                mob.getNavigation().stop();
             }
 
-            if (--attackCooldown <= 0 && mob.distanceToSqr(target) <= ATTACK_RANGE_SQ) {
+            if (--attackCooldown <= 0 && dist <= ATTACK_DIST) {
                 attackCooldown = BASE_ATTACK_INTERVAL + mob.random.nextInt(10);
                 if (mob.level() instanceof net.minecraft.server.level.ServerLevel sl) {
                     mob.doHurtTarget(sl, target);
