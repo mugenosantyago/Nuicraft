@@ -14,9 +14,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
  * Syncs the current animation state of Mnogii entities to a player when they
  * first start tracking that entity (i.e. entering render distance).
  *
- * Note: commands sent here may arrive before the client animator is ready.
- * Entities also periodically re-broadcast every 40 ticks as a fallback, so any
- * dropped commands are recovered within ~2 seconds.
+ * Note: commands sent here may arrive before the client animator is ready,
+ * but AzureLib will queue them until the animator initialises.
  */
 public class MnogiiAnimationSyncHandler {
 
