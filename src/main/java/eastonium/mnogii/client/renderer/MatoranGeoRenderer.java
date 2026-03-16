@@ -12,6 +12,9 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Set;
 
 /**
@@ -27,6 +30,9 @@ import java.util.Set;
  * so the lambda can access entity data without being passed the entity directly.
  */
 public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
+
+    private static final Logger LOG = LoggerFactory.getLogger("MatoranGeoRenderer");
+    private static boolean debugLogged = false;
 
     /** Mask IDs that have a geo.json + full texture set in resources. */
     private static final Set<String> IMPLEMENTED_MASKS = Set.of(
@@ -118,6 +124,14 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
     private static ResourceLocation boneTextureFor(AzBone bone) {
         EntityMatoran mat = currentMatoran;
         if (mat == null) return null;
+
+        if (!debugLogged) {
+            debugLogged = true;
+            LOG.info("[MatoranGeoRenderer] boneTextureFor CALLED — bone='{}', koro={}, maskColor={}, feetColor={}, bodyColor={}",
+                    bone.getName(), mat.getKoro(), mat.getMaskColor(), mat.getFeetColor(),
+                    EntityMatoran.MatoranColor.forKoro(mat.getKoro()));
+        }
+
         return switch (bone.getName()) {
             case "head"       -> colorTexture(maskId(mat), mat.getMaskColor());
             case "left_foot",
