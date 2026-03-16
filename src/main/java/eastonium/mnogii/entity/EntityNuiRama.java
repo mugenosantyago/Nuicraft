@@ -58,12 +58,15 @@ public class EntityNuiRama extends TamableAnimal {
         // Wild-only: attack players on sight and fight back when hurt
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true) {
             @Override public boolean canUse() { return !EntityNuiRama.this.isTame() && super.canUse(); }
+            @Override public boolean canContinueToUse() { return !EntityNuiRama.this.isTame() && super.canContinueToUse(); }
         });
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true) {
             @Override public boolean canUse() { return !EntityNuiRama.this.isTame() && super.canUse(); }
+            @Override public boolean canContinueToUse() { return !EntityNuiRama.this.isTame() && super.canContinueToUse(); }
         });
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this) {
             @Override public boolean canUse() { return !EntityNuiRama.this.isTame() && super.canUse(); }
+            @Override public boolean canContinueToUse() { return !EntityNuiRama.this.isTame() && super.canContinueToUse(); }
         });
 
         // Rise to altitude when too close to ground
@@ -80,7 +83,7 @@ public class EntityNuiRama extends TamableAnimal {
                 .add(Attributes.ATTACK_DAMAGE, 6.0)
                 .add(Attributes.FLYING_SPEED, 0.17)
                 .add(Attributes.MOVEMENT_SPEED, 0.17)
-                .add(Attributes.FOLLOW_RANGE, 100.0);
+                .add(Attributes.FOLLOW_RANGE, 16.0);
     }
 
     @Override
@@ -110,6 +113,7 @@ public class EntityNuiRama extends TamableAnimal {
                 usePlayerItem(player, hand, stack);
                 if (random.nextInt(3) == 0) {
                     tame(player);
+                    setTarget(null);
                     level().broadcastEntityEvent(this, (byte) 7);
                 } else {
                     level().broadcastEntityEvent(this, (byte) 6);
@@ -215,6 +219,7 @@ public class EntityNuiRama extends TamableAnimal {
 
         @Override
         public boolean canUse() {
+            if (mob.getTarget() != null) return false;
             if (mob.getRandom().nextInt(15) != 0) return false;
             BlockPos surface = mob.level().getHeightmapPos(
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
