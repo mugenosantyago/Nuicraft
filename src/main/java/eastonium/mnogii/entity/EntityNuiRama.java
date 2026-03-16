@@ -35,7 +35,7 @@ public class EntityNuiRama extends TamableAnimal {
     private static final float FLY_DRAG     = 0.9f;
     private static final float HEIGHT_OFFSET = 0.4f;
 
-    private boolean lastMoving = false;
+    private String lastAnimState = "";
 
     public EntityNuiRama(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
@@ -55,11 +55,8 @@ public class EntityNuiRama extends TamableAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
 
-        // Wild-only: attack players on sight and fight back when hurt
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true) {
-            @Override public boolean canUse() { return !EntityNuiRama.this.isTame() && super.canUse(); }
-            @Override public boolean canContinueToUse() { return !EntityNuiRama.this.isTame() && super.canContinueToUse(); }
-        });
+        // Wild-only: fly directly at players and strike (bypasses pathfinding to avoid hitbox desyncs)
+        this.goalSelector.addGoal(1, new FlyingMeleeGoal(this, 1.2));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true) {
             @Override public boolean canUse() { return !EntityNuiRama.this.isTame() && super.canUse(); }
             @Override public boolean canContinueToUse() { return !EntityNuiRama.this.isTame() && super.canContinueToUse(); }
@@ -173,8 +170,9 @@ public class EntityNuiRama extends TamableAnimal {
         super.tick();
         if (!this.level().isClientSide) {
             boolean moving = this.getDeltaMovement().lengthSqr() > 1.0E-5;
-            if (moving != lastMoving || this.tickCount % 40 == 1) {
-                lastMoving = moving;
+            String animState = moving ? "walk" : "idle";
+            if (!animState.equals(lastAnimState)) {
+                lastAnimState = animState;
                 NuiRamaAnimator.sendMovementCommand(this);
             }
         }
@@ -199,6 +197,65 @@ public class EntityNuiRama extends TamableAnimal {
                 getX(),
                 getY() + getDimensions(Pose.STANDING).height() + HEIGHT_OFFSET,
                 getZ());
+    }
+
+    /**
+     * Flies directly at the target using MoveControl rather than pathfinding.
+     * Pathfinding-based attacks (MeleeAttackGoal) fail silently for flying mobs targeting
+     * ground entities — the path never builds and the entity freezes, causing hitbox desyncs
+     * that make it appear invincible. MoveControl steers smoothly without needing a path.
+     */
+    static class FlyingMeleeGoal extends Goal {
+        private static final double ATTACK_RANGE_SQ = 3.5 * 3.5;
+        private static final int BASE_ATTACK_INTERVAL = 20;
+
+        private final EntityNuiRama mob;
+        private final double speed;
+        private int attackCooldown;
+
+        FlyingMeleeGoal(EntityNuiRama mob, double speed) {
+            this.mob = mob;
+            this.speed = speed;
+            setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            LivingEntity target = mob.getTarget();
+            return !mob.isTame() && target != null && target.isAlive();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            LivingEntity target = mob.getTarget();
+            return !mob.isTame() && target != null && target.isAlive() && mob.distanceTo(target) < 24.0;
+        }
+
+        @Override
+        public void start() {
+            attackCooldown = BASE_ATTACK_INTERVAL;
+        }
+
+        @Override
+        public void stop() {
+            mob.getNavigation().stop();
+        }
+
+        @Override
+        public void tick() {
+            LivingEntity target = mob.getTarget();
+            if (target == null) return;
+
+            mob.getLookControl().setLookAt(target, 30f, 30f);
+            mob.getMoveControl().setWantedPosition(target.getX(), target.getEyeY(), target.getZ(), speed);
+
+            if (--attackCooldown <= 0 && mob.distanceToSqr(target) <= ATTACK_RANGE_SQ) {
+                attackCooldown = BASE_ATTACK_INTERVAL + mob.random.nextInt(10);
+                if (mob.level() instanceof net.minecraft.server.level.ServerLevel sl) {
+                    mob.doHurtTarget(sl, target);
+                }
+            }
+        }
     }
 
     /**
@@ -228,7 +285,7 @@ public class EntityNuiRama extends TamableAnimal {
 
         @Override
         public boolean canContinueToUse() {
-            return mob.getNavigation().isInProgress();
+            return mob.getTarget() == null && mob.getNavigation().isInProgress();
         }
 
         @Override
