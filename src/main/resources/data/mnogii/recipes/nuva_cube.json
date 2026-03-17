@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "KPK",
+    "PSP",
+    "KPK"
+  ],
+  "key": {
+    "K": "#mnogii:koro_stones",
+    "P": "mnogii:ingot_protodermis",
+    "S": "mnogii:protodermis_solid"
+  },
+  "result": {
+    "id": "mnogii:nuva_cube",
+    "count": 1
+  }
+}
