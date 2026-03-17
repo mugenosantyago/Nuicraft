@@ -18,7 +18,8 @@ import net.minecraft.world.phys.HitResult;
  * Projectile entity for throwable Kanoka/bamboo discs.
  * - Flat trajectory (minimal gravity) — not a snowball arc.
  * - Deals 2 damage on entity hit.
- * - Returns exactly 1 disc to the thrower on impact; no extra items.
+ * - Returns the disc to the thrower on impact with 1 durability consumed.
+ *   When durability is depleted the disc breaks and nothing is returned.
  */
 public class EntityThrownDisc extends ThrowableItemProjectile {
 
@@ -63,16 +64,23 @@ public class EntityThrownDisc extends ThrowableItemProjectile {
     }
 
     /**
-     * Returns exactly 1 disc to the owner.
-     * Uses count=1 to prevent returning the entire thrown stack on multi-disc throws.
+     * Returns the disc to the owner after applying 1 point of damage.
+     * If the disc's durability is fully depleted, it breaks and nothing is returned.
      */
     private void returnDisc() {
         ItemStack returnStack = this.getItem().copyWithCount(1);
         if (returnStack.isEmpty()) return;
 
+        if (returnStack.isDamageableItem()) {
+            int newDamage = returnStack.getDamageValue() + 1;
+            if (newDamage >= returnStack.getMaxDamage()) {
+                return;
+            }
+            returnStack.setDamageValue(newDamage);
+        }
+
         var owner = getOwner();
         if (owner instanceof Player player) {
-            // Creative players never consumed the disc, so don't add it back.
             if (player.isCreative()) return;
             if (!player.getInventory().add(returnStack)) {
                 player.drop(returnStack, false);
@@ -85,7 +93,6 @@ public class EntityThrownDisc extends ThrowableItemProjectile {
                         level(), owner.getX(), owner.getY(), owner.getZ(), returnStack));
             }
         } else {
-            // No owner — drop at impact point.
             level().addFreshEntity(new net.minecraft.world.entity.item.ItemEntity(
                     level(), getX(), getY(), getZ(), returnStack));
         }

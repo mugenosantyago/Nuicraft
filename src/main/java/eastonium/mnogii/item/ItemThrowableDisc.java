@@ -14,14 +14,16 @@ import net.minecraft.world.level.Level;
 
 /**
  * Disc item that can be thrown (Kanoka, bamboo disc, etc.).
- * Flies flat (low gravity), deals 2 damage on hit, and returns exactly 1 disc to the thrower.
+ * Flies flat (low gravity), deals 2 damage on hit, and returns to the thrower.
+ * Each disc lasts {@value #MAX_THROWS} throws before breaking.
  */
 public class ItemThrowableDisc extends Item {
 
     private static final float THROW_POWER = 2.5F;
+    public static final int MAX_THROWS = 7;
 
     public ItemThrowableDisc(Properties properties) {
-        super(properties);
+        super(properties.durability(MAX_THROWS));
     }
 
     @Override
