@@ -9,6 +9,11 @@ import eastonium.mnogii.core.MnogiiRegistration;
 import eastonium.mnogii.entity.EntityThrownDisc;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.fog.FogData;
+import net.minecraft.client.renderer.fog.environment.FogEnvironment;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,6 +22,7 @@ import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import org.joml.Vector4f;
 public class MnogiiClient {
 
     public static void registerModBusEvents(IEventBus modEventBus) {
@@ -98,35 +104,68 @@ public class MnogiiClient {
     }
 
     private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        // Regular liquid protodermis — silver-blue
-        event.registerFluidType(fluidExt(
-                "minecraft:block/water_still", "minecraft:block/water_flow", 0xFFC4D8E0),
+        // Regular liquid protodermis — silver-blue, water-like
+        event.registerFluidType(waterLikeFluidExt(0xFFC4D8E0),
                 MnogiiRegistration.TYPE_PROTODERMIS.get());
 
-        // Pure liquid protodermis — warm gold
-        event.registerFluidType(fluidExt(
-                "minecraft:block/water_still", "minecraft:block/water_flow", 0xFFE8D880),
+        // Pure liquid protodermis — warm gold, water-like
+        event.registerFluidType(waterLikeFluidExt(0xFFE8D880),
                 MnogiiRegistration.TYPE_PROTODERMIS_PURE.get());
 
-        // Molten protodermis — deep orange-red (lava-like)
-        event.registerFluidType(fluidExt(
-                "minecraft:block/lava_still", "minecraft:block/lava_flow", 0xFFE05020),
+        // Molten protodermis — deep orange-red, lava-like
+        event.registerFluidType(lavaLikeFluidExt(0xFFE05020),
                 MnogiiRegistration.TYPE_PROTODERMIS_MOLTEN.get());
 
-        // Pure molten protodermis — bright gold
-        event.registerFluidType(fluidExt(
-                "minecraft:block/lava_still", "minecraft:block/lava_flow", 0xFFFFCC00),
+        // Pure molten protodermis — bright gold, lava-like
+        event.registerFluidType(lavaLikeFluidExt(0xFFFFCC00),
                 MnogiiRegistration.TYPE_PROTODERMIS_PURE_MOLTEN.get());
     }
 
-    /** Builds a simple {@link IClientFluidTypeExtensions} for the given still/flow textures and tint. */
-    private static IClientFluidTypeExtensions fluidExt(String still, String flow, int tintColor) {
-        ResourceLocation stillLoc = ResourceLocation.parse(still);
-        ResourceLocation flowLoc  = ResourceLocation.parse(flow);
+    private static IClientFluidTypeExtensions waterLikeFluidExt(int tintColor) {
+        ResourceLocation stillLoc   = ResourceLocation.withDefaultNamespace("block/water_still");
+        ResourceLocation flowLoc    = ResourceLocation.withDefaultNamespace("block/water_flow");
+        ResourceLocation overlayLoc = ResourceLocation.withDefaultNamespace("block/water_overlay");
+        ResourceLocation screenOverlayLoc = ResourceLocation.withDefaultNamespace("textures/misc/underwater.png");
+        float fogR = ((tintColor >> 16) & 0xFF) / 255.0f;
+        float fogG = ((tintColor >> 8)  & 0xFF) / 255.0f;
+        float fogB = (tintColor         & 0xFF) / 255.0f;
+        return new IClientFluidTypeExtensions() {
+            @Override public ResourceLocation getStillTexture()   { return stillLoc; }
+            @Override public ResourceLocation getFlowingTexture() { return flowLoc;  }
+            @Override public ResourceLocation getOverlayTexture() { return overlayLoc; }
+            @Override public int getTintColor()                    { return tintColor; }
+            @Override public ResourceLocation getRenderOverlayTexture(Minecraft mc) { return screenOverlayLoc; }
+            @Override public Vector4f modifyFogColor(Camera camera, float partialTick,
+                    ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+                return new Vector4f(fogR, fogG, fogB, 1.0f);
+            }
+            @Override public void modifyFogRender(Camera camera, FogEnvironment fogEnv,
+                    float partialTick, float renderDistance, FogData fogData) {
+                fogData.environmentalStart = -2.0f;
+                fogData.environmentalEnd = 12.0f;
+            }
+        };
+    }
+
+    private static IClientFluidTypeExtensions lavaLikeFluidExt(int tintColor) {
+        ResourceLocation stillLoc = ResourceLocation.withDefaultNamespace("block/lava_still");
+        ResourceLocation flowLoc  = ResourceLocation.withDefaultNamespace("block/lava_flow");
+        float fogR = ((tintColor >> 16) & 0xFF) / 255.0f;
+        float fogG = ((tintColor >> 8)  & 0xFF) / 255.0f;
+        float fogB = (tintColor         & 0xFF) / 255.0f;
         return new IClientFluidTypeExtensions() {
             @Override public ResourceLocation getStillTexture()   { return stillLoc; }
             @Override public ResourceLocation getFlowingTexture() { return flowLoc;  }
             @Override public int getTintColor()                    { return tintColor; }
+            @Override public Vector4f modifyFogColor(Camera camera, float partialTick,
+                    ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+                return new Vector4f(fogR, fogG, fogB, 1.0f);
+            }
+            @Override public void modifyFogRender(Camera camera, FogEnvironment fogEnv,
+                    float partialTick, float renderDistance, FogData fogData) {
+                fogData.environmentalStart = 0.25f;
+                fogData.environmentalEnd = 1.5f;
+            }
         };
     }
 }
