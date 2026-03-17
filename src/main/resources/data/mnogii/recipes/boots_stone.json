@@ -5,14 +5,11 @@
     "PP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:smooth_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:smooth_stone"
   },
   "result": {
-    "item": "mnogii:boots_stone"
+    "id": "mnogii:boots_stone",
+    "count": 1
   }
 }

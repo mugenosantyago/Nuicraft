@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "mnogii:mask_mata_miru"
-    },
-    {
-      "item": "mnogii:onu_koro_stone"
-    }
+    "mnogii:mask_mata_miru",
+    "mnogii:onu_koro_stone"
   ],
   "result": {
     "id": "mnogii:mask_mata_miru_onu",

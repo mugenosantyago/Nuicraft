@@ -6,14 +6,11 @@
     " S"
   ],
   "key": {
-    "I": {
-      "item": "mnogii:ingot_protodermis"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "I": "mnogii:ingot_protodermis",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:protodermis_axe"
+    "id": "mnogii:protodermis_axe",
+    "count": 1
   }
 }

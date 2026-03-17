@@ -6,17 +6,12 @@
     " S "
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "I": {
-      "item": "minecraft:packed_ice"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "I": "minecraft:packed_ice",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:ice_pickaxe"
+    "id": "mnogii:ice_pickaxe",
+    "count": 1
   }
 }

@@ -6,14 +6,11 @@
     " P "
   ],
   "key": {
-    "C": {
-      "item": "minecraft:coal"
-    },
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    }
+    "C": "minecraft:coal",
+    "P": "mnogii:ingot_protosteel"
   },
   "result": {
-    "item": "mnogii:onua_claws"
+    "id": "mnogii:onua_claws",
+    "count": 1
   }
 }

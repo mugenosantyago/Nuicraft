@@ -6,18 +6,10 @@
     "K K"
   ],
   "key": {
-    "K": {
-      "item": "mnogii:ta_koro_stone"
-    },
-    "A": {
-      "item": "mnogii:lightstone"
-    },
-    "S": {
-      "item": "mnogii:protodermis_solid"
-    },
-    "H": {
-      "item": "mnogii:hammer"
-    }
+    "K": "mnogii:ta_koro_stone",
+    "A": "mnogii:lightstone",
+    "S": "mnogii:protodermis_solid",
+    "H": "mnogii:hammer"
   },
   "result": {
     "id": "mnogii:mask_mata_ruru",

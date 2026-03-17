@@ -6,14 +6,11 @@
     "PEP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:prismarine_shard"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:prismarine_shard"
   },
   "result": {
-    "item": "mnogii:leggings_water"
+    "id": "mnogii:leggings_water",
+    "count": 1
   }
 }

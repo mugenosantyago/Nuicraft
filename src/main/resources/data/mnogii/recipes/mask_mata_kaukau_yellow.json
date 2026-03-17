@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "mnogii:mask_mata_kaukau"
-    },
-    {
-      "item": "minecraft:yellow_dye"
-    }
+    "mnogii:mask_mata_kaukau",
+    "minecraft:yellow_dye"
   ],
   "result": {
     "id": "mnogii:mask_mata_kaukau_yellow",

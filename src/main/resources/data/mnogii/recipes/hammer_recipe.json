@@ -6,8 +6,8 @@
     " B "
   ],
   "key": {
-    "K": { "tag": "mnogii:koro_stones" },
-    "B": { "item": "minecraft:bamboo" }
+    "K": "#mnogii:koro_stones",
+    "B": "minecraft:bamboo"
   },
   "result": {
     "id": "mnogii:hammer",

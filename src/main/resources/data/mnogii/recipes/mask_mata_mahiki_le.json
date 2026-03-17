@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "mnogii:mask_mata_mahiki"
-    },
-    {
-      "item": "mnogii:le_koro_stone"
-    }
+    "mnogii:mask_mata_mahiki",
+    "mnogii:le_koro_stone"
   ],
   "result": {
     "id": "mnogii:mask_mata_mahiki_le",

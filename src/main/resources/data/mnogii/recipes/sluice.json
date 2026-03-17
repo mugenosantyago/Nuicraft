@@ -6,8 +6,8 @@
     " I "
   ],
   "key": {
-    "I": { "item": "mnogii:ingot_protosteel" },
-    "G": { "item": "mnogii:gear" }
+    "I": "mnogii:ingot_protosteel",
+    "G": "mnogii:gear"
   },
   "result": {
     "id": "mnogii:sluice",

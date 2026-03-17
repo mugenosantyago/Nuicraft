@@ -6,14 +6,11 @@
     "PPP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:blaze_powder"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:blaze_powder"
   },
   "result": {
-    "item": "mnogii:chestplate_fire"
+    "id": "mnogii:chestplate_fire",
+    "count": 1
   }
 }

@@ -6,9 +6,9 @@
     "OSO"
   ],
   "key": {
-    "O": { "item": "mnogii:onu_wahi_stone" },
-    "S": { "item": "mnogii:ingot_protodermis" },
-    "H": { "item": "mnogii:heatstone" }
+    "O": "mnogii:onu_wahi_stone",
+    "S": "mnogii:ingot_protodermis",
+    "H": "mnogii:heatstone"
   },
   "result": {
     "id": "mnogii:purifier",

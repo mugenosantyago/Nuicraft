@@ -6,14 +6,11 @@
     "PEP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:coal"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:coal"
   },
   "result": {
-    "item": "mnogii:leggings_earth"
+    "id": "mnogii:leggings_earth",
+    "count": 1
   }
 }

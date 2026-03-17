@@ -6,17 +6,12 @@
     " S "
   ],
   "key": {
-    "C": {
-      "item": "minecraft:coal"
-    },
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "C": "minecraft:coal",
+    "P": "mnogii:ingot_protosteel",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:onua_drill"
+    "id": "mnogii:onua_drill",
+    "count": 1
   }
 }

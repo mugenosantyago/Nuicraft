@@ -1,8 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "mnogii:mask_mata_pakari" },
-    { "item": "minecraft:red_dye" }
+    "mnogii:mask_mata_pakari",
+    "minecraft:red_dye"
   ],
-  "result": { "id": "mnogii:mask_mata_pakari_ta", "count": 1 }
+  "result": {
+    "id": "mnogii:mask_mata_pakari_ta",
+    "count": 1
+  }
 }

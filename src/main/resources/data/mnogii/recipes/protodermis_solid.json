@@ -5,7 +5,7 @@
     "II"
   ],
   "key": {
-    "I": { "item": "mnogii:ingot_protodermis" }
+    "I": "mnogii:ingot_protodermis"
   },
   "result": {
     "id": "mnogii:protodermis_solid",

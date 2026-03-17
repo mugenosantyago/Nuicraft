@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "mnogii:block_protosteel" }
+    "mnogii:block_protosteel"
   ],
   "result": {
     "id": "mnogii:ingot_protosteel",

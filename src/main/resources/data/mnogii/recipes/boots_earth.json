@@ -5,14 +5,11 @@
     "PP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:coal"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:coal"
   },
   "result": {
-    "item": "mnogii:boots_earth"
+    "id": "mnogii:boots_earth",
+    "count": 1
   }
 }

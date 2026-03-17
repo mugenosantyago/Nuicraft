@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "mnogii:protodermis_solid" }
+    "mnogii:protodermis_solid"
   ],
   "result": {
     "id": "mnogii:ingot_protodermis",

@@ -6,14 +6,11 @@
     "PEP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:feather"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:feather"
   },
   "result": {
-    "item": "mnogii:leggings_air"
+    "id": "mnogii:leggings_air",
+    "count": 1
   }
 }

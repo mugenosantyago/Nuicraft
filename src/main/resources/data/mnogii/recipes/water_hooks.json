@@ -6,17 +6,12 @@
     " S "
   ],
   "key": {
-    "W": {
-      "item": "minecraft:prismarine_shard"
-    },
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "W": "minecraft:prismarine_shard",
+    "P": "mnogii:ingot_protosteel",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:water_hooks"
+    "id": "mnogii:water_hooks",
+    "count": 1
   }
 }

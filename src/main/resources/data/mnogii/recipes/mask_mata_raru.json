@@ -6,18 +6,10 @@
     "K K"
   ],
   "key": {
-    "K": {
-      "item": "mnogii:ko_koro_stone"
-    },
-    "A": {
-      "item": "mnogii:makuta_stone"
-    },
-    "S": {
-      "item": "mnogii:protodermis_solid"
-    },
-    "H": {
-      "item": "mnogii:hammer"
-    }
+    "K": "mnogii:ko_koro_stone",
+    "A": "mnogii:makuta_stone",
+    "S": "mnogii:protodermis_solid",
+    "H": "mnogii:hammer"
   },
   "result": {
     "id": "mnogii:mask_mata_raru",

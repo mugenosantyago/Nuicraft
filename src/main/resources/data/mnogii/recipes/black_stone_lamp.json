@@ -6,8 +6,8 @@
     "BBB"
   ],
   "key": {
-    "B": { "item": "mnogii:black_stone_brick" },
-    "L": { "item": "mnogii:lightstone" }
+    "B": "mnogii:black_stone_brick",
+    "L": "mnogii:lightstone"
   },
   "result": {
     "id": "mnogii:black_stone_lamp",

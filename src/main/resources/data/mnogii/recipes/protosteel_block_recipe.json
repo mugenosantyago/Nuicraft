@@ -6,7 +6,7 @@
     "III"
   ],
   "key": {
-    "I": { "item": "mnogii:ingot_protosteel" }
+    "I": "mnogii:ingot_protosteel"
   },
   "result": {
     "id": "mnogii:block_protosteel",

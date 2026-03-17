@@ -6,17 +6,12 @@
     "S"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "B": {
-      "item": "minecraft:blaze_powder"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "B": "minecraft:blaze_powder",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:fire_sword"
+    "id": "mnogii:fire_sword",
+    "count": 1
   }
 }

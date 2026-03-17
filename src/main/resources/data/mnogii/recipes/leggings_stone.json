@@ -6,14 +6,11 @@
     "PEP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:smooth_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:smooth_stone"
   },
   "result": {
-    "item": "mnogii:leggings_stone"
+    "id": "mnogii:leggings_stone",
+    "count": 1
   }
 }

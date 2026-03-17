@@ -1,8 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "mnogii:mask_mata_mahiki" },
-    { "item": "minecraft:brown_dye" }
+    "mnogii:mask_mata_mahiki",
+    "minecraft:brown_dye"
   ],
-  "result": { "id": "mnogii:mask_mata_mahiki_po", "count": 1 }
+  "result": {
+    "id": "mnogii:mask_mata_mahiki_po",
+    "count": 1
+  }
 }

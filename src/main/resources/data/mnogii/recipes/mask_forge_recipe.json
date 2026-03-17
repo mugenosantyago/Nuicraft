@@ -6,9 +6,9 @@
     "III"
   ],
   "key": {
-    "I": { "item": "mnogii:ingot_protosteel" },
-    "H": { "item": "mnogii:hammer" },
-    "G": { "item": "mnogii:gear" }
+    "I": "mnogii:ingot_protosteel",
+    "H": "mnogii:hammer",
+    "G": "mnogii:gear"
   },
   "result": {
     "id": "mnogii:mask_forge",

@@ -5,7 +5,7 @@
     "BB"
   ],
   "key": {
-    "B": { "item": "mnogii:pure_molten_protodermis_bucket" }
+    "B": "mnogii:pure_molten_protodermis_bucket"
   },
   "result": {
     "id": "mnogii:block_protosteel",

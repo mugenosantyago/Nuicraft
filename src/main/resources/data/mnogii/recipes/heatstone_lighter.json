@@ -6,8 +6,8 @@
     " I"
   ],
   "key": {
-    "I": { "item": "mnogii:ingot_protosteel" },
-    "H": { "item": "mnogii:heatstone" }
+    "I": "mnogii:ingot_protosteel",
+    "H": "mnogii:heatstone"
   },
   "result": {
     "id": "mnogii:heatstone_lighter",

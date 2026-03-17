@@ -5,14 +5,11 @@
     "PP"
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "E": {
-      "item": "minecraft:feather"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:feather"
   },
   "result": {
-    "item": "mnogii:boots_air"
+    "id": "mnogii:boots_air",
+    "count": 1
   }
 }

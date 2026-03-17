@@ -6,14 +6,11 @@
     " I "
   ],
   "key": {
-    "I": {
-      "item": "mnogii:ingot_protodermis"
-    },
-    "P": {
-      "item": "minecraft:iron_ingot"
-    }
+    "I": "mnogii:ingot_protodermis",
+    "P": "minecraft:iron_ingot"
   },
   "result": {
-    "item": "mnogii:gear"
+    "id": "mnogii:gear",
+    "count": 1
   }
 }

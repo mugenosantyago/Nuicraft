@@ -6,14 +6,11 @@
     " P "
   ],
   "key": {
-    "P": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "R": {
-      "item": "minecraft:smooth_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "R": "minecraft:smooth_stone"
   },
   "result": {
-    "item": "mnogii:pohatu_hands"
+    "id": "mnogii:pohatu_hands",
+    "count": 1
   }
 }

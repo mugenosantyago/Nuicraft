@@ -5,7 +5,7 @@
     "BB"
   ],
   "key": {
-    "B": { "item": "minecraft:bamboo" }
+    "B": "minecraft:bamboo"
   },
   "result": {
     "id": "mnogii:kanoka_bamboo",
