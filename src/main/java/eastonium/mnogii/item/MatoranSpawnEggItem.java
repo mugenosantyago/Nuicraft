@@ -6,16 +6,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
  * Spawn egg that spawns a Matoran with a specific Koro + Mask locked in.
- * Overrides useOn to directly instantiate the entity rather than relying
- * on the ENTITY_DATA component merge path, which is unreliable for synced data.
+ * Uses the koro-specific entity type so the client-side factory creates the
+ * entity with the correct koro defaults, avoiding visual desync on first frame.
  */
 public class MatoranSpawnEggItem extends SpawnEggItem {
 
@@ -23,7 +26,7 @@ public class MatoranSpawnEggItem extends SpawnEggItem {
     private final EntityMatoran.Mask mask;
 
     public MatoranSpawnEggItem(EntityMatoran.Koro koro, EntityMatoran.Mask mask, Item.Properties props) {
-        super(MnogiiEntityTypes.MATORAN.get(), props);
+        super(entityTypeForKoro(koro), props);
         this.koro = koro;
         this.mask = mask;
     }
@@ -36,34 +39,58 @@ public class MatoranSpawnEggItem extends SpawnEggItem {
         }
 
         ServerLevel serverLevel = (ServerLevel) level;
+        var stack = ctx.getItemInHand();
         BlockPos clickedPos = ctx.getClickedPos();
         Direction face = ctx.getClickedFace();
         BlockState state = level.getBlockState(clickedPos);
 
-        // Spawn position: on top of the clicked face, centred in the block
+        BlockEntity be = level.getBlockEntity(clickedPos);
+        if (be instanceof net.minecraft.world.level.Spawner spawner) {
+            spawner.setEntityId(entityTypeForKoro(koro), level.getRandom());
+            level.sendBlockUpdated(clickedPos, state, state, 3);
+            if (ctx.getPlayer() == null || !ctx.getPlayer().isCreative()) {
+                stack.shrink(1);
+            }
+            return InteractionResult.SUCCESS;
+        }
+
         BlockPos spawnPos = state.getCollisionShape(level, clickedPos).isEmpty()
                 ? clickedPos
                 : clickedPos.relative(face);
 
-        // Build the entity with the fixed koro + mask directly in the constructor
-        EntityMatoran matoran = new EntityMatoran(
-                MnogiiEntityTypes.MATORAN.get(), serverLevel, koro, mask);
+        EntityType<EntityMatoran> type = entityTypeForKoro(koro);
+        EntityMatoran matoran = new EntityMatoran(type, serverLevel, koro, mask);
 
-        // Assign a random profession
-        EntityMatoran.Profession[] profs = EntityMatoran.Profession.values();
-        matoran.setProfession(profs[serverLevel.getRandom().nextInt(profs.length)]);
+        matoran.setProfession(
+                EntityMatoran.RANDOM_PROFESSIONS[serverLevel.getRandom().nextInt(EntityMatoran.RANDOM_PROFESSIONS.length)]);
 
         matoran.setPos(spawnPos.getX() + 0.5, (double) spawnPos.getY(), spawnPos.getZ() + 0.5);
         matoran.setYRot(serverLevel.getRandom().nextFloat() * 360f);
         matoran.yRotO = matoran.getYRot();
 
+        matoran.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(spawnPos),
+                EntitySpawnReason.SPAWN_ITEM_USE, null);
+
         serverLevel.addFreshEntityWithPassengers(matoran);
 
         var player = ctx.getPlayer();
         if (player == null || !player.isCreative()) {
-            ctx.getItemInHand().shrink(1);
+            stack.shrink(1);
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    private static EntityType<EntityMatoran> entityTypeForKoro(EntityMatoran.Koro koro) {
+        return switch (koro) {
+            case TA     -> MnogiiEntityTypes.MATORAN_TA.get();
+            case GA     -> MnogiiEntityTypes.MATORAN_GA.get();
+            case LE     -> MnogiiEntityTypes.MATORAN_LE.get();
+            case ONU    -> MnogiiEntityTypes.MATORAN_ONU.get();
+            case KO     -> MnogiiEntityTypes.MATORAN_KO.get();
+            case PO     -> MnogiiEntityTypes.MATORAN_PO.get();
+            case PURPLE -> MnogiiEntityTypes.MATORAN_PURPLE.get();
+            case YELLOW -> MnogiiEntityTypes.MATORAN_YELLOW.get();
+        };
     }
 }
