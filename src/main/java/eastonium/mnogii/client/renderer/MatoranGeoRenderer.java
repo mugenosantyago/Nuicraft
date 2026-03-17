@@ -9,6 +9,7 @@ import mod.azure.azurelib.common.render.entity.AzEntityRenderer;
 import mod.azure.azurelib.common.render.entity.AzEntityRendererConfig;
 import mod.azure.azurelib.common.render.entity.state.AzEntityRenderState;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
@@ -58,6 +59,7 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
                 .setShadowRadius(0.5f)
                 .setScale(ADULT_SCALE)
                 .setBoneTextureOverrideProvider(MatoranGeoRenderer::boneTextureFor)
+                .setBoneRenderTypeOverrideProvider(MatoranGeoRenderer::boneRenderTypeFor)
                 .build(),
                 context
         );
@@ -125,6 +127,17 @@ public class MatoranGeoRenderer extends AzEntityRenderer<EntityMatoran> {
                  "right_foot" -> colorTexture(maskId(mat), mat.getFeetColor());
             default           -> bodyTextureFor(mat);
         };
+    }
+
+    /**
+     * Provides a per-bone RenderType so that AzureLib actually binds the correct
+     * texture for each bone.  Without this, getDefaultRenderType() ignores the
+     * texture parameter and always falls back to the body texture's RenderType.
+     */
+    private static RenderType boneRenderTypeFor(AzBone bone) {
+        ResourceLocation tex = boneTextureFor(bone);
+        if (tex == null) return null;
+        return RenderType.entityCutout(tex);
     }
 
     private static ResourceLocation colorTexture(String maskId, EntityMatoran.MatoranColor color) {
