@@ -44,22 +44,22 @@ public class EntityNuiRama extends Monster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(2, new FlyLowGoal(this, 2, 5));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 0.6));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.3D, true));
+        this.goalSelector.addGoal(4, new FlyLowGoal(this, 2, 5));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 0.6));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
                 .add(Attributes.ATTACK_DAMAGE, 3.0)
-                .add(Attributes.FLYING_SPEED, 0.17)
-                .add(Attributes.MOVEMENT_SPEED, 0.17)
-                .add(Attributes.FOLLOW_RANGE, 16.0);
+                .add(Attributes.FLYING_SPEED, 0.22)
+                .add(Attributes.MOVEMENT_SPEED, 0.22)
+                .add(Attributes.FOLLOW_RANGE, 24.0);
     }
 
     @Override

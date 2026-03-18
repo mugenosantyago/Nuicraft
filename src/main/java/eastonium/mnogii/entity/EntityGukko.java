@@ -53,11 +53,11 @@ public class EntityGukko extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new FlyHighGoal(this, 20, 45));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
-        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.3D, true));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, stack -> stack.is(Items.FEATHER), false));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(5, new FlyHighGoal(this, 20, 45));
         this.goalSelector.addGoal(6, new LongRangeFlyGoal(this, 60, 200));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomFlyingGoal(this, 1.0));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -203,6 +203,7 @@ public class EntityGukko extends Animal {
 
         @Override
         public boolean canUse() {
+            if (mob.getTarget() != null) return false;
             if (mob.getRandom().nextInt(12) != 0) return false;
             BlockPos surface = mob.level().getHeightmapPos(
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mob.blockPosition());
@@ -245,6 +246,7 @@ public class EntityGukko extends Animal {
 
         @Override
         public boolean canUse() {
+            if (mob.getTarget() != null) return false;
             // Trigger infrequently so short-range goals also get a chance
             if (mob.getRandom().nextInt(20) != 0) return false;
             return !mob.getNavigation().isInProgress();
