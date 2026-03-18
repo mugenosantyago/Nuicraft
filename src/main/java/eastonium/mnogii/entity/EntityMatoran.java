@@ -668,11 +668,10 @@ public class EntityMatoran extends Animal implements Merchant {
      * Produces a baby Matoran when two adults breed.
      *
      * Koro: randomly inherited from one parent.
-     * Mask: blended from both parents' mask colors — cross-koro breeding produces
-     *       unique intermediate hues.  If the blended result matches the child's
-     *       body color, one of the parents' original accent colors is used instead
-     *       so the mask is always visually distinct.
-     * Feet: same logic applied independently to feet colors.
+     * Accent: blended from both parents' mask colors — cross-koro breeding produces
+     *         unique intermediate hues.  If the blended result matches the child's
+     *         body color, one of the parents' original accent colors is used instead.
+     *         Mask and feet always share the same accent color.
      * Profession/Mask: random from the implemented pool.
      *
      * NOTE: finalizeSpawn is called after this by vanilla, but it is told NOT to
@@ -692,20 +691,16 @@ public class EntityMatoran extends Animal implements Merchant {
         child.setProfession(RANDOM_PROFESSIONS[rand.nextInt(RANDOM_PROFESSIONS.length)]);
 
         if (otherParent instanceof EntityMatoran other) {
-            // Blend accent colors — if blend collapses to body color, fall back to
-            // the other parent's distinct accent to keep visuals interesting.
-            MatoranColor maskBlend = MatoranColor.blend(this.getMaskColor(), other.getMaskColor());
-            if (maskBlend == bodyColor) maskBlend = other.getMaskColor() != bodyColor
-                    ? other.getMaskColor() : MatoranColor.randomAccent(childKoro, rand);
-            child.setMaskColor(maskBlend);
-
-            MatoranColor feetBlend = MatoranColor.blend(this.getFeetColor(), other.getFeetColor());
-            if (feetBlend == bodyColor) feetBlend = other.getFeetColor() != bodyColor
-                    ? other.getFeetColor() : MatoranColor.randomAccent(childKoro, rand);
-            child.setFeetColor(feetBlend);
+            // Blend accent colors from both parents' masks. Mask and feet always match.
+            MatoranColor accent = MatoranColor.blend(this.getMaskColor(), other.getMaskColor());
+            if (accent == bodyColor) accent = other.getMaskColor() != bodyColor
+                    ? other.getMaskColor() : MatoranColor.random(rand);
+            child.setMaskColor(accent);
+            child.setFeetColor(accent);
         } else {
-            child.setMaskColor(MatoranColor.randomAccent(childKoro, rand));
-            child.setFeetColor(MatoranColor.randomAccent(childKoro, rand));
+            MatoranColor accent = MatoranColor.random(rand);
+            child.setMaskColor(accent);
+            child.setFeetColor(accent);
         }
         return child;
     }
@@ -731,11 +726,11 @@ public class EntityMatoran extends Animal implements Merchant {
             setProfession(RANDOM_PROFESSIONS[level.getRandom().nextInt(RANDOM_PROFESSIONS.length)]);
         }
         // BREEDING: getBreedOffspring() already set blended accent colors — preserve them.
-        // All other spawn reasons get distinct accent colors guaranteed different from body.
+        // All other spawn reasons get a random accent color (mask and feet always match).
         if (reason != net.minecraft.world.entity.EntitySpawnReason.BREEDING) {
-            var rand = level.getRandom();
-            setMaskColor(MatoranColor.randomAccent(getKoro(), rand));
-            setFeetColor(MatoranColor.randomAccent(getKoro(), rand));
+            MatoranColor accent = MatoranColor.random(level.getRandom());
+            setMaskColor(accent);
+            setFeetColor(accent);
         }
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
