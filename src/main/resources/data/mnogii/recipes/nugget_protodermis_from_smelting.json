@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "mnogii:protodermis_ore",
+  "result": {
+    "id": "mnogii:nugget_protodermis"
+  },
+  "experience": 0.5,
+  "cookingtime": 200
+}

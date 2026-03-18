@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "mnogii:lightstone_ore",
+  "result": {
+    "id": "mnogii:lightstone"
+  },
+  "experience": 0.5,
+  "cookingtime": 200
+}

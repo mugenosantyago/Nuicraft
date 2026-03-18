@@ -9,7 +9,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "mnogii:lightstone",
+              "name": "mnogii:lightstone_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
