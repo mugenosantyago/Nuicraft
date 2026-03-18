@@ -63,7 +63,7 @@ public class MnogiiEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityNuiRama>> NUI_RAMA =
             ENTITY_TYPES.register("nui_rama", () -> EntityType.Builder.of(EntityNuiRama::new, MobCategory.CREATURE)
-                    .sized(2.0F, 1.5F).clientTrackingRange(64).build(key("nui_rama")));
+                    .sized(2.0F, 2.0F).clientTrackingRange(64).build(key("nui_rama")));
 
     // ---- NPCs (dialogue) ----
 
