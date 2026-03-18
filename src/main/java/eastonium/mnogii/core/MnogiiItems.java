@@ -41,7 +41,8 @@ public class MnogiiItems {
     public static final DeferredItem<BlockItem> NUVA_CUBE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.NUVA_CUBE);
     public static final DeferredItem<BlockItem> MATANUI_STONE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.MATANUI_STONE);
     public static final DeferredItem<BlockItem> MAKUTA_STONE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.MAKUTA_STONE);
-    public static final DeferredItem<BlockItem> LIGHTSTONE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHTSTONE);
+    public static final DeferredItem<BlockItem> LIGHTSTONE = ITEMS.registerSimpleBlockItem("lightstone_torch", MnogiiBlocks.LIGHTSTONE);
+    public static final DeferredItem<Item> LIGHTSTONE_GEM = ITEMS.registerSimpleItem("lightstone");
     public static final DeferredItem<BlockItem> LIGHTSTONE_ORE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHTSTONE_ORE);
     public static final DeferredItem<BlockItem> HEATSTONE_ORE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.HEATSTONE_ORE);
     public static final DeferredItem<BlockItem> PROTODERMIS_ORE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.PROTODERMIS_ORE);
