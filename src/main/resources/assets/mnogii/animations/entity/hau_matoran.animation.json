@@ -1439,46 +1439,7 @@
         },
         "body": {
           "rotation": {
-            "0.0": {
-              "lerp_mode": "catmullrom",
-              "post": [
-                -9,
-                0,
-                1.0
-              ]
-            },
-            "0.55": {
-              "lerp_mode": "catmullrom",
-              "post": [
-                -13,
-                0,
-                -0.5
-              ]
-            },
-            "1.1": {
-              "lerp_mode": "catmullrom",
-              "post": [
-                -10,
-                0,
-                1.5
-              ]
-            },
-            "1.65": {
-              "lerp_mode": "catmullrom",
-              "post": [
-                -12,
-                0,
-                -0.5
-              ]
-            },
-            "2.0": {
-              "lerp_mode": "catmullrom",
-              "post": [
-                -9,
-                0,
-                1.0
-              ]
-            }
+            "0.0": [0, 0, 0]
           }
         },
         "head": {

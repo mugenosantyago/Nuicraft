@@ -29,7 +29,7 @@ import java.util.EnumSet;
  */
 public class EntityGukko extends Animal {
 
-    private static final float FLY_SPEED     = 0.15f;
+    private static final float FLY_SPEED     = 0.22f;
     private static final float FLY_DRAG      = 0.9f;
     /** How far above the entity's bounding-box top the rider sits. */
     private static final float HEIGHT_OFFSET = 0.15f;
@@ -66,10 +66,12 @@ public class EntityGukko extends Animal {
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
-                .add(Attributes.FLYING_SPEED, 0.12)
-                .add(Attributes.MOVEMENT_SPEED, 0.12)
+                .add(Attributes.FLYING_SPEED, 0.18)
+                .add(Attributes.MOVEMENT_SPEED, 0.18)
                 .add(Attributes.FOLLOW_RANGE, 100.0)
-                .add(Attributes.TEMPT_RANGE, 16.0);
+                .add(Attributes.TEMPT_RANGE, 16.0)
+                .add(Attributes.SAFE_FALL_DISTANCE, 20.0)
+                .add(Attributes.FALL_DAMAGE_MULTIPLIER, 0.15);
     }
 
     @Override

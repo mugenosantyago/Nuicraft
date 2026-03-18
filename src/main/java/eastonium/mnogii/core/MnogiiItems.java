@@ -6,7 +6,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.component.BlocksAttacks;
+import java.util.List;
+import java.util.Optional;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -137,7 +142,18 @@ public class MnogiiItems {
     public static final DeferredItem<Item> FIRE_SWORD   = ITEMS.registerItem("fire_sword",  props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.FIRE,  withItemId("fire_sword",  props).stacksTo(1).sword(MnogiiTiers.PROTODERMIS,  3, -2.4F)));
     public static final DeferredItem<Item> ICE_SWORD    = ITEMS.registerItem("ice_sword",   props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.ICE,   withItemId("ice_sword",   props).stacksTo(1).sword(MnogiiTiers.PROTODERMIS,  3, -2.4F)));
     public static final DeferredItem<Item> ICE_PICKAXE  = ITEMS.registerItem("ice_pickaxe", props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.ICE,   withItemId("ice_pickaxe", props).stacksTo(1).pickaxe(MnogiiTiers.PROTODERMIS,1, -2.8F)));
-    public static final DeferredItem<Item> ICE_SHIELD   = ITEMS.registerItem("ice_shield",  props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.ICE,   withItemId("ice_shield",  props).stacksTo(1)));
+    public static final DeferredItem<Item> ICE_SHIELD   = ITEMS.registerItem("ice_shield",  props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.ICE,
+            withItemId("ice_shield", props)
+                .durability(500)
+                .equippableUnswappable(EquipmentSlot.OFFHAND)
+                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(
+                        0.25F, 1.0F,
+                        List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
+                        new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
+                        Optional.of(DamageTypeTags.BYPASSES_SHIELD),
+                        Optional.of(SoundEvents.SHIELD_BLOCK),
+                        Optional.of(SoundEvents.SHIELD_BREAK)))
+                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)));
     public static final DeferredItem<Item> KAUKAU_STAFF = ITEMS.registerItem("kaukau_staff",props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.WATER, withItemId("kaukau_staff",props).stacksTo(1).sword(MnogiiTiers.PROTODERMIS,  2, -2.0F)));
     public static final DeferredItem<Item> ONUA_CLAWS   = ITEMS.registerItem("onua_claws",  props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.EARTH, withItemId("onua_claws",  props).stacksTo(1).sword(MnogiiTiers.PROTODERMIS,  4, -2.4F)));
     public static final DeferredItem<Item> ONUA_DRILL   = ITEMS.registerItem("onua_drill",  props -> new eastonium.mnogii.item.ItemElementalWeapon(eastonium.mnogii.item.ItemElementalWeapon.Element.EARTH, withItemId("onua_drill",  props).stacksTo(1).pickaxe(MnogiiTiers.PROTODERMIS,2, -2.8F)));
