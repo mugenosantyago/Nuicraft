@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "PPP"
+  ],
+  "key": {
+    "P": "mnogii:seaweed_wood_planks"
+  },
+  "result": {
+    "id": "mnogii:seaweed_wood_slab",
+    "count": 6
+  }
+}

@@ -1,24 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "pw",
-    " s ",
-    " s "
+    " W",
+    " P",
+    " S"
   ],
   "key": {
-    "p": {
-      "item": "minecraft:prismarine_shard"
-    },
-    "w": {
-      "item": "mnogii:water_toa_stone"
-    },
-    "s": {
-      "item": "minecraft:stick"
-    }
+    "W": "minecraft:prismarine_shard",
+    "P": "mnogii:ingot_protosteel",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:kaukau_staff",
+    "id": "mnogii:kaukau_staff",
     "count": 1
   }
 }

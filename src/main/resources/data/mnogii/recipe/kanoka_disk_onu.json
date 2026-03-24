@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "mnogii:kanoka_bamboo",
+    "mnogii:onu_koro_stone"
+  ],
+  "result": {
+    "id": "mnogii:kanoka_disk_onu",
+    "count": 1
+  }
+}

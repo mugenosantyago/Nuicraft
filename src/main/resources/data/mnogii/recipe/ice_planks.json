@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "mnogii:ice_wood"
+  ],
+  "result": {
+    "id": "mnogii:ice_planks",
+    "count": 4
+  }
+}

@@ -1,27 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    "cdc",
-    " a "
+    "PEP",
+    "PPP",
+    "PPP"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "b": {
-      "item": "mnogii:onu_wahi_stone"
-    },
-    "c": {
-      "item": "mnogii:gear"
-    },
-    "d": {
-      "item": "mnogii:water_toa_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:prismarine_shard"
   },
   "result": {
-    "item": "mnogii:chestplate_water",
+    "id": "mnogii:chestplate_water",
     "count": 1
   }
 }

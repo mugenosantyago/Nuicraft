@@ -1,24 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "a",
-    "b",
-    "c"
+    " B",
+    " P",
+    " S"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:protodermis_solid"
-    },
-    "b": {
-      "item": "minecraft:fire_charge"
-    },
-    "c": {
-      "item": "minecraft:stick"
-    }
+    "B": "minecraft:blaze_powder",
+    "P": "mnogii:ingot_protosteel",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:fire_staff",
+    "id": "mnogii:fire_staff",
     "count": 1
   }
 }

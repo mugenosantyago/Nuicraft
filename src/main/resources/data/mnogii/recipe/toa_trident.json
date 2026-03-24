@@ -1,24 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "ioi",
-    " i ",
-    " s "
+    "PWP",
+    " S ",
+    " S "
   ],
   "key": {
-    "i": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "o": {
-      "item": "mnogii:water_toa_stone"
-    },
-    "s": {
-      "item": "minecraft:stick"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "W": "minecraft:prismarine_shard",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:toa_trident",
+    "id": "mnogii:toa_trident",
     "count": 1
   }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "S  ",
+    "SS ",
+    "SSS"
+  ],
+  "key": {
+    "S": "mnogii:light_gray_stone"
+  },
+  "result": {
+    "id": "mnogii:light_gray_toa_stone_stairs",
+    "count": 4
+  }
+}

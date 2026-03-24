@@ -1,24 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    "aca",
-    "a a"
+    "PPP",
+    "PEP",
+    "PEP"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "b": {
-      "item": "mnogii:fire_toa_stone"
-    },
-    "c": {
-      "item": "mnogii:onu_wahi_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:blaze_powder"
   },
   "result": {
-    "item": "mnogii:leggings_fire",
+    "id": "mnogii:leggings_fire",
     "count": 1
   }
 }

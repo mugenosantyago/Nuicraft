@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "LL",
+    "LL"
+  ],
+  "key": {
+    "L": "mnogii:cured_wood_log"
+  },
+  "result": {
+    "id": "mnogii:cured_wood_wood",
+    "count": 3
+  }
+}

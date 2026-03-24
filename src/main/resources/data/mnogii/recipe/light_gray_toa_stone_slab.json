@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "SSS"
+  ],
+  "key": {
+    "S": "mnogii:light_gray_stone"
+  },
+  "result": {
+    "id": "mnogii:light_gray_toa_stone_slab",
+    "count": 6
+  }
+}

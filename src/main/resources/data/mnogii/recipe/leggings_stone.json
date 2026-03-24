@@ -1,24 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    "aca",
-    "a a"
+    "PPP",
+    "PEP",
+    "PEP"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "b": {
-      "item": "mnogii:rock_toa_stone"
-    },
-    "c": {
-      "item": "mnogii:onu_wahi_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:smooth_stone"
   },
   "result": {
-    "item": "mnogii:leggings_stone",
+    "id": "mnogii:leggings_stone",
     "count": 1
   }
 }

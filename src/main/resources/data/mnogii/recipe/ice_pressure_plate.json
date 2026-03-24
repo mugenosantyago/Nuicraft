@@ -1,15 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "redstone",
   "pattern": [
-    "PE",
     "PP"
   ],
   "key": {
-    "P": "mnogii:ingot_protosteel",
-    "E": "minecraft:prismarine_shard"
+    "P": "mnogii:ice_planks"
   },
   "result": {
-    "id": "mnogii:boots_water",
+    "id": "mnogii:ice_pressure_plate",
     "count": 1
   }
 }

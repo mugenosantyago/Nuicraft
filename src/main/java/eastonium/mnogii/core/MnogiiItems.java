@@ -76,6 +76,32 @@ public class MnogiiItems {
     public static final DeferredItem<BlockItem> BLACK_STONE_LAMP            = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_LAMP);
     public static final DeferredItem<BlockItem> BLACK_STONE_PRESSURE_PLATE  = ITEMS.registerSimpleBlockItem(MnogiiBlocks.BLACK_STONE_PRESSURE_PLATE);
 
+    // Cured wood variants (Le-Koro, Po-Koro)
+    public static final DeferredItem<BlockItem> CURED_WOOD_PLANKS         = ITEMS.registerSimpleBlockItem(MnogiiBlocks.CURED_WOOD_PLANKS);
+    public static final DeferredItem<BlockItem> CURED_WOOD_WOOD           = ITEMS.registerSimpleBlockItem(MnogiiBlocks.CURED_WOOD_WOOD);
+    public static final DeferredItem<BlockItem> CURED_WOOD_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.CURED_WOOD_PRESSURE_PLATE);
+
+    // Ice wood set (Ko-Koro)
+    public static final DeferredItem<BlockItem> ICE_PLANKS         = ITEMS.registerSimpleBlockItem(MnogiiBlocks.ICE_PLANKS);
+    public static final DeferredItem<BlockItem> ICE_WOOD           = ITEMS.registerSimpleBlockItem(MnogiiBlocks.ICE_WOOD);
+    public static final DeferredItem<BlockItem> ICE_SLAB           = ITEMS.registerSimpleBlockItem(MnogiiBlocks.ICE_SLAB);
+    public static final DeferredItem<BlockItem> ICE_STAIRS         = ITEMS.registerSimpleBlockItem(MnogiiBlocks.ICE_STAIRS);
+    public static final DeferredItem<BlockItem> ICE_FENCE          = ITEMS.registerSimpleBlockItem(MnogiiBlocks.ICE_FENCE);
+    public static final DeferredItem<BlockItem> ICE_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.ICE_PRESSURE_PLATE);
+
+    // Light gray stone variants (Onu-Koro, Ko-Koro, Po-Koro)
+    public static final DeferredItem<BlockItem> LIGHT_GRAY_STONE_BRICK      = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHT_GRAY_STONE_BRICK);
+    public static final DeferredItem<BlockItem> LIGHT_GRAY_TOA_STONE_SLAB   = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHT_GRAY_TOA_STONE_SLAB);
+    public static final DeferredItem<BlockItem> LIGHT_GRAY_TOA_STONE_STAIRS = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHT_GRAY_TOA_STONE_STAIRS);
+    public static final DeferredItem<BlockItem> LIGHTGRAYSTONE_FENCE        = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHTGRAYSTONE_FENCE);
+
+    // Ko-Koro decorative
+    public static final DeferredItem<BlockItem> SNOW_WALL_TEXT_BLOCK   = ITEMS.registerSimpleBlockItem(MnogiiBlocks.SNOW_WALL_TEXT_BLOCK);
+    public static final DeferredItem<BlockItem> SNOW_WALL_TEXT_BLOCK_2 = ITEMS.registerSimpleBlockItem(MnogiiBlocks.SNOW_WALL_TEXT_BLOCK_2);
+
+    // Onu-Koro ore
+    public static final DeferredItem<BlockItem> LIGHTSTONES_ORE = ITEMS.registerSimpleBlockItem(MnogiiBlocks.LIGHTSTONES_ORE);
+
     public static final DeferredItem<Item> KANOKA_BAMBOO = ITEMS.registerItem("kanoka_bamboo",
             props -> new eastonium.mnogii.item.ItemThrowableDisc(withItemId("kanoka_bamboo", props)));
 

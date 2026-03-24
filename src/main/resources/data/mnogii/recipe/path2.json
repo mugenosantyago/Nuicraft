@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PS"
+  ],
+  "key": {
+    "P": "mnogii:seaweed_wood_planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "mnogii:path2",
+    "count": 4
+  }
+}

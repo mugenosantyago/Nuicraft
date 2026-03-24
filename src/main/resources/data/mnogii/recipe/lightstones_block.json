@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LL",
+    "LL"
+  ],
+  "key": {
+    "L": "mnogii:lightstone"
+  },
+  "result": {
+    "id": "mnogii:lightstones_block",
+    "count": 1
+  }
+}

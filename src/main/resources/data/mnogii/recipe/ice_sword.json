@@ -1,27 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    " a ",
-    "bcb",
-    " d "
+    "P",
+    "I",
+    "S"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:onu_wahi_stone"
-    },
-    "b": {
-      "item": "minecraft:ice"
-    },
-    "c": {
-      "item": "mnogii:ice_toa_stone"
-    },
-    "d": {
-      "item": "minecraft:stick"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "I": "minecraft:packed_ice",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:ice_sword",
+    "id": "mnogii:ice_sword",
     "count": 1
   }
 }

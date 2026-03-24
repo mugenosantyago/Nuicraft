@@ -376,7 +376,9 @@ public class KoroSpawnHandler {
             BlockState feet  = level.getBlockState(candidate);
             BlockState head  = level.getBlockState(candidate.above());
 
-            if (floor.isSolid() && !feet.isSolid() && !head.isSolid()) {
+            if (floor.isSolid()
+                    && !feet.isSolid() && feet.getFluidState().isEmpty()
+                    && !head.isSolid() && head.getFluidState().isEmpty()) {
                 return candidate;
             }
         }

@@ -1,23 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    "aca"
+    "PE",
+    "PP"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "b": {
-      "item": "mnogii:air_toa_stone"
-    },
-    "c": {
-      "item": "mnogii:onu_wahi_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:feather"
   },
   "result": {
-    "item": "mnogii:boots_air",
+    "id": "mnogii:boots_air",
     "count": 1
   }
 }

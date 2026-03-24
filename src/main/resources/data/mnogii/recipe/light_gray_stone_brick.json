@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": "mnogii:light_gray_stone"
+  },
+  "result": {
+    "id": "mnogii:light_gray_stone_brick",
+    "count": 4
+  }
+}

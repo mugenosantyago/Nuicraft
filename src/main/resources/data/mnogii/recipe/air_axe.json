@@ -1,27 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "abb",
-    " c ",
-    " d "
+    "PF",
+    "PS",
+    " S"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:onu_wahi_stone"
-    },
-    "b": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "c": {
-      "item": "mnogii:air_toa_stone"
-    },
-    "d": {
-      "item": "minecraft:stick"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "F": "minecraft:feather",
+    "S": "minecraft:stick"
   },
   "result": {
-    "item": "mnogii:air_axe",
+    "id": "mnogii:air_axe",
     "count": 1
   }
 }

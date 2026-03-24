@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "PPP"
+  ],
+  "key": {
+    "P": "mnogii:ice_planks"
+  },
+  "result": {
+    "id": "mnogii:ice_slab",
+    "count": 6
+  }
+}

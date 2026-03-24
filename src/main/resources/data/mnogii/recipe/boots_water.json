@@ -1,23 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    "aca"
+    "PE",
+    "PP"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "b": {
-      "item": "mnogii:water_toa_stone"
-    },
-    "c": {
-      "item": "mnogii:onu_wahi_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:prismarine_shard"
   },
   "result": {
-    "item": "mnogii:boots_water",
+    "id": "mnogii:boots_water",
     "count": 1
   }
 }

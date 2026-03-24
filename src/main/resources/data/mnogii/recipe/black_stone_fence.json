@@ -6,10 +6,10 @@
     "BBB"
   ],
   "key": {
-    "B": { "item": "mnogii:black_stone_brick" }
+    "B": "mnogii:black_stone_brick"
   },
   "result": {
-    "item": "mnogii:black_stone_fence",
+    "id": "mnogii:black_stone_fence",
     "count": 3
   }
 }

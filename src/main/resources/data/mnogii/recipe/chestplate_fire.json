@@ -1,27 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "pattern": [
-    "aba",
-    "cdc",
-    " a "
+    "PEP",
+    "PPP",
+    "PPP"
   ],
   "key": {
-    "a": {
-      "item": "mnogii:ingot_protosteel"
-    },
-    "b": {
-      "item": "mnogii:onu_wahi_stone"
-    },
-    "c": {
-      "item": "mnogii:gear"
-    },
-    "d": {
-      "item": "mnogii:fire_toa_stone"
-    }
+    "P": "mnogii:ingot_protosteel",
+    "E": "minecraft:blaze_powder"
   },
   "result": {
-    "item": "mnogii:chestplate_fire",
+    "id": "mnogii:chestplate_fire",
     "count": 1
   }
 }

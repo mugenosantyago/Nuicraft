@@ -185,6 +185,50 @@ public class MnogiiJeiPlugin implements IModPlugin {
                 ),
                 Component.translatable("jei.mnogii.protodermis_tools.info"));
 
+        // ---- Building blocks ----
+        List<ItemStack> koroStones = Stream.of(
+                MnogiiItems.TA_KORO_STONE,  MnogiiItems.GA_KORO_STONE,
+                MnogiiItems.LE_KORO_STONE,  MnogiiItems.KO_KORO_STONE,
+                MnogiiItems.ONU_KORO_STONE, MnogiiItems.PO_KORO_STONE
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(koroStones, Component.translatable("jei.mnogii.koro_stone.info"));
+
+        List<ItemStack> seaweedWood = Stream.of(
+                MnogiiItems.SEAWEED_WOOD_PLANKS, MnogiiItems.SEAWEED_WOOD_WOOD,
+                MnogiiItems.SEAWEED_WOOD_SLAB,   MnogiiItems.SEAWEED_WOOD_STAIRS
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(seaweedWood, Component.translatable("jei.mnogii.seaweed_wood.info"));
+
+        List<ItemStack> curedWood = Stream.of(
+                MnogiiItems.CURED_WOOD_LOG,  MnogiiItems.CURED_WOOD_FENCE,
+                MnogiiItems.CURED_WOOD_PLANKS, MnogiiItems.CURED_WOOD_WOOD,
+                MnogiiItems.CURED_WOOD_PRESSURE_PLATE
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(curedWood, Component.translatable("jei.mnogii.cured_wood.info"));
+
+        List<ItemStack> iceWood = Stream.of(
+                MnogiiItems.ICE_PLANKS, MnogiiItems.ICE_WOOD,
+                MnogiiItems.ICE_SLAB,   MnogiiItems.ICE_STAIRS,
+                MnogiiItems.ICE_FENCE,  MnogiiItems.ICE_PRESSURE_PLATE
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(iceWood, Component.translatable("jei.mnogii.ice_wood.info"));
+
+        List<ItemStack> blackStone = Stream.of(
+                MnogiiItems.BLACK_STONE_BRICK, MnogiiItems.BLACK_STONE_SLAB,
+                MnogiiItems.BLACK_STONE_STAIRS, MnogiiItems.BLACK_STONE_FENCE,
+                MnogiiItems.BLACK_STONE_LAMP, MnogiiItems.BLACK_STONE_PRESSURE_PLATE
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(blackStone, Component.translatable("jei.mnogii.black_stone.info"));
+
+        List<ItemStack> lightGrayStone = Stream.of(
+                MnogiiItems.LIGHT_GRAY_STONE,
+                MnogiiItems.LIGHT_GRAY_STONE_BRICK,
+                MnogiiItems.LIGHT_GRAY_TOA_STONE_SLAB,
+                MnogiiItems.LIGHT_GRAY_TOA_STONE_STAIRS,
+                MnogiiItems.LIGHTGRAYSTONE_FENCE
+        ).map(d -> new ItemStack(d.get())).toList();
+        registration.addItemStackInfo(lightGrayStone, Component.translatable("jei.mnogii.light_gray_stone.info"));
+
         // ---- Toa Mata armour sets ----
         registration.addItemStackInfo(
                 List.of(

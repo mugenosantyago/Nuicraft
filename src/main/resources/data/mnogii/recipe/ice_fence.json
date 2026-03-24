@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "PSP",
+    "PSP"
+  ],
+  "key": {
+    "P": "mnogii:ice_planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "mnogii:ice_fence",
+    "count": 3
+  }
+}
