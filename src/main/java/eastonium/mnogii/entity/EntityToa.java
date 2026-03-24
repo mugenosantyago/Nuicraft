@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -38,32 +39,40 @@ import net.minecraft.world.phys.AABB;
 public class EntityToa extends PathfinderMob {
 
     public enum Variant {
-        //                texture          maskBone   toaStone                         signatureMask
-        TAHU  ("toa_tahu",   "Hau",    () -> MnogiiItems.FIRE_TOA_STONE.get(),  () -> MnogiiItems.MASK_MATA_HAU.get()),
-        GALI  ("toa_gali",   "Kaukau", () -> MnogiiItems.WATER_TOA_STONE.get(), () -> MnogiiItems.MASK_MATA_KAUKAU.get()),
-        LEWA  ("toa_lewa",   "Miru",   () -> MnogiiItems.AIR_TOA_STONE.get(),   () -> MnogiiItems.MASK_MATA_MIRU.get()),
-        ONUA  ("toa_onua",   "Pakari", () -> MnogiiItems.EARTH_TOA_STONE.get(), () -> MnogiiItems.MASK_MATA_PAKARI.get()),
-        POHATU("toa_pohatu", "Kakama", () -> MnogiiItems.ROCK_TOA_STONE.get(),  () -> MnogiiItems.MASK_MATA_KAKAMA.get()),
-        KOPAKA("toa_kopaka", "Akaku",  () -> MnogiiItems.ICE_TOA_STONE.get(),   () -> MnogiiItems.MASK_MATA_AKAKU.get());
+        //                texture          maskBone   toaStone                         signatureMask                          mainHand                                        offHand
+        TAHU  ("toa_tahu",   "Hau",    () -> MnogiiItems.FIRE_TOA_STONE.get(),  () -> MnogiiItems.MASK_MATA_HAU.get(),    () -> MnogiiItems.FIRE_SWORD.get(),   null),
+        GALI  ("toa_gali",   "Kaukau", () -> MnogiiItems.WATER_TOA_STONE.get(), () -> MnogiiItems.MASK_MATA_KAUKAU.get(), () -> MnogiiItems.WATER_HOOKS.get(),  null),
+        LEWA  ("toa_lewa",   "Miru",   () -> MnogiiItems.AIR_TOA_STONE.get(),   () -> MnogiiItems.MASK_MATA_MIRU.get(),   () -> MnogiiItems.AIR_AXE.get(),      null),
+        ONUA  ("toa_onua",   "Pakari", () -> MnogiiItems.EARTH_TOA_STONE.get(), () -> MnogiiItems.MASK_MATA_PAKARI.get(), () -> MnogiiItems.ONUA_CLAWS.get(),   null),
+        POHATU("toa_pohatu", "Kakama", () -> MnogiiItems.ROCK_TOA_STONE.get(),  () -> MnogiiItems.MASK_MATA_KAKAMA.get(), () -> MnogiiItems.POHATU_HANDS.get(), null),
+        KOPAKA("toa_kopaka", "Akaku",  () -> MnogiiItems.ICE_TOA_STONE.get(),   () -> MnogiiItems.MASK_MATA_AKAKU.get(),  () -> MnogiiItems.ICE_SWORD.get(),    () -> MnogiiItems.ICE_SHIELD.get());
 
         private final String textureName;
         private final String maskBone;
         private final java.util.function.Supplier<Item> toaStoneSupplier;
         private final java.util.function.Supplier<Item> signatureMaskSupplier;
+        private final java.util.function.Supplier<Item> mainHandSupplier;
+        private final java.util.function.Supplier<Item> offHandSupplier;
 
         Variant(String textureName, String maskBone,
                 java.util.function.Supplier<Item> toaStoneSupplier,
-                java.util.function.Supplier<Item> signatureMaskSupplier) {
+                java.util.function.Supplier<Item> signatureMaskSupplier,
+                java.util.function.Supplier<Item> mainHandSupplier,
+                java.util.function.Supplier<Item> offHandSupplier) {
             this.textureName           = textureName;
             this.maskBone              = maskBone;
             this.toaStoneSupplier      = toaStoneSupplier;
             this.signatureMaskSupplier = signatureMaskSupplier;
+            this.mainHandSupplier      = mainHandSupplier;
+            this.offHandSupplier       = offHandSupplier;
         }
 
         public String getTextureName()  { return textureName; }
         public String getMaskBone()     { return maskBone; }
         public Item   getToaStone()     { return toaStoneSupplier.get(); }
         public Item   getSignatureMask(){ return signatureMaskSupplier.get(); }
+        public Item   getMainHandWeapon(){ return mainHandSupplier.get(); }
+        public Item   getOffHandItem()  { return offHandSupplier != null ? offHandSupplier.get() : null; }
     }
 
     private final Variant variant;
@@ -72,6 +81,13 @@ public class EntityToa extends PathfinderMob {
     public EntityToa(EntityType<? extends PathfinderMob> type, Level level, Variant variant) {
         super(type, level);
         this.variant = variant;
+        this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(variant.getMainHandWeapon()));
+        this.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
+        Item offHand = variant.getOffHandItem();
+        if (offHand != null) {
+            this.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(offHand));
+            this.setDropChance(EquipmentSlot.OFFHAND, 0.0F);
+        }
     }
 
     public Variant getVariant() {
