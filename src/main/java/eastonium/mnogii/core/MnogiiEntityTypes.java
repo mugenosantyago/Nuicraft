@@ -41,11 +41,11 @@ public class MnogiiEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMuaka>> MUAKA =
             ENTITY_TYPES.register("muaka", () -> EntityType.Builder.of(EntityMuaka::new, MobCategory.MONSTER)
-                    .sized(2.0F, 2.5F).clientTrackingRange(64).build(key("muaka")));
+                    .sized(2.5F, 2.5F).clientTrackingRange(64).build(key("muaka")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityTarakava>> TARAKAVA =
             ENTITY_TYPES.register("tarakava", () -> EntityType.Builder.of(EntityTarakava::new, MobCategory.MONSTER)
-                    .sized(1.5F, 2.5F).clientTrackingRange(64).build(key("tarakava")));
+                    .sized(2.0F, 3.5F).clientTrackingRange(64).build(key("tarakava")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityKofoJaga>> KOFO_JAGA =
             ENTITY_TYPES.register("kofo_jaga", () -> EntityType.Builder.of(EntityKofoJaga::new, MobCategory.MONSTER)
@@ -59,11 +59,11 @@ public class MnogiiEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityGukko>> GUKKO =
             ENTITY_TYPES.register("gukko", () -> EntityType.Builder.of(EntityGukko::new, MobCategory.CREATURE)
-                    .sized(2.5F, 1.8F).clientTrackingRange(64).build(key("gukko")));
+                    .sized(3.0F, 2.0F).clientTrackingRange(64).build(key("gukko")));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityNuiRama>> NUI_RAMA =
             ENTITY_TYPES.register("nui_rama", () -> EntityType.Builder.of(EntityNuiRama::new, MobCategory.CREATURE)
-                    .sized(2.0F, 2.0F).clientTrackingRange(64).build(key("nui_rama")));
+                    .sized(2.5F, 2.0F).clientTrackingRange(64).build(key("nui_rama")));
 
     // ---- NPCs (dialogue) ----
 

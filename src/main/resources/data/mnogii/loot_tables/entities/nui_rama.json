@@ -6,17 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mnogii:kanoka_bamboo",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": { "type": "minecraft:uniform", "min": 1, "max": 2 }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "mnogii:protodermis_solid",
           "weight": 4,
           "functions": [
@@ -60,12 +49,36 @@
       "conditions": [
         { "condition": "minecraft:random_chance_with_enchanted_bonus",
           "enchantment": "minecraft:looting",
+          "chance": { "base": 0.35, "per_level_above_first": 0.1 } }
+      ],
+      "entries": [
+        { "type": "minecraft:item", "name": "mnogii:kanoka_disk_ga", "weight": 3 },
+        { "type": "minecraft:item", "name": "mnogii:kanoka_disk_ko", "weight": 3 },
+        { "type": "minecraft:item", "name": "mnogii:kanoka_disk_le", "weight": 3 },
+        { "type": "minecraft:item", "name": "mnogii:kanoka_disk_onu", "weight": 3 },
+        { "type": "minecraft:item", "name": "mnogii:kanoka_disk_po", "weight": 3 },
+        { "type": "minecraft:item", "name": "mnogii:kanoka_disk_ta", "weight": 3 },
+        { "type": "minecraft:item", "name": "mnogii:kanoka_bamboo", "weight": 6,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "type": "minecraft:uniform", "min": 1, "max": 2 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        { "condition": "minecraft:random_chance_with_enchanted_bonus",
+          "enchantment": "minecraft:looting",
           "chance": { "base": 0.05, "per_level_above_first": 0.02 } }
       ],
       "entries": [
         { "type": "minecraft:item", "name": "mnogii:mask_mata_miru_le",   "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_kakama_le", "weight": 2 },
-        { "type": "minecraft:item", "name": "mnogii:mask_mata_ruru_le",  "weight": 2 },
+        { "type": "minecraft:item", "name": "mnogii:mask_mata_ruru_le",   "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_matatu_le", "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_huna_le",   "weight": 2 },
         { "type": "minecraft:item", "name": "mnogii:mask_mata_miru",      "weight": 1 },
